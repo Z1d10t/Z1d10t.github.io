@@ -130,12 +130,12 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -164,7 +164,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/05/one/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/05/6%E3%80%81[%E5%BC%BA%E7%BD%91%E6%9D%AF%202019]%E9%9A%8F%E4%BE%BF%E6%B3%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -182,7 +182,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/02/05/one/" class="post-title-link" itemprop="url">one</a>
+          <a href="/2023/02/05/6%E3%80%81%5B%E5%BC%BA%E7%BD%91%E6%9D%AF%202019%5D%E9%9A%8F%E4%BE%BF%E6%B3%A8/" class="post-title-link" itemprop="url">6、[强网杯 2019]随便注</a>
         </h2>
 
         <div class="post-meta-container">
@@ -194,7 +194,16 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-02-05 20:29:51 / 修改时间：20:47:57" itemprop="dateCreated datePublished" datetime="2023-02-05T20:29:51+08:00">2023-02-05</time>
+      <time title="创建时间：2023-02-05 20:29:51 / 修改时间：21:28:46" itemprop="dateCreated datePublished" datetime="2023-02-05T20:29:51+08:00">2023-02-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/buuctf/" itemprop="url" rel="index"><span itemprop="name">buuctf</span></a>
+        </span>
     </span>
 
   
@@ -207,50 +216,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>正常操作后，发现只有两列，然后有正则匹配过滤了</p>
-<p>return preg_match(“/select|update|delete|drop|insert|where|./i”,$inject);</p>
-<p>这题考了堆叠注入，原理很简单，就是通过 <code>;</code> 号注入多条SQL语句。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27;;show databases;</span><br></pre></td></tr></table></figure>
-
-<img src="/2023/02/05/one/1.png" class="">
-
-<p>看一下当前的数据库，这里考到了报错注入</p>
-<p>原理：</p>
-<p>MySQL提供了一个 updatexml() 函数，当第二个参数包含特殊符号时会报错，并将第二个参数的内容显示在报错信息中。</p>
-<p>但是这题update被过滤了</p>
-<p>extractvalue() 传参时候稍有不同，其余都是一样的，用这两个函数时，常常用到拼接函数，将要要查询的语句和第二个特殊符号拼接起来一起回显。</p>
-<p>sql里拼接函数：concat，concat_ws ,group_concat</p>
-<p><code>1&#39; and extractvalue(1,concat(0x7e,database(),0x7e));</code> 0x7e 是十六进制~</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674107777766-0a679e06-d245-4a7c-9af1-b76701936f7c.png" alt="img"></p>
-<p>当前数据库在supersqli 注意结果是按照报错的方式回显的。</p>
-<p><code>-1&#39;;show tables;</code>爆表</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674106018238-7810382e-073c-4091-b72e-08fcd46441ba.png" alt="img"></p>
-<p>flag在那串数字里</p>
-<p>表名为数字时，要用反引号包起来查询。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27;;show columns from `1919810931114514`;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674106177437-bba403ed-00ef-4142-bfef-6c0dcb0cb6ff.png" alt="img"></p>
-<p>然后要使用存储过程预编译知识，构造能执行的语句</p>
-<p>方法一：</p>
-<p>set @name1 = sql 语句；</p>
-<p>prepare name2 from @name1</p>
-<p>EXECUTE name2</p>
-<p>注意：一个@是用户变量，两个@是系统变量</p>
-<p>方法二：</p>
-<p>prepare name1 from 一个sql语句;</p>
-<p>EXECUTE name1；</p>
-<p>name1,name2的意思是一个名字</p>
-<p>其实两者原理都一样</p>
-<p>构造：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;set @a = concat(&#x27;se&#x27;,&#x27;lect * from `1919810931114514`;&#x27;);prepare b from @a;EXECUTE b;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674108504000-bb8f19b7-415c-4345-84ff-9f3573a9cfcc.png" alt="img"></p>
-<p>strstr()函数对大小写很敏感，通过大写绕过即可。</p>
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674108794007-3296b6e1-c3c3-4954-80f5-8ce1f9e4f3fa.png" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;Set @a = concat(&#x27;se&#x27;,&#x27;lect * from `1919810931114514`;&#x27;); Prepare b from @a; EXECUTE b;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1674108615242-30869c84-be6a-4449-96aa-915b3865eac9.png" alt="img"></p>
-
+          <p>buuctf [强网杯 2019]随便注</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/05/6%E3%80%81%5B%E5%BC%BA%E7%BD%91%E6%9D%AF%202019%5D%E9%9A%8F%E4%BE%BF%E6%B3%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
