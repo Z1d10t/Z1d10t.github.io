@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="[红明谷CTF 2021]write_shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="buuctf-79-[红明谷CTF 2021]write_shell">
+<meta property="og:url" content="http://example.com/2023/04/29/buuctf-79-%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-write-shell/index.html">
+<meta property="og:site_name" content="Z1d10t&#39;s Blog">
+<meta property="og:description" content="[红明谷CTF 2021]write_shell">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679661478990-0980b9d2-889c-49ef-a790-becc223c2860.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679661494898-f5c96b64-3163-4984-9ebb-6d5cfd802007.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679661798378-610250da-1970-4ea0-92aa-8712ea9df795.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679661956409-64ad7724-461e-4519-adb7-e66b1a2ea3e7.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679662047463-b38f3a26-75d5-4987-b03b-70f5bd8d9244.png">
+<meta property="article:published_time" content="2023-04-29T10:10:49.000Z">
+<meta property="article:modified_time" content="2023-04-29T10:13:25.910Z">
+<meta property="article:author" content="Z1d10t">
+<meta property="article:tag" content="bypass">
+<meta property="article:tag" content="php短标签">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679661478990-0980b9d2-889c-49ef-a790-becc223c2860.png">
+
+
+<link rel="canonical" href="http://example.com/2023/04/29/buuctf-79-%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-write-shell/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/04/29/buuctf-79-%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-write-shell/","path":"2023/04/29/buuctf-79-红明谷CTF-2021-write-shell/","title":"buuctf-79-[红明谷CTF 2021]write_shell"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>buuctf-79-[红明谷CTF 2021]write_shell | Z1d10t's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Z1d10t's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tag fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-rectangle-list fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于博主</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A2%8E%E7%A2%8E%E5%BF%B5%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">碎碎念：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">解题：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Z1d10t"
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+  <p class="site-author-name" itemprop="name">Z1d10t</p>
+  <div class="site-description" itemprop="description">welcome to my blog (*^_^*)</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">69</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/29/buuctf-79-%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-write-shell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10t's Blog">
+      <meta itemprop="description" content="welcome to my blog (*^_^*)">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="buuctf-79-[红明谷CTF 2021]write_shell | Z1d10t's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          buuctf-79-[红明谷CTF 2021]write_shell
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-04-29 18:10:49 / 修改时间：18:13:25" itemprop="dateCreated datePublished" datetime="2023-04-29T18:10:49+08:00">2023-04-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/buuctf/" itemprop="url" rel="index"><span itemprop="name">buuctf</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>[红明谷CTF 2021]write_shell</p>
+<span id="more"></span>
+
+<h2 id="碎碎念："><a href="#碎碎念：" class="headerlink" title="碎碎念："></a>碎碎念：</h2><p>这道题目还是蛮简单的，考了php短标签和空格绕过，还有一个双问号表达式</p>
+<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><p>放出源码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">function check($input)&#123;</span><br><span class="line">    if(preg_match(&quot;/&#x27;| |_|php|;|~|\\^|\\+|eval|&#123;|&#125;/i&quot;,$input))&#123;</span><br><span class="line">        // if(preg_match(&quot;/&#x27;| |_|=|php/&quot;,$input))&#123;</span><br><span class="line">        die(&#x27;hacker!!!&#x27;);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return $input;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function waf($input)&#123;</span><br><span class="line">  if(is_array($input))&#123;</span><br><span class="line">      foreach($input as $key=&gt;$output)&#123;</span><br><span class="line">          $input[$key] = waf($output);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">      $input = check($input);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$dir = &#x27;sandbox/&#x27; . md5($_SERVER[&#x27;REMOTE_ADDR&#x27;]) . &#x27;/&#x27;;</span><br><span class="line">if(!file_exists($dir))&#123;</span><br><span class="line">    mkdir($dir);</span><br><span class="line">&#125;</span><br><span class="line">switch($_GET[&quot;action&quot;] ?? &quot;&quot;) &#123;</span><br><span class="line">    case &#x27;pwd&#x27;:</span><br><span class="line">        echo $dir;</span><br><span class="line">        break;</span><br><span class="line">    case &#x27;upload&#x27;:</span><br><span class="line">        $data = $_GET[&quot;data&quot;] ?? &quot;&quot;;</span><br><span class="line">        waf($data);</span><br><span class="line">        file_put_contents(&quot;$dir&quot; . &quot;index.php&quot;, $data);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>首先就是通过你的<code>sandbox+md5(ip)</code>创建一个沙盒路径 老套路了</p>
+<p>然后这里有两个问号<code>??</code>先来看看</p>
+<p>这种是比较运算符中的NULL 合并操作符,从PHP7开始提供,作用是:从左往右第一个存在且不为 NULL 的操作数。如果都没有定义且不为 NULL，则返回 NULL  </p>
+<p>就是如果c= a??b 如果a为0 则c=b 如果a不为0 则c=a</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679661478990-0980b9d2-889c-49ef-a790-becc223c2860.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679661494898-f5c96b64-3163-4984-9ebb-6d5cfd802007.png" alt="img"></p>
+<p>然后就是有两个模式 一个pwd就是返回路径的 upload模式让我提交shell的但是提交前会通过一个筛选</p>
+<p>过滤了<code>&quot;/&#39;| |_|php|;|~|\\^|\\+|eval|&#123;|&#125;/i&quot;</code> <code>php eval &#123;&#125; </code> 空格都被禁了</p>
+<p>如果直接构造<code>?data=ls%09/</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679661798378-610250da-1970-4ea0-92aa-8712ea9df795.png" alt="img"></p>
+<p>则只会显示 不会执行 那么我们需要构造php代码去执行我们的linux命令 这也印证了前面为什么要禁php字样了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679661956409-64ad7724-461e-4519-adb7-e66b1a2ea3e7.png" alt="img"></p>
+<p>但是php字样被禁 所以要用短标签了 下面二选一</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;?echo%09`ls%09/`?&gt;</span><br><span class="line">&lt;?=`ls%09/`?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里绕过空格 不能用<code>$IFS$9</code> 估计是因为php会把这个<code>$</code>当作变量来解析吧 用%09绕过就行</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679662047463-b38f3a26-75d5-4987-b03b-70f5bd8d9244.png" alt="img"></p>
+<p>然后cat读出来就行了</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Z1d10t
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2023/04/29/buuctf-79-%E7%BA%A2%E6%98%8E%E8%B0%B7CTF-2021-write-shell/" title="buuctf-79-[红明谷CTF 2021]write_shell">http://example.com/2023/04/29/buuctf-79-红明谷CTF-2021-write-shell/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/bypass/" rel="tag"># bypass</a>
+              <a href="/tags/php%E7%9F%AD%E6%A0%87%E7%AD%BE/" rel="tag"># php短标签</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/04/29/buuctf-82-HITCON-2017-SSRFme/" rel="prev" title="buuctf-82-[HITCON 2017]SSRFme">
+                  <i class="fa fa-chevron-left"></i> buuctf-82-[HITCON 2017]SSRFme
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/04/29/buuctf-85-HFCTF2020-EasyLogin/" rel="next" title="buuctf-85-[HFCTF2020]EasyLogin">
+                  buuctf-85-[HFCTF2020]EasyLogin <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2023.2 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z1d10t</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
