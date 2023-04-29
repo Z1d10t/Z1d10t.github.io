@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="碎碎念：一道关于jwt和python反序列化的题目，对我来说很新颖，暂时只会php的反序列化，就当作学习题目了，然后越做到后面的题目发现会python脚本干一些机械重复性的事情真的很有用，得找时间去学着写脚本。 解题：进入题目  看过源码一些正常操作之后什么也没发现，看到一句话，应该是让我们买lv6，在这之前先去注册登录，然后日常看一下admin的用户，发现是已经注册过的。 一开始我都是一页一">
+    <meta name="description" content="[CISCN2019 华北赛区 Day1 Web2]ikun">
 <meta property="og:type" content="article">
 <meta property="og:title" content="buuctf-71-[CISCN2019 华北赛区 Day1 Web2]ikun">
 <meta property="og:url" content="http://example.com/2023/04/29/buuctf-71-CISCN2019-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA-Day1-Web2-ikun/index.html">
 <meta property="og:site_name" content="Z1d10t&#39;s Blog">
-<meta property="og:description" content="碎碎念：一道关于jwt和python反序列化的题目，对我来说很新颖，暂时只会php的反序列化，就当作学习题目了，然后越做到后面的题目发现会python脚本干一些机械重复性的事情真的很有用，得找时间去学着写脚本。 解题：进入题目  看过源码一些正常操作之后什么也没发现，看到一句话，应该是让我们买lv6，在这之前先去注册登录，然后日常看一下admin的用户，发现是已经注册过的。 一开始我都是一页一">
+<meta property="og:description" content="[CISCN2019 华北赛区 Day1 Web2]ikun">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679473847087-0169d116-8a33-4976-bd55-f371017157d8.png">
 <meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679474702762-160ddbe0-fb42-4be9-8366-724c99159d5b.png">
@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679475831556-3f608263-1166-4f39-a71b-dcece769b79d.png">
 <meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679475923738-eada5091-7c68-4503-9402-50b706cc41c3.png">
 <meta property="article:published_time" content="2023-04-29T05:38:33.000Z">
-<meta property="article:modified_time" content="2023-04-29T05:39:46.623Z">
+<meta property="article:modified_time" content="2023-04-29T05:41:45.048Z">
 <meta property="article:author" content="Z1d10t">
 <meta property="article:tag" content="python">
 <meta property="article:tag" content="jwt">
@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -219,7 +219,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-04-29 13:38:33 / 修改时间：13:39:46" itemprop="dateCreated datePublished" datetime="2023-04-29T13:38:33+08:00">2023-04-29</time>
+      <time title="创建时间：2023-04-29 13:38:33 / 修改时间：13:41:45" itemprop="dateCreated datePublished" datetime="2023-04-29T13:38:33+08:00">2023-04-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -248,7 +248,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <span id="more"></span>
+        <p>[CISCN2019 华北赛区 Day1 Web2]ikun</p>
+<span id="more"></span>
 
 <h2 id="碎碎念："><a href="#碎碎念：" class="headerlink" title="碎碎念："></a>碎碎念：</h2><p>一道关于jwt和python反序列化的题目，对我来说很新颖，暂时只会php的反序列化，就当作学习题目了，然后越做到后面的题目发现会python脚本干一些机械重复性的事情真的很有用，得找时间去学着写脚本。</p>
 <h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><p>进入题目</p>
@@ -343,6 +344,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2023/04/29/buuctf-72-CSCCTF-2019-Qual-FlaskLight/" rel="next" title="buuctf-72-[CSCCTF 2019 Qual]FlaskLight">
+                  buuctf-72-[CSCCTF 2019 Qual]FlaskLight <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

