@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-trophy-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="NSSCTFRound#13 Web">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSSCTFRound#13 Web">
+<meta property="og:url" content="http://example.com/post/a2e74ccf.html">
+<meta property="og:site_name" content="Z1d10tのBlog">
+<meta property="og:description" content="NSSCTFRound#13 Web">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889160546-2005ec4d-9a98-4a80-9e14-fee82b88af57.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889248604-c2be769c-5f1d-4597-a7ea-285b97e3c2a4.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889267180-68e09028-c066-4c24-8a06-3d5b1870d89d.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889334541-7c569cc4-1cdf-47cb-ba3a-af0cfd2d6d4a.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889385397-f451cb1c-983c-4bd0-9d57-d71c0e036345.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685890407040-e7f3bcc3-2733-4f05-b105-964779b50649.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685890848402-df76c787-edac-4b49-8e87-e33f941eb3ef.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685890875226-8b96b7b2-8dcf-463b-83c9-3b0698dcce6b.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685890900112-c8886efe-e6d4-447b-9282-10d0ab6bce08.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685891274348-6b1b73c6-5ab4-4a85-a054-4c690fa0399c.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685891636930-b6f7fd18-9e51-4da2-bbff-8f3bad0af203.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685891844152-426610f9-325e-4931-8a2e-4c11ec531881.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685893209885-190c8bdf-5096-432d-aa41-1e3b330ed3f9.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685893262097-fc9bc818-3057-40e5-9682-ff08840dfb9b.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685893714348-0be9e595-5bb8-4700-a349-65a365c46e4b.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685893829245-9b00596b-9ab3-444f-9071-919a318397fc.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685975601896-db938c1a-e2b4-45c2-97f5-9d5776fb37c5.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685976182529-dead647c-0922-4d2b-b2b1-ac053420687a.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685976386165-68580a32-578a-4527-a49c-081a5a841acf.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685977285646-aec5a446-c9c9-459d-9a35-1122b6cb80bc.png">
+<meta property="article:published_time" content="2023-06-05T15:27:59.000Z">
+<meta property="article:modified_time" content="2023-06-05T15:39:26.272Z">
+<meta property="article:author" content="Z1d10t">
+<meta property="article:tag" content="flask session伪造">
+<meta property="article:tag" content="沙箱逃逸">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889160546-2005ec4d-9a98-4a80-9e14-fee82b88af57.png">
+
+
+<link rel="canonical" href="http://example.com/post/a2e74ccf.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/a2e74ccf.html","path":"post/a2e74ccf.html","title":"NSSCTFRound#13 Web"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>NSSCTFRound#13 Web | Z1d10tのBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Z1d10tのBlog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tag fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-rectangle-list fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于博主</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#flask-jwt"><span class="nav-number">1.</span> <span class="nav-text">flask?jwt?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ez-factors"><span class="nav-number">2.</span> <span class="nav-text">ez_factors</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86"><span class="nav-number">3.</span> <span class="nav-text">信息收集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MyWeb"><span class="nav-number">4.</span> <span class="nav-text">MyWeb</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#flask-jwt-hard"><span class="nav-number">5.</span> <span class="nav-text">flask?jwt?(hard)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TimeTrcer"><span class="nav-number">6.</span> <span class="nav-text">TimeTrcer</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Z1d10t"
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+  <p class="site-author-name" itemprop="name">Z1d10t</p>
+  <div class="site-description" itemprop="description">welcome to my blog (*^_^*)</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">78</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/a2e74ccf.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10tのBlog">
+      <meta itemprop="description" content="welcome to my blog (*^_^*)">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="NSSCTFRound#13 Web | Z1d10tのBlog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          NSSCTFRound#13 Web
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-06-05 23:27:59 / 修改时间：23:39:26" itemprop="dateCreated datePublished" datetime="2023-06-05T23:27:59+08:00">2023-06-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%84%E8%B5%9B%E4%BA%8BWP/" itemprop="url" rel="index"><span itemprop="name">各赛事WP</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>NSSCTFRound#13 Web</p>
+<span id="more"></span>
+
+<h1 id="flask-jwt"><a href="#flask-jwt" class="headerlink" title="flask?jwt?"></a>flask?jwt?</h1><p>一道简单的session伪造题目 </p>
+<p>登录框 找回密码处抓包可以看到key <code>th3f1askisfunny</code></p>
+<p>然后session伪造即可</p>
+<p>这里稍微注意一下就是<code>&#123;&#39;_fresh&#39;: True, &#39;_id&#39;: &#39;265688f22c7df9002e7945b00aed58a7d242ad62b885769d87fd147973f6e663d4e0cdece191e918da66579e1ae54cd9c622333f1832675ef4d8e3f28a66286e&#39;, &#39;_user_id&#39;: &#39;2&#39;&#125;</code></p>
+<p>以往我们都是将name改为admin即可 这道题目将2改为1即可 改为0的话就是没登录状态</p>
+<h1 id="ez-factors"><a href="#ez-factors" class="headerlink" title="ez_factors"></a>ez_factors</h1><p>factors是linux自带的一个因式分解命令</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889160546-2005ec4d-9a98-4a80-9e14-fee82b88af57.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889248604-c2be769c-5f1d-4597-a7ea-285b97e3c2a4.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889267180-68e09028-c066-4c24-8a06-3d5b1870d89d.png" alt="img"></p>
+<p>发现题目显示的结果与我们在linux执行factor一样 那么猜测这里存在命令执行</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889334541-7c569cc4-1cdf-47cb-ba3a-af0cfd2d6d4a.png" alt="img"></p>
+<p>发现我们执行命令是可以的 读一下/etc/passwd</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889385397-f451cb1c-983c-4bd0-9d57-d71c0e036345.png" alt="img"></p>
+<p>也是有回显的 说明我们命令是执行成功的 但是输出结果过滤掉了除冒号和数字以外的符号</p>
+<p>这里注意一下要将我们路径中的斜杠需要url编码一下 防止与url中的反斜杠产生歧义</p>
+<p>所以我只要使其输出全部为数字 就能bypass了</p>
+<p>这里用到了od命令</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685890407040-e7f3bcc3-2733-4f05-b105-964779b50649.png" alt="img"></p>
+<p>payload:<code>114514;od%20-t%20d1%20%2Fflag</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685890848402-df76c787-edac-4b49-8e87-e33f941eb3ef.png" alt="img"></p>
+<p>od -t d1的命令解释：<img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685890875226-8b96b7b2-8dcf-463b-83c9-3b0698dcce6b.png" alt="img"></p>
+<p>输出了每个字节按十进制输出</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685890900112-c8886efe-e6d4-447b-9282-10d0ab6bce08.png" alt="img"></p>
+<p>注意前面的是序号</p>
+<p>78   83   83   67   84   70  123  101   99   52   52   49  102   52   98   45 52   50   48  101   45   52   48   53   55   45   56   51   53   97   45   51 97   50   50   53  102   98   99   56  102   53   57  125   10</p>
+<p>将每个十进制转为十六进制然后转为字符串即可</p>
+<p>十六进制：4E 53 53 43 54 46 7B 65 63 34 34 31 66 34 62 2D 34 32 30 65 2D 34 30 35 37 2D 38 33 35 61 2D 33 61 32 32 35 66 62 63 38 66 35 39 7D 0A</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685891274348-6b1b73c6-5ab4-4a85-a054-4c690fa0399c.png" alt="img"></p>
+<h1 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h1><p>这个题目做的很懵逼 </p>
+<p>访问index.php 有个文件包含</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685891636930-b6f7fd18-9e51-4da2-bbff-8f3bad0af203.png" alt="img"></p>
+<p>payload的是：<code>GET /nssctf/1%20HTTP/1.1%0d%0aHost:%20localhost%0d%0a%0d%0aGET%20/flag.txt HTTP/1.1</code></p>
+<p>最终在请求包中达到的效果为：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET /nssctf/<span class="number">1</span> HTTP/<span class="number">1.1</span></span><br><span class="line">Host: localhost</span><br><span class="line"></span><br><span class="line">GET /flag.txt HTTP/<span class="number">1.1</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685891844152-426610f9-325e-4931-8a2e-4c11ec531881.png" alt="img"></p>
+<p>看大佬WP是Apache HTTP Server 请求走私漏洞 CVE-2023-25690  参考：<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12345">https://xz.aliyun.com/t/12345</a></p>
+<p>还有CRLF注入 参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/mysticbinary/p/12560080.html">https://www.cnblogs.com/mysticbinary/p/12560080.html</a></p>
+<p> 问了一下GPT 感觉说的很到位</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685893209885-190c8bdf-5096-432d-aa41-1e3b330ed3f9.png" alt="img"></p>
+<p>比如我们可以bp抓包一下 就可以看到请求体内容结尾都是<code>\r\n</code>结尾的</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685893262097-fc9bc818-3057-40e5-9682-ff08840dfb9b.png" alt="img"></p>
+<p>在HTTP当中HTTP的Header和Body之间就是用两个crlf进行分隔的，如果能控制HTTP消息头中的字符，就能注入一些恶意的换行</p>
+<p>比如chatGPT在其中恶意添加<code>crlf</code>(<code>\r\n</code>) 再加入一个恶意制造的请求体 导致解析出问题</p>
+<p>回到题目 读 <code>/usr/local/apache2/conf/httpd.conf </code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685893714348-0be9e595-5bb8-4700-a349-65a365c46e4b.png" alt="img"></p>
+<p>看大佬wp是 做了个proxy转发</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685893829245-9b00596b-9ab3-444f-9071-919a318397fc.png" alt="img"></p>
+<p>这也就是为什么payload访问的是localhost 从内部网上的服务器去读flag.txt</p>
+<h1 id="MyWeb"><a href="#MyWeb" class="headerlink" title="MyWeb"></a>MyWeb</h1><p>源码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(E_ALL);</span><br><span class="line"><span class="comment">// 写了个网页存储JSON数据，但是还不会处理json格式，这样处理应该没有什么问题吧</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">&#x27;mode&#x27;</span>] == <span class="string">&#x27;save&#x27;</span>) &#123;</span><br><span class="line">    <span class="variable">$data</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;/tmp/data.json&#x27;</span>);</span><br><span class="line">    <span class="variable">$value</span> = <span class="title function_ invoke__">addslashes</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;value&#x27;</span>]);</span><br><span class="line">    <span class="variable">$data</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;]&#x27;</span>, <span class="string">&quot;, &#x27;<span class="subst">$value</span>&#x27;]&quot;</span>, <span class="variable">$data</span>);</span><br><span class="line">    <span class="title function_ invoke__">file_put_contents</span>(<span class="string">&#x27;/tmp/data.json&#x27;</span>, <span class="variable">$data</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">&#x27;mode&#x27;</span>] == <span class="string">&#x27;read&#x27;</span>) &#123;</span><br><span class="line">    <span class="variable">$data</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;/tmp/data.json&#x27;</span>);</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">&#x27;$data = &#x27;</span> . <span class="variable">$data</span> . <span class="string">&#x27;;&#x27;</span>);</span><br><span class="line">    <span class="title function_ invoke__">print_r</span>(<span class="variable">$data</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>类似于一个沙箱逃逸吧 构造特殊的方式来bypass</p>
+<p>mode=save 读入 mode=read 读出</p>
+<p>主要是： <code>$data = str_replace(&#39;]&#39;, &quot;, &#39;$value&#39;]&quot;, $data);</code>利用这个逃逸</p>
+<p>我们不输入任何内容直接读一下</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685975601896-db938c1a-e2b4-45c2-97f5-9d5776fb37c5.png" alt="img"></p>
+<p>发现只有一个元素1</p>
+<p>这里就类似于构造sql注入一样 构造让<code>[]</code>去闭合再加上注释加换行<code>%0a</code> 相互换来换去 总有一种方式可以</p>
+<p>原来形式猜测是[1]</p>
+<p>替换后<code>[1,$value]</code></p>
+<p>则我们构造<code>];//%0a&lt;shell&gt;;//%0a[</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685976182529-dead647c-0922-4d2b-b2b1-ac053420687a.png" alt="img"></p>
+<h1 id="flask-jwt-hard"><a href="#flask-jwt-hard" class="headerlink" title="flask?jwt?(hard)"></a>flask?jwt?(hard)</h1><p>这道就是第一道的加强版 key没有给我们 所以只能去找</p>
+<p>发现提示 有个路由<code>/wor</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685976386165-68580a32-578a-4527-a49c-081a5a841acf.png" alt="img"></p>
+<p>发现它可以获取我们上次的登陆时间 </p>
+<p>当时这里就没有思路了</p>
+<p>看了WP 访问<code>/wor</code>让其报错 然后能看到源码中的key</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685977285646-aec5a446-c9c9-459d-9a35-1122b6cb80bc.png" alt="img"></p>
+<p>key：<code>hardgam3_C0u1d_u_f1ndM3????</code></p>
+<p>这样获取key的方式还是第一次见 涨知识了 </p>
+<p>接着就是老套路 session伪造获取flag即可</p>
+<p>这里session伪造的时候把后面关于时间的数据去掉 不然伪造脚本会报错 挺诡异的</p>
+<h1 id="TimeTrcer"><a href="#TimeTrcer" class="headerlink" title="TimeTrcer"></a>TimeTrcer</h1><p>放过自己</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/flask-session%E4%BC%AA%E9%80%A0/" rel="tag"># flask session伪造</a>
+              <a href="/tags/%E6%B2%99%E7%AE%B1%E9%80%83%E9%80%B8/" rel="tag"># 沙箱逃逸</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/5cb82439.html" rel="prev" title="CISCN-16 国赛初赛后的复现以及一些感悟">
+                  <i class="fa fa-chevron-left"></i> CISCN-16 国赛初赛后的复现以及一些感悟
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2023.2 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z1d10t</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+    </div>
+  </footer>
+
+  
+
+  <a href="https://github.com/Z1d10t" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
+
