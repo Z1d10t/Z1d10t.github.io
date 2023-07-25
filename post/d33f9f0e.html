@@ -73,7 +73,7 @@
 <meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1689928467956-3270cb40-1179-4a4e-b07c-0830b11f0a61.png">
 <meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1689930191463-8262e26e-2d8a-4455-84c1-9ba94f9306b0.png">
 <meta property="article:published_time" content="2023-07-22T08:40:13.000Z">
-<meta property="article:modified_time" content="2023-07-22T08:48:49.163Z">
+<meta property="article:modified_time" content="2023-07-25T05:59:01.545Z">
 <meta property="article:author" content="Z1d10t">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1689577625490-fcbf4e82-bb82-4697-9017-5a1190e19d50.png">
@@ -271,9 +271,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-07-22 16:40:13 / 修改时间：16:48:49" itemprop="dateCreated datePublished" datetime="2023-07-22T16:40:13+08:00">2023-07-22</time>
+      <time title="创建时间：2023-07-22 16:40:13" itemprop="dateCreated datePublished" datetime="2023-07-22T16:40:13+08:00">2023-07-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-25 13:59:01" itemprop="dateModified" datetime="2023-07-25T13:59:01+08:00">2023-07-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -353,7 +359,7 @@
 <p>strlen:获取字符串长度</p>
 <p>所以整个这一部分就是计算我们输入字符串字符类型个数 获取我们总共输入了几种字符</p>
 <p>看了这道题的wp 主要是很麻烦 核心就是通过异或来构造webshell</p>
-<p><strong>这里有个小tips 一般我们构造异或payload的时候都是与</strong><code>**%ff**</code><strong>异或来获取字符的</strong></p>
+<p><strong>这里有个小tips 一般我们构造异或payload的时候都是与</strong><code>%ff</code><strong>异或来获取字符的</strong></p>
 <p>一个简单的demo理解异或构造</p>
 <figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">php &gt; var_dump(<span class="variable">@a</span>^<span class="string">&quot;1&quot;</span>);</span><br><span class="line">string(<span class="number">1</span>) <span class="string">&quot;P&quot;</span></span><br><span class="line">php &gt; echo ord(<span class="string">&quot;a&quot;</span>);</span><br><span class="line"><span class="number">97</span></span><br><span class="line">php &gt; echo ord(<span class="string">&quot;1&quot;</span>);</span><br><span class="line"><span class="number">49</span></span><br><span class="line">php &gt; echo <span class="number">97</span>^<span class="number">49</span>;</span><br><span class="line"><span class="number">80</span></span><br><span class="line">php &gt; echo chr(<span class="number">80</span>);</span><br><span class="line">P</span><br></pre></td></tr></table></figure>
 
