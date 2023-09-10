@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-trophy-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="纯是为了看懂代码的…没啥用的电子垃圾">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS简单基础学习">
+<meta property="og:url" content="http://example.com/post/eb0674ad.html">
+<meta property="og:site_name" content="Z1d10tのBlog">
+<meta property="og:description" content="纯是为了看懂代码的…没啥用的电子垃圾">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1693902331187-c021f6c2-5762-4bfe-876c-d4f8489a5c2c.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694323114599-a0e388c2-4053-4e8c-a00b-0c99c107f1f6.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694274282232-728d187d-e1bb-4900-9fd3-d9ef8f94c90c.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694274292688-feaec007-0744-4bda-ba1e-33668a514ac3.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694322511181-6d2ae76b-5770-4457-8119-23c806db8f59.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1693906043115-cddd2244-3b38-4f4a-8043-055aaea864bf.png">
+<meta property="article:published_time" content="2023-09-10T07:06:43.000Z">
+<meta property="article:modified_time" content="2023-09-10T07:10:32.398Z">
+<meta property="article:author" content="Z1d10t">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1693902331187-c021f6c2-5762-4bfe-876c-d4f8489a5c2c.png">
+
+
+<link rel="canonical" href="http://example.com/post/eb0674ad.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/post/eb0674ad.html","path":"post/eb0674ad.html","title":"JS简单基础学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>JS简单基础学习 | Z1d10tのBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Z1d10tのBlog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tag fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-rectangle-list fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>博主</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JS%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">JS语言特性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JS%E4%B8%A4%E7%A7%8D%E5%BC%95%E5%85%A5%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">JS两种引入方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A%E7%AC%A6"><span class="nav-number">3.</span> <span class="nav-text">注释符:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%98%E9%87%8F"><span class="nav-number">4.</span> <span class="nav-text">变量</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%8F%98%E9%87%8F"><span class="nav-number">4.1.</span> <span class="nav-text">定义变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AA%E5%AE%9A%E4%B9%89undefined"><span class="nav-number">4.2.</span> <span class="nav-text">未定义undefined</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%97number"><span class="nav-number">4.3.</span> <span class="nav-text">数字number</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2string"><span class="nav-number">4.4.</span> <span class="nav-text">字符串string</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%98%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%AF%B9%E8%B1%A1"><span class="nav-number">4.5.</span> <span class="nav-text">字符串还可以是对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%83%E5%B0%94-boolean"><span class="nav-number">4.6.</span> <span class="nav-text">布尔 boolean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1-object"><span class="nav-number">4.7.</span> <span class="nav-text">对象 object</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F"><span class="nav-number">4.8.</span> <span class="nav-text">常量:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS%E5%AD%97%E9%9D%A2%E9%87%8F-%E7%9B%B4%E6%8E%A5%E9%87%8F"><span class="nav-number">4.9.</span> <span class="nav-text">JS字面量(直接量)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#js%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">4.10.</span> <span class="nav-text">js模板字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E4%BD%BF%E7%94%A8%E8%A7%84%E5%88%99"><span class="nav-number">4.11.</span> <span class="nav-text">变量的使用规则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Typeof"><span class="nav-number">5.</span> <span class="nav-text">Typeof</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">6.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6%E6%98%AF%E7%94%A8%E6%9D%A5%E6%89%A7%E8%A1%8C%E5%8F%98%E9%87%8F%E6%88%96%E5%80%BC%E7%9A%84%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97"><span class="nav-number">6.1.</span> <span class="nav-text">1、算术运算符是用来执行变量或值的算术运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E6%98%AF%E7%94%A8%E6%9D%A5%E7%BB%99%E5%8F%98%E9%87%8F%E8%B5%8B%E5%80%BC"><span class="nav-number">6.2.</span> <span class="nav-text">2、赋值运算符是用来给变量赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9E%E6%8E%A5%E7%AC%A6"><span class="nav-number">6.3.</span> <span class="nav-text">3、字符串连接符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">6.4.</span> <span class="nav-text">4、比较运算符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">7.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JS%E7%9A%84%E4%B8%89%E4%B8%AA%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0"><span class="nav-number">8.</span> <span class="nav-text">JS的三个内置函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JS%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">9.</span> <span class="nav-text">JS创建对象的两种方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="nav-number">10.</span> <span class="nav-text">创建数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">10.1.</span> <span class="nav-text">数组常用方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#this%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">11.</span> <span class="nav-text">this关键字</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="nav-number">12.</span> <span class="nav-text">条件语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SWITCH%E8%AF%AD%E5%8F%A5"><span class="nav-number">13.</span> <span class="nav-text">SWITCH语句</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#default"><span class="nav-number">13.1.</span> <span class="nav-text">default</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JS%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">14.</span> <span class="nav-text">JS类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#constructor%E5%B1%9E%E6%80%A7"><span class="nav-number">14.1.</span> <span class="nav-text">constructor属性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#For%E5%BE%AA%E7%8E%AF"><span class="nav-number">15.</span> <span class="nav-text">For循环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#while%E5%BE%AA%E7%8E%AF"><span class="nav-number">16.</span> <span class="nav-text">while循环</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#do-while%E5%BE%AA%E7%8E%AF"><span class="nav-number">16.1.</span> <span class="nav-text">do-while循环</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#break%E5%92%8Ccontinue%E8%AF%AD%E5%8F%A5"><span class="nav-number">17.</span> <span class="nav-text">break和continue语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#js%E9%94%99%E8%AF%AF-throw%E3%80%81try%E3%80%81catch"><span class="nav-number">18.</span> <span class="nav-text">js错误-throw、try、catch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JS%E5%A3%B0%E6%98%8E%E6%8F%90%E5%8D%87"><span class="nav-number">19.</span> <span class="nav-text">JS声明提升</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JS%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F"><span class="nav-number">20.</span> <span class="nav-text">JS严格模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSON%E6%95%B0%E6%8D%AE"><span class="nav-number">21.</span> <span class="nav-text">JSON数据</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON%E6%A0%BC%E5%BC%8F%EF%BC%9A"><span class="nav-number">21.1.</span> <span class="nav-text">JSON格式：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON%E5%AF%B9%E8%B1%A1%E5%92%8CJSON%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BA%92%E8%BD%AC"><span class="nav-number">21.2.</span> <span class="nav-text">JSON对象和JSON字符串互转</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%91%E6%9C%AA%E5%A3%B0%E6%98%8E%E7%9A%84-JavaScript-%E5%8F%98%E9%87%8F%E5%88%86%E9%85%8D%E5%80%BC"><span class="nav-number">22.</span> <span class="nav-text">向未声明的 JavaScript 变量分配值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-%E4%BA%8B%E4%BB%B6"><span class="nav-number">23.</span> <span class="nav-text">JavaScript 事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81HTML%E4%BA%8B%E4%BB%B6%E5%88%97%E8%A1%A8%EF%BC%9A"><span class="nav-number">23.1.</span> <span class="nav-text">常见HTML事件列表：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DOM%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">24.</span> <span class="nav-text">DOM文档对象模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DOM%E6%A0%91"><span class="nav-number">25.</span> <span class="nav-text">DOM树</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Z1d10t"
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar2">
+  <p class="site-author-name" itemprop="name">Z1d10t</p>
+  <div class="site-description" itemprop="description">Keep Hacking</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">76</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/post/eb0674ad.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar2">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10tのBlog">
+      <meta itemprop="description" content="Keep Hacking">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="JS简单基础学习 | Z1d10tのBlog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JS简单基础学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-09-10 15:06:43 / 修改时间：15:10:32" itemprop="dateCreated datePublished" datetime="2023-09-10T15:06:43+08:00">2023-09-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">知识学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>纯是为了看懂代码的…没啥用的电子垃圾</p>
+<span id="more"></span>
+
+<h1 id="JS语言特性"><a href="#JS语言特性" class="headerlink" title="JS语言特性"></a>JS语言特性</h1><ul>
+<li>js是一门弱语言，声明变量没有类型统一用var</li>
+<li>js没有方法重载概念，同名函数会被覆盖</li>
+</ul>
+<h1 id="JS两种引入方式"><a href="#JS两种引入方式" class="headerlink" title="JS两种引入方式"></a>JS两种引入方式</h1><ul>
+<li>一种是内部直接引入就是通过script标签包裹起来<code>&lt;script&gt;代码&lt;/script&gt;</code></li>
+<li>另一种是通过文件引入的方式也是通过script标签不过要在其属性加上<code>scr=路径</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>js学习<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--外部引入--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;test1.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--内部引入--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"><span class="title function_">alert</span>(<span class="string">&#x27;hello&#x27;</span>)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1693902331187-c021f6c2-5762-4bfe-876c-d4f8489a5c2c.png" alt="img"></p>
+<h1 id="注释符"><a href="#注释符" class="headerlink" title="注释符:"></a>注释符:</h1><p>与java一一样都是<code>//</code></p>
+<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><h2 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h2><p><code>var 变量名 = 值;</code> 因为是弱类型语言</p>
+<p>除了var之外还有let const 三者区别:</p>
+<ul>
+<li>var声明是全局作用域或函数作用域，而let和const是块作用域。</li>
+<li>var变量可以在其范围内更新和重新声明； let变量可以被更新但不能重新声明； const变量既不能更新也不能重新声明。</li>
+<li>它们都被提升到其作用域的顶端。但是，虽然使用变量undefined初始化了var变量，但未初始化let和const变量。</li>
+<li>尽管可以在不初始化的情况下声明var和let，但是在声明期间必须初始化const。</li>
+</ul>
+<p>来自:<a target="_blank" rel="noopener" href="https://www.freecodecamp.org/chinese/news/javascript-var-let-and-const/">JavaScript 中的 Var、Let 和 Const 有什么区别</a></p>
+<p>使用了 var 关键字，它声明的变量是全局的，包括循环体内与循环体外</p>
+<p>使用 let 关键字， 它声明的变量作用域只在循环体内，循环体外的变量不受影响</p>
+<p>就是说如果在循环体外和内都定义相同变量</p>
+<p>那么var不管在体内还是体外都会改变变量值，而let体外的变量值不受体内的改变而变化</p>
+<p> let 关键字声明的全局作用域变量不属于 window 对象</p>
+<h2 id="未定义undefined"><a href="#未定义undefined" class="headerlink" title="未定义undefined"></a>未定义undefined</h2><p>undefined类型只有一个值就是undefined</p>
+<p><code>var a;</code>声明但是没有给值那么就是undefined</p>
+<h2 id="数字number"><a href="#数字number" class="headerlink" title="数字number"></a>数字number</h2><p>数字类型的所有的数字均用浮点数值表示(不区分整数值和浮点值,小数点可带可不带)。<br>特殊的数字类型NaN:<br>NaN 代表非数字的特殊值,用于指示某个值不是数字。<br>NaN 非数字与任何数据都不相等，包括自己。<br>js内置函数isNaN(),判断数值不是数字。<br><code>isNaN(123) //false</code><br><code>isNaN(“abc”) //true</code></p>
+<h2 id="字符串string"><a href="#字符串string" class="headerlink" title="字符串string"></a>字符串string</h2><p>用双引号或者单引号包裹即可</p>
+<p>可以用索引位置来访问其中的每个字符</p>
+<p>内置属性length可以用来计算长度 比如<code>string.length</code></p>
+<p>字符串中包含单双引号时，就需要转义一下，不然无法解析</p>
+<h2 id="字符串还可以是对象"><a href="#字符串还可以是对象" class="headerlink" title="字符串还可以是对象"></a>字符串还可以是对象</h2><p> new 关键字将字符串定义为一个对象</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var x = &quot;John&quot;;</span><br><span class="line">var y = new String(&quot;John&quot;);</span><br><span class="line">typeof x // 返回 String</span><br><span class="line">typeof y // 返回 Object</span><br></pre></td></tr></table></figure>
+
+<p>当然String对象最好别用，会拖慢执行速度以及其他副作用</p>
+<h2 id="布尔-boolean"><a href="#布尔-boolean" class="headerlink" title="布尔 boolean"></a>布尔 boolean</h2><p>表示真或者假 只有两个值就是true和false</p>
+<h2 id="对象-object"><a href="#对象-object" class="headerlink" title="对象 object"></a>对象 object</h2><p>对象：是拥有属性和方法的数据<br>语法：<br>var 对象名 = <code>&#123;属性名：属性值，属性名：属性值，…&#125;</code><br>对象的属性寻址：<br>对象属性有两种寻址方式也就是引用方式：<br><code>people.name;</code><br><code>people[“name”];</code></p>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量:"></a>常量:</h2><p><code>const AGE=18;</code> //定义常量<br>常量名称常用大写字符<br>常量不能赋值改变，否则会报错</p>
+<h2 id="JS字面量-直接量"><a href="#JS字面量-直接量" class="headerlink" title="JS字面量(直接量)"></a>JS字面量(直接量)</h2><p><strong>用来为变量赋值时的常数量</strong><br>字面量是指程序中直接显示出来的值。<br>100 //数字字面量<br>‘hello world’ //字符串字面量<br>false //布尔字面量<br><code>&#123;x:1, y:2&#125;</code> //对象字面量表达式<br><code>[1,2,3,4,5]</code> //数组字面量表达式</p>
+<h2 id="js模板字符串"><a href="#js模板字符串" class="headerlink" title="js模板字符串"></a>js模板字符串</h2><p>这里就可以理解为格式化字符串</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694323114599-a0e388c2-4053-4e8c-a00b-0c99c107f1f6.png" alt="img"></p>
+<p>可以将<code>$&#123;&#125;</code>中变量的值带进去一起解析</p>
+<h2 id="变量的使用规则"><a href="#变量的使用规则" class="headerlink" title="变量的使用规则"></a>变量的使用规则</h2><ul>
+<li>变量声明了没有赋值，变量的值就是undefined类型</li>
+<li>变量没有声明直接使用，运行时会报错</li>
+</ul>
+<h1 id="Typeof"><a href="#Typeof" class="headerlink" title="Typeof"></a>Typeof</h1><p>用来监测数据(变量或者值)的数据类型 </p>
+<p>语法：typeof 值</p>
+<p>可以理解为php中的var_dump()函数</p>
+<ol>
+<li>“undefined”——如果这个值未定义；</li>
+<li>“boolean”——如果这个值是布尔值；</li>
+<li>“string”——如果这个值是字符串；</li>
+<li>“number”——如果这个值是数值；</li>
+<li>“object”——如果这个值是对象或null；</li>
+<li>“function”——如果这个值是函数(函数是对象，不是一种数据类型。然而，函数因为有一些特殊的属性，因此通过typeof操作符来区分函数和其他对象)</li>
+</ol>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="1、算术运算符是用来执行变量或值的算术运算"><a href="#1、算术运算符是用来执行变量或值的算术运算" class="headerlink" title="1、算术运算符是用来执行变量或值的算术运算"></a>1、算术运算符是用来执行变量或值的算术运算</h2><p>++ 自增： x++; //相当于x=x+1<br>— 自减： x—;//相当于x=x-1<br>自增或自减的运算符的位置不同，意义不同</p>
+<h2 id="2、赋值运算符是用来给变量赋值"><a href="#2、赋值运算符是用来给变量赋值" class="headerlink" title="2、赋值运算符是用来给变量赋值"></a>2、赋值运算符是用来给变量赋值</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var num=123;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、字符串连接符"><a href="#3、字符串连接符" class="headerlink" title="3、字符串连接符"></a>3、字符串连接符</h2><p>实例1：字符串间的 + 运算符<br>字符串间的 + 运算符可以把两个或多个字符串变量连接起来。<br>实例2：对字符串和数字进行加法运算返回字符串。</p>
+<h2 id="4、比较运算符"><a href="#4、比较运算符" class="headerlink" title="4、比较运算符"></a>4、比较运算符</h2><p>比较运算符用来测定变量或值是否相等。<br>返回值为true或false</p>
+<p><code>console.log(null==undefined); //true</code><br><code>console.log(null===undefined); //false</code><br>==判断值是否相等；<br>===判断值和数据类型是否都相等；</p>
+<p>这一点和php的弱比较和强比较有点像</p>
+<p><code>console.log(isNaN(undefined));// true NaN</code><br><code>console.log(isNaN(null));// false 0</code><br>null是一个表示”空”的对象，转为数值时为0；<br>undefined是一个表示”空”的原始值，转为数值时为NaN。</p>
+<p>特殊的数字类型NaN，用于指示某个值不是数字。<br>NaN 非数字与任何数据都不相等，包括自己。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NaN==NaN    //false</span><br><span class="line">NaN!=NaN    //true</span><br><span class="line">5 == NaN    //false</span><br><span class="line">&quot;5&quot;==NaN    //false</span><br></pre></td></tr></table></figure>
+
+<p>在js做比较的时候，有这样的三条规则：<br>如果比较的两者中有bool，会把 bool 先转换为对应的 number，即 0 和 1<br>如果比较的双方中有一方为number一方为string，会把string转换为数字<br>把string直接转换为bool的时候，空字符串<code>&#39;&#39;</code>转换为 false，除此外的一切字符串转换 为 true 总结:先转bool,再转string</p>
+<h1 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h1><p>逻辑运算符用来测定变量和值中的逻辑。<br>逻辑与&amp;&amp;（找假）<br>逻辑或||（找真）<br>逻辑非!<br>返回值为true或false</p>
+<h1 id="JS的三个内置函数"><a href="#JS的三个内置函数" class="headerlink" title="JS的三个内置函数"></a>JS的三个内置函数</h1><ul>
+<li>警告框:alert(“内容”)</li>
+<li>确认框:confirm(“内容”)</li>
+<li>在控制台打印日志:console.log(“日志内容”)</li>
+</ul>
+<h1 id="JS创建对象的两种方式"><a href="#JS创建对象的两种方式" class="headerlink" title="JS创建对象的两种方式"></a>JS创建对象的两种方式</h1><ul>
+<li>使用new关键字创建对象</li>
+<li>使用<code>&#123;&#125;</code>创建对象</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//使用new关键字创建对象</span><br><span class="line">var obj01=new Object();</span><br><span class="line">obj01.name=&quot;jack&quot;;</span><br><span class="line">obj01.age=100;</span><br><span class="line">obj01.address=&quot;china&quot;;</span><br><span class="line">obj01.showMessage=function()&#123;</span><br><span class="line">    console.log(obj01);</span><br><span class="line">&#125;</span><br><span class="line">//使用&#123;&#125;创建对象</span><br><span class="line">var obj02=&#123;</span><br><span class="line">    &quot;name&quot;:&quot;jack&quot;,</span><br><span class="line">    &quot;age&quot;:20,</span><br><span class="line">    &quot;address&quot;:&quot;china&quot;,</span><br><span class="line">    &quot;showMessage&quot;:function(message)&#123;</span><br><span class="line">        console.log(message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h1><ul>
+<li>使用new关键字创建数组：<code>var arr = new Array();</code>感觉像是php内置类 有木有？？</li>
+<li>使用<code>[]</code>创建数组: <code>var arr = [&quot;cat&quot;,&quot;dog&quot;];</code></li>
+</ul>
+<h2 id="数组常用方法"><a href="#数组常用方法" class="headerlink" title="数组常用方法"></a>数组常用方法</h2><ul>
+<li>压入数据：<code>arr01.push(“apple”);</code></li>
+<li>数组元素反转：<code>arr01.reverse( );</code></li>
+<li>把数组元素通过指定的分隔符，拼接成字符串：<code>var arrStr = arr01.join(“,”);</code></li>
+<li>把字符串通过指定的分隔符，拆分成数组：<code>var arr02 = arrStr.split(“,”);</code></li>
+<li>弹出数组中最后一个元素 ：将数组最后一个元素移除，并返回：<code>var ele = arr01.pop( );</code></li>
+<li>遍历数组：<code>for (var i = 0; i &lt; arr01.length; i++) &#123; console.log(arr01[i]); &#125;</code></li>
+</ul>
+<h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h1><ul>
+<li>在函数外面：this关键字指向window对象也就是代表当前浏览器窗口</li>
+<li>在函数里面：this关键字指向调用函数的对象</li>
+</ul>
+<p>会随着执行环境而改变：</p>
+<ul>
+<li>在方法中，this 表示该方法所属的对象。</li>
+<li>如果单独使用，this 表示全局对象。</li>
+<li>在函数中，this 表示全局对象。</li>
+<li>在函数中，在严格模式下，this 是未定义的(undefined)。</li>
+<li>在事件中，this 表示接收事件的元素。</li>
+<li>类似 call() 和 apply() 方法可以将 this 引用到任何对象</li>
+</ul>
+<h1 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h1><p>和其他语言差不多</p>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">第一种</span><br><span class="line">if (condition)</span><br><span class="line">&#123;</span><br><span class="line">    当条件为 true 时执行的代码</span><br><span class="line">&#125;</span><br><span class="line">第二种</span><br><span class="line">if (condition)</span><br><span class="line">&#123;</span><br><span class="line">    当条件为 true 时执行的代码</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    当条件不为 true 时执行的代码</span><br><span class="line">&#125;</span><br><span class="line">第三种</span><br><span class="line">if (condition1)</span><br><span class="line">&#123;</span><br><span class="line">    当条件 1 为 true 时执行的代码</span><br><span class="line">&#125;</span><br><span class="line">else if (condition2)</span><br><span class="line">&#123;</span><br><span class="line">    当条件 2 为 true 时执行的代码</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">  当条件 1 和 条件 2 都不为 true 时执行的代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="SWITCH语句"><a href="#SWITCH语句" class="headerlink" title="SWITCH语句"></a>SWITCH语句</h1><p>也和其他语言一样 条件等于相应的值时 执行语句</p>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">switch(n)</span><br><span class="line">&#123;</span><br><span class="line">    case 1:</span><br><span class="line">        执行代码块 1</span><br><span class="line">        break;</span><br><span class="line">    case 2:</span><br><span class="line">        执行代码块 2</span><br><span class="line">        break;</span><br><span class="line">    default:</span><br><span class="line">        与 case 1 和 case 2 不同时执行的代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>还有一个小点就是<code>case(条件)</code>这里条件中的等号是强等于 不仅比较值也要比较类型</p>
+<h2 id="default"><a href="#default" class="headerlink" title="default"></a>default</h2><p>也就是当以上条件都不执行时，就执行该default下的语句</p>
+<h1 id="JS类型转换"><a href="#JS类型转换" class="headerlink" title="JS类型转换"></a>JS类型转换</h1><h2 id="constructor属性"><a href="#constructor属性" class="headerlink" title="constructor属性"></a>constructor属性</h2><p>constructor 属性返回所有 JavaScript 变量的构造函数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&quot;John&quot;.constructor                 // 返回函数 String()  &#123; [native code] &#125;</span><br><span class="line">(3.14).constructor                 // 返回函数 Number()  &#123; [native code] &#125;</span><br><span class="line">false.constructor                  // 返回函数 Boolean() &#123; [native code] &#125;</span><br><span class="line">[1,2,3,4].constructor              // 返回函数 Array()   &#123; [native code] &#125;</span><br><span class="line">&#123;name:&#x27;John&#x27;, age:34&#125;.constructor  // 返回函数 Object()  &#123; [native code] &#125;</span><br><span class="line">new Date().constructor             // 返回函数 Date()    &#123; [native code] &#125;</span><br><span class="line">function () &#123;&#125;.constructor         // 返回函数 Function()&#123; [native code] &#125;</span><br></pre></td></tr></table></figure>
+
+<p>类型转换比如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var a=123</span><br><span class="line">String(a) </span><br><span class="line">a就被转为字符串类型了</span><br></pre></td></tr></table></figure>
+
+<h1 id="For循环"><a href="#For循环" class="headerlink" title="For循环"></a>For循环</h1><p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (语句 1; 语句 2; 语句 3)</span><br><span class="line">&#123;</span><br><span class="line">    被执行的代码块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>eg：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (var i=0; i&lt;5; i++)</span><br><span class="line">&#123;</span><br><span class="line">      x=x + &quot;该数字为 &quot; + i + &quot;&lt;br&gt;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h1><p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while (条件)</span><br><span class="line">&#123;</span><br><span class="line">    需要执行的代码</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="do-while循环"><a href="#do-while循环" class="headerlink" title="do-while循环"></a>do-while循环</h2><p>该循环会在检查条件是否为真之前执行一次代码块，然后如果条件为真的话，就会重复这个循环。</p>
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">do</span><br><span class="line">&#123;</span><br><span class="line">    需要执行的代码</span><br><span class="line">&#125;</span><br><span class="line">while (条件);</span><br></pre></td></tr></table></figure>
+
+<h1 id="break和continue语句"><a href="#break和continue语句" class="headerlink" title="break和continue语句"></a>break和continue语句</h1><p>简单说就是break跳出整个循环</p>
+<p>continue跳出此次循环然后继续下个循环</p>
+<h1 id="js错误-throw、try、catch"><a href="#js错误-throw、try、catch" class="headerlink" title="js错误-throw、try、catch"></a>js错误-throw、try、catch</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">try 语句测试代码块的错误</span><br><span class="line">catch 语句处理错误</span><br><span class="line">throw 语句创建自定义错误</span><br><span class="line">finally 语句在 try 和 catch 语句之后，无论是否有触发异常，该语句都会执行</span><br></pre></td></tr></table></figure>
+
+<p>语法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try &#123;</span><br><span class="line">    ...    //异常的抛出</span><br><span class="line">&#125; catch(e) &#123;</span><br><span class="line">    ...    //异常的捕获与处理</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">    ...    //结束处理</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>throw放在try下语句，那么能够控制程序流，并生成自定义的错误消息</p>
+<h1 id="JS声明提升"><a href="#JS声明提升" class="headerlink" title="JS声明提升"></a>JS声明提升</h1><p>声明提升：函数声明和变量声明总是会被解释器悄悄地被”提升”到方法体的最顶部。</p>
+<p>函数及变量的声明都将被提升到函数的最顶部</p>
+<p>变量可以在使用后声明，也就是变量可以先使用再声明 </p>
+<p>只有声明的变量会提升，初始化的不会</p>
+<p>这里需要理解什么是声明 什么是初始化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var x; #这是声明</span><br><span class="line">var y=10; #这是初始化</span><br><span class="line">也就是说单纯定义变量是声明 定义并且赋值就是初始化了</span><br></pre></td></tr></table></figure>
+
+<h1 id="JS严格模式"><a href="#JS严格模式" class="headerlink" title="JS严格模式"></a>JS严格模式</h1><p>严格模式通过在脚本或函数的头部添加 <code>use strict;</code> 表达式来声明。</p>
+<p>为什么使用严格模式:</p>
+<p>消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;</p>
+<ul>
+<li>消除代码运行的一些不安全之处，保证代码运行的安全；</li>
+<li>提高编译器效率，增加运行速度；</li>
+<li>为未来新版本的Javascript做好铺垫。</li>
+</ul>
+<p>“严格模式”体现了Javascript更合理、更安全、更严谨的发展方向，包括IE 10在内的主流浏览器，都已经支持它，许多大项目已经开始全面拥抱它。</p>
+<p>另一方面，同样的代码，在”严格模式”中，可能会有不一样的运行结果</p>
+<p>严格模式限制：</p>
+<ul>
+<li>不容许使用未声明的变量</li>
+<li>不容许删除变量或对象</li>
+<li>不容许删除函数</li>
+<li>不容许变量重名</li>
+<li>不容许使用八进制</li>
+<li>不容许使用转义字符</li>
+<li>不容许对只读属性赋值</li>
+<li>不容许对一个使用getter方法读取的属性进行赋值</li>
+<li>不容许删除一个不容许删除的属性</li>
+<li>变量名不能使用<code>&#39;eval，arguments&#39;</code>字符串</li>
+<li>不容许使用这种语句<code>&quot;use strict&quot;;with (Math)&#123;x = cos(2)&#125;;// 报错 </code></li>
+<li>由于一些安全原因，在作用域 eval() 创建的变量不能被调用</li>
+<li>禁止this关键字指向全局对象</li>
+</ul>
+<h1 id="JSON数据"><a href="#JSON数据" class="headerlink" title="JSON数据"></a>JSON数据</h1><ul>
+<li>JSON数据的本质是一个有规则、可以解析的字符串</li>
+<li>JSON数据在js中就是一个对象</li>
+</ul>
+<h2 id="JSON格式："><a href="#JSON格式：" class="headerlink" title="JSON格式："></a>JSON格式：</h2><ul>
+<li><code>&#123;&#125;</code>:定义JSON对象</li>
+<li><code>[]</code>：定义JSON数据</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var json01 = &#123; &quot;name&quot;:&quot;三国演义&quot;, &quot;price&quot;:55.55, &quot;version&quot;:&quot;三国演义version01&quot; &#125;;</span><br><span class="line">var json02 = &#123; &quot;name&quot;:&quot;红楼梦&quot;, &quot;price&quot;:99.99, &quot;version&quot;:&quot;红楼梦version01&quot; &#125;;</span><br><span class="line">var json03 = &#123; &quot;name&quot;:&quot;西游记&quot;, &quot;price&quot;:66.65, &quot;version&quot;:&quot;西游记version01&quot; &#125;;</span><br><span class="line">var jsonList=[</span><br><span class="line">        json01,</span><br><span class="line">        json02,</span><br><span class="line">        json03,</span><br><span class="line">        &#123;&quot;name&quot;:&quot;水浒传&quot;,&quot;price&quot;:0.00,&quot;version&quot;:&quot;null&quot;&#125;</span><br><span class="line">    ];</span><br></pre></td></tr></table></figure>
+
+<h2 id="JSON对象和JSON字符串互转"><a href="#JSON对象和JSON字符串互转" class="headerlink" title="JSON对象和JSON字符串互转"></a>JSON对象和JSON字符串互转</h2><ul>
+<li>JSON.stringify( )：JSON对象转JSON字符串</li>
+<li>JSON.parse( )：JSON字符串转JSON对象</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var jsonObj = &#123;&quot;stuName&quot;:&quot;tom&quot;,&quot;stuAge&quot;:20&#125;;</span><br><span class="line">var jsonStr = JSON.stringify(jsonObj);</span><br><span class="line">console.log(typeof jsonObj); // object</span><br><span class="line">console.log(typeof jsonStr); // string</span><br><span class="line">var json=JSON.parse(jsonStr);</span><br><span class="line">console.log(typeof json); // object</span><br></pre></td></tr></table></figure>
+
+<h1 id="向未声明的-JavaScript-变量分配值"><a href="#向未声明的-JavaScript-变量分配值" class="headerlink" title="向未声明的 JavaScript 变量分配值"></a>向未声明的 JavaScript 变量分配值</h1><p>如果把值赋给尚未声明的变量，该变量将被自动作为 window 的一个属性。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">carname=&quot;Volvo&quot;;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694274282232-728d187d-e1bb-4900-9fd3-d9ef8f94c90c.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694274292688-feaec007-0744-4bda-ba1e-33668a514ac3.png" alt="img"></p>
+<h1 id="JavaScript-事件"><a href="#JavaScript-事件" class="headerlink" title="JavaScript 事件"></a>JavaScript 事件</h1><p>HTML 事件是发生在 HTML 元素上的事情。</p>
+<p>当在 HTML 页面中使用 JavaScript 时， JavaScript 可以触发这些事件。</p>
+<h2 id="常见HTML事件列表："><a href="#常见HTML事件列表：" class="headerlink" title="常见HTML事件列表："></a>常见HTML事件列表：</h2><p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694322511181-6d2ae76b-5770-4457-8119-23c806db8f59.png" alt="img"></p>
+<h1 id="DOM文档对象模型"><a href="#DOM文档对象模型" class="headerlink" title="DOM文档对象模型"></a>DOM文档对象模型</h1><p>JavaScript 语句是发给浏览器的命令。</p>
+<p>这些命令的作用是告诉浏览器要做的事情。</p>
+<ul>
+<li>document对象：代表整个页面的对象，可以直接使用的内置对象</li>
+<li>DOM的作用是使用JS代码操作HTML页面的标签和内容</li>
+</ul>
+<h1 id="DOM树"><a href="#DOM树" class="headerlink" title="DOM树"></a>DOM树</h1><p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1693906043115-cddd2244-3b38-4f4a-8043-055aaea864bf.png" alt="img"></p>
+<p>均学习于：</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/js/js-htmldom.html">https://www.runoob.com/js/js-htmldom.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.kuangstudy.com/bbs/1571499157607657474">https://www.kuangstudy.com/bbs/1571499157607657474</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.kuangstudy.com/bbs/1679494100476669953">https://www.kuangstudy.com/bbs/1679494100476669953</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/3edff1a9.html" rel="prev" title="2023羊城杯WEB WP与复现学习">
+                  <i class="fa fa-chevron-left"></i> 2023羊城杯WEB WP与复现学习
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/post/508290f8.html" rel="next" title="SICTF2023 WEB WP">
+                  SICTF2023 WEB WP <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">陇ICP备2023001761号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2023.2 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z1d10t</span>
+</div>
+
+
+
+    </div>
+  </footer>
+
+  
+
+  <a href="https://github.com/Z1d10t" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Z1d10t","repo":"Z1d10t.github.io","client_id":"c9dd41fa890386350257","client_secret":"c78f6b60a410862c2dcc596f09db2f0c06f025c6","admin_user":"Z1d10t","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f3d4c08eb2aa427d0efaa4dae86e3a19"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
+
