@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-trophy-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.z1d10t.fun","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="JAVA基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA基础">
+<meta property="og:url" content="https://www.z1d10t.fun/post/43d73074.html">
+<meta property="og:site_name" content="Z1d10tのBlog">
+<meta property="og:description" content="JAVA基础">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694434114278-f9c87cd4-0ea5-4145-a87c-2c81ee693b8a.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694440895043-26781dca-312f-4a75-9d22-dd34da27a0c2.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694434659019-af08e6c9-610f-4145-8b84-d9d45b211cb6.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694434594830-8437aba0-237d-4d4d-b31c-1d28272fb8ce.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694435200732-04c8c20d-6fb4-4dfd-94fd-6f4eb6eee33f.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694435143768-4ba669ca-eaff-448e-8d14-a79f2535b96a.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694435638507-27066ea6-5788-41d4-9fdd-1b1fc3c35ce9.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694437426240-3a091928-0f53-45b5-9da4-d93640a78d10.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694438066917-b9cb277c-c61e-4f07-85ef-d2e71720c87a.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694437533622-d38ce5da-db23-4c92-9786-e71a11b775d5.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694439082703-3fafddcb-d009-470a-89ac-6075109b7f02.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694440160730-c3d9298a-c2b5-4a40-bd27-289eebedb817.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694441978087-8f301e62-5397-4bd9-b51d-29e7a4e8f659.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694442054839-ff85adad-577f-43e0-a5ec-8b4936f135d7.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694443639622-ba334d81-5e28-4504-af76-85c64bbd8e1b.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694443848520-a68cb536-1261-4540-bc58-ee0c02520f07.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694445310175-98a20470-9e06-4a04-8dc0-d3040a499a61.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694479898379-9130d89e-df79-4522-ab12-76d129bfa1f1.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694480351100-3b7883b3-58b8-4575-b7d1-1e14edd2a043.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694480716523-da2203d9-db02-4bd0-b5e3-bd27fb410338.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694494921294-1f9e0d0c-e368-4b60-902d-d2316bd856b0.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694526104172-6998c42b-f2eb-42c3-a65b-0255a76beb00.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694526671858-76b213e7-7cdf-4112-ba3c-a35514bf8bfa.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694526783274-4a224551-70b9-4cda-817c-3eba54d38bd0.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694527074759-a4ec7029-dd3d-4d08-8c2d-97fd24dec9a7.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694527699055-8b292709-866d-4ddf-b398-e51c0b7a344a.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694527858896-5b8a76cd-27bb-4b98-904a-cf1e1b5fe69a.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694528192668-49c5d725-b95f-49c0-ac9a-8518d68f133b.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694528414285-3494e0e1-61f2-47b0-a6e5-f1e6e85a9a9c.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694587804653-2cd473d6-a9ba-4923-b684-339087894567.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694588095152-9207b9b7-b00b-411f-8b0c-4d0d4ef55b97.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694588437392-1f480dd1-9035-4f8c-857d-ae7f7a8d8c3d.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694589029597-c4715464-7d86-45e2-9000-936781c25d8c.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694590443706-45f8e32f-f306-44fb-9725-86587b0b05c7.png">
+<meta property="article:published_time" content="2023-09-25T14:00:15.000Z">
+<meta property="article:modified_time" content="2023-09-25T14:01:37.084Z">
+<meta property="article:author" content="Z1d10t">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694434114278-f9c87cd4-0ea5-4145-a87c-2c81ee693b8a.png">
+
+
+<link rel="canonical" href="https://www.z1d10t.fun/post/43d73074.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.z1d10t.fun/post/43d73074.html","path":"post/43d73074.html","title":"JAVA基础"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>JAVA基础 | Z1d10tのBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Z1d10tのBlog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tag fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-rectangle-list fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>博主</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IDEA"><span class="nav-number">1.</span> <span class="nav-text">IDEA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-number">1.1.</span> <span class="nav-text">创建项目前置知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#project%E5%92%8Cmodule%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">1.2.</span> <span class="nav-text">project和module的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E6%88%90JVM"><span class="nav-number">1.3.</span> <span class="nav-text">集成JVM</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">基本语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="nav-number">2.1.</span> <span class="nav-text">JAVA标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">2.2.</span> <span class="nav-text">JAVA修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA%E5%8F%98%E9%87%8F"><span class="nav-number">2.3.</span> <span class="nav-text">JAVA变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA%E6%95%B0%E7%BB%84"><span class="nav-number">2.4.</span> <span class="nav-text">JAVA数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">2.5.</span> <span class="nav-text">JAVA关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8EHelloWorld%E5%BC%80%E5%A7%8B"><span class="nav-number">2.6.</span> <span class="nav-text">从HelloWorld开始</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#public-class-%E5%92%8C-class%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.7.</span> <span class="nav-text">public class 和 class的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E9%87%8A"><span class="nav-number">2.8.</span> <span class="nav-text">注释</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB"><span class="nav-number">3.</span> <span class="nav-text">JAVA对象和类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1"><span class="nav-number">3.2.</span> <span class="nav-text">创建对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F%E5%92%8C%E6%96%B9%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">访问实例变量和方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#import%E5%AF%BC%E5%8C%85"><span class="nav-number">3.4.</span> <span class="nav-text">import导包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.5.</span> <span class="nav-text">基本数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E7%BD%AE%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.5.1.</span> <span class="nav-text">内置数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.5.2.</span> <span class="nav-text">引用类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E9%87%8F"><span class="nav-number">3.6.</span> <span class="nav-text">常量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.7.</span> <span class="nav-text">自动类型转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">JAVA变量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%8F%98%E9%87%8F"><span class="nav-number">4.1.</span> <span class="nav-text">参数变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%8F%98%E9%87%8F%EF%BC%88%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%EF%BC%89"><span class="nav-number">4.2.</span> <span class="nav-text">类变量（静态变量）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E4%BF%AE%E9%A5%B0%E7%AC%A6-1"><span class="nav-number">5.</span> <span class="nav-text">JAVA修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">5.1.</span> <span class="nav-text">访问控制修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6default"><span class="nav-number">5.1.1.</span> <span class="nav-text">默认访问修饰符default</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%81%E6%9C%89%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6private"><span class="nav-number">5.1.2.</span> <span class="nav-text">私有访问修饰符private</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E6%9C%89%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6public"><span class="nav-number">5.1.3.</span> <span class="nav-text">公有访问修饰符public</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%97%E4%BF%9D%E6%8A%A4%E7%9A%84%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6protected"><span class="nav-number">5.1.4.</span> <span class="nav-text">受保护的访问修饰符protected</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%92%8C%E7%BB%A7%E6%89%BF"><span class="nav-number">5.1.5.</span> <span class="nav-text">访问控制和继承</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E8%AE%BF%E9%97%AE%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">5.2.</span> <span class="nav-text">非访问修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#static%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">5.2.1.</span> <span class="nav-text">static修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#final%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">5.2.2.</span> <span class="nav-text">final修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#abstract%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">5.2.3.</span> <span class="nav-text">abstract修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized-%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">5.2.4.</span> <span class="nav-text">synchronized    修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transient%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">5.2.5.</span> <span class="nav-text">transient修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-number">5.2.6.</span> <span class="nav-text">volatile修饰符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">6.</span> <span class="nav-text">JAVA运算符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="nav-number">7.</span> <span class="nav-text">JAVA循环结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#while"><span class="nav-number">7.1.</span> <span class="nav-text">while</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#do%E2%80%A6while%E5%BE%AA%E7%8E%AF"><span class="nav-number">7.2.</span> <span class="nav-text">do…while循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for"><span class="nav-number">7.3.</span> <span class="nav-text">for</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVA%E5%A2%9E%E5%BC%BAfor%E5%BE%AA%E7%8E%AF"><span class="nav-number">7.4.</span> <span class="nav-text">JAVA增强for循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#continue%E5%92%8Cbreak"><span class="nav-number">7.5.</span> <span class="nav-text">continue和break</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="nav-number">8.</span> <span class="nav-text">JAVA条件语句</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E6%95%B0%E7%BB%84-1"><span class="nav-number">9.</span> <span class="nav-text">JAVA数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E6%95%B0%E7%BB%84%E5%8F%98%E9%87%8F"><span class="nav-number">9.1.</span> <span class="nav-text">声明数组变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E7%BB%84"><span class="nav-number">9.2.</span> <span class="nav-text">创建数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">9.3.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for-each%E5%BE%AA%E7%8E%AF"><span class="nav-number">9.4.</span> <span class="nav-text">for-each循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="nav-number">9.5.</span> <span class="nav-text">多维数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">9.6.</span> <span class="nav-text">初始化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E6%AD%A3%E5%88%99"><span class="nav-number">10.</span> <span class="nav-text">JAVA正则</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Z1d10t"
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blogavatar.jpg">
+  <p class="site-author-name" itemprop="name">Z1d10t</p>
+  <div class="site-description" itemprop="description">这是什么动物，这是废物</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://www.z1d10t.fun/post/43d73074.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blogavatar.jpg">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10tのBlog">
+      <meta itemprop="description" content="这是什么动物，这是废物">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="JAVA基础 | Z1d10tのBlog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JAVA基础
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-09-25 22:00:15 / 修改时间：22:01:37" itemprop="dateCreated datePublished" datetime="2023-09-25T22:00:15+08:00">2023-09-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">知识学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>JAVA基础</p>
+<span id="more"></span>
+
+<h1 id="IDEA"><a href="#IDEA" class="headerlink" title="IDEA"></a>IDEA</h1><p>感觉正式java之旅之前还是要先稍微了解IDEA的基本知识，不然很难进行下去。</p>
+<h2 id="创建项目前置知识"><a href="#创建项目前置知识" class="headerlink" title="创建项目前置知识"></a>创建项目前置知识</h2><p>IDEA中最大的单位应该是project</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694434114278-f9c87cd4-0ea5-4145-a87c-2c81ee693b8a.png" alt="img"></p>
+<p>可以理解为是workspace</p>
+<p>然后是directory、module和package</p>
+<p>package是JAVA类的命名空间 避免类名重复 </p>
+<p>加入我们创建com.Z1d10t 那么就会在本地创建嵌套的文件</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694440895043-26781dca-312f-4a75-9d22-dd34da27a0c2.png" alt="img"></p>
+<p>这两个层级应该是一样的都是低于project 但是有些差异</p>
+<p>module一般是我们用于构建源代码的文件夹，用于组织项目的不同部分</p>
+<p>而directory是普通文件夹 就比如我们在电脑上普通的文件夹 没有特殊含义</p>
+<p>在项目中常常用来放静态音视频图片之类的</p>
+<p>然后我们就可以右击我们的module开始创建源文件进行创作了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694434659019-af08e6c9-610f-4145-8b84-d9d45b211cb6.png" alt="img"></p>
+<h2 id="project和module的关系"><a href="#project和module的关系" class="headerlink" title="project和module的关系"></a>project和module的关系</h2><p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694434594830-8437aba0-237d-4d4d-b31c-1d28272fb8ce.png" alt="img"></p>
+<h2 id="集成JVM"><a href="#集成JVM" class="headerlink" title="集成JVM"></a>集成JVM</h2><p>如果我们不用IDEA进行java开发的话，我们首先是创建<code>.java</code>的源代码，然后通过javac.exe来编译为<code>.class</code>后缀的文件才可以运行</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694435200732-04c8c20d-6fb4-4dfd-94fd-6f4eb6eee33f.png" alt="img"></p>
+<p>但是IDEA直接集成了JAVA虚拟机也就是JVM，直接写完帮我们编译然后运行，非常方便。</p>
+<p>这也就是为什么java有跨平台性，编译一次到处执行</p>
+<p>就是因为JVM的原因，不用去看机器环境，自己就有一个环境，把自己包裹起来的呢种。</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694435143768-4ba669ca-eaff-448e-8d14-a79f2535b96a.png" alt="img"></p>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><p>编写 Java 程序时，应注意以下几点：</p>
+<ul>
+<li>大小写敏感：Java 是大小写敏感的，这就意味着标识符 Hello 与 hello 是不同的。</li>
+<li>类名：对于所有的类来说，类名的首字母应该大写。如果类名由若干单词组成，那么每个单词的首字母应该大写，例如 MyFirstJavaClass，也就是要驼峰式命名。</li>
+<li>方法名：所有的方法名都应该以小写字母开头。如果方法名含有若干单词，则后面的每个单词首字母大写。</li>
+<li>源文件名：源文件名必须和类名相同。当保存文件的时候，你应该使用类名作为文件名保存（切记 Java 是大小写敏感的），文件名的后缀为 .java。（如果文件名和类名不相同则会导致编译错误）。</li>
+<li>主方法入口：所有的 Java 程序由 <code>public static void main(String[] args) </code>方法开始执行。</li>
+</ul>
+<h2 id="JAVA标识符"><a href="#JAVA标识符" class="headerlink" title="JAVA标识符"></a>JAVA标识符</h2><p>通俗说就是名字，类名变量名方法名都被称为标识符</p>
+<ul>
+<li>字母数字美元符号或者下划线开头其他非法</li>
+<li>关键字不能作为标识符 关键字就是一些已经被java占用的名字 有特殊含义的我们不能用</li>
+<li>大小写敏感</li>
+</ul>
+<h2 id="JAVA修饰符"><a href="#JAVA修饰符" class="headerlink" title="JAVA修饰符"></a>JAVA修饰符</h2><ul>
+<li>访问控制修饰符 : default, public , protected, private</li>
+<li>非访问控制修饰符 : final, abstract, static, synchronized</li>
+</ul>
+<p>可以用来修饰类中方法和属性</p>
+<h2 id="JAVA变量"><a href="#JAVA变量" class="headerlink" title="JAVA变量"></a>JAVA变量</h2><ul>
+<li>局部变量</li>
+<li>类变量（静态变量）</li>
+<li>成员变量（非静态变量）</li>
+</ul>
+<h2 id="JAVA数组"><a href="#JAVA数组" class="headerlink" title="JAVA数组"></a>JAVA数组</h2><p>数组是储存在堆上的对象，可以保存多个同类型变量</p>
+<h2 id="JAVA关键字"><a href="#JAVA关键字" class="headerlink" title="JAVA关键字"></a>JAVA关键字</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-basic-syntax.html">https://www.runoob.com/java/java-basic-syntax.html</a> 遇到了直接查表就行了</p>
+<h2 id="从HelloWorld开始"><a href="#从HelloWorld开始" class="headerlink" title="从HelloWorld开始"></a>从HelloWorld开始</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;hello world&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694435638507-27066ea6-5788-41d4-9fdd-1b1fc3c35ce9.png" alt="img"></p>
+<p>首先就是要需要梳理一个理念就是在java中一切都是类 </p>
+<p>psvm快捷键可以直接生成 <code>public static void main(String[] args)&#123;&#125;</code></p>
+<p>sout快捷键可以直接生成<code>System.out.println(&quot;hello world&quot;)</code></p>
+<p>首先我们的文件名是什么那么我们的类名也是什么</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694437426240-3a091928-0f53-45b5-9da4-d93640a78d10.png" alt="img"></p>
+<h2 id="public-class-和-class的区别"><a href="#public-class-和-class的区别" class="headerlink" title="public class 和 class的区别"></a>public class 和 class的区别</h2><p>也就是说我们可以创建多个类</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694438066917-b9cb277c-c61e-4f07-85ef-d2e71720c87a.png" alt="img"></p>
+<p>但是公共类只能有一个并且公共类的类名必须与文件名保持一致</p>
+<p>并且任何类中都可以设置程序入口 也就是都可以写main方法</p>
+<p><strong>但是虽然我们可以在一个java源文件中定义多个类，但是这种做法是不规范的，比较规范的是一个源文件只能定义一个class</strong></p>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//单行注释</span><br><span class="line">/**/多行注释</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694437533622-d38ce5da-db23-4c92-9786-e71a11b775d5.png" alt="img"></p>
+<h1 id="JAVA对象和类"><a href="#JAVA对象和类" class="headerlink" title="JAVA对象和类"></a>JAVA对象和类</h1><h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><p>如果没有显式构造方法 java编译器会为该类提供一个默认构造方法</p>
+<p>一个类构造方法可以有多个</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694439082703-3fafddcb-d009-470a-89ac-6075109b7f02.png" alt="img"></p>
+<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Student</span><span class="params">(String name)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是一个学生名为&quot;</span>+name);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Student</span> <span class="variable">stu</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;byd&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="访问实例变量和方法"><a href="#访问实例变量和方法" class="headerlink" title="访问实例变量和方法"></a>访问实例变量和方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 实例化对象 */</span></span><br><span class="line"><span class="type">Object</span> <span class="variable">referenceVariable</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Constructor</span>();</span><br><span class="line"><span class="comment">/* 访问类中的变量 */</span></span><br><span class="line">referenceVariable.variableName;</span><br><span class="line"><span class="comment">/* 访问类中的方法 */</span></span><br><span class="line">referenceVariable.methodName();</span><br></pre></td></tr></table></figure>
+
+<p>eg:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String LZG= <span class="string">&quot;byd&quot;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Student</span><span class="params">(String name)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是一个学生名为&quot;</span>+name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Student</span> <span class="variable">stu</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Student</span>(<span class="string">&quot;byd&quot;</span>);</span><br><span class="line">        System.out.println(stu.LZG);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694440160730-c3d9298a-c2b5-4a40-bd27-289eebedb817.png" alt="img"></p>
+<h2 id="import导包"><a href="#import导包" class="headerlink" title="import导包"></a>import导包</h2><p>首先在Z1d10t相对路径还有一个learn package</p>
+<p>内容如下</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694441978087-8f301e62-5397-4bd9-b51d-29e7a4e8f659.png" alt="img"></p>
+<p>然后我们导入到Z1d10t package中</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694442054839-ff85adad-577f-43e0-a5ec-8b4936f135d7.png" alt="img"></p>
+<p>然后调用 可见可以正常输出</p>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p>有内置数据类型和引用数据类型</p>
+<h3 id="内置数据类型"><a href="#内置数据类型" class="headerlink" title="内置数据类型"></a>内置数据类型</h3><p>用到了直接查</p>
+<p><a target="_blank" rel="noopener" href="https://www.runoob.com/java/java-basic-datatypes.html">https://www.runoob.com/java/java-basic-datatypes.html</a></p>
+<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><ul>
+<li>在Java中，引用类型的变量非常类似于C/C++的指针。引用类型指向一个对象，指向对象的变量是引用变量。这些变量在声明时被指定为一个特定的类型，比如 Employee、Puppy 等。变量一旦声明后，类型就不能被改变了。</li>
+<li>对象、数组都是引用数据类型。</li>
+<li>所有引用类型的默认值都是null。</li>
+<li>一个引用变量可以用来引用任何与之兼容的类型。</li>
+<li>例子：<code>Student stu = new Student(&quot;byd&quot;);</code></li>
+</ul>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>在程序运行时是不能修改的</p>
+<p>在java中是用final来修饰变量的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">final double PI = 3.1415927;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694443639622-ba334d81-5e28-4504-af76-85c64bbd8e1b.png" alt="img"></p>
+<h2 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h2><p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694443848520-a68cb536-1261-4540-bc58-ee0c02520f07.png" alt="img"></p>
+<p>小转大可以 但是大转小需要强制转换并且还会损失精度</p>
+<h1 id="JAVA变量类型"><a href="#JAVA变量类型" class="headerlink" title="JAVA变量类型"></a>JAVA变量类型</h1><p>变量类型:</p>
+<ul>
+<li>局部变量（Local Variables）：定义在方法、构造方法或语句块中的变量，作用域只限于当前方法、构造方法或语句块中。局部变量必须在使用前声明，并且不能被访问修饰符修饰。</li>
+<li>成员变量（Instance Variables）：定义在类中、方法之外的变量，作用域为整个类，可以被类中的任何方法、构造方法和语句块访问。成员变量可以被访问修饰符修饰。</li>
+<li>静态变量（Class Variables）：定义在类中、方法之外的变量，并且使用 static 关键字修饰，作用域为整个类，可以被类中的任何方法、构造方法和语句块访问，静态变量的值在程序运行期间只有一个副本。静态变量可以被访问修饰符修饰。</li>
+<li>参数变量（Parameters）：方法定义时声明的变量，作为调用该方法时传递给方法的值。参数变量的作用域只限于方法内部 简单说就是函数用于传值的形参</li>
+</ul>
+<h2 id="参数变量"><a href="#参数变量" class="headerlink" title="参数变量"></a>参数变量</h2><p>省流：形参</p>
+<p>有两个点：</p>
+<ul>
+<li>值传递：在方法调用时，传递的是实际参数的值的副本。当参数变量被赋予新的值时，只会修改副本的值，不会影响原始值。Java 中的基本数据类型都采用值传递方式传递参数变量的值。</li>
+<li>引用传递：在方法调用时，传递的是实际参数的引用（即内存地址）。当参数变量被赋予新的值时，会修改原始值的内容。Java 中的对象类型采用引用传递方式传递参数变量的值。</li>
+</ul>
+<h2 id="类变量（静态变量）"><a href="#类变量（静态变量）" class="headerlink" title="类变量（静态变量）"></a>类变量（静态变量）</h2><p>java中静态变量是属于类的，而不是对象的实例</p>
+<p>由于静态变量是与类相关的，因此可以通过类名来访问静态变量，也可以通过实例名来访问静态变量</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694445310175-98a20470-9e06-4a04-8dc0-d3040a499a61.png" alt="img"></p>
+<h1 id="JAVA修饰符-1"><a href="#JAVA修饰符-1" class="headerlink" title="JAVA修饰符"></a>JAVA修饰符</h1><h2 id="访问控制修饰符"><a href="#访问控制修饰符" class="headerlink" title="访问控制修饰符"></a>访问控制修饰符</h2><p>直接用一张图片来看访问权限关系</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694479898379-9130d89e-df79-4522-ab12-76d129bfa1f1.png" alt="img"></p>
+<h3 id="默认访问修饰符default"><a href="#默认访问修饰符default" class="headerlink" title="默认访问修饰符default"></a>默认访问修饰符default</h3><p>默认访问修饰符的访问级别是包级别（package-level），即只能被同一包中的其他类访问</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694480351100-3b7883b3-58b8-4575-b7d1-1e14edd2a043.png" alt="img"></p>
+<h3 id="私有访问修饰符private"><a href="#私有访问修饰符private" class="headerlink" title="私有访问修饰符private"></a>私有访问修饰符private</h3><p>外部无法直接访问到 只能通过本类的public函数间接去访问</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694480716523-da2203d9-db02-4bd0-b5e3-bd27fb410338.png" alt="img"></p>
+<p>可见直接访问是会报错的</p>
+<h3 id="公有访问修饰符public"><a href="#公有访问修饰符public" class="headerlink" title="公有访问修饰符public"></a>公有访问修饰符public</h3><p>很常见就不说了 总之就是门户大开</p>
+<h3 id="受保护的访问修饰符protected"><a href="#受保护的访问修饰符protected" class="headerlink" title="受保护的访问修饰符protected"></a>受保护的访问修饰符protected</h3><ul>
+<li>子类与基类在同一包中：被声明为 protected 的变量、方法和构造器能被同一个包中的任何其他类访问</li>
+<li>子类与基类不在同一包中：那么在子类中，子类实例可以访问其从基类继承而来的 protected 方法，而不能访问基类实例的protected方法</li>
+</ul>
+<p>一般很少用 我在这里就不多说了</p>
+<h3 id="访问控制和继承"><a href="#访问控制和继承" class="headerlink" title="访问控制和继承"></a>访问控制和继承</h3><ul>
+<li>父类中声明为 public 的方法在子类中也必须为 public。</li>
+<li>父类中声明为 protected 的方法在子类中要么声明为 protected，要么声明为 public，不能声明为 private。</li>
+<li>父类中声明为 private 的方法，不能够被子类继承。</li>
+</ul>
+<h2 id="非访问修饰符"><a href="#非访问修饰符" class="headerlink" title="非访问修饰符"></a>非访问修饰符</h2><h3 id="static修饰符"><a href="#static修饰符" class="headerlink" title="static修饰符"></a>static修饰符</h3><ul>
+<li>静态变量：static 关键字用来声明独立于对象的静态变量，无论一个类实例化多少对象，它的静态变量只有一份拷贝。 静态变量也被称为类变量。局部变量不能被声明为 static 变量。</li>
+<li>静态方法：static 关键字用来声明独立于对象的静态方法。静态方法不能使用类的非静态变量。静态方法从参数列表得到数据，然后计算这些数据。</li>
+</ul>
+<p>类变量和方法的访问可以直接使用 classname.variablename 和 classname.methodname 的方式访问</p>
+<h3 id="final修饰符"><a href="#final修饰符" class="headerlink" title="final修饰符"></a>final修饰符</h3><p>变量一旦赋值后，不能被重新赋值</p>
+<p>final 修饰符通常和 static 修饰符一起使用来创建类常量</p>
+<p>但是如果不用static那么就要用非静态函数才能调用 也就是不用static修饰的 不然会报错</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694494921294-1f9e0d0c-e368-4b60-902d-d2316bd856b0.png" alt="img"></p>
+<p>可见无法被改变</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694526104172-6998c42b-f2eb-42c3-a65b-0255a76beb00.png" alt="img"></p>
+<h3 id="abstract修饰符"><a href="#abstract修饰符" class="headerlink" title="abstract修饰符"></a>abstract修饰符</h3><p>一个类不能同时被final和abstract修饰</p>
+<p>如果类包含抽象函数那么这个类一定要申明为抽象类 不然会报错</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694526671858-76b213e7-7cdf-4112-ba3c-a35514bf8bfa.png" alt="img"></p>
+<p>抽象类可以包含抽象方法和非抽象方法</p>
+<p>抽象方法是一种没有任何实现的方法，该方法的具体实现由子类提供</p>
+<p>如果有主体会报错</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694526783274-4a224551-70b9-4cda-817c-3eba54d38bd0.png" alt="img"></p>
+<p>抽象方法由其子类实现</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694527074759-a4ec7029-dd3d-4d08-8c2d-97fd24dec9a7.png" alt="img"></p>
+<h3 id="synchronized-修饰符"><a href="#synchronized-修饰符" class="headerlink" title="synchronized    修饰符"></a>synchronized    修饰符</h3><p>synchronized 关键字声明的方法同一时间只能被一个线程访问</p>
+<h3 id="transient修饰符"><a href="#transient修饰符" class="headerlink" title="transient修饰符"></a>transient修饰符</h3><p>序列化的对象包含被 transient 修饰的实例变量时，java 虚拟机(JVM)跳过该特定的变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">transient</span> <span class="type">int</span> <span class="variable">limit</span> <span class="operator">=</span> <span class="number">55</span>;   <span class="comment">// 不会持久化</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> b; <span class="comment">// 持久化</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="volatile修饰符"><a href="#volatile修饰符" class="headerlink" title="volatile修饰符"></a>volatile修饰符</h3><p>volatile 修饰的成员变量在每次被线程访问时，都强制从共享内存中重新读取该成员变量的值。而且，当成员变量发生变化时，会强制线程将变化值回写到共享内存。这样在任何时刻，两个不同的线程总是看到某个成员变量的同一个值。</p>
+<h1 id="JAVA运算符"><a href="#JAVA运算符" class="headerlink" title="JAVA运算符"></a>JAVA运算符</h1><p>大致和其他语言差不多 就不过多赘述了</p>
+<h1 id="JAVA循环结构"><a href="#JAVA循环结构" class="headerlink" title="JAVA循环结构"></a>JAVA循环结构</h1><h2 id="while"><a href="#while" class="headerlink" title="while"></a>while</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>( 布尔表达式 ) &#123;</span><br><span class="line">  <span class="comment">//循环内容</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694527699055-8b292709-866d-4ddf-b398-e51c0b7a344a.png" alt="img"></p>
+<h2 id="do…while循环"><a href="#do…while循环" class="headerlink" title="do…while循环"></a>do…while循环</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">       <span class="comment">//代码语句</span></span><br><span class="line">&#125;<span class="keyword">while</span>(布尔表达式);</span><br></pre></td></tr></table></figure>
+
+<p>此结构会在判断条件是否成立之前执行一次 所以这个结构至少执行一次</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694527858896-5b8a76cd-27bb-4b98-904a-cf1e1b5fe69a.png" alt="img"></p>
+<h2 id="for"><a href="#for" class="headerlink" title="for"></a>for</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(初始化; 布尔表达式; 更新) &#123;</span><br><span class="line">    <span class="comment">//代码语句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694528192668-49c5d725-b95f-49c0-ac9a-8518d68f133b.png" alt="img"></p>
+<h2 id="JAVA增强for循环"><a href="#JAVA增强for循环" class="headerlink" title="JAVA增强for循环"></a>JAVA增强for循环</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(声明语句 : 表达式)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">//代码句子</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>声明语句：声明新的局部变量，该变量的类型必须和数组元素的类型匹配。其作用域限定在循环语句块，其值与此时数组元素的值相等。</p>
+<p>表达式：表达式是要访问的数组名，或者是返回值为数组的方法。</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694528414285-3494e0e1-61f2-47b0-a6e5-f1e6e85a9a9c.png" alt="img"></p>
+<h2 id="continue和break"><a href="#continue和break" class="headerlink" title="continue和break"></a>continue和break</h2><p>和其他语言利用一样 不多说</p>
+<h1 id="JAVA条件语句"><a href="#JAVA条件语句" class="headerlink" title="JAVA条件语句"></a>JAVA条件语句</h1><p>same</p>
+<h1 id="JAVA数组-1"><a href="#JAVA数组-1" class="headerlink" title="JAVA数组"></a>JAVA数组</h1><h2 id="声明数组变量"><a href="#声明数组变量" class="headerlink" title="声明数组变量"></a>声明数组变量</h2><p>两种方式但是一般推荐第一种方式 </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dataType[] arrayRefVar;   <span class="comment">// 首选的方法</span></span><br><span class="line"> </span><br><span class="line">或</span><br><span class="line"> </span><br><span class="line">dataType arrayRefVar[];  <span class="comment">// 效果相同，但不是首选方法</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建数组"><a href="#创建数组" class="headerlink" title="创建数组"></a>创建数组</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arrayRefVar = new dataType[arraySize];</span><br></pre></td></tr></table></figure>
+
+<p>做了两件事情:</p>
+<ol>
+<li>首先用<code>new dataType[arraySize];</code>创建了一个数组</li>
+<li>然后将其赋值给arrayRefVar</li>
+</ol>
+<p>必须先声明然后再创建 如果不声明就创建会报错</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694587804653-2cd473d6-a9ba-4923-b684-339087894567.png" alt="img"></p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>下标依然是从0开始</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694588095152-9207b9b7-b00b-411f-8b0c-4d0d4ef55b97.png" alt="img"></p>
+<h2 id="for-each循环"><a href="#for-each循环" class="headerlink" title="for-each循环"></a>for-each循环</h2><p>其实就是之前我们讲过的循环结构的增强for循环</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694588437392-1f480dd1-9035-4f8c-857d-ae7f7a8d8c3d.png" alt="img"></p>
+<h2 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h2><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p>直接为每一维分配空间 这种我们用的最多也最方便</p>
+<p>或者是一维一维分配空间</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type[][] typeName = <span class="keyword">new</span> <span class="title class_">type</span>[typeLength1][typeLength2];</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694589029597-c4715464-7d86-45e2-9000-936781c25d8c.png" alt="img"></p>
+<h1 id="JAVA正则"><a href="#JAVA正则" class="headerlink" title="JAVA正则"></a>JAVA正则</h1><p>规则什么的都和其他语言差不多</p>
+<p>看个例子</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694590443706-45f8e32f-f306-44fb-9725-86587b0b05c7.png" alt="img"></p>
+<p>首先要引入依赖</p>
+<p>然后要分别创建两个类:Pattern和Matcher</p>
+<p>Pattern是要进行的匹配模式的对象</p>
+<p>Matcher是被匹配内容的对象</p>
+<p>其次还有一个点就是在java正则模式中转义要用<code>//</code>其他语言我们都是只用一个<code>/</code></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/508290f8.html" rel="prev" title="SICTF2023 WEB WP">
+                  <i class="fa fa-chevron-left"></i> SICTF2023 WEB WP
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">陇ICP备2023001761号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2023.2 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z1d10t</span>
+</div>
+
+
+
+    </div>
+  </footer>
+
+  
+
+  <a href="https://github.com/Z1d10t" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Z1d10t","repo":"Z1d10t.github.io","client_id":"c9dd41fa890386350257","client_secret":"c78f6b60a410862c2dcc596f09db2f0c06f025c6","admin_user":"Z1d10t","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"4b475768ee81ad5b65da827a449c77c5"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>
+
