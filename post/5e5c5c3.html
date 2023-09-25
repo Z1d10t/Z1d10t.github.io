@@ -19,25 +19,68 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.z1d10t.fun","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="这是什么动物，这是废物">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Z1d10tのBlog">
-<meta property="og:url" content="https://www.z1d10t.fun/index.html">
+    <meta name="description" content="Java序列化与反序列化+cc链 前言Java 序列化是指把 Java 对象转换为字节序列的过程便于保存在内存、文件、数据库中，ObjectOutputStream类的 writeObject() 方法可以实现序列化。 Java 反序列化是指把字节序列恢复为 Java 对象的过程，ObjectInputStream 类的 readObject() 方法用于反序列化。 序列化与反序列化是让 Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java序列化与反序列化">
+<meta property="og:url" content="https://www.z1d10t.fun/post/5e5c5c3.html">
 <meta property="og:site_name" content="Z1d10tのBlog">
-<meta property="og:description" content="这是什么动物，这是废物">
+<meta property="og:description" content="Java序列化与反序列化+cc链 前言Java 序列化是指把 Java 对象转换为字节序列的过程便于保存在内存、文件、数据库中，ObjectOutputStream类的 writeObject() 方法可以实现序列化。 Java 反序列化是指把字节序列恢复为 Java 对象的过程，ObjectInputStream 类的 readObject() 方法用于反序列化。 序列化与反序列化是让 Java">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695179428869-b952b548-017a-428c-8dc2-567f9982efa7.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695179646673-b6e09605-1d54-46a9-a676-d4d3801e850d.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695179805874-0bd15737-f88c-4d37-ae39-1d602a66a5a2.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695454148260-4d7efa22-95fc-4ac2-bfff-a7f0d4b749b4.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695454286059-69488c32-f40f-4059-9a92-9a519a7a469d.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695454750499-9f72da11-0375-417e-9ebb-dbb5f7a9126b.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695454338049-402a6a61-a492-46e7-811e-ec633bede5b3.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695454584580-bda06e70-f932-492d-ad62-eff23551f134.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695454630428-86637716-a9ba-43c2-8681-ebdbe96b30df.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695455310738-ab67a44b-6049-4cf2-b4cc-6a79d6bb5544.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695455715878-319bf27f-4185-4294-943a-b8cc4e23cdb8.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695455831118-c7b630d3-3e22-43c9-b5e1-5a955cc7c745.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695457356419-c7e90a07-4480-45b5-8614-dd6230a6156f.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695642292657-090eb147-8e61-4514-9995-5323aa5d3c89.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695642386652-aa186b04-327f-4a8f-be3a-b1c0e4017ce6.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695645406099-850f6c2a-c71d-4b0a-b878-959003e669c3.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695642628028-60228ef8-f835-4b8f-835c-cba892ce4dde.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695642712810-7347986d-56cd-4531-80f7-7a851e479460.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695645691608-056df975-e8f1-4445-9cd4-7a61eed39660.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695646222714-9b3e4142-7931-4880-ab7d-95dfe1ab5645.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695647142500-9ff080bf-bd05-4910-955a-4dc57dde27f1.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695649837057-9e263bcc-9a7f-454e-a4df-b095d3028056.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695648493194-a326b7fe-335f-427e-b87a-a27f5650b66c.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695651081539-852c6ebb-416e-4c52-95c4-e81fbcd1e531.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695651156989-3fa22f7d-e40a-4e62-a238-1de53769c430.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695651501430-438fa22d-5ac9-4e27-be24-fd93f6262a18.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695651551073-22e49eeb-b8ef-407d-8beb-30a5936f7a19.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695651832445-20317b70-a0ea-4741-89d1-4938e8510062.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695651916837-e8b8d76e-9f07-4fd5-90eb-e9151d360092.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695652059596-2a448c28-832c-4a01-ac74-9f1d31bdb344.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695653868021-b3411c20-86c3-4d6f-9c6a-663813b39b08.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695655664035-d609bad6-2da1-4e83-9e60-013efaa89ca6.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695656279030-c5c4fa98-dd90-4c9b-91e2-838323fea8d0.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695656475842-9c59a2b1-a290-4f18-950f-a4c2b380716f.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695656614798-185efa8a-81cd-45f1-97e0-1dcb2d11d4d8.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695656950483-53b96348-5425-422d-a469-e49e1187758f.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695657243795-18fd1e65-1765-4493-b6e2-d2fe0cbc3ba6.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695657219389-97bbbae7-153d-4e31-882a-8b5730df1bec.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695657573479-621fe54d-1c93-4702-bde2-f209cdf81b42.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695657728441-bb8f818a-51f2-4d0e-ab7d-02bedce9c460.png">
+<meta property="article:published_time" content="2023-09-25T16:09:17.000Z">
+<meta property="article:modified_time" content="2023-09-25T16:10:17.347Z">
 <meta property="article:author" content="Z1d10t">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695179428869-b952b548-017a-428c-8dc2-567f9982efa7.png">
 
 
-<link rel="canonical" href="https://www.z1d10t.fun/">
+<link rel="canonical" href="https://www.z1d10t.fun/post/5e5c5c3.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://www.z1d10t.fun/post/5e5c5c3.html","path":"post/5e5c5c3.html","title":"Java序列化与反序列化"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Z1d10tのBlog</title>
+<title>Java序列化与反序列化 | Z1d10tのBlog</title>
   
 
 
@@ -70,7 +113,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Z1d10tのBlog</h1>
+      <p class="site-title">Z1d10tのBlog</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description"> </p>
@@ -124,7 +167,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -137,6 +180,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">2.</span> <span class="nav-text">序列化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="nav-number">3.</span> <span class="nav-text">反序列化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E5%88%A9%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">简单利用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cc1%E9%93%BE%E5%A4%8D%E7%8E%B0"><span class="nav-number">5.</span> <span class="nav-text">cc1链复现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BA%90%E5%A4%B4%E5%88%A9%E7%94%A8%E7%82%B9"><span class="nav-number">5.1.</span> <span class="nav-text">源头利用点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%BE%E9%93%BE%E5%AD%90"><span class="nav-number">5.2.</span> <span class="nav-text">找链子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%A7%A3Entry"><span class="nav-number">5.3.</span> <span class="nav-text">理解Entry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%A7%E7%BB%AD"><span class="nav-number">5.4.</span> <span class="nav-text">继续</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">5.5.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80"><span class="nav-number">5.5.1.</span> <span class="nav-text">一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">5.5.2.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C"><span class="nav-number">5.5.3.</span> <span class="nav-text">二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89"><span class="nav-number">5.6.</span> <span class="nav-text">三</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E8%A8%80%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">后言：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%84%9F%E8%B0%A2%EF%BC%9A"><span class="nav-number">7.</span> <span class="nav-text">感谢：</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -182,16 +226,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://www.z1d10t.fun/post/5e5c5c3.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -205,13 +250,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10tのBlog">
+      <meta itemprop="name" content="Java序列化与反序列化 | Z1d10tのBlog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/5e5c5c3.html" class="post-title-link" itemprop="url">Java序列化与反序列化</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Java序列化与反序列化
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -244,7 +289,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Java序列化与反序列化+cc链</p>
+        <p>Java序列化与反序列化+cc链</p>
 <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p><em>Java 序列化是指把 Java 对象转换为字节序列的过程便于保存在内存、文件、数据库中，ObjectOutputStream类的 writeObject() 方法可以实现序列化。</em></p>
 <p><em>Java 反序列化是指把字节序列恢复为 Java 对象的过程，ObjectInputStream 类的 readObject() 方法用于反序列化。</em></p>
 <p>序列化与反序列化是让 Java 对象脱离 Java 运行环境的一种手段，可以有效的实现多平台之间的通信、对象持久化存储</p>
@@ -407,7 +452,6 @@
 <h1 id="感谢："><a href="#感谢：" class="headerlink" title="感谢："></a>感谢：</h1><p>组长<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1no4y1U7E1/?spm_id_from=333.999.0.0&vd_source=67f50016dfc916b4c141ffd179381426">Java反序列化CommonsCollections篇(一) CC1链手写EXP_哔哩哔哩_bilibili</a></p>
 <p>佬文章 <a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/12669#toc-3">JAVA安全初探(三):CC1链全分析 - 先知社区</a></p>
 
-      
     </div>
 
     
@@ -415,266 +459,18 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.z1d10t.fun/post/43d73074.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blogavatar.jpg">
-      <meta itemprop="name" content="Z1d10t">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z1d10tのBlog">
-      <meta itemprop="description" content="这是什么动物，这是废物">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10tのBlog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/43d73074.html" class="post-title-link" itemprop="url">JAVA基础</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-09-25 22:00:15 / 修改时间：22:01:54" itemprop="dateCreated datePublished" datetime="2023-09-25T22:00:15+08:00">2023-09-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">知识学习</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>JAVA基础</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/43d73074.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.z1d10t.fun/post/508290f8.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blogavatar.jpg">
-      <meta itemprop="name" content="Z1d10t">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z1d10tのBlog">
-      <meta itemprop="description" content="这是什么动物，这是废物">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10tのBlog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/508290f8.html" class="post-title-link" itemprop="url">SICTF2023 WEB WP</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-09-10 15:09:37 / 修改时间：15:10:43" itemprop="dateCreated datePublished" datetime="2023-09-10T15:09:37+08:00">2023-09-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%84%E8%B5%9B%E4%BA%8BWP/" itemprop="url" rel="index"><span itemprop="name">各赛事WP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>SICTF2023</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/508290f8.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/43d73074.html" rel="prev" title="JAVA基础">
+                  <i class="fa fa-chevron-left"></i> JAVA基础
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.z1d10t.fun/post/eb0674ad.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blogavatar.jpg">
-      <meta itemprop="name" content="Z1d10t">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z1d10tのBlog">
-      <meta itemprop="description" content="这是什么动物，这是废物">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10tのBlog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/eb0674ad.html" class="post-title-link" itemprop="url">JS简单基础学习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-09-10 15:06:43 / 修改时间：15:10:43" itemprop="dateCreated datePublished" datetime="2023-09-10T15:06:43+08:00">2023-09-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">知识学习</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>纯是为了看懂代码的…没啥用的电子垃圾</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/eb0674ad.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
 </div>
@@ -682,538 +478,9 @@
 
 
 
-    
 
 
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.z1d10t.fun/post/3edff1a9.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blogavatar.jpg">
-      <meta itemprop="name" content="Z1d10t">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z1d10tのBlog">
-      <meta itemprop="description" content="这是什么动物，这是废物">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10tのBlog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/3edff1a9.html" class="post-title-link" itemprop="url">2023羊城杯WEB WP与复现学习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-09-04 21:14:41" itemprop="dateCreated datePublished" datetime="2023-09-04T21:14:41+08:00">2023-09-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-09-07 22:57:45" itemprop="dateModified" datetime="2023-09-07T22:57:45+08:00">2023-09-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%84%E8%B5%9B%E4%BA%8BWP/" itemprop="url" rel="index"><span itemprop="name">各赛事WP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>2023羊城杯WEB WP与复现学习</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/3edff1a9.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.z1d10t.fun/post/c7a57718.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blogavatar.jpg">
-      <meta itemprop="name" content="Z1d10t">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z1d10tのBlog">
-      <meta itemprop="description" content="这是什么动物，这是废物">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10tのBlog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/c7a57718.html" class="post-title-link" itemprop="url">NSSCTF 2nd WP与学习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-08-30 13:55:10" itemprop="dateCreated datePublished" datetime="2023-08-30T13:55:10+08:00">2023-08-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-09-05 23:18:18" itemprop="dateModified" datetime="2023-09-05T23:18:18+08:00">2023-09-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%84%E8%B5%9B%E4%BA%8BWP/" itemprop="url" rel="index"><span itemprop="name">各赛事WP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>学习</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/c7a57718.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.z1d10t.fun/post/faf20676.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blogavatar.jpg">
-      <meta itemprop="name" content="Z1d10t">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z1d10tのBlog">
-      <meta itemprop="description" content="这是什么动物，这是废物">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10tのBlog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/faf20676.html" class="post-title-link" itemprop="url">ctfshow-java struts2框架一览</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-08-26 11:28:13 / 修改时间：11:29:28" itemprop="dateCreated datePublished" datetime="2023-08-26T11:28:13+08:00">2023-08-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ctfshow/" itemprop="url" rel="index"><span itemprop="name">ctfshow</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>ctfshow-java</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/faf20676.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.z1d10t.fun/post/7eb33f7a.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blogavatar.jpg">
-      <meta itemprop="name" content="Z1d10t">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z1d10tのBlog">
-      <meta itemprop="description" content="这是什么动物，这是废物">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10tのBlog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/7eb33f7a.html" class="post-title-link" itemprop="url">ctfshow-ssti</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-08-23 14:06:04 / 修改时间：14:07:33" itemprop="dateCreated datePublished" datetime="2023-08-23T14:06:04+08:00">2023-08-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ctfshow/" itemprop="url" rel="index"><span itemprop="name">ctfshow</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>ctfshow-ssti</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/7eb33f7a.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.z1d10t.fun/post/c52c3ed.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blogavatar.jpg">
-      <meta itemprop="name" content="Z1d10t">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z1d10tのBlog">
-      <meta itemprop="description" content="这是什么动物，这是废物">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10tのBlog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/c52c3ed.html" class="post-title-link" itemprop="url">Flask SSTI简单学习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-08-18 18:37:27 / 修改时间：18:42:41" itemprop="dateCreated datePublished" datetime="2023-08-18T18:37:27+08:00">2023-08-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">知识学习</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Flask SSTI</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/c52c3ed.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://www.z1d10t.fun/post/ccf2062.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blogavatar.jpg">
-      <meta itemprop="name" content="Z1d10t">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z1d10tのBlog">
-      <meta itemprop="description" content="这是什么动物，这是废物">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10tのBlog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/ccf2062.html" class="post-title-link" itemprop="url">第一次hwの经历</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-08-16 23:26:04 / 修改时间：23:28:13" itemprop="dateCreated datePublished" datetime="2023-08-16T23:26:04+08:00">2023-08-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%84%9F%E6%82%9F/" itemprop="url" rel="index"><span itemprop="name">感悟</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>突发恶疾</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/ccf2062.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -1264,7 +531,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Z1d10t","repo":"Z1d10t.github.io","client_id":"c9dd41fa890386350257","client_secret":"c78f6b60a410862c2dcc596f09db2f0c06f025c6","admin_user":"Z1d10t","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"d1546d731a9f30cc80127d57142a482b"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Z1d10t","repo":"Z1d10t.github.io","client_id":"c9dd41fa890386350257","client_secret":"c78f6b60a410862c2dcc596f09db2f0c06f025c6","admin_user":"Z1d10t","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"fb67483c233e0cc162bd8dc2f2a75956"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
