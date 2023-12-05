@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -282,7 +282,7 @@
 <h2 id="解题："><a href="#解题：" class="headerlink" title="解题："></a>解题：</h2><p>进入题目</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1679473847087-0169d116-8a33-4976-bd55-f371017157d8.png" alt="img"></p>
 <p>看过源码一些正常操作之后什么也没发现，看到一句话，应该是让我们买lv6，在这之前先去注册登录，然后日常看一下admin的用户，发现是已经注册过的。</p>
-<p>一开始我都是一页一页的在找，发现找了10几页都没有找到，就感觉不对劲了，然后看了大佬的wp，发现要用脚本去找，最后page=181，我真的人都傻了</p>
+<p>一开始我都是一页一页的在找，发现找了10几页都没有找到，就感觉不对劲了，然后看了大佬的wp，发现要用脚本去找，最后page&#x3D;181，我真的人都傻了</p>
 <p>这里放下大佬的脚本</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line"></span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line">for i in range(1,200):</span><br><span class="line"></span><br><span class="line">    time.sleep(0.8)</span><br><span class="line"></span><br><span class="line">    print(i)</span><br><span class="line"></span><br><span class="line">    url = &#x27;http://ca5b02fb-d09b-45b9-b0ff-a14785826592.node3.buuoj.cn/shop?page=&#123;&#125;&#x27;.format(i)</span><br><span class="line"></span><br><span class="line">    r = requests.get(url)</span><br><span class="line"></span><br><span class="line">    if &#x27;lv6.png&#x27; in r.text:</span><br><span class="line"></span><br><span class="line">        print(&quot;找到lv6-----&#123;&#125;&quot;.format(i))</span><br><span class="line"></span><br><span class="line">        break</span><br></pre></td></tr></table></figure>
 

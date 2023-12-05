@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -277,7 +277,7 @@
 <p>一开始以为是上传木马 当然不可能 buu第三页的题目不可能这么简单</p>
 <p>然后下载我们上传上去的文件</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683716516171-45a1f1e3-ceb9-45b2-8b61-098e3e6ff05b.png" alt="image.png"></p>
-<p>发现通过/download 请求了<code>filename=</code>来实现下载</p>
+<p>发现通过&#x2F;download 请求了<code>filename=</code>来实现下载</p>
 <p>这里存在文件任意读漏洞</p>
 <p>构造<code>paylaod:filename=../../文件</code>可以得到很多源码</p>
 <p>共能下到7个php文件</p>
@@ -319,7 +319,7 @@
 
 <p>稍微审计一下其实就是把result数组结果赋值给<code>$table</code> 然后<code>echo $table;</code>输出</p>
 <p>明白了整个链子 应该怎么构造呢 题目只容许我们上传一个文件 不像我们平常做的pop链 去赋值给一个变量让其反序列化</p>
-<h2 id="Typo3-反序列化漏洞"><a href="#Typo3-反序列化漏洞" class="headerlink" title="Typo3 反序列化漏洞"></a>Typo3 反序列化漏洞</h2><p>该漏洞由phar://触发</p>
+<h2 id="Typo3-反序列化漏洞"><a href="#Typo3-反序列化漏洞" class="headerlink" title="Typo3 反序列化漏洞"></a>Typo3 反序列化漏洞</h2><p>该漏洞由phar:&#x2F;&#x2F;触发</p>
 <p>可以直接去看大佬的总结：</p>
 <p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2715#toc-8">https://xz.aliyun.com/t/2715#toc-8</a></p>
 <p><a target="_blank" rel="noopener" href="https://kylingit.com/blog/%E7%94%B1phpggc%E7%90%86%E8%A7%A3php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/">https://kylingit.com/blog/%E7%94%B1phpggc%E7%90%86%E8%A7%A3php%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E/</a></p>

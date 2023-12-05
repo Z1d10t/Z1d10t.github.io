@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -282,19 +282,19 @@
 <blockquote>
 <p>linux引入了3个文件来管理用户组：</p>
 <ol>
-<li>/etc/passwd存放用户信息。</li>
-<li>/etc/shadow存放用户密码信息。</li>
-<li>/etc/group存放组信息。</li>
+<li>&#x2F;etc&#x2F;passwd存放用户信息。</li>
+<li>&#x2F;etc&#x2F;shadow存放用户密码信息。</li>
+<li>&#x2F;etc&#x2F;group存放组信息。</li>
 </ol>
 <p>在文件系统中的每个文件的文件头里面添加了用户和文件之间的关系信息。</p>
-<p>用户信息/etc/passwd每行共有7个字段冒号隔开：</p>
+<p>用户信息&#x2F;etc&#x2F;passwd每行共有7个字段冒号隔开：</p>
 <p>字段1为用户名。</p>
 <p>字段2为用户的密码。</p>
 <p>字段3为指UID，每个用户都有自己的uid。</p>
 <p>字段4为组UID，每个用户都有不同的uid。</p>
 <p>字段5为解释说明的字段。</p>
 <p>字段6为指用户的根目录。</p>
-<p>字段7为指登录shell，用户登录shell，当前为/bin/zsh表示可以登录，/sbin/nologin标识不被授权登录。</p>
+<p>字段7为指登录shell，用户登录shell，当前为&#x2F;bin&#x2F;zsh表示可以登录，&#x2F;sbin&#x2F;nologin标识不被授权登录。</p>
 </blockquote>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695300429889-ce892384-256a-4a3c-bb27-42fea2f16dfc.png" alt="img"></p>
 <h1 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h1><p>可以看到只有root的uid为0 如果把一个普通用户的uid修改为0，那么只要以普通用户的用户名和密码登录系统就会自动切换到root用户，在系统加固时一定要找出有哪些用户的uid为0</p>
@@ -319,7 +319,7 @@
 <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>以下命令都是基于自身已经被赋予了suid</p>
 <p>例如这里的find命令</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695302463326-c4705fe8-a5a3-4014-87c3-0a4ecdda6fe9.png" alt="img"></p>
-<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p>不过一般在实战中都是在/tmp下创建一个文件</p>
+<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p>不过一般在实战中都是在&#x2F;tmp下创建一个文件</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">find 任意文件filename -exec whoami \; -quit</span><br><span class="line">find 任意文件filename -exec /bin/sh -p \; -quit</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695302590191-1c53604d-2262-48c5-bda1-9ae0f0a0b135.png" alt="img"></p>
@@ -337,7 +337,7 @@
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695307266506-96ed29d7-5765-4174-9ce8-cd53bef4d22e.png" alt="img"></p>
 <h2 id="ionice"><a href="#ionice" class="headerlink" title="ionice"></a>ionice</h2><p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695307617177-39000dd9-3c91-41d1-ae2c-bcb3d7818b34.png" alt="img"></p>
 <h2 id="nice"><a href="#nice" class="headerlink" title="nice"></a>nice</h2><p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695307728837-ba456bf8-da4c-4829-b03b-4ab444a775f8.png" alt="img"></p>
-<h2 id="less-more"><a href="#less-more" class="headerlink" title="less/more"></a>less/more</h2><p>文件并非是/etc/passwd 只要是内容多的文件都行</p>
+<h2 id="less-more"><a href="#less-more" class="headerlink" title="less&#x2F;more"></a>less&#x2F;more</h2><p>文件并非是&#x2F;etc&#x2F;passwd 只要是内容多的文件都行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">less /etc/passwd</span><br><span class="line">!/bin/sh</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695303340197-a26ab244-f582-47bd-b027-f4b2fac1c1a0.png" alt="img"></p>

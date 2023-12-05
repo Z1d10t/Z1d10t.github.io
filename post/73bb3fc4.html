@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -268,7 +268,7 @@
 <span id="more"></span>
 
 <p>正常操作后，发现只有两列，然后有正则匹配过滤了</p>
-<p>return preg_match(“/select|update|delete|drop|insert|where|./i”,$inject);</p>
+<p>return preg_match(“&#x2F;select|update|delete|drop|insert|where|.&#x2F;i”,$inject);</p>
 <p>这题考了堆叠注入，原理很简单，就是通过 <code>;</code> 号注入多条SQL语句。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-1&#x27;;show databases;</span><br></pre></td></tr></table></figure>
 
@@ -291,7 +291,7 @@
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082349045.png" alt="img"></p>
 <p>然后要使用存储过程预编译知识，构造能执行的语句</p>
 <p>方法一：</p>
-<p>set @name1 = sql 语句；</p>
+<p>set @name1 &#x3D; sql 语句；</p>
 <p>prepare name2 from @name1</p>
 <p>EXECUTE name2</p>
 <p>注意：一个@是用户变量，两个@是系统变量</p>

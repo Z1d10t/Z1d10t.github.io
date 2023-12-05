@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -267,7 +267,7 @@
         <p>记录一次简单的docker开设web靶场</p>
 <span id="more"></span>
 
-<h1 id="前期准备："><a href="#前期准备：" class="headerlink" title="前期准备："></a>前期准备：</h1><p>一台云服务器(这里用到了舍友的服务器==)</p>
+<h1 id="前期准备："><a href="#前期准备：" class="headerlink" title="前期准备："></a>前期准备：</h1><p>一台云服务器(这里用到了舍友的服务器&#x3D;&#x3D;)</p>
 <p>docker环境</p>
 <h1 id="正文："><a href="#正文：" class="headerlink" title="正文："></a>正文：</h1><p>首先自我认识什么是docker，docker就像是一个装水的杯子，在这里把里面的水叫做镜像，我们需要先下载好镜像，当运行镜像时，docker会先在本地寻找所要打开的镜像，如果找不到就会自动从docker镜像仓库下载。</p>
 <p>这里我已经提前配置好了docker环境 上网一搜有很多安装教程</p>
@@ -277,7 +277,7 @@
 <p>LAMP 堆栈是开发人员用来构建网站和 Web 应用程序的四种不同软件技术的捆绑包。</p>
 <p>LAMP 是操作系统 Linux、Web 服务器 Apache、数据库服务器 MySQL 和编程语言 PHP 的首字母缩写  </p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1680244378603-6e7e24e9-493e-4cb9-8dcd-89dcc1780d88.png" alt="img"></p>
-<p><code>docker pull  tutum/lamp</code>  下载tutum/lamp版本的 </p>
+<p><code>docker pull  tutum/lamp</code>  下载tutum&#x2F;lamp版本的 </p>
 <p><code>docker iamges</code> 下载好之后查看本地镜像</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1680244467495-06625797-38d0-4cbc-b25c-96cc941260bf.png" alt="img"></p>
 <p>将镜像实例化 需要分配服务器的端口 这里要在服务器管理页面给开放一个端口（比如阿里云或者腾讯云的控制台）</p>
@@ -289,7 +289,7 @@
 <p><code>docker exec -it 1c0d6146aa65 bash</code> 进入我们刚刚实例化好的容器里面</p>
 <p><code>exit</code>退出当前所在的容器</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1680245570215-8d68ad83-e2c9-4028-b1a2-b17b84d337d0.png" alt="img"></p>
-<p>接下来就是在/var/www/html文件下的index.php下提交web题目的源码，然后在根目录下创建flag的文件，一个简单的web靶场复现环境就创建好了，接下来就可以愉快的复现题目了！</p>
+<p>接下来就是在&#x2F;var&#x2F;www&#x2F;html文件下的index.php下提交web题目的源码，然后在根目录下创建flag的文件，一个简单的web靶场复现环境就创建好了，接下来就可以愉快的复现题目了！</p>
 <p>这里我放了一个测试php代码和根目录下的flag文件：</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1680246463698-c3ceb1ae-e186-4943-a0af-ad5173eba16a.png" alt="img"></p>
 <p>还有就是这个lamp开的容器内是没有vim编辑环境的，如果直接想在容器内写代码的话，可以在容器内安装vim编辑器。</p>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -269,25 +269,25 @@
 <p> 如果http使用默认的80端口，host可以省略掉冒号+端口，看上去和hostname一样 </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">host = parse.urlparse(url).hostname</span><br></pre></td></tr></table></figure>
 
-<p>这一行获取我们的hostname 并且需要有协议才行 比如https://,http://,或者file://，这样才能获取到我们的hostname，也就是payload形式，必须也是这样包含协议的形式</p>
+<p>这一行获取我们的hostname 并且需要有协议才行 比如https:&#x2F;&#x2F;,http:&#x2F;&#x2F;,或者file:&#x2F;&#x2F;，这样才能获取到我们的hostname，也就是payload形式，必须也是这样包含协议的形式</p>
 <p>具体分割部分，可以去看官方手册<a target="_blank" rel="noopener" href="https://docs.python.org/zh-cn/3/library/urllib.parse.html?highlight=urlsplit">https://docs.python.org/zh-cn/3/library/urllib.parse.html?highlight=urlsplit</a></p>
 <p>输出：</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1683210222158-baba3125-052f-4eae-b0eb-681f23c4953a.png" alt="img"></p>
 <p>目标绕开第一第二个if，那么操作点就在这里</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for h in host.split(&#x27;.&#x27;):</span><br><span class="line">    newhost.append(h.encode(&#x27;idna&#x27;).decode(&#x27;utf-<span class="number">8</span>&#x27;))</span><br></pre></td></tr></table></figure>
 
-<p>比如<code>℆</code> 这个字符经过以上操作之后就变为了c/u</p>
-<p>那么我们就可以让题目需要的<code>suctf.cc</code>改为<code>suctf.c ℆ </code>然后经过idna编码utf-8解码后，变为我们需要的suctf.cc/u</p>
+<p>比如<code>℆</code> 这个字符经过以上操作之后就变为了c&#x2F;u</p>
+<p>那么我们就可以让题目需要的<code>suctf.cc</code>改为<code>suctf.c ℆ </code>然后经过idna编码utf-8解码后，变为我们需要的suctf.cc&#x2F;u</p>
 <p>还需要了解一些关于nginx的重要文件位置：</p>
 <ul>
-<li>配置文件存放目录：/etc/nginx</li>
-<li>主配置文件：/etc/nginx/conf/nginx.conf</li>
-<li>管理脚本：/usr/lib64/systemd/system/nginx.service</li>
-<li>模块：/usr/lisb64/nginx/modules</li>
-<li>应用程序：/usr/sbin/nginx</li>
-<li>程序默认存放位置：/usr/share/nginx/html</li>
-<li>日志默认存放位置：/var/log/nginx</li>
-<li>配置文件目录为：/usr/local/nginx/conf/nginx.conf</li>
+<li>配置文件存放目录：&#x2F;etc&#x2F;nginx</li>
+<li>主配置文件：&#x2F;etc&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</li>
+<li>管理脚本：&#x2F;usr&#x2F;lib64&#x2F;systemd&#x2F;system&#x2F;nginx.service</li>
+<li>模块：&#x2F;usr&#x2F;lisb64&#x2F;nginx&#x2F;modules</li>
+<li>应用程序：&#x2F;usr&#x2F;sbin&#x2F;nginx</li>
+<li>程序默认存放位置：&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html</li>
+<li>日志默认存放位置：&#x2F;var&#x2F;log&#x2F;nginx</li>
+<li>配置文件目录为：&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf</li>
 </ul>
 <p>先来找flag文件的位置，看了wp</p>
 <p>payload:<code>?url=file://suctf.c℆sr/local/nginx/conf/nginx.conf</code></p>

