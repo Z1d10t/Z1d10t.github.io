@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -165,13 +165,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -281,7 +281,7 @@
 <p>如果使用不得当 就会出现安全问题</p>
 <p>再来看<code>$id=str_replace(array(&quot;\\0&quot;,&quot;%00&quot;,&quot;\\&#39;&quot;,&quot;&#39;&quot;),&quot;&quot;,$id);</code></p>
 <p>看到<code>$id</code>存在一个替换操作</p>
-<p>我们可以构造 <code>$id=\\0</code>=&gt;经过addslashes()=&gt;<code>$id=\\\\0</code>=&gt;str_replace()=&gt;<code>$id=\\</code>(相当于一个反斜杠)</p>
+<p>我们可以构造 <code>$id=\\0</code>&#x3D;&gt;经过addslashes()&#x3D;&gt;<code>$id=\\\\0</code>&#x3D;&gt;str_replace()&#x3D;&gt;<code>$id=\\</code>(相当于一个反斜杠)</p>
 <p>则查询语句就会变为：<code>select * from images where id=&#39;\\&#39; or path=&#39;&#123;$path&#125;&#39;</code></p>
 <p>id反斜杠转义了<code>&#39;</code>使得<code>$id=&#39;\\&#39; or path=&#39;</code>那么我们就可以在<code>$path</code>输入我们的注入语句</p>
 <p>接下来就是一个常规的二分法盲注</p>

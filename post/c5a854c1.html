@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -160,13 +160,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -270,9 +270,9 @@
 <p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/MIME_types</a></p>
 <p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000013056786">https://segmentfault.com/a/1190000013056786</a></p>
 <h1 id="WEB-153（-user-ini）"><a href="#WEB-153（-user-ini）" class="headerlink" title="WEB-153（.user.ini）"></a>WEB-153（.user.ini）</h1><p>前两种通过修改后缀这里不能用了</p>
-<p>访问/upload 发现有内容nothing here 然后可以猜到这里有/uplaod/index.php </p>
+<p>访问&#x2F;upload 发现有内容nothing here 然后可以猜到这里有&#x2F;uplaod&#x2F;index.php </p>
 <p>那么目标就很明确了 我们上传的路径下有一个现成的php文件 理所当然想到通过上传.user.ini来做这道题</p>
-<p>但是.htaccess只是适用于apache，如果变成niginx或者iis则不会被解析      </p>
+<p>但是.htaccess只是适用于apache，如果变成niginx或者iis则不会被解析  	</p>
 <p>通过报错我们可以看到题目环境中间件是nginx 但是这也不影响我们用.user.ini</p>
 <p>因为只要用了fastcgi我们就可以用.user.ini</p>
 <p>FastCGI常用于将Web服务器（如Nginx、Apache）与应用程序（如PHP、Python、Ruby）进行集成，以提供动态内容的生成和处理能力。它是一种高性能、灵活和可扩展的Web应用程序交互协议。  </p>
@@ -289,7 +289,7 @@
 <p>这里require()完全就是include()函数一样</p>
 <p>一个是宿主php文件头部去包含 一个是尾部两者皆可</p>
 <p>先将.user.ini增加后缀png然后抓包去除 在上传我们指定的恶意文件</p>
-<p>这时我们前面已经说的很清楚了 直接访问/upload/index.php 这样我们的木马就被包含在这个index.php文件中了而不是直接去访问我们的木马文件</p>
+<p>这时我们前面已经说的很清楚了 直接访问&#x2F;upload&#x2F;index.php 这样我们的木马就被包含在这个index.php文件中了而不是直接去访问我们的木马文件</p>
 <p>可以看到 已经包含在头部了</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688359146297-fb9749ff-2ad8-4a8d-b933-10f21f0d0931.png" alt="img"></p>
 <h1 id="WEB-154-155（-user-ini-短标签）"><a href="#WEB-154-155（-user-ini-短标签）" class="headerlink" title="WEB-154~155（.user.ini+短标签）"></a>WEB-154~155（.user.ini+短标签）</h1><p>waf了文件内容php字样</p>

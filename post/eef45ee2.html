@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -160,13 +160,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -267,7 +267,7 @@
 <p>思路：看到url上又password字样，又有输入栏，随便传入admin然后抓包试试，发现提示。</p>
 <p><img src="https://cdn.nlark.com/yuque/0/2023/png/34855848/1672999105035-1d740daa-ecd7-4e10-b27c-295c05f5b80c.png" alt="img"></p>
 <p>显示<code>select * from &#39;admin&#39; where password=md5($pass,true)</code></p>
-<p><strong>分析：通过sql语句，从admin表里查数据，当password=md（）函数加密后的pass时就可查询。</strong></p>
+<p><strong>分析：通过sql语句，从admin表里查数据，当password&#x3D;md（）函数加密后的pass时就可查询。</strong></p>
 <p><strong>考点：</strong></p>
 <ol>
 <li><strong>sql语句注入</strong></li>
@@ -278,8 +278,8 @@
 <p>经过<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=md5&spm=1001.2101.3001.7020">md5</a>加密后：276f722736c95d99e921722cf9ed621c</p>
 <p>再转换为<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AD%97%E7%AC%A6%E4%B8%B2&spm=1001.2101.3001.7020">字符串</a>：’or’6&lt;乱码&gt;  即  ‘or’66�]��!r,��b</p>
 <p><strong>原理：md5（）函数先把</strong> <code>**ffifdyop**</code><strong>加密为</strong><code>**276f722736c95d99e921722cf9ed621c**</code><strong>Mysql 又会把 hex （十六进制）转成 ascii 解释</strong> </p>
-<p> 在or的两边要有单引号，使它变成 password=‘xxx’or‘xxx’ 的形式  </p>
-<p> 因此拼接之后的形式是select * from ‘admin’ where password=’’ or ‘6xxxxx’  为一个永真式</p>
+<p> 在or的两边要有单引号，使它变成 password&#x3D;‘xxx’or‘xxx’ 的形式  </p>
+<p> 因此拼接之后的形式是select * from ‘admin’ where password&#x3D;’’ or ‘6xxxxx’  为一个永真式</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog202303082347249.png" alt="img"></p>
 <p>输入得到代码：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span> = <span class="variable">$GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$a</span> != <span class="variable">$b</span> &amp;&amp; <span class="title function_ invoke__">md5</span>(<span class="variable">$a</span>) == <span class="title function_ invoke__">md5</span>(<span class="variable">$b</span>))&#123;</span><br><span class="line">    <span class="comment">// wow, glzjin wants a girl friend.</span></span><br></pre></td></tr></table></figure>

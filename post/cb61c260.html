@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -173,13 +173,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -279,7 +279,7 @@
 <h1 id="WEEK1"><a href="#WEEK1" class="headerlink" title="WEEK1"></a>WEEK1</h1><h2 id="babyRCE"><a href="#babyRCE" class="headerlink" title="babyRCE"></a>babyRCE</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uniq$&#123;IFS&#125;/f???</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1696227692048-d68dc7db-8da9-467e-9a56-f3144d51b8f7.png" alt="img"></p>
-<h2 id="登录就给flag"><a href="#登录就给flag" class="headerlink" title="登录就给flag"></a>登录就给flag</h2><p>弱口令 admin/password</p>
+<h2 id="登录就给flag"><a href="#登录就给flag" class="headerlink" title="登录就给flag"></a>登录就给flag</h2><p>弱口令 admin&#x2F;password</p>
 <h2 id="飞机大战"><a href="#飞机大战" class="headerlink" title="飞机大战"></a>飞机大战</h2><p>unicode解码再base64解码</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1696218779041-17e60cf7-8b84-4bb6-82ae-dc2b64c2bb78.png" alt="img"></p>
 <h2 id="ez-serialize"><a href="#ez-serialize" class="headerlink" title="ez_serialize"></a>ez_serialize</h2><p>考点:</p>
@@ -384,21 +384,21 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line">app = <span class="title class_">Flask</span>(__name__)</span><br><span class="line"></span><br><span class="line">def <span class="title function_">gett</span>(obj,arg):</span><br><span class="line">    tmp = obj</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="attr">arg</span>:</span><br><span class="line">        tmp = <span class="title function_">getattr</span>(tmp,i)</span><br><span class="line">    <span class="keyword">return</span> tmp</span><br><span class="line"></span><br><span class="line">def <span class="title function_">sett</span>(obj,arg,num):</span><br><span class="line">    tmp = obj</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="title function_">range</span>(<span class="title function_">len</span>(arg)-<span class="number">1</span>):</span><br><span class="line">        tmp = <span class="title function_">getattr</span>(tmp,arg[i])</span><br><span class="line">    <span class="title function_">setattr</span>(tmp,arg[i+<span class="number">1</span>],num)</span><br><span class="line"></span><br><span class="line">def <span class="title function_">hint</span>(giveme,num,bol):</span><br><span class="line">    c = <span class="title function_">gett</span>(subprocess,giveme)</span><br><span class="line">    tmp = <span class="title function_">list</span>(c)</span><br><span class="line">    tmp[num] = bol</span><br><span class="line">    tmp = <span class="title function_">tuple</span>(tmp)</span><br><span class="line">    <span class="title function_">sett</span>(subprocess,giveme,tmp)</span><br><span class="line"></span><br><span class="line">def <span class="title function_">cmd</span>(arg):</span><br><span class="line">    subprocess.<span class="title function_">call</span>(arg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@app.<span class="title function_">route</span>(<span class="string">&#x27;/&#x27;</span>,methods=[<span class="string">&#x27;GET&#x27;</span>,<span class="string">&#x27;POST&#x27;</span>])</span><br><span class="line">def <span class="title function_">exec</span>():</span><br><span class="line">    <span class="attr">try</span>:</span><br><span class="line">        <span class="keyword">if</span> request.<span class="property">args</span>.<span class="title function_">get</span>(<span class="string">&#x27;exec&#x27;</span>)==<span class="string">&#x27;ok&#x27;</span>:</span><br><span class="line">            shell = request.<span class="property">args</span>.<span class="title function_">get</span>(<span class="string">&#x27;shell&#x27;</span>)</span><br><span class="line">            <span class="title function_">cmd</span>(shell)</span><br><span class="line">        <span class="attr">else</span>:</span><br><span class="line">            exp = <span class="title function_">list</span>(request.<span class="title function_">get_json</span>()[<span class="string">&#x27;exp&#x27;</span>])</span><br><span class="line">            num = <span class="title function_">int</span>(request.<span class="property">args</span>.<span class="title function_">get</span>(<span class="string">&#x27;num&#x27;</span>))</span><br><span class="line">            bol = <span class="title function_">bool</span>(request.<span class="property">args</span>.<span class="title function_">get</span>(<span class="string">&#x27;bol&#x27;</span>))</span><br><span class="line">            <span class="title function_">hint</span>(exp,num,bol)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;ok&#x27;</span></span><br><span class="line">    <span class="attr">except</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;error&#x27;</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.<span class="title function_">run</span>(host=<span class="string">&#x27;0.0.0.0&#x27;</span>,port=<span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
 
 <p>原理：</p>
-<p>当subprocess.call()函数第七个参数shell=false则会直接执行命令而不通过shell环境调用</p>
-<p>当shell=true时 就会调用/bin/sh 来执行命令</p>
+<p>当subprocess.call()函数第七个参数shell&#x3D;false则会直接执行命令而不通过shell环境调用</p>
+<p>当shell&#x3D;true时 就会调用&#x2F;bin&#x2F;sh 来执行命令</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1699533430884-f3f1f5a4-22e2-45e8-941b-b3bc43192f67.png" alt="img"></p>
 <p>subprocess.call()其实调用的是Popen()</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1699533474760-aa96130f-7ade-4152-9926-fc7afe009013.png" alt="img"></p>
 <p>我们跟进一下</p>
-<p>可以看到默认shell=false</p>
+<p>可以看到默认shell&#x3D;false</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1699533542743-270a8adc-f50c-4bb3-b282-6144db8e74de.png" alt="img"></p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1699533800870-0bb0adcb-5d03-4300-9797-77121fc4c848.png" alt="img"></p>
 <p>值得注意的是进程被卡死在这里叫做死锁</p>
 <p>如果我们执行命令只是单纯一句指令 那么无论是shell等于true还是false 都会执行 两者没有差别</p>
-<p>加了参数那么shell=false就无法执行了</p>
+<p>加了参数那么shell&#x3D;false就无法执行了</p>
 <p>因此这道题就应该先去修改subprocess.call()的第七个参数为true这样我们才能执行带有参数的命令</p>
 <p>通过 setattr来修改属性值</p>
-<p>setattr(a,b,c)：将a对象的第b个属性修改为vlaue=c  </p>
+<p>setattr(a,b,c)：将a对象的第b个属性修改为vlaue&#x3D;c  </p>
 <p>需要注意这里exp是json格式的<code>exp = list(request.get_json()[&#39;exp&#39;])</code></p>
 <p>payload:<code>?exec=oka&amp;num=7&amp;bol=1</code></p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;exp&quot;</span>:[</span><br><span class="line">        <span class="string">&quot;Popen&quot;</span>,</span><br><span class="line">        <span class="string">&quot;__init__&quot;</span>,</span><br><span class="line">        <span class="string">&quot;__defaults__&quot;</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -410,7 +410,7 @@
 <h2 id="sseerriiaalliizzee（未解出）"><a href="#sseerriiaalliizzee（未解出）" class="headerlink" title="sseerriiaalliizzee（未解出）"></a>sseerriiaalliizzee（未解出）</h2><p>纯眼瞎</p>
 <p>考点：</p>
 <ul>
-<li>exit死亡绕过 </li>
+<li>exit死亡绕过</li>
 </ul>
 <p>pop链不难</p>
 <p>那么这道题最大的坑点在于如何触发<code>__toString </code>其实是靠这里的echo语句触发（吐血）</p>
@@ -431,7 +431,7 @@
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1698745974982-7f9ac75d-f37d-4359-a5c2-d674dac2f84e.png" alt="img"></p>
 <p>去获取session 然后打入题目</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1698745913115-965ef058-cf6f-45d0-94cf-ef858b8a06dd.png" alt="img"></p>
-<p>然后是/readflag路由 去读文件 要绕过一个正则</p>
+<p>然后是&#x2F;readflag路由 去读文件 要绕过一个正则</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">reg := regexp.MustCompile(`[b-zA-Z_@#%^&amp;*:&#123;|&#125;+&lt;&gt;&quot;;\[\]]`)</span><br></pre></td></tr></table></figure>
 
 <p>可见还有一个字符a没有过滤 直接利用通配符 </p>

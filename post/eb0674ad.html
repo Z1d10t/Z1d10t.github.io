@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -161,13 +161,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -296,9 +296,9 @@
 
 <p>当然String对象最好别用，会拖慢执行速度以及其他副作用</p>
 <h2 id="布尔-boolean"><a href="#布尔-boolean" class="headerlink" title="布尔 boolean"></a>布尔 boolean</h2><p>表示真或者假 只有两个值就是true和false</p>
-<h2 id="对象-object"><a href="#对象-object" class="headerlink" title="对象 object"></a>对象 object</h2><p>对象：是拥有属性和方法的数据<br>语法：<br>var 对象名 = <code>&#123;属性名：属性值，属性名：属性值，…&#125;</code><br>对象的属性寻址：<br>对象属性有两种寻址方式也就是引用方式：<br><code>people.name;</code><br><code>people[“name”];</code></p>
-<h2 id="常量"><a href="#常量" class="headerlink" title="常量:"></a>常量:</h2><p><code>const AGE=18;</code> //定义常量<br>常量名称常用大写字符<br>常量不能赋值改变，否则会报错</p>
-<h2 id="JS字面量-直接量"><a href="#JS字面量-直接量" class="headerlink" title="JS字面量(直接量)"></a>JS字面量(直接量)</h2><p><strong>用来为变量赋值时的常数量</strong><br>字面量是指程序中直接显示出来的值。<br>100 //数字字面量<br>‘hello world’ //字符串字面量<br>false //布尔字面量<br><code>&#123;x:1, y:2&#125;</code> //对象字面量表达式<br><code>[1,2,3,4,5]</code> //数组字面量表达式</p>
+<h2 id="对象-object"><a href="#对象-object" class="headerlink" title="对象 object"></a>对象 object</h2><p>对象：是拥有属性和方法的数据<br>语法：<br>var 对象名 &#x3D; <code>&#123;属性名：属性值，属性名：属性值，…&#125;</code><br>对象的属性寻址：<br>对象属性有两种寻址方式也就是引用方式：<br><code>people.name;</code><br><code>people[“name”];</code></p>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量:"></a>常量:</h2><p><code>const AGE=18;</code> &#x2F;&#x2F;定义常量<br>常量名称常用大写字符<br>常量不能赋值改变，否则会报错</p>
+<h2 id="JS字面量-直接量"><a href="#JS字面量-直接量" class="headerlink" title="JS字面量(直接量)"></a>JS字面量(直接量)</h2><p><strong>用来为变量赋值时的常数量</strong><br>字面量是指程序中直接显示出来的值。<br>100 &#x2F;&#x2F;数字字面量<br>‘hello world’ &#x2F;&#x2F;字符串字面量<br>false &#x2F;&#x2F;布尔字面量<br><code>&#123;x:1, y:2&#125;</code> &#x2F;&#x2F;对象字面量表达式<br><code>[1,2,3,4,5]</code> &#x2F;&#x2F;数组字面量表达式</p>
 <h2 id="js模板字符串"><a href="#js模板字符串" class="headerlink" title="js模板字符串"></a>js模板字符串</h2><p>这里就可以理解为格式化字符串</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694323114599-a0e388c2-4053-4e8c-a00b-0c99c107f1f6.png" alt="img"></p>
 <p>可以将<code>$&#123;&#125;</code>中变量的值带进去一起解析</p>
@@ -317,12 +317,12 @@
 <li>“object”——如果这个值是对象或null；</li>
 <li>“function”——如果这个值是函数(函数是对象，不是一种数据类型。然而，函数因为有一些特殊的属性，因此通过typeof操作符来区分函数和其他对象)</li>
 </ol>
-<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="1、算术运算符是用来执行变量或值的算术运算"><a href="#1、算术运算符是用来执行变量或值的算术运算" class="headerlink" title="1、算术运算符是用来执行变量或值的算术运算"></a>1、算术运算符是用来执行变量或值的算术运算</h2><p>++ 自增： x++; //相当于x=x+1<br>— 自减： x—;//相当于x=x-1<br>自增或自减的运算符的位置不同，意义不同</p>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="1、算术运算符是用来执行变量或值的算术运算"><a href="#1、算术运算符是用来执行变量或值的算术运算" class="headerlink" title="1、算术运算符是用来执行变量或值的算术运算"></a>1、算术运算符是用来执行变量或值的算术运算</h2><p>++ 自增： x++; &#x2F;&#x2F;相当于x&#x3D;x+1<br>— 自减： x—;&#x2F;&#x2F;相当于x&#x3D;x-1<br>自增或自减的运算符的位置不同，意义不同</p>
 <h2 id="2、赋值运算符是用来给变量赋值"><a href="#2、赋值运算符是用来给变量赋值" class="headerlink" title="2、赋值运算符是用来给变量赋值"></a>2、赋值运算符是用来给变量赋值</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var num=123;</span><br></pre></td></tr></table></figure>
 
 <h2 id="3、字符串连接符"><a href="#3、字符串连接符" class="headerlink" title="3、字符串连接符"></a>3、字符串连接符</h2><p>实例1：字符串间的 + 运算符<br>字符串间的 + 运算符可以把两个或多个字符串变量连接起来。<br>实例2：对字符串和数字进行加法运算返回字符串。</p>
 <h2 id="4、比较运算符"><a href="#4、比较运算符" class="headerlink" title="4、比较运算符"></a>4、比较运算符</h2><p>比较运算符用来测定变量或值是否相等。<br>返回值为true或false</p>
-<p><code>console.log(null==undefined); //true</code><br><code>console.log(null===undefined); //false</code><br>==判断值是否相等；<br>===判断值和数据类型是否都相等；</p>
+<p><code>console.log(null==undefined); //true</code><br><code>console.log(null===undefined); //false</code><br>&#x3D;&#x3D;判断值是否相等；<br>&#x3D;&#x3D;&#x3D;判断值和数据类型是否都相等；</p>
 <p>这一点和php的弱比较和强比较有点像</p>
 <p><code>console.log(isNaN(undefined));// true NaN</code><br><code>console.log(isNaN(null));// false 0</code><br>null是一个表示”空”的对象，转为数值时为0；<br>undefined是一个表示”空”的原始值，转为数值时为NaN。</p>
 <p>特殊的数字类型NaN，用于指示某个值不是数字。<br>NaN 非数字与任何数据都不相等，包括自己。</p>

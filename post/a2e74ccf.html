@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -177,13 +177,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -291,7 +291,7 @@
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889267180-68e09028-c066-4c24-8a06-3d5b1870d89d.png" alt="img"></p>
 <p>发现题目显示的结果与我们在linux执行factor一样 那么猜测这里存在命令执行</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889334541-7c569cc4-1cdf-47cb-ba3a-af0cfd2d6d4a.png" alt="img"></p>
-<p>发现我们执行命令是可以的 读一下/etc/passwd</p>
+<p>发现我们执行命令是可以的 读一下&#x2F;etc&#x2F;passwd</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685889385397-f451cb1c-983c-4bd0-9d57-d71c0e036345.png" alt="img"></p>
 <p>也是有回显的 说明我们命令是执行成功的 但是输出结果过滤掉了除冒号和数字以外的符号</p>
 <p>这里注意一下要将我们路径中的斜杠需要url编码一下 防止与url中的反斜杠产生歧义</p>
@@ -333,7 +333,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(E_ALL);</span><br><span class="line"><span class="comment">// 写了个网页存储JSON数据，但是还不会处理json格式，这样处理应该没有什么问题吧</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">&#x27;mode&#x27;</span>] == <span class="string">&#x27;save&#x27;</span>) &#123;</span><br><span class="line">    <span class="variable">$data</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;/tmp/data.json&#x27;</span>);</span><br><span class="line">    <span class="variable">$value</span> = <span class="title function_ invoke__">addslashes</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;value&#x27;</span>]);</span><br><span class="line">    <span class="variable">$data</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;]&#x27;</span>, <span class="string">&quot;, &#x27;<span class="subst">$value</span>&#x27;]&quot;</span>, <span class="variable">$data</span>);</span><br><span class="line">    <span class="title function_ invoke__">file_put_contents</span>(<span class="string">&#x27;/tmp/data.json&#x27;</span>, <span class="variable">$data</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable">$_GET</span>[<span class="string">&#x27;mode&#x27;</span>] == <span class="string">&#x27;read&#x27;</span>) &#123;</span><br><span class="line">    <span class="variable">$data</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="string">&#x27;/tmp/data.json&#x27;</span>);</span><br><span class="line">    <span class="keyword">eval</span>(<span class="string">&#x27;$data = &#x27;</span> . <span class="variable">$data</span> . <span class="string">&#x27;;&#x27;</span>);</span><br><span class="line">    <span class="title function_ invoke__">print_r</span>(<span class="variable">$data</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>类似于一个沙箱逃逸吧 构造特殊的方式来bypass</p>
-<p>mode=save 读入 mode=read 读出</p>
+<p>mode&#x3D;save 读入 mode&#x3D;read 读出</p>
 <p>主要是： <code>$data = str_replace(&#39;]&#39;, &quot;, &#39;$value&#39;]&quot;, $data);</code>利用这个逃逸</p>
 <p>我们不输入任何内容直接读一下</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1685975601896-db938c1a-e2b4-45c2-97f5-9d5776fb37c5.png" alt="img"></p>

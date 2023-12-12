@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -170,13 +170,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -304,7 +304,7 @@
 <p>再来看</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$sql = &quot;insert into comment</span><br><span class="line">           set category = &#x27;$category&#x27;,</span><br><span class="line">               content = &#x27;$content&#x27;,</span><br><span class="line">               bo_id = &#x27;$bo_id&#x27;&quot;;</span><br></pre></td></tr></table></figure>
 
-<p> $category,$content是我们可控的。且最后显示的是content，我们可以尝试闭合content = ‘$content’</p>
+<p> $category,$content是我们可控的。且最后显示的是content，我们可以尝试闭合content &#x3D; ‘$content’</p>
 <p>举例当我们去发帖语句为</p>
 <p> category 为<code>&#39;,content=user(),/*</code>其它随意，然后去详情里面评论<code>*/#</code> 这样就会回显我们当前用户信息 </p>
 <p> 然后语句会被拼接成下面这样</p>
@@ -322,10 +322,10 @@
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681458181723-73e833f2-d821-432c-9068-e596e2fdc3f6.png" alt="img"></p>
 <p>发现成功读取</p>
 <p>看到最后一行 发现存在www用户 那么这是什么呢 一般我们在linux下安装web开设靶场 一般默认系统web用户会为www</p>
-<p>一般增加的用户信息会在/home路径下 root本身的信息会在根目录/root路径里</p>
-<p>比如我曾经在我的centos7上装过小皮面板 就会有个www用户默认在我的/home路径下（那个apple用户是我当时创建的用户 ）</p>
+<p>一般增加的用户信息会在&#x2F;home路径下 root本身的信息会在根目录&#x2F;root路径里</p>
+<p>比如我曾经在我的centos7上装过小皮面板 就会有个www用户默认在我的&#x2F;home路径下（那个apple用户是我当时创建的用户 ）</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681459107727-6f72a691-4d4d-4bfb-978b-ec74ff3871b8.png" alt="img"></p>
-<p>并且能看到地址目录为：/home/www</p>
+<p>并且能看到地址目录为：&#x2F;home&#x2F;www</p>
 <p>构造payload:<code>123&#39;,content=((select(load_file(&quot;/home/www/.bash_history&quot;)))),/*</code></p>
 <p>这里.bash_history文件是什么呢 一般在linux 以<code>.</code>开头的都是隐藏文件</p>
 <p><strong>在终端敲过的命令，linux是有记录的，默认可以记录500条历史命令。这些命令保存在用户的宿主目录中的.bash_history文件中。</strong></p>
@@ -344,7 +344,7 @@
 <li><code>rm -f .DS_Store</code></li>
 <li><code>service apache2</code></li>
 </ol>
-<p>他只删除了在/var/www/html下的 .DS_Store文件 原来路径下的.DS_Store文件还保存着 我们可以读取，并且里面内容读出来大多数是乱码 最好以hex()函数也就是16进制读出来</p>
+<p>他只删除了在&#x2F;var&#x2F;www&#x2F;html下的 .DS_Store文件 原来路径下的.DS_Store文件还保存着 我们可以读取，并且里面内容读出来大多数是乱码 最好以hex()函数也就是16进制读出来</p>
 <p> .DS_Store(英文全称 Desktop Services Store)是一种由苹果公司的Mac OS X操作系统所创造的隐藏文件，目的在于存贮目录的自定义属性，例如文件们的图标位置或者是背景色的选择。相当于 Windows 下的 desktop.ini。  </p>
 <p>构造payload：<code>test&#39;,content=((select(hex(load_file(&quot;/tmp/html/.DS_Store&quot;))))),/*</code></p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681476511756-e8b75674-d60e-4d5d-a7ce-31cf1e5ab0bf.png" alt="img"></p>

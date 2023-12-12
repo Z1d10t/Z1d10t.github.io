@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -161,13 +161,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -306,7 +306,7 @@
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1693660447816-3625b299-1051-4a75-abc6-1443251980ad.png" alt="img"></p>
 <h3 id="预期解"><a href="#预期解" class="headerlink" title="预期解"></a>预期解</h3><p>考点:</p>
 <ul>
-<li>通过/proc/self/mem内存获取secretkey</li>
+<li>通过&#x2F;proc&#x2F;self&#x2F;mem内存获取secretkey</li>
 <li>python的变量污染导致render可以目录穿越</li>
 <li>任意文件读取</li>
 </ul>
@@ -339,7 +339,7 @@
 <li>然后利用python黑魔法去污染os.path.pardir</li>
 <li>路径穿越读flag</li>
 </ol>
-<p>环境给的flag位于/tmp/flag中 所以路径穿越即可 记得路径要url编码</p>
+<p>环境给的flag位于&#x2F;tmp&#x2F;flag中 所以路径穿越即可 记得路径要url编码</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1694012734069-f27e4a64-739c-4798-bbba-e4a8545c51b6.png" alt="img"></p>
 <p>真不错啊 学到知识好多！</p>
 <h2 id="ezyaml"><a href="#ezyaml" class="headerlink" title="ezyaml"></a>ezyaml</h2><p>源码如下：</p>
@@ -349,11 +349,11 @@
 <p>考点：tar的zipslip文件覆盖，yaml反序列化</p>
 <p>文件内容为<code>!!python/object/apply:os.system [&quot;whoami&quot;]</code>改为反弹shell就行 来自<a target="_blank" rel="noopener" href="https://www.tr0y.wang/2022/06/06/SecMap-unserialize-pyyaml/#pythonobjectapply">https://www.tr0y.wang/2022/06/06/SecMap-unserialize-pyyaml/#pythonobjectapply</a> 我愿称之为王の宝库</p>
 <p>之后就是打包了<code>tar cPvf a.tar ../../config/a.yaml</code></p>
-<p>然后上传 访问/src路由 传参usename=a 即可触发反弹shell</p>
+<p>然后上传 访问&#x2F;src路由 传参usename&#x3D;a 即可触发反弹shell</p>
 <h2 id="Ez-java"><a href="#Ez-java" class="headerlink" title="Ez_java"></a>Ez_java</h2><p>不会 没学</p>
 <h2 id="Ez-web"><a href="#Ez-web" class="headerlink" title="Ez_web"></a>Ez_web</h2><p>考点：</p>
 <ul>
-<li>/etc/ld.so.preload配置文件 劫持</li>
+<li>&#x2F;etc&#x2F;ld.so.preload配置文件 劫持</li>
 </ul>
 <p>简单理解在这个文件中我们可以设置一些恶意的文件绝对路径</p>
 <p>然后在我们输入指令时 就会先预加载<code>ld.so.preload</code>这个文件中的内容 达到劫持效果</p>

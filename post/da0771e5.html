@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -159,13 +159,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -277,7 +277,7 @@
 <p>扫一下网站 发现还有config.php 里面是假的flag 还有一个dir.php</p>
 <p>内容如下：</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1681137766612-8b1fa82f-df6a-4aa0-89e5-d0945ac1bf4f.png" alt="img"></p>
-<p>发现这个文件可以帮我们扫/tmp的文件目录 这个目录是存储用户临时文件的地方 我们对他有写权限 </p>
+<p>发现这个文件可以帮我们扫&#x2F;tmp的文件目录 这个目录是存储用户临时文件的地方 我们对他有写权限 </p>
 <p>这里用到了 php临时文件包含的漏洞 具体参考（<a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/201136#h2-11%EF%BC%89">https://www.anquanke.com/post/id/201136#h2-11）</a></p>
 <p>php7.0的bug：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?file=php://filter/string.strip_tags/resource=/etc/passwd</span><br></pre></td></tr></table></figure>

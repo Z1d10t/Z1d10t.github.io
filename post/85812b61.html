@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -161,13 +161,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -261,13 +261,13 @@
 <h1 id="WEB"><a href="#WEB" class="headerlink" title="WEB"></a>WEB</h1><p>web就一道题目 </p>
 <h2 id="jwt2struts"><a href="#jwt2struts" class="headerlink" title="jwt2struts"></a>jwt2struts</h2><p>考点：</p>
 <p>哈希长度扩展攻击 jwt伪造 structs2 s2-016</p>
-<p>源码发现<code>JWT_key.php</code>     </p>
+<p>源码发现<code>JWT_key.php</code>	 </p>
 <p>获得源码</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;./secret_key.php&quot;</span>;</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;./salt.php&quot;</span>;</span><br><span class="line"><span class="comment">//$salt = XXXXXXXXXXXXXX // the salt include 14 characters</span></span><br><span class="line"><span class="comment">//md5($salt.&quot;adminroot&quot;)=e6ccbf12de9d33ec27a5bcfb6a3293df</span></span><br><span class="line">@<span class="variable">$username</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>]);</span><br><span class="line">@<span class="variable">$password</span> = <span class="title function_ invoke__">urldecode</span>(<span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>]);</span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">empty</span>(<span class="variable">$_COOKIE</span>[<span class="string">&quot;digest&quot;</span>])) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable">$username</span> === <span class="string">&quot;admin&quot;</span> &amp;&amp; <span class="variable">$password</span> != <span class="string">&quot;root&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$_COOKIE</span>[<span class="string">&quot;digest&quot;</span>] === <span class="title function_ invoke__">md5</span>(<span class="variable">$salt</span>.<span class="variable">$username</span>.<span class="variable">$password</span>)) &#123;</span><br><span class="line">      <span class="keyword">die</span> (<span class="string">&quot;The secret_key is &quot;</span>. <span class="variable">$secret_key</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">die</span> (<span class="string">&quot;Your cookies don&#x27;t match up! STOP HACKING THIS SITE.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">die</span> (<span class="string">&quot;no no no&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>大致浏览 就是要么我们能得到他的盐值 要么输入密码为root 但是又不容许我们输入密码为root</p>
 <p>总之就是要让<code>$_COOKIE[&quot;digest&quot;] === md5($salt.$username.$password)</code>成立</p>
-<p>直接用hashpump参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/jblock/article/details/78448143?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=hashpump&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-78448143.nonecase&amp;spm=1018.2226.3001.4187">https://blog.csdn.net/jblock/article/details/78448143?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=hashpump&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-78448143.nonecase&amp;spm=1018.2226.3001.4187</a></p>
+<p>直接用hashpump参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/jblock/article/details/78448143?ops_request_misc=&request_id=&biz_id=102&utm_term=hashpump&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-78448143.nonecase&spm=1018.2226.3001.4187">https://blog.csdn.net/jblock/article/details/78448143?ops_request_misc=&amp;request_id=&amp;biz_id=102&amp;utm_term=hashpump&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-78448143.nonecase&amp;spm=1018.2226.3001.4187</a></p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690788963635-a551229f-e941-4ec8-a654-cd95298a7d88.png" alt="img"></p>
 <p>得到之后打入</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1690789103062-9ee0da7c-da07-4285-bdf4-1cb8e0e84fb6.png" alt="img"></p>

